@@ -1,0 +1,22 @@
+module QtQuick.Controls.Styles.Nemo
+
+plugin nemostyleplugin
+
+# NOTE ABOUT UNIMPLEMENTED STYLES:
+# We cannot use the same trick used in qmldir of the Controls 
+# (i.e. point to .qml files in official QQC directory) because the controls will look for 
+# .qml files exactly in this directory 
+# as they use Qt.createComponent(Settings.style + "/ButtonStyle.qml", button)
+
+# NOT ALL THE .QML STYLE FILES ARE EXPOSED!
+ButtonStyle 1.0 ButtonStyle.qml
+CheckBoxStyle 1.0 CheckBoxStyle.qml
+ComboBoxStyle 1.0 ComboBoxStyle.qml
+ProgressBarStyle 1.0 ProgressBarStyle.qml
+RadioButtonStyle 1.0 RadioButtonStyle.qml
+ScrollViewStyle 1.0 ScrollViewStyle.qml
+SliderStyle 1.0 SliderStyle.qml
+SpinBoxStyle 1.0 SpinBoxStyle.qml
+TabViewStyle 1.0 TabViewStyle.qml
+TableViewStyle 1.0 TableViewStyle.qml
+TextFieldStyle 1.0 TextFieldStyle.qml

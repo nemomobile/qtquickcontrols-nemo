@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/QtQuick/Controls/Nemo">
+        <file>private/NemoControls.qml</file>
+    </qresource>
+</RCC>
+

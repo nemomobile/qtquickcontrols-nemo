@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/QtQuick/Controls/Styles/Nemo">
+        <file>themes/Colors.js</file>
+        <file>Images.js</file>
+    </qresource>
+</RCC>
