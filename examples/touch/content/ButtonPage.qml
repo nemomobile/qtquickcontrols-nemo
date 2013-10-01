@@ -40,6 +40,7 @@
 
 import QtQuick 2.1
 import QtQuick.Controls.Nemo 1.0
+import QtQuick.Controls.Styles.Nemo 1.0
 
 Item {
     width: parent.width
@@ -51,19 +52,25 @@ Item {
 
         Button {
             anchors.margins: 20
-            text: "Press me"
+            text: (Theme.themeName == NemoControls.themes[0]) ? "Set Ugly Theme"
+                                                              : "Set Nice Theme"
+            onClicked: NemoControls.setTheme((Theme.themeName == NemoControls.themes[0]) ? NemoControls.themes[1]
+                                                                                            : NemoControls.themes[0])
         }
 
         Button {
             anchors.margins: 20
-            text: "Press me too"
+            enabled: false
+            text: "Disabled"
         }
 
         Button {
             anchors.margins: 20
-            text: "Dont press me"
+            primary: true
+            text: "Go back"
             onClicked: if (stackView) stackView.pop()
         }
+
 
     }
 }

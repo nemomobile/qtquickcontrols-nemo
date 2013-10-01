@@ -4,6 +4,10 @@ QT += qml quick
 TARGET=nemocontrolsplugin
 PLUGIN_IMPORT_PATH = QtQuick/Controls/Nemo
 
+# Added/Reimplemented Controls
+QML_FILES += \
+    Button.qml
+
 # Private files
 QML_FILES += \
     private/NemoControls.qml

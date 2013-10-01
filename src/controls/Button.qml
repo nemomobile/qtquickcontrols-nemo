@@ -17,28 +17,33 @@
  * Boston, MA 02110-1301, USA.
  */
 
-var themeName = "Ugly Test Theme"
+import QtQuick 2.1
+import QtQuick.Controls 1.0
+import QtQuick.Controls.Nemo 1.0
 
-// ACCENT IS THE MAIN THEME COLOUR
-var accentColor = "#FF7F00"
+Button {
+    // XXX HACK: We are assuming we'll find Button's private mouseArea with childAt(0,0)!!!
+    property variant __buttonMouseArea: childAt(0,0)
+    property int pressX: 0
+    property int pressY: 0
 
-var fillColor = "#474747"
+    // A primary button is the main button of a view, and it is styled accordingly.
+    property bool primary: false
 
-// BUTTON STYLING
-var button = {
-    background: fillColor,
-    text: "blue",
-    pressedGradient: {
-        centerColor: accentColor,
-        edgeColor: "transparent"
+    // XXX HACK: Workaround for QQC Button not exposing x/y of pressed state
+    // We need those for Glacier's Button pressed effect
+    Connections {
+        target: __buttonMouseArea
+        onPressed: {
+            pressX = mouse.x
+            pressY = mouse.y
+        }
+	onPositionChanged: {
+            pressX = mouse.x
+            pressY = mouse.y
+        }
     }
+
 }
 
-// PRIMARY BUTTON STYLING
-var primaryButton = {
-    background: accentColor,
-    pressedGradient: {
-        centerColor: "white",
-        edgeColor: accentColor
-    }
-}
+

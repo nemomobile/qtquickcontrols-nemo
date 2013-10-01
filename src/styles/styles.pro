@@ -57,7 +57,8 @@ QML_FILES += \
     images/arrow-left.png \
     images/arrow-left@2x.png \
     images/arrow-right.png \
-    images/arrow-right@2x.png
+    images/arrow-right@2x.png \
+    images/disabled-overlay.png
 
 OTHER_FILES += qmldir \
     themes/Theme1.js \

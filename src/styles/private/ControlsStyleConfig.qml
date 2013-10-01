@@ -33,6 +33,43 @@ QtObject {
     readonly property string themeName: themeConfig.themeName
 
     onThemeNameChanged: console.log("Theme successfully updated to " + themeName)
+
+    // ({ }) is QML notation for assigning JS object to a var property
+    // Automagically updated when themeConfig is updated
+    property var button :
+        ({
+             backgroundColor: themeConfig.button.background,
+             text: {
+                 color: themeConfig.button.text,
+                 font: {
+                     pointSize: 24,
+                     weight: 25 //Font.Light
+                 }
+             },
+             pressedGradient: {
+                 width: 240,
+                 height: 240,
+                 center: 0.29,
+                 edge: 0.5,
+                 centerColor: themeConfig.button.pressedGradient.centerColor,
+                 edgeColor: themeConfig.button.pressedGradient.edgeColor
+             }
+         })
+
+    // Only holds special styling for the primary button, the rest is in button
+    property var primaryButton:
+        ({
+             backgroundColor: themeConfig.primaryButton.background,
+             text: {
+                 font: {
+                     weight: 63 //Font.DemiBold
+                 }
+             },
+             pressedGradient: {
+                 centerColor: themeConfig.primaryButton.pressedGradient.centerColor,
+                 edgeColor: themeConfig.primaryButton.pressedGradient.edgeColor
+             }
+         })
 }
 
 

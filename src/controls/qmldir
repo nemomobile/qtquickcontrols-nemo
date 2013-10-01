@@ -8,6 +8,7 @@ plugin nemocontrolsplugin
 # Example:
 # GlacierSlider 1.0 GlacierSlider.qml
 
+Button 1.0 Button.qml
 
 # MIRRORED CONTROLS: 
 # These are the controls that we take directly from official QQC.
@@ -18,7 +19,6 @@ plugin nemocontrolsplugin
 # case Nemo plugin doesn't provide an overridden component)
 # NOTE: "../" here is assumed to be the relative path to the official QQC!!
 
-Button 1.0 ../Button.qml
 ApplicationWindow 1.0 ../ApplicationWindow.qml
 CheckBox 1.0 ../CheckBox.qml
 ComboBox 1.0 ../ComboBox.qml

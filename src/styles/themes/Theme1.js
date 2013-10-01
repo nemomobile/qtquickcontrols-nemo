@@ -23,3 +23,22 @@ var themeName = "Glacier"
 var accentColor = "#0091e5"
 
 var fillColor = "#474747"
+
+// BUTTON STYLING
+var button = {
+    background: fillColor,
+    text: "white",
+    pressedGradient: {
+        centerColor: accentColor,
+        edgeColor: "transparent"
+    }
+}
+
+// PRIMARY BUTTON STYLING
+var primaryButton = {
+    background: accentColor,
+    pressedGradient: {
+        centerColor: "white",
+        edgeColor: accentColor
+    }
+}

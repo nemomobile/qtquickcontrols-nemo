@@ -18,8 +18,64 @@
  */
 
 import QtQuick 2.1
+import QtQuick.Controls 1.0
 import QtQuick.Controls.Styles 1.0
+import QtGraphicalEffects 1.0
+
+//Styles.Nemo provides Theme
+import QtQuick.Controls.Styles.Nemo 1.0
 
 ButtonStyle {
+    id: buttonstyle
 
+    // The background of the button.
+    background: Rectangle {
+        implicitWidth: 240
+        implicitHeight: 50
+        clip: true
+        color: control.primary ? Theme.primaryButton.backgroundColor
+                               : Theme.button.backgroundColor
+        Image {
+            id: disabledImg
+            anchors.fill: parent
+            visible: !control.enabled
+            source: "images/disabled-overlay.png"
+            fillMode: Image.Tile
+        }
+
+        // The effect which shows the pressed state
+        RadialGradient {
+            x: control.pressX - width/2
+            y: control.pressY - height/2
+            width: Theme.button.pressedGradient.width
+            height: Theme.button.pressedGradient.height
+            visible: control.pressed
+
+            gradient: Gradient {
+                GradientStop {
+                    position: Theme.button.pressedGradient.center;
+                    color: control.primary ? Theme.primaryButton.pressedGradient.centerColor
+                                           : Theme.button.pressedGradient.centerColor
+                }
+                GradientStop {
+                    position: Theme.button.pressedGradient.edge;
+                    color: control.primary ? Theme.primaryButton.pressedGradient.edgeColor
+                                           : Theme.button.pressedGradient.edgeColor
+                }
+            }
+        }
+    }
+
+    // The label of the button.
+    label: Text {
+        renderType: Text.NativeRendering
+        verticalAlignment: Text.AlignVCenter
+        horizontalAlignment: Text.AlignHCenter
+        text: control.text
+        color: Theme.button.text.color
+        font.family: Theme.fontFamily
+        font.pointSize: Theme.button.text.font.pointSize
+        font.weight: control.primary ? Theme.primaryButton.text.font.weight : Theme.button.text.font.weight
+        opacity: control.enabled ? 1.0 : 0.3
+    }
 }
