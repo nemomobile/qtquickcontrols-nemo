@@ -76,5 +76,10 @@ QtObject {
              foregroundColor: themeConfig.groove.foreground,
              backgroundColor: themeConfig.groove.background,
          })
+    property var textField:
+        ({
+             selectionColor: themeConfig.textField.selectionColor,
+             selectedTextColor: themeConfig.textField.selectedTextColor,
+         })
 }
 

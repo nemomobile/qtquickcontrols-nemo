@@ -85,6 +85,12 @@ Item {
 
         TextField {
             anchors.margins: 20
+            text: "Disabled textfield"
+            enabled: false
+        }
+
+        TextField {
+            anchors.margins: 20
             text: "Text input"
             style: touchStyle
         }

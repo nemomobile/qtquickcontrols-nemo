@@ -19,7 +19,32 @@
 
 import QtQuick 2.1
 import QtQuick.Controls.Styles 1.0
+import QtQuick.Controls.Styles.Nemo 1.0
 
 TextFieldStyle {
-
+    selectedTextColor: Theme.textField.selectedTextColor
+    selectionColor: Theme.textField.selectionColor
+    textColor: Theme.textField.selectedTextColor
+    font.pixelSize: 24
+    background: Item {
+        implicitHeight: 40
+        implicitWidth: 320
+        anchors.leftMargin: 16
+        anchors.rightMargin: 16
+        opacity: control.enabled ? 1 : 0.6
+        Image {
+            anchors.fill: parent
+            visible: !control.enabled
+            source: "images/disabled-overlay-inverse.png"
+            fillMode: Image.Tile
+        }
+        Rectangle {
+            anchors.bottom: parent.bottom
+            anchors.left: parent.left
+            anchors.right: parent.right
+            height: 2
+            width: parent.width
+            color: Theme.textField.selectionColor
+        }
+    }
 }

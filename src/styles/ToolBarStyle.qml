@@ -21,5 +21,4 @@ import QtQuick 2.1
 import QtQuick.Controls.Styles.Private 1.0
 
 ToolBarStyle {
-
 }
