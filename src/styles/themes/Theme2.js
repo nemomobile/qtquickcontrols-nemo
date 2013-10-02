@@ -23,6 +23,7 @@ var themeName = "Ugly Test Theme"
 var accentColor = "#FF7F00"
 
 var fillColor = "#474747"
+var fillColorDark = "#202020"
 
 // BUTTON STYLING
 var button = {
@@ -42,3 +43,10 @@ var primaryButton = {
         edgeColor: accentColor
     }
 }
+
+// STYLE FOR SLIDER AND PROGRESS BAR GROOVES
+var groove = {
+    foreground: accentColor,
+    background: fillColorDark,
+}
+

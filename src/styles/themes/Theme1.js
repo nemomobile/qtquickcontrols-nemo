@@ -23,6 +23,7 @@ var themeName = "Glacier"
 var accentColor = "#0091e5"
 
 var fillColor = "#474747"
+var fillColorDark = "#313131"
 
 // BUTTON STYLING
 var button = {
@@ -42,3 +43,10 @@ var primaryButton = {
         edgeColor: accentColor
     }
 }
+
+// STYLE FOR SLIDER AND PROGRESS BAR GROOVES
+var groove = {
+    foreground: accentColor,
+    background: fillColorDark,
+}
+
