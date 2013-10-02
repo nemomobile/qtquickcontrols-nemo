@@ -70,7 +70,11 @@ QtObject {
                  edgeColor: themeConfig.primaryButton.pressedGradient.edgeColor
              }
          })
+
+    property var groove:
+        ({
+             foregroundColor: themeConfig.groove.foreground,
+             backgroundColor: themeConfig.groove.background,
+         })
 }
-
-
 

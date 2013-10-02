@@ -12,6 +12,7 @@ QML_FILES = \
     CheckBoxStyle.qml \
     ComboBoxStyle.qml \
     FocusFrameStyle.qml \
+    GrooveStyle.qml \
     GroupBoxStyle.qml \
     MenuBarStyle.qml \
     MenuStyle.qml \

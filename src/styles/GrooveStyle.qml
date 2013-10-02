@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2013 Andrea Bernabei <and.bernabei@gmail.com>
+ * Copyright (C) 2013 Simonas Leleiva <simonas.leleiva@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -18,14 +18,20 @@
  */
 
 import QtQuick 2.1
-import QtQuick.Controls.Styles 1.0
+import QtQuick.Controls.Styles.Nemo 1.0
 
-SliderStyle {
-    GrooveStyle {
-        id: grooveStyle
+Component {
+    Rectangle {
+        implicitHeight: 16
+        implicitWidth: 440
+        color: Theme.groove.backgroundColor
+        Rectangle {
+            antialiasing: true
+            radius: 1
+            color: Theme.groove.foregroundColor
+            height: parent.height
+            width: parent.width * control.value / control.maximumValue
+        }
     }
-
-    handle: Item { }
-
-    groove: grooveStyle;
 }
+
