@@ -50,3 +50,8 @@ var groove = {
     background: fillColorDark,
 }
 
+// TEXTFIELD INPUT
+var textField = {
+    selectedTextColor: "#ffffff",
+    selectionColor: "#0091e5",
+}
