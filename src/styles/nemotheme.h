@@ -26,6 +26,8 @@
 #include <QtCore/QObject>
 #include <QtCore/QString>
 #include "nemothemebutton.h"
+#include "nemothemegroove.h"
+#include "nemothemetextfield.h"
 
 class NemoTheme: public QObject
 {
@@ -34,6 +36,8 @@ class NemoTheme: public QObject
     Q_PROPERTY(QString description READ description NOTIFY descriptionChanged)
     Q_PROPERTY(NemoThemeButton * button READ button CONSTANT)
     Q_PROPERTY(NemoThemeButton * primaryButton READ primaryButton CONSTANT)
+    Q_PROPERTY(NemoThemeGroove * groove READ groove CONSTANT)
+    Q_PROPERTY(NemoThemeTextField * textField READ textField CONSTANT)
     Q_PROPERTY(QString fontFamily READ fontFamily CONSTANT)
 public:
     explicit NemoTheme(QObject *parent = 0);
@@ -43,6 +47,8 @@ public:
     void setDescription(QString description);
     NemoThemeButton * button() const;
     NemoThemeButton * primaryButton() const;
+    NemoThemeGroove * groove() const;
+    NemoThemeTextField * textField() const;
     QString fontFamily() const;
 public Q_SLOTS:
     void loadFromFile(const QString &fileName);
@@ -54,6 +60,8 @@ private:
     QString m_description;
     NemoThemeButton * m_button;
     NemoThemeButton * m_primaryButton;
+    NemoThemeGroove * m_groove;
+    NemoThemeTextField * m_textField;
     QString m_fontFamily;
 };
 

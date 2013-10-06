@@ -77,6 +77,33 @@
                     "default": 25
                 }
             ]
+        },
+        {
+            "name": "Groove",
+            "properties": [
+                {
+                    "name": "background",
+                    "type": "QColor"
+                },
+                {
+                    "name": "foreground",
+                    "type": "QColor"
+                }
+            ]
+        },
+        {
+            "name": "TextField",
+            "properties": [
+                {
+                    "name": "selectedTextColor",
+                    "type": "QColor"
+                    
+                },
+                {
+                    "name": "selectionColor",
+                    "type": "QColor"
+                }
+            ]
         }
     ],
     "properties": [
@@ -87,6 +114,14 @@
         {
             "name": "primaryButton",
             "object": "Button"
+        },
+        {
+            "name": "groove",
+            "object": "Groove"
+        },
+        {
+            "name": "textField",
+            "object": "TextField"
         }
     ],
     "font": "/usr/share/fonts/google-opensans/OpenSans-Regular.ttf"

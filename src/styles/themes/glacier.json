@@ -3,7 +3,8 @@
     "description": "Glacier theme",
     "defines": {
         "accentColor": "#0091e5",
-        "fillColor": "#474747"
+        "fillColor": "#474747",
+        "fillColorDark": "#313131"
     },
     "styles": {
         "button": {
@@ -28,6 +29,14 @@
                 "centerColor": "white",
                 "edgeColor": "accentColor"
             }
+        },
+        "groove": {
+            "foreground": "accentColor",
+            "background": "fillColorDark"
+        },
+        "textField": {
+            "selectedTextColor": "#ffffff",
+            "selectionColor": "#0091e5"
         }
     }
 }

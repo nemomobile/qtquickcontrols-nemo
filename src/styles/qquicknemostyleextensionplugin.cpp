@@ -43,6 +43,8 @@ void QQuickNemoStyleExtensionPlugin::registerTypes(const char *uri)
     qmlRegisterUncreatableType<NemoThemeButtonPressedGradient>(uri, 1, 0, "NemoThemeButtonPressedGradient", reason);
     qmlRegisterUncreatableType<NemoThemeButtonText>(uri, 1, 0, "NemoThemeButtonText", reason);
     qmlRegisterUncreatableType<NemoThemeFont>(uri, 1, 0, "NemoThemeFont", reason);
+    qmlRegisterUncreatableType<NemoThemeGroove>(uri, 1, 0, "NemoThemeGroove", reason);
+    qmlRegisterUncreatableType<NemoThemeTextField>(uri, 1, 0, "NemoThemeTextField", reason);
     qmlRegisterSingletonType<QObject>(uri, 1, 0, "Theme", nemo_theme_provider);
 }
 

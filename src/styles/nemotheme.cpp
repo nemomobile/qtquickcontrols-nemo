@@ -40,6 +40,8 @@ NemoTheme::NemoTheme(QObject *parent)
     : QObject(parent)
     , m_button(new NemoThemeButton(this))
     , m_primaryButton(new NemoThemeButton(this))
+    , m_groove(new NemoThemeGroove(this))
+    , m_textField(new NemoThemeTextField(this))
 {
     loadFromFile(GLACIER_THEME);
     int id = QFontDatabase::addApplicationFont("/usr/share/fonts/google-opensans/OpenSans-Regular.ttf");
@@ -85,6 +87,16 @@ NemoThemeButton * NemoTheme::button() const
 NemoThemeButton * NemoTheme::primaryButton() const
 {
     return m_primaryButton;
+}
+
+NemoThemeGroove * NemoTheme::groove() const
+{
+    return m_groove;
+}
+
+NemoThemeTextField * NemoTheme::textField() const
+{
+    return m_textField;
 }
 
 QString NemoTheme::fontFamily() const
@@ -281,4 +293,12 @@ void NemoTheme::loadFromFile(const QString &fileName)
     if (stylesPrimaryButtonPressedGradient.contains("edge")) {
         m_primaryButton->pressedGradient()->setEdge(jsonToDouble(stylesPrimaryButton.value("pressedGradient"), defines));
     }
+    // Setting properties for groove
+    QJsonObject stylesGroove = styles.value("groove").toObject();
+    m_groove->setBackground(jsonToColor(jsonValue(stylesGroove, "background", "groove"), defines));
+    m_groove->setForeground(jsonToColor(jsonValue(stylesGroove, "foreground", "groove"), defines));
+    // Setting properties for textField
+    QJsonObject stylesTextField = styles.value("textField").toObject();
+    m_textField->setSelectedTextColor(jsonToColor(jsonValue(stylesTextField, "selectedTextColor", "textField"), defines));
+    m_textField->setSelectionColor(jsonToColor(jsonValue(stylesTextField, "selectionColor", "textField"), defines));
 }

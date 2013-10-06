@@ -82,6 +82,8 @@ HEADERS += \
     nemothemebuttonpressedgradient.h \
     nemothemebuttontext.h \
     nemothemefont.h \
+    nemothemegroove.h \
+    nemothemetextfield.h \
     nemotheme.h
 
 SOURCES += \
@@ -90,6 +92,8 @@ SOURCES += \
     nemothemebuttonpressedgradient.cpp \
     nemothemebuttontext.cpp \
     nemothemefont.cpp \
+    nemothemegroove.cpp \
+    nemothemetextfield.cpp \
     nemotheme.cpp
 
 INSTALLS += target images qmlfiles themes
