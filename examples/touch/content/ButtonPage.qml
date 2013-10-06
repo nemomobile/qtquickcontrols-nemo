@@ -56,10 +56,6 @@ Item {
             text: isGlacier ? "Set Ugly Theme" : "Set Nice Theme"
             onClicked: isGlacier ? Theme.loadFromFile("ugly.json")
                                  : Theme.loadFromFile("glacier.json")
-
-
-//                NemoControls.setTheme((Theme.themeName == NemoControls.themes[0]) ? NemoControls.themes[1]
-//                                                                                            : NemoControls.themes[0])
         }
 
         Button {

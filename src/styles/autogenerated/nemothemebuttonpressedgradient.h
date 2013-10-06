@@ -38,17 +38,17 @@ class NemoThemeButtonPressedGradient: public QObject
 public:
     explicit NemoThemeButtonPressedGradient(QObject *parent = 0);
     QColor centerColor() const;
-    void setCenterColor(QColor centerColor);
+    void setCenterColor(const QColor &centerColor);
     QColor edgeColor() const;
-    void setEdgeColor(QColor edgeColor);
+    void setEdgeColor(const QColor &edgeColor);
     int width() const;
-    void setWidth(const int &width);
+    void setWidth(int width);
     int height() const;
-    void setHeight(const int &height);
+    void setHeight(int height);
     double center() const;
-    void setCenter(const double &center);
+    void setCenter(double center);
     double edge() const;
-    void setEdge(const double &edge);
+    void setEdge(double edge);
 Q_SIGNALS:
     void centerColorChanged();
     void edgeColorChanged();

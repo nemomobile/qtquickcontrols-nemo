@@ -18,6 +18,39 @@
             ]
         },
         {
+            "name": "Groove",
+            "properties": [
+                {
+                    "name": "background",
+                    "type": "QColor"
+                },
+                {
+                    "name": "foreground",
+                    "type": "QColor"
+                }
+            ]
+        },
+        {
+            "name": "TextField",
+            "properties": [
+                {
+                    "name": "selectedTextColor",
+                    "type": "QColor"
+                    
+                },
+                {
+                    "name": "selectionColor",
+                    "type": "QColor"
+                }
+            ]
+        },
+        
+        
+        
+        
+        
+        
+        {
             "name": "ButtonPressedGradient",
             "properties": [
                 {
@@ -78,33 +111,6 @@
                 }
             ]
         },
-        {
-            "name": "Groove",
-            "properties": [
-                {
-                    "name": "background",
-                    "type": "QColor"
-                },
-                {
-                    "name": "foreground",
-                    "type": "QColor"
-                }
-            ]
-        },
-        {
-            "name": "TextField",
-            "properties": [
-                {
-                    "name": "selectedTextColor",
-                    "type": "QColor"
-                    
-                },
-                {
-                    "name": "selectionColor",
-                    "type": "QColor"
-                }
-            ]
-        }
     ],
     "properties": [
         {

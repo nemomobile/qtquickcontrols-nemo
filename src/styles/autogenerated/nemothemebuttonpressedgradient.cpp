@@ -36,7 +36,7 @@ QColor NemoThemeButtonPressedGradient::centerColor() const
     return m_centerColor;
 }
 
-void NemoThemeButtonPressedGradient::setCenterColor(QColor centerColor)
+void NemoThemeButtonPressedGradient::setCenterColor(const QColor &centerColor)
 {
     if (m_centerColor != centerColor) {
         m_centerColor = centerColor;
@@ -49,7 +49,7 @@ QColor NemoThemeButtonPressedGradient::edgeColor() const
     return m_edgeColor;
 }
 
-void NemoThemeButtonPressedGradient::setEdgeColor(QColor edgeColor)
+void NemoThemeButtonPressedGradient::setEdgeColor(const QColor &edgeColor)
 {
     if (m_edgeColor != edgeColor) {
         m_edgeColor = edgeColor;
@@ -62,7 +62,7 @@ int NemoThemeButtonPressedGradient::width() const
     return m_width;
 }
 
-void NemoThemeButtonPressedGradient::setWidth(const int &width)
+void NemoThemeButtonPressedGradient::setWidth(int width)
 {
     if (m_width != width) {
         m_width = width;
@@ -75,7 +75,7 @@ int NemoThemeButtonPressedGradient::height() const
     return m_height;
 }
 
-void NemoThemeButtonPressedGradient::setHeight(const int &height)
+void NemoThemeButtonPressedGradient::setHeight(int height)
 {
     if (m_height != height) {
         m_height = height;
@@ -88,7 +88,7 @@ double NemoThemeButtonPressedGradient::center() const
     return m_center;
 }
 
-void NemoThemeButtonPressedGradient::setCenter(const double &center)
+void NemoThemeButtonPressedGradient::setCenter(double center)
 {
     if (m_center != center) {
         m_center = center;
@@ -101,7 +101,7 @@ double NemoThemeButtonPressedGradient::edge() const
     return m_edge;
 }
 
-void NemoThemeButtonPressedGradient::setEdge(const double &edge)
+void NemoThemeButtonPressedGradient::setEdge(double edge)
 {
     if (m_edge != edge) {
         m_edge = edge;

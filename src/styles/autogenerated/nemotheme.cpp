@@ -58,7 +58,7 @@ QString NemoTheme::name() const
     return m_name;
 }
 
-void NemoTheme::setName(QString name)
+void NemoTheme::setName(const QString &name)
 {
     if (m_name != name) {
         m_name = name;
@@ -71,7 +71,7 @@ QString NemoTheme::description() const
     return m_description;
 }
 
-void NemoTheme::setDescription(QString description)
+void NemoTheme::setDescription(const QString &description)
 {
     if (m_description != description) {
         m_description = description;
@@ -109,9 +109,9 @@ static inline QJsonValue jsonValue(const QJsonObject &object, const QString &key
 {
     if (!object.contains(key)) {
         if (objectName.isEmpty()) {
-            qWarning() << "W" << "Root JSON object do not have value" << key;
+            qWarning() << "W" << "Root JSON object does not have value" << key;
         } else {
-            qWarning() << "W" << "JSON Object" << objectName << "do not have value" << key;
+            qWarning() << "W" << "JSON Object" << objectName << "does not have value" << key;
         }
         return QJsonValue();
     }
@@ -137,7 +137,9 @@ static inline QColor jsonToColor(const QJsonValue &value,
         color = defines.value(color).toString();
     }
     
-    if (!QColor::isValidColor(color)) {
+    // We need to skip the warning caused by a null value, 
+    // so we check if the color is not empty
+    if (!QColor::isValidColor(color) && !color.isEmpty()) {
         qWarning() << "W" << color << "is not a valid color";
         return QColor();
     }

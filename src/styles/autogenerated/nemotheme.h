@@ -42,9 +42,9 @@ class NemoTheme: public QObject
 public:
     explicit NemoTheme(QObject *parent = 0);
     QString name() const;
-    void setName(QString name);
+    void setName(const QString &name);
     QString description() const;
-    void setDescription(QString description);
+    void setDescription(const QString &description);
     NemoThemeButton * button() const;
     NemoThemeButton * primaryButton() const;
     NemoThemeGroove * groove() const;

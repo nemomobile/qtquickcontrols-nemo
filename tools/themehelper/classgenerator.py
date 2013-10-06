@@ -53,8 +53,11 @@ license = """/*
 // Any modification done in this file will be overridden
 
 """
+
+# Used by formatting functions
 basicTypes = ["int", "float", "double"]
 
+# Formatting functions
 def _getType(property):
     if "type" in property:
         return property["type"]
@@ -64,7 +67,7 @@ def _getType(property):
 def _getArgumentType(property):
     if "type" in property:
         type = property["type"]
-        if type in basicTypes:
+        if type not in basicTypes:
             return "const " + type + " &"
         return type + " "
     if "object" in property:
@@ -73,6 +76,8 @@ def _getArgumentType(property):
 def _getUpper(name):
     return name[0].upper() + name[1:]
 
+# Generates some basic entries
+# (includes, Q_PROPERTY macro, getter or setters etc)
 def _getInclude(property):
     if "type" in property:
         type = property["type"]
@@ -136,9 +141,9 @@ static inline QJsonValue jsonValue(const QJsonObject &object, const QString &key
 {
     if (!object.contains(key)) {
         if (objectName.isEmpty()) {
-            qWarning() << "W" << "Root JSON object do not have value" << key;
+            qWarning() << "W" << "Root JSON object does not have value" << key;
         } else {
-            qWarning() << "W" << "JSON Object" << objectName << "do not have value" << key;
+            qWarning() << "W" << "JSON Object" << objectName << "does not have value" << key;
         }
         return QJsonValue();
     }
@@ -164,7 +169,9 @@ static inline QColor jsonToColor(const QJsonValue &value,
         color = defines.value(color).toString();
     }
     
-    if (!QColor::isValidColor(color)) {
+    // We need to skip the warning caused by a null value, 
+    // so we check if the color is not empty
+    if (!QColor::isValidColor(color) && !color.isEmpty()) {
         qWarning() << "W" << color << "is not a valid color";
         return QColor();
     }
@@ -203,6 +210,7 @@ static inline int jsonToDouble(const QJsonValue &value,
 
 """
     
+    # Generate the method that loads from file
     source += "void " + name + "::loadFromFile(const QString &fileName)\n"
     source += """{
     QDir dir (THEME_DIR);
@@ -263,7 +271,8 @@ static inline int jsonToDouble(const QJsonValue &value,
         return;
     }
 """
-    # We create a map of components
+    # We create a map of components that can be used
+    # to quickly retrieve a component based on the name
     components = {}
     for component in data["components"]:
         components[component["name"]] = component["properties"]
@@ -312,6 +321,10 @@ def _getCasted(property, jsonObject, name, cppObject):
         return data
         
 
+# This method is used to generate the tree of components and set calls
+# it will start with a root component property, try to load all properties
+# from theme file (and ignore those already defined), and continue
+# with children components.
 def _getSetObject(jsonObject, cppObject, name, properties, components):
     data = "    // Setting properties for " + name + "\n"
     data += "    QJsonObject " + jsonObject + _getUpper(name) + " = " + jsonObject
