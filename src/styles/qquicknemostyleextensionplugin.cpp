@@ -20,36 +20,30 @@
 
 #include "qquicknemostyleextensionplugin.h"
 #include <QtQml>
+#include "nemotheme.h"
 
 QQuickNemoStyleExtensionPlugin::QQuickNemoStyleExtensionPlugin(QObject *parent) :
     QQmlExtensionPlugin(parent)
 {
 }
 
-static QObject *nemo_style_singletontype_provider(QQmlEngine *engine, QJSEngine */*scriptEngine*/)
+static QObject * nemo_theme_provider(QQmlEngine *engine, QJSEngine *scriptEngine)
 {
-    QObject *ret = 0;
-
-    qWarning() << QFileInfo("private/ControlsStyleConfig.qml").absoluteFilePath();
-    qWarning() << QDir::currentPath();
-    QQmlComponent c(engine,QUrl::fromLocalFile("/usr/lib/qt5/qml/QtQuick/Controls/Styles/Nemo/private/ControlsStyleConfig.qml"),QQmlComponent::PreferSynchronous);
-    if (c.status() == QQmlComponent::Ready) {
-        ret = c.create();
-        if (!ret) {
-            qWarning() << "Can't create Controls Style Config Singleton Object:"<<c.errorString();
-        }
-    } else {
-
-        qWarning() << "Controls Style Config Component not Ready:"<<c.errorString();
-    }
-
-    return ret;
+    Q_UNUSED(engine)
+    Q_UNUSED(scriptEngine)
+    return new NemoTheme();
 }
 
 void QQuickNemoStyleExtensionPlugin::registerTypes(const char *uri)
 {
     Q_ASSERT(uri == QLatin1String("QtQuick.Controls.Styles.Nemo"));
-    qmlRegisterSingletonType<QObject>(uri,1,0,"Theme",nemo_style_singletontype_provider);
+    QString reason = QString("Cannot be created");
+    qmlRegisterUncreatableType<NemoTheme>(uri, 1, 0, "NemoTheme", reason);
+    qmlRegisterUncreatableType<NemoThemeButton>(uri, 1, 0, "NemoThemeButton", reason);
+    qmlRegisterUncreatableType<NemoThemeButtonPressedGradient>(uri, 1, 0, "NemoThemeButtonPressedGradient", reason);
+    qmlRegisterUncreatableType<NemoThemeButtonText>(uri, 1, 0, "NemoThemeButtonText", reason);
+    qmlRegisterUncreatableType<NemoThemeFont>(uri, 1, 0, "NemoThemeFont", reason);
+    qmlRegisterSingletonType<QObject>(uri, 1, 0, "Theme", nemo_theme_provider);
 }
 
 void QQuickNemoStyleExtensionPlugin::initializeEngine(QQmlEngine *engine, const char *uri)

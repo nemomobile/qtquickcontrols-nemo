@@ -1,0 +1,33 @@
+{
+    "name": "Ugly",
+    "description": "Ugly test theme",
+    "defines": {
+        "accentColor": "#FF7F00",
+        "fillColor": "#474747"
+    },
+    "styles": {
+        "button": {
+            "background": "fillColor",
+            "text": {
+                "color": "blue"
+            },
+            "pressedGradient": {
+                "centerColor": "accentColor",
+                "edgeColor": "transparent"
+            }
+        },
+        "primaryButton": {
+            "background": "accentColor",
+            "text": {
+                "color": "blue",
+                "font": {
+                    "weight": 63
+                }
+            },
+            "pressedGradient": {
+                "centerColor": "white",
+                "edgeColor": "accentColor"
+            }
+        }
+    }
+}

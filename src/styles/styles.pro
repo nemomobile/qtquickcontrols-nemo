@@ -28,10 +28,6 @@ QML_FILES = \
     ToolBarStyle.qml \
     ToolButtonStyle.qml
 
-# Private files
-QML_FILES += \
-    private/ControlsStyleConfig.qml
-
 # Images
 #QML_FILES += \
 #    images/480x854/*.png 
@@ -64,6 +60,8 @@ QML_FILES += \
 OTHER_FILES += qmldir \
     themes/Theme1.js \
     themes/Theme2.js \
+    themes/glacier.json \
+    themes/ugly.json \
     $$QML_FILES
 
 target.path = $$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH
@@ -72,23 +70,29 @@ qmlfiles.files = $$_PRO_FILE_PWD_/*.qml
 qmlfiles.files += $$_PRO_FILE_PWD_/qmldir
 qmlfiles.path = $$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH
 
-privatefiles.files = $$_PRO_FILE_PWD_/private/*.qml
-privatefiles.path = $$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH/private
-
-themes.files = $$_PRO_FILE_PWD_/themes/*.js
+themes.files = $$_PRO_FILE_PWD_/themes/*.json
 themes.path = $$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH/themes
 
 images.files = $$_PRO_FILE_PWD_/images
 images.path = $$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH
 
 HEADERS += \
-    qquicknemostyleextensionplugin.h
+    qquicknemostyleextensionplugin.h \
+    nemothemebutton.h \
+    nemothemebuttonpressedgradient.h \
+    nemothemebuttontext.h \
+    nemothemefont.h \
+    nemotheme.h
 
 SOURCES += \
-    qquicknemostyleextensionplugin.cpp
+    qquicknemostyleextensionplugin.cpp \
+    nemothemebutton.cpp \
+    nemothemebuttonpressedgradient.cpp \
+    nemothemebuttontext.cpp \
+    nemothemefont.cpp \
+    nemotheme.cpp
 
-INSTALLS += target images qmlfiles themes privatefiles
+INSTALLS += target images qmlfiles themes
 
-# RESOURCES += \
-#     rsc.qrc
+DEFINES += 'THEME_DIR=\'\"$$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH/themes"\''
 
