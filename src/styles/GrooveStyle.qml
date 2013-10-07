@@ -24,11 +24,11 @@ Component {
     Rectangle {
         implicitHeight: 16
         implicitWidth: 440
-        color: Theme.groove.backgroundColor
+        color: Theme.groove.background
         Rectangle {
             antialiasing: true
             radius: 1
-            color: Theme.groove.foregroundColor
+            color: Theme.groove.foreground
             height: parent.height
             width: parent.width * control.value / control.maximumValue
         }

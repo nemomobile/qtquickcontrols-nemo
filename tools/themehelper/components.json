@@ -1,0 +1,135 @@
+{
+    "components": [
+        {
+            "name": "Button",
+            "properties": [
+                {
+                    "name": "background",
+                    "type": "QColor"
+                },
+                {
+                    "name": "text",
+                    "object": "ButtonText"
+                },
+                {
+                    "name": "pressedGradient",
+                    "object": "ButtonPressedGradient"
+                }
+            ]
+        },
+        {
+            "name": "Groove",
+            "properties": [
+                {
+                    "name": "background",
+                    "type": "QColor"
+                },
+                {
+                    "name": "foreground",
+                    "type": "QColor"
+                }
+            ]
+        },
+        {
+            "name": "TextField",
+            "properties": [
+                {
+                    "name": "selectedTextColor",
+                    "type": "QColor"
+                    
+                },
+                {
+                    "name": "selectionColor",
+                    "type": "QColor"
+                }
+            ]
+        },
+        
+        
+        
+        
+        
+        
+        {
+            "name": "ButtonPressedGradient",
+            "properties": [
+                {
+                    "name": "centerColor",
+                    "type": "QColor"
+                },
+                {
+                    "name": "edgeColor",
+                    "type": "QColor"
+                },
+                {
+                    "name": "width",
+                    "type": "int",
+                    "default": 240
+                },
+                {
+                    "name": "height",
+                    "type": "int",
+                    "default": 240
+                },
+                {
+                    "name": "center",
+                    "type": "double",
+                    "default": 0.29
+                },
+                {
+                    "name": "edge",
+                    "type": "double",
+                    "default": 0.5
+                }
+            ]
+        },
+        {
+            "name": "ButtonText",
+            "properties": [
+                {
+                    "name": "color",
+                    "type": "QColor"
+                },
+                {
+                    "name": "font",
+                    "object": "Font"
+                }
+            ]
+        },
+        {
+            "name": "Font",
+            "properties": [
+                {
+                    "name": "pointSize",
+                    "type": "int",
+                    "default": 24
+                },
+                {
+                    "name": "weight",
+                    "type": "int",
+                    "default": 25
+                }
+            ]
+        },
+    ],
+    "properties": [
+        {
+            "name": "button",
+            "object": "Button"
+        },
+        {
+            "name": "primaryButton",
+            "object": "Button"
+        },
+        {
+            "name": "groove",
+            "object": "Groove"
+        },
+        {
+            "name": "textField",
+            "object": "TextField"
+        }
+    ],
+    "font": "/usr/share/fonts/google-opensans/OpenSans-Regular.ttf"
+}
+ 

@@ -33,8 +33,8 @@ ButtonStyle {
         implicitWidth: 240
         implicitHeight: 50
         clip: true
-        color: control.primary ? Theme.primaryButton.backgroundColor
-                               : Theme.button.backgroundColor
+        color: control.primary ? Theme.primaryButton.background
+                               : Theme.button.background
         Image {
             id: disabledImg
             anchors.fill: parent
