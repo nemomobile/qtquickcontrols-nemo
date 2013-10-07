@@ -1,0 +1,42 @@
+{
+    "name": "Glacier",
+    "description": "Glacier theme",
+    "defines": {
+        "accentColor": "#0091e5",
+        "fillColor": "#474747",
+        "fillColorDark": "#313131"
+    },
+    "styles": {
+        "button": {
+            "background": "fillColor",
+            "text": {
+                "color": "white"
+            },
+            "pressedGradient": {
+                "centerColor": "accentColor",
+                "edgeColor": "transparent"
+            }
+        },
+        "primaryButton": {
+            "background": "accentColor",
+            "text": {
+                "color": "white",
+                "font": {
+                    "weight": 63
+                }
+            },
+            "pressedGradient": {
+                "centerColor": "white",
+                "edgeColor": "accentColor"
+            }
+        },
+        "groove": {
+            "foreground": "accentColor",
+            "background": "fillColorDark"
+        },
+        "textField": {
+            "selectedTextColor": "#ffffff",
+            "selectionColor": "#0091e5"
+        }
+    }
+}

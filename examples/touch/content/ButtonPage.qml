@@ -51,11 +51,11 @@ Item {
         anchors.centerIn: parent
 
         Button {
+            property bool isGlacier: Theme.name == "Glacier"
             anchors.margins: 20
-            text: (Theme.themeName == NemoControls.themes[0]) ? "Set Ugly Theme"
-                                                              : "Set Nice Theme"
-            onClicked: NemoControls.setTheme((Theme.themeName == NemoControls.themes[0]) ? NemoControls.themes[1]
-                                                                                            : NemoControls.themes[0])
+            text: isGlacier ? "Set Ugly Theme" : "Set Nice Theme"
+            onClicked: isGlacier ? Theme.loadFromFile("ugly.json")
+                                 : Theme.loadFromFile("glacier.json")
         }
 
         Button {

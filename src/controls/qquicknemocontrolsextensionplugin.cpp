@@ -27,24 +27,6 @@ QQuickNemoControlsExtensionPlugin::QQuickNemoControlsExtensionPlugin(QObject *pa
 {
 }
 
-
-static QObject *nemo_controls_singletontype_provider(QQmlEngine *engine, QJSEngine */*scriptEngine*/)
-{
-    QObject *ret = 0;
-
-    QQmlComponent c(engine,QUrl("/usr/lib/qt5/qml/QtQuick/Controls/Nemo/private/NemoControls.qml"),QQmlComponent::PreferSynchronous);
-    if (c.status() == QQmlComponent::Ready) {
-        ret = c.create();
-        if (!ret) {
-            qWarning() << "Can't create NemoControls Singleton Object:"<<c.errorString();
-        }
-    } else {
-        qWarning() << "NemoControls Singleton Component not Ready:"<<c.errorString();
-    }
-
-    return ret;
-}
-
 static QObject *nemo_hacks_singletontype_provider(QQmlEngine *engine, QJSEngine */*scriptEngine*/)
 {
     QObject *ret = new Hacks(engine);
@@ -54,7 +36,6 @@ static QObject *nemo_hacks_singletontype_provider(QQmlEngine *engine, QJSEngine 
 void QQuickNemoControlsExtensionPlugin::registerTypes(const char *uri)
 {
     Q_ASSERT(uri == QLatin1String("QtQuick.Controls.Nemo"));
-    qmlRegisterSingletonType<QObject>(uri, 1, 0, "NemoControls", nemo_controls_singletontype_provider);
     qmlRegisterSingletonType<QObject>(uri, 1, 0, "NemoHacks", nemo_hacks_singletontype_provider);
 
 }
