@@ -18,8 +18,36 @@
  */
 
 import QtQuick 2.1
-import QtQuick.Controls.Styles.Private 1.0
+import QtQuick.Controls 1.0
+import QtQuick.Controls.Private 1.0
 
-ToolButtonStyle {
 
+// TODO: USE ToolButtonStyle from official QQC!
+// ToolButtonStyle is private in QQC 5.1.0
+
+Style {
+    readonly property ToolButton control: __control
+    property Component panel: Item {
+        id: styleitem
+
+        //TODO: Maybe we want to add a descriptive text at the bottom of the icon?
+        implicitWidth: 50
+        implicitHeight: 50
+
+        opacity: control.pressed ? 0.5 : 1
+
+        Text {
+            id: label
+            visible: icon.status != Image.Ready
+            anchors.centerIn: parent
+            text: control.text
+        }
+
+        Image {
+            id: icon
+            anchors.fill: parent
+            anchors.margins: 8
+            source: control.iconSource
+        }
+    }
 }
