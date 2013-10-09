@@ -42,6 +42,7 @@ NemoTheme::NemoTheme(QObject *parent)
     , m_primaryButton(new NemoThemeButton(this))
     , m_groove(new NemoThemeGroove(this))
     , m_textField(new NemoThemeTextField(this))
+    , m_toolBar(new NemoThemeToolBar(this))
 {
     loadFromFile(GLACIER_THEME);
     int id = QFontDatabase::addApplicationFont("/usr/share/fonts/google-opensans/OpenSans-Regular.ttf");
@@ -97,6 +98,11 @@ NemoThemeGroove * NemoTheme::groove() const
 NemoThemeTextField * NemoTheme::textField() const
 {
     return m_textField;
+}
+
+NemoThemeToolBar * NemoTheme::toolBar() const
+{
+    return m_toolBar;
 }
 
 QString NemoTheme::fontFamily() const
@@ -303,4 +309,7 @@ void NemoTheme::loadFromFile(const QString &fileName)
     QJsonObject stylesTextField = styles.value("textField").toObject();
     m_textField->setSelectedTextColor(jsonToColor(jsonValue(stylesTextField, "selectedTextColor", "textField"), defines));
     m_textField->setSelectionColor(jsonToColor(jsonValue(stylesTextField, "selectionColor", "textField"), defines));
+    // Setting properties for toolBar
+    QJsonObject stylesToolBar = styles.value("toolBar").toObject();
+    m_toolBar->setBackground(jsonToColor(jsonValue(stylesToolBar, "background", "toolBar"), defines));
 }
