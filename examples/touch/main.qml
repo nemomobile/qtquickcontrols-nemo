@@ -64,9 +64,7 @@ ApplicationWindow {
         }
     }
 
-    toolBar: BorderImage {
-        border.bottom: 8
-        source: "images/toolbar.png"
+    toolBar: ToolBar {
         width: parent.width
         height: 100
 
