@@ -44,6 +44,15 @@
                 }
             ]
         },
+        {
+            "name": "ToolBar",
+            "properties": [
+                {
+                    "name": "background",
+                    "type": "QColor"
+                }
+            ]
+        },
         
         
         
@@ -128,6 +137,10 @@
         {
             "name": "textField",
             "object": "TextField"
+        },
+        {
+            "name": "toolBar",
+            "object": "ToolBar"
         }
     ],
     "font": "/usr/share/fonts/google-opensans/OpenSans-Regular.ttf"
