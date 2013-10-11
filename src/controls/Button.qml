@@ -19,11 +19,10 @@
 
 import QtQuick 2.1
 import QtQuick.Controls 1.0
-import QtQuick.Controls.Nemo 1.0
 
 Button {
-    // XXX HACK: We are assuming we'll find Button's private mouseArea with childAt(0,0)!!!
-    property variant __buttonMouseArea: childAt(0,0)
+    id: butt
+
     property int pressX: 0
     property int pressY: 0
 
@@ -33,17 +32,16 @@ Button {
     // XXX HACK: Workaround for QQC Button not exposing x/y of pressed state
     // We need those for Glacier's Button pressed effect
     Connections {
-        target: __buttonMouseArea
+        target: butt.__behavior
         onPressed: {
             pressX = mouse.x
             pressY = mouse.y
         }
-	onPositionChanged: {
+        onPositionChanged: {
             pressX = mouse.x
             pressY = mouse.y
         }
     }
-
 }
 
 
