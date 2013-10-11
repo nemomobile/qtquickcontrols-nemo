@@ -9,7 +9,8 @@ THEME_IMPORT_PATH = QtQuick/Controls/Styles/Nemo/themes
 QML_FILES += \
     Button.qml
 
-OTHER_FILES += qmldir
+OTHER_FILES += qmldir \
+    $$QML_FILES
 
 HEADERS += \
     qquicknemocontrolsextensionplugin.h \
