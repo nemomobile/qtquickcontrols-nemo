@@ -105,6 +105,10 @@ ApplicationWindow {
     ListModel {
         id: pageModel
         ListElement {
+            title: "Live-Coding Arena"
+            page: "content/LiveCoding.qml"
+        }
+        ListElement {
             title: "Buttons"
             page: "content/ButtonPage.qml"
         }

@@ -16,7 +16,8 @@ OTHER_FILES += \
     content/ProgressBarPage.qml \
     content/SliderPage.qml \
     content/TabBarPage.qml \
-    content/TextInputPage.qml
+    content/TextInputPage.qml \
+    content/LiveCoding.qml
 
 RESOURCES += \
     resources.qrc
