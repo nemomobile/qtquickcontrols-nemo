@@ -1,5 +1,4 @@
 /*
- * Copyright (C) 2013 Tomasz Olszak <olszak.tomasz@gmail.com>
  * Copyright (C) 2013 Andrea Bernabei <and.bernabei@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -18,31 +17,27 @@
  * Boston, MA 02110-1301, USA.
  */
 
-#include "qquicknemocontrolsextensionplugin.h"
-#include <QtQml>
-#include "hacks.h"
 #include "nemowindow.h"
-
-QQuickNemoControlsExtensionPlugin::QQuickNemoControlsExtensionPlugin(QObject *parent) :
-    QQmlExtensionPlugin(parent)
+#include <QDebug>
+NemoWindow::NemoWindow(QWindow *parent) :
+    QQuickWindow(parent)
 {
 }
 
-static QObject *nemo_hacks_singletontype_provider(QQmlEngine *engine, QJSEngine */*scriptEngine*/)
-{
-    QObject *ret = new Hacks(engine);
-    return ret;
+Qt::ScreenOrientations NemoWindow::allowedOrientations() const {
+    return m_allowedOrientations;
 }
 
-void QQuickNemoControlsExtensionPlugin::registerTypes(const char *uri)
-{
-    Q_ASSERT(uri == QLatin1String("QtQuick.Controls.Nemo"));
-    qmlRegisterSingletonType<QObject>(uri, 1, 0, "NemoHacks", nemo_hacks_singletontype_provider);
-    qmlRegisterType<NemoWindow>(uri, 1, 0, "NemoWindow");
-}
+void NemoWindow::setAllowedOrientations(Qt::ScreenOrientations allowed) {
 
-void QQuickNemoControlsExtensionPlugin::initializeEngine(QQmlEngine *engine, const char *uri)
-{
-    QQmlExtensionPlugin::initializeEngine(engine,uri);
-}
+    //This way no invalid values can get assigned to allowedOrientations
+    //README: This is needed because otherwise you could assign it
+    //things like (Qt.PortraitOrientation | 444) from QML
+    Qt::ScreenOrientations max = (Qt::PortraitOrientation | Qt::LandscapeOrientation
+            | Qt::InvertedPortraitOrientation | Qt::InvertedLandscapeOrientation);
 
+    if (m_allowedOrientations != allowed && allowed <= max) {
+        m_allowedOrientations = allowed;
+        emit allowedOrientationsChanged();
+    }
+}

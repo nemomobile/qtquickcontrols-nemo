@@ -43,6 +43,7 @@ NemoTheme::NemoTheme(QObject *parent)
     , m_groove(new NemoThemeGroove(this))
     , m_textField(new NemoThemeTextField(this))
     , m_toolBar(new NemoThemeToolBar(this))
+    , m_window(new NemoThemeWindow(this))
 {
     loadFromFile(GLACIER_THEME);
     int id = QFontDatabase::addApplicationFont("/usr/share/fonts/google-opensans/OpenSans-Regular.ttf");
@@ -103,6 +104,11 @@ NemoThemeTextField * NemoTheme::textField() const
 NemoThemeToolBar * NemoTheme::toolBar() const
 {
     return m_toolBar;
+}
+
+NemoThemeWindow * NemoTheme::window() const
+{
+    return m_window;
 }
 
 QString NemoTheme::fontFamily() const
@@ -312,4 +318,7 @@ void NemoTheme::loadFromFile(const QString &fileName)
     // Setting properties for toolBar
     QJsonObject stylesToolBar = styles.value("toolBar").toObject();
     m_toolBar->setBackground(jsonToColor(jsonValue(stylesToolBar, "background", "toolBar"), defines));
+    // Setting properties for window
+    QJsonObject stylesWindow = styles.value("window").toObject();
+    m_window->setBackground(jsonToColor(jsonValue(stylesWindow, "background", "window"), defines));
 }

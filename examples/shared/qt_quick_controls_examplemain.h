@@ -45,6 +45,7 @@
 #include <QtQml>
 #include <QtQuick/QQuickView>
 #include <QtCore/QString>
+#include <QScreen>
 
 #ifndef QT_NO_WIDGETS
 #include <QtWidgets/QApplication>
@@ -64,6 +65,13 @@ QT_BEGIN_NAMESPACE
     int main(int argc, char *argv[]) \
     { \
         Application app(argc, argv); \
+    	QScreen* sc = app.primaryScreen(); \
+    	if(sc){ \
+    		sc->setOrientationUpdateMask(Qt::LandscapeOrientation \
+                                 | Qt::PortraitOrientation \
+                                 | Qt::InvertedLandscapeOrientation \
+                                 | Qt::InvertedPortraitOrientation); \
+    	} \
         QQmlApplicationEngine engine(QUrl(#url)); \
         QObject *topLevel = engine.rootObjects().value(0); \
         QQuickWindow *window = qobject_cast<QQuickWindow *>(topLevel); \

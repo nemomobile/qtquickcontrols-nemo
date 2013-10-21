@@ -53,6 +53,15 @@
                 }
             ]
         },
+        {
+            "name": "Window",
+            "properties": [
+                {
+                    "name": "background",
+                    "type": "QColor"
+                }
+            ]
+        },
         
         
         
@@ -141,6 +150,10 @@
         {
             "name": "toolBar",
             "object": "ToolBar"
+        },
+        {
+            "name": "window",
+            "object": "Window"
         }
     ],
     "font": "/usr/share/fonts/google-opensans/OpenSans-Regular.ttf"

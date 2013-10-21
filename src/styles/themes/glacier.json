@@ -40,6 +40,9 @@
         },
         "toolBar": {
             "background": "#000000"
+        },
+        "window": {
+            "background": "#000000"
         }
     }
 }

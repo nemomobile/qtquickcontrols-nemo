@@ -39,6 +39,7 @@
 ****************************************************************************/
 
 import QtQuick 2.1
+import QtQuick.Controls 1.0
 import QtQuick.Controls.Nemo 1.0
 import QtQuick.Controls.Styles.Nemo 1.0
 import QtQuick.Window 2.1
@@ -46,59 +47,17 @@ import "content"
 
 ApplicationWindow {
 
-    width: 854
-    height: 480
-    Rectangle {
-        color: "#212126"
-        anchors.fill: parent
-    }
-    contentOrientation: Qt.PortraitOrientation
+    id: appWindow
+
+    contentOrientation: Screen.orientation
 
     // Implements back key navigation
     Keys.onReleased: {
         if (event.key === Qt.Key_Back) {
-            if (stackView.depth > 1) {
-                stackView.pop();
+            if (pageStack.depth > 1) {
+                pageStack.pop();
                 event.accepted = true;
             } else { Qt.quit(); }
-        }
-    }
-
-    toolBar: ToolBar {
-        width: parent.width
-        height: 100
-
-        Rectangle {
-            id: backButton
-            width: opacity ? 60 : 0
-            anchors.left: parent.left
-            anchors.leftMargin: 20
-            opacity: stackView.depth > 1 ? 1 : 0
-            anchors.verticalCenter: parent.verticalCenter
-            antialiasing: true
-            height: 60
-            radius: 4
-            color: backmouse.pressed ? "#222" : "transparent"
-            Behavior on opacity { NumberAnimation{} }
-            Image {
-                anchors.verticalCenter: parent.verticalCenter
-                source: "images/navigation_previous_item.png"
-            }
-            MouseArea {
-                id: backmouse
-                anchors.fill: parent
-                anchors.margins: -10
-                onClicked: stackView.pop()
-            }
-        }
-
-        Text {
-            font.pixelSize: 42
-            Behavior on x { NumberAnimation{ easing.type: Easing.OutCubic} }
-            x: backButton.x + backButton.width + 20
-            anchors.verticalCenter: parent.verticalCenter
-            color: "white"
-            text: "Widget Gallery"
         }
     }
 
@@ -130,22 +89,61 @@ ApplicationWindow {
         }
     }
 
-    StackView {
-        id: stackView
-        anchors.fill: parent
 
-        initialItem: Item {
-            width: parent.width
-            height: parent.height
-            ListView {
-                model: pageModel
-                anchors.fill: parent
-                delegate: AndroidDelegate {
-                    text: title
-                    onClicked: stackView.push(Qt.resolvedUrl(page))
+    initialPage: Rectangle {
+        id: pageItem
+        width: parent.width
+        height: parent.height
+
+        color: "black"
+        ToolBar {
+            id: toolbar
+            anchors.top: parent.top
+            Rectangle {
+                id: backButton
+                width: opacity ? 60 : 0
+                anchors.left: parent.left
+                anchors.leftMargin: 20
+                opacity: pageItem.Stack.view.depth > 1 ? 1 : 0
+                anchors.verticalCenter: parent.verticalCenter
+                antialiasing: true
+                height: 60
+                radius: 4
+                color: backmouse.pressed ? "#222" : "transparent"
+                Behavior on opacity { NumberAnimation{} }
+                Image {
+                    anchors.verticalCenter: parent.verticalCenter
+                    source: "images/navigation_previous_item.png"
                 }
+                MouseArea {
+                    id: backmouse
+                    anchors.fill: parent
+                    anchors.margins: -10
+                    onClicked: pageItem.Stack.view.pop()
+                }
+            }
+
+            Text {
+                font.pixelSize: 42
+                Behavior on x { NumberAnimation{ easing.type: Easing.OutCubic} }
+                x: backButton.x + backButton.width + 20
+                anchors.verticalCenter: parent.verticalCenter
+                color: "white"
+                text: "Widget Gallery"
+            }
+        }
+        ListView {
+            model: pageModel
+            anchors { top: toolbar.bottom; left: parent.left; right: parent.right; bottom: parent.bottom }
+            clip: true
+            delegate: AndroidDelegate {
+                text: title
+                onClicked: pageItem.Stack.view.push(Qt.resolvedUrl(page))
             }
         }
     }
 
+
 }
+
+
