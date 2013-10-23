@@ -37,6 +37,9 @@
         "textField": {
             "selectedTextColor": "#ffffff",
             "selectionColor": "#0091e5"
+        },
+        "window": {
+            "background": "#000000"
         }
     }
 }

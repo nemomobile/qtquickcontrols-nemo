@@ -18,19 +18,64 @@
  */
 
 import QtQuick 2.1
+import QtQuick.Controls 1.0 //needed for the Stack attached property
 import QtQuick.Controls.Nemo 1.0
 import QtQuick.Layouts 1.0
 
-Item {
+Rectangle {
     id: root
     width: parent.width
     height: parent.height
 
+    color: "black"
     property var oldItem
     property var newItem
 
+    ToolBar {
+        id: toolbar
+        anchors.top: parent.top
+        Rectangle {
+            id: backButton
+            width: opacity ? 60 : 0
+            anchors.left: parent.left
+            anchors.leftMargin: 20
+            opacity: (root.Stack.view && (root.Stack.view.depth > 1)) ? 1 : 0
+            anchors.verticalCenter: parent.verticalCenter
+            antialiasing: true
+            height: 60
+            radius: 4
+            color: backmouse.pressed ? "#222" : "transparent"
+
+            Behavior on opacity { NumberAnimation{} }
+
+            Image {
+                anchors.verticalCenter: parent.verticalCenter
+                source: "../images/navigation_previous_item.png"
+            }
+
+            MouseArea {
+                id: backmouse
+                anchors.fill: parent
+                anchors.margins: -10
+                onClicked: root.Stack.view.pop()
+            }
+        }
+
+        Text {
+            font.pixelSize: 42
+            Behavior on x { NumberAnimation { easing.type: Easing.OutCubic } }
+            x: backButton.x + backButton.width + 20
+            anchors.verticalCenter: parent.verticalCenter
+            color: "white"
+            text: "Live Coding Arena"
+        }
+    }
+
     SplitView {
-        anchors.fill: parent
+        anchors.top: toolbar.bottom
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
 
         //If we don't wrap ColumnLayout in an Item, the split view doesn't work :/
         Item {
@@ -160,7 +205,6 @@ Item {
                     }
                 }
             }
-
         }
 
         Item {
