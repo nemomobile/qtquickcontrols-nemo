@@ -61,7 +61,7 @@ NemoWindow {
         //if the current orientation is not allowed anymore, fallback to an allowed one
         //stackInitialized check prevents setting an orientation before the stackview
         //(but more importantly the initialItem of the stack) has been created
-        if(stackView.stackInitialized && !isOrientationAllowed(contentArea.filteredOrientation)) {
+        if (stackView.stackInitialized && !isOrientationAllowed(contentArea.filteredOrientation)) {
             fallbackToAnAllowedOrientation()
         }
     }
@@ -86,12 +86,12 @@ NemoWindow {
     // i.e. Screen.width will be width of portrait orientation on all hardware!
     // (at the moment, Screen.width is the width of the screen in landscape mode in N9/N950, while on
     // other hardware it could be width of the screen in portrait mode)
-    property bool __transpose: (rotationToTrasposeToPortrait() % 180) != 0
+    property bool __transpose: (rotationToTransposeToPortrait() % 180) != 0
 
     // XXX: This is to account for HW screen rotation
     // Sooner or later we will get rid of this as the compositor will
     // do that for us
-    function rotationToTrasposeToPortrait()
+    function rotationToTransposeToPortrait()
     {
         switch (Screen.primaryOrientation) {
         case Qt.PortraitOrientation:
@@ -129,7 +129,7 @@ NemoWindow {
         anchors.centerIn: parent
         width: __transpose ? Screen.height : Screen.width
         height: __transpose ? Screen.width : Screen.height
-        rotation: rotationToTrasposeToPortrait()
+        rotation: rotationToTransposeToPortrait()
 
         //This is the rotating item
         Item {
@@ -147,8 +147,7 @@ NemoWindow {
             property int filteredOrientation
 
             //this is the reliable value which changes during the orientation transition
-            //the default value is set to Qt.PortraitOrientation
-            property int uiOrientation: Qt.PortraitOrientation
+            property int uiOrientation
 
             property bool orientationTransitionRunning: false
 
@@ -171,7 +170,7 @@ NemoWindow {
                                                    contentArea.filteredOrientation = Screen.orientation
                                                } else {
                                                    //let the window handle it, it will fall back to an allowed orientation
-                                                   root.orientationConstraintsChanged()
+                                                   root.fallbackToAnAllowedOrientation()
                                                }
                                            }
 

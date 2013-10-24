@@ -47,16 +47,19 @@ NemoPage {
     property alias __dimmer: dimmer
     readonly property StackView pageStack: Stack.view
 
+    //TODO: ADD TOOLBARLAYOUT COMPONENT SO THAT USER WILL USE tools: ToolbarLayout { .... }
+    //instead of tools: [ ... , ... ]
+
     //Children of "page" will be automatically reparented to "content"
     default  property alias __content: content.data
 
-    //TODO: move to c++ to do type/value checking
-    //this is read by AppWindow and StackView to update orientation accordingly
-    property int allowedOrientations
-
-    //TODO: Page pageStack is null when page is pushed, so this will default to Portrait
-    // We may want to avoid this useless change of value on page creation (how?)
-    readonly property int orientation: pageStack ? pageStack.orientation : Qt.PortraitOrientation
+    property int orientation
+    //This keeps orientation synced to that of Nemo's StackView
+    //If the page isn't pushed on Nemo's StackView, the orientation value will be unreliable
+    Binding on orientation {
+        when: pageStack && pageStack.hasOwnProperty("orientation")
+        value: if (pageStack) pageStack.orientation //"if (pageStack)" is just needed to silence a TypeError at page initalization
+    }
 
     //TODO: alias these properties with those of the applicationWindow
     //property alias orientationTransitions

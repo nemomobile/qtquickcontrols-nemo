@@ -90,51 +90,14 @@ ApplicationWindow {
     }
 
 
-    initialPage: Rectangle {
+    initialPage: Page {
         id: pageItem
-        width: parent.width
-        height: parent.height
 
-        color: "black"
-        ToolBar {
-            id: toolbar
-            anchors.top: parent.top
-            Rectangle {
-                id: backButton
-                width: opacity ? 60 : 0
-                anchors.left: parent.left
-                anchors.leftMargin: 20
-                opacity: pageItem.Stack.view.depth > 1 ? 1 : 0
-                anchors.verticalCenter: parent.verticalCenter
-                antialiasing: true
-                height: 60
-                radius: 4
-                color: backmouse.pressed ? "#222" : "transparent"
-                Behavior on opacity { NumberAnimation{} }
-                Image {
-                    anchors.verticalCenter: parent.verticalCenter
-                    source: "images/navigation_previous_item.png"
-                }
-                MouseArea {
-                    id: backmouse
-                    anchors.fill: parent
-                    anchors.margins: -10
-                    onClicked: pageItem.Stack.view.pop()
-                }
-            }
+        tools: ToolBarLayoutExample { title: "Touch gallery" }
 
-            Text {
-                font.pixelSize: 42
-                Behavior on x { NumberAnimation{ easing.type: Easing.OutCubic} }
-                x: backButton.x + backButton.width + 20
-                anchors.verticalCenter: parent.verticalCenter
-                color: "white"
-                text: "Widget Gallery"
-            }
-        }
         ListView {
             model: pageModel
-            anchors { top: toolbar.bottom; left: parent.left; right: parent.right; bottom: parent.bottom }
+            anchors.fill: parent
             clip: true
             delegate: AndroidDelegate {
                 text: title
