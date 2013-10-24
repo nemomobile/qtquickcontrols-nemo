@@ -44,6 +44,7 @@ NemoTheme::NemoTheme(QObject *parent)
     , m_textField(new NemoThemeTextField(this))
     , m_toolBar(new NemoThemeToolBar(this))
     , m_window(new NemoThemeWindow(this))
+    , m_page(new NemoThemePage(this))
 {
     loadFromFile(GLACIER_THEME);
     int id = QFontDatabase::addApplicationFont("/usr/share/fonts/google-opensans/OpenSans-Regular.ttf");
@@ -109,6 +110,11 @@ NemoThemeToolBar * NemoTheme::toolBar() const
 NemoThemeWindow * NemoTheme::window() const
 {
     return m_window;
+}
+
+NemoThemePage * NemoTheme::page() const
+{
+    return m_page;
 }
 
 QString NemoTheme::fontFamily() const
@@ -321,4 +327,20 @@ void NemoTheme::loadFromFile(const QString &fileName)
     // Setting properties for window
     QJsonObject stylesWindow = styles.value("window").toObject();
     m_window->setBackground(jsonToColor(jsonValue(stylesWindow, "background", "window"), defines));
+    // Setting properties for page
+    QJsonObject stylesPage = styles.value("page").toObject();
+    m_page->setBackground(jsonToColor(jsonValue(stylesPage, "background", "page"), defines));
+    // Setting properties for dimmer
+    QJsonObject stylesPageDimmer = stylesPage.value("dimmer").toObject();
+    m_page->dimmer()->setStartColor(jsonToColor(jsonValue(stylesPageDimmer, "startColor", "dimmer"), defines));
+    m_page->dimmer()->setEndColor(jsonToColor(jsonValue(stylesPageDimmer, "endColor", "dimmer"), defines));
+    if (stylesPageDimmer.contains("height")) {
+        m_page->dimmer()->setHeight(jsonToInt(stylesPage.value("dimmer"), defines));
+    }
+    if (stylesPageDimmer.contains("startPosition")) {
+        m_page->dimmer()->setStartPosition(jsonToDouble(stylesPage.value("dimmer"), defines));
+    }
+    if (stylesPageDimmer.contains("endPosition")) {
+        m_page->dimmer()->setEndPosition(jsonToDouble(stylesPage.value("dimmer"), defines));
+    }
 }

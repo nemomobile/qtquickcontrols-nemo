@@ -142,8 +142,6 @@ ApplicationWindow {
             }
         }
     }
-
-
 }
 
 

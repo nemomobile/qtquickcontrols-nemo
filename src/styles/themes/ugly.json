@@ -40,6 +40,13 @@
         },
         "window": {
             "background": "#000000"
+        },
+        "page": {
+            "background": "#000000",
+            "dimmer": {
+                "startColor": "black",
+                "endColor": "transparent"
+            }
         }
     }
 }
