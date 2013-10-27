@@ -50,7 +50,8 @@ QML_FILES += \
     images/arrow-right.png \
     images/arrow-right@2x.png \
     images/disabled-overlay.png \
-    images/switch-ball.png
+    images/switch-ball.png \
+    images/slider-ball.png
 
 OTHER_FILES += qmldir \
     themes/Theme1.js \

@@ -19,13 +19,65 @@
 
 import QtQuick 2.1
 import QtQuick.Controls.Styles 1.0
+import QtQuick.Controls.Styles.Nemo 1.0
 
 SliderStyle {
     GrooveStyle {
         id: grooveStyle
     }
 
-    handle: Item { }
+    Image {
+        id: ball
+        source: "images/slider-ball.png"
+        z: 1
+        visible: control.enabled
+    }
 
+    handle: Canvas {
+        Connections {
+            target: control
+            onValueChanged: {
+                if (Math.abs(((control.value*1000) - lastValue)) > 10) {
+                    requestPaint()
+                    lastValue = control.value*1000
+                }
+            }
+        }
+        id: canvas
+        width: 125
+        height: 50
+        property color strokeStyle: Theme.groove.foreground
+        property color fillStyle: Theme.groove.foreground
+        property bool fill: true
+        property bool stroke: true
+        property real alpha: 1.0
+        property real lastValue: 0
+        antialiasing: true
+
+        onPaint: {
+            canvas.loadImage("images/slider-ball.png");
+
+            var ctx = canvas.getContext('2d');
+            ctx.save();
+            ctx.translate(0,8);
+            ctx.fillStyle = canvas.fillStyle;
+            ctx.beginPath();
+            ctx.lineWidth = 1;
+            ctx.moveTo(0,38);
+            ctx.bezierCurveTo(0, 8, 0, 8, 0, 8);
+            ctx.bezierCurveTo(55, 8, 55, 8, 55, 8);
+            ctx.bezierCurveTo(85, 0, 85, 0, 85, 0);
+            ctx.bezierCurveTo(85, 32, 85, 32, 85, 32);
+            ctx.bezierCurveTo(55, 25, 55, 25, 55, 25);
+            ctx.bezierCurveTo(0, 24, 0, 24, 0, 24);
+            ctx.closePath();
+            ctx.fill();
+            ctx.drawImage("images/slider-ball.png", 75, -3, 45,45);
+            ctx.fillStyle="white";
+            ctx.font="Bold 24px";
+            ctx.fillText(parseInt(control.value*100), 84, 27);
+            ctx.restore();
+        }
+    }
     groove: grooveStyle;
 }
