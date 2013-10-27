@@ -38,21 +38,14 @@
 **
 ****************************************************************************/
 
-
-
-
-
 import QtQuick 2.1
 import QtQuick.Controls 1.0 //needed for the Stack attached property
 import QtQuick.Controls.Nemo 1.0
 import QtQuick.Controls.Styles.Nemo 1.0
 
-Rectangle {
+Page {
     id: root
-    width: parent.width
-    height: parent.height
 
-    color: "black"
     property real progress: 0
     SequentialAnimation on progress {
         loops: Animation.Infinite
@@ -69,71 +62,29 @@ Rectangle {
         }
     }
 
-    ToolBar {
-        id: toolbar
-        anchors.top: parent.top
-        Rectangle {
-            id: backButton
-            width: opacity ? 60 : 0
-            anchors.left: parent.left
-            anchors.leftMargin: 20
-            opacity: (root.Stack.view && (root.Stack.view.depth > 1)) ? 1 : 0
-            anchors.verticalCenter: parent.verticalCenter
-            antialiasing: true
-            height: 60
-            radius: 4
-            color: backmouse.pressed ? "#222" : "transparent"
-            Behavior on opacity { NumberAnimation{} }
-            Image {
-                anchors.verticalCenter: parent.verticalCenter
-                source: "../images/navigation_previous_item.png"
-            }
-            MouseArea {
-                id: backmouse
-                anchors.fill: parent
-                anchors.margins: -10
-                onClicked: root.Stack.view.pop()
-            }
+    tools: ToolBarLayoutExample { title: "Progress Bars" }
+
+    Column {
+        spacing: 40
+        anchors.centerIn: parent
+
+        ProgressBar {
+            anchors.margins: 20
+            width: 400
+            value: progress
         }
 
-        Text {
-            font.pixelSize: 42
-            Behavior on x { NumberAnimation { easing.type: Easing.OutCubic } }
-            x: backButton.x + backButton.width + 20
-            anchors.verticalCenter: parent.verticalCenter
-            color: "white"
-            text: "Progress Bars"
+        ProgressBar {
+            anchors.margins: 20
+            width: 400
+            value: 1 - progress
         }
-    }
 
-    Item {
-        anchors.top: toolbar.bottom
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
-
-        Column {
-            spacing: 40
-            anchors.centerIn: parent
-
-            ProgressBar {
-                anchors.margins: 20
-                width: 400
-                value: progress
-            }
-
-            ProgressBar {
-                anchors.margins: 20
-                width: 400
-                value: 1 - progress
-            }
-
-            ProgressBar {
-                anchors.margins: 20
-                style: touchStyle
-                value: 1
-                width: 400
-            }
+        ProgressBar {
+            anchors.margins: 20
+            style: touchStyle
+            value: 1
+            width: 400
         }
     }
 

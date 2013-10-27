@@ -24,3 +24,13 @@ Hacks::Hacks(QQmlEngine *engine, QObject *parent) :
 {
     m_engine = engine;
 }
+
+bool Hacks::isOrientationMaskValid(Qt::ScreenOrientations orientations) {
+    //README: This is needed because otherwise you could assign it
+    //things like (Qt.PortraitOrientation | 444) from QML,
+    //and it would still appear as a valid Qt::ScreenOrientations in c++
+    Qt::ScreenOrientations max = (Qt::PortraitOrientation | Qt::LandscapeOrientation
+            | Qt::InvertedPortraitOrientation | Qt::InvertedLandscapeOrientation);
+
+    return (orientations <= max && orientations != 0);
+}

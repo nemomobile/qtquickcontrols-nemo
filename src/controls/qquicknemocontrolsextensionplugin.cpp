@@ -22,6 +22,7 @@
 #include <QtQml>
 #include "hacks.h"
 #include "nemowindow.h"
+#include "nemopage.h"
 
 QQuickNemoControlsExtensionPlugin::QQuickNemoControlsExtensionPlugin(QObject *parent) :
     QQmlExtensionPlugin(parent)
@@ -39,6 +40,7 @@ void QQuickNemoControlsExtensionPlugin::registerTypes(const char *uri)
     Q_ASSERT(uri == QLatin1String("QtQuick.Controls.Nemo"));
     qmlRegisterSingletonType<QObject>(uri, 1, 0, "NemoHacks", nemo_hacks_singletontype_provider);
     qmlRegisterType<NemoWindow>(uri, 1, 0, "NemoWindow");
+    qmlRegisterType<NemoPage>(uri, 1, 0, "NemoPage");
 }
 
 void QQuickNemoControlsExtensionPlugin::initializeEngine(QQmlEngine *engine, const char *uri)

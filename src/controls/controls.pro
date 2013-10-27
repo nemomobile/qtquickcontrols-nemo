@@ -8,7 +8,8 @@ THEME_IMPORT_PATH = QtQuick/Controls/Styles/Nemo/themes
 # Added/Reimplemented Controls
 QML_FILES += \
     Button.qml \
-    ApplicationWindow.qml
+    ApplicationWindow.qml \
+    Page.qml
 
 OTHER_FILES += qmldir \
     $$QML_FILES
@@ -16,12 +17,14 @@ OTHER_FILES += qmldir \
 HEADERS += \
     qquicknemocontrolsextensionplugin.h \
     hacks.h \
-    nemowindow.h
+    nemowindow.h \
+    nemopage.h
 
 SOURCES += \
     qquicknemocontrolsextensionplugin.cpp \
     hacks.cpp \
-    nemowindow.cpp
+    nemowindow.cpp \
+    nemopage.cpp
 
 target.path = $$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH
 

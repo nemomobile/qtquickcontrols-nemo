@@ -25,7 +25,6 @@
 class NemoWindow : public QQuickWindow
 {
     Q_OBJECT
-    Q_ENUMS(Orientation)
     Q_PROPERTY(Qt::ScreenOrientations allowedOrientations READ allowedOrientations WRITE setAllowedOrientations NOTIFY allowedOrientationsChanged)
 public:
     explicit NemoWindow(QWindow *parent = 0);

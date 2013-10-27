@@ -43,79 +43,35 @@ import QtQuick.Controls 1.0 //needed for the Stack attached property
 import QtQuick.Controls.Nemo 1.0
 import QtQuick.Controls.Styles.Nemo 1.0
 
-Rectangle {
+Page {
     id: root
-    width: parent.width
-    height: parent.height
 
-    color: "black"
-    ToolBar {
-        id: toolbar
-        anchors.top: parent.top
-        Rectangle {
-            id: backButton
-            width: opacity ? 60 : 0
-            anchors.left: parent.left
-            anchors.leftMargin: 20
-            opacity: (root.Stack.view && (root.Stack.view.depth > 1)) ? 1 : 0
-            anchors.verticalCenter: parent.verticalCenter
-            antialiasing: true
-            height: 60
-            radius: 4
-            color: backmouse.pressed ? "#222" : "transparent"
-            Behavior on opacity { NumberAnimation{} }
-            Image {
-                anchors.verticalCenter: parent.verticalCenter
-                source: "../images/navigation_previous_item.png"
-            }
-            MouseArea {
-                id: backmouse
-                anchors.fill: parent
-                anchors.margins: -10
-                onClicked: root.Stack.view.pop()
-            }
+    tools: ToolBarLayoutExample { title: "Buttons" }
+
+    Column {
+        spacing: 40
+        anchors.centerIn: parent
+
+        Button {
+            property bool isGlacier: Theme.name == "Glacier"
+            anchors.margins: 20
+            text: isGlacier ? "Set Ugly Theme" : "Set Nice Theme"
+            onClicked: isGlacier ? Theme.loadFromFile("ugly.json")
+                                 : Theme.loadFromFile("glacier.json")
         }
 
-        Text {
-            font.pixelSize: 42
-            Behavior on x { NumberAnimation { easing.type: Easing.OutCubic } }
-            x: backButton.x + backButton.width + 20
-            anchors.verticalCenter: parent.verticalCenter
-            color: "white"
-            text: "Buttons"
+        Button {
+            anchors.margins: 20
+            enabled: false
+            text: "Disabled"
+        }
+
+        Button {
+            anchors.margins: 20
+            primary: true
+            text: "Go back"
+            onClicked: if (stackView) stackView.pop()
         }
     }
 
-    Item {
-        anchors.top: toolbar.bottom
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
-
-        Column {
-            spacing: 40
-            anchors.centerIn: parent
-
-            Button {
-                property bool isGlacier: Theme.name == "Glacier"
-                anchors.margins: 20
-                text: isGlacier ? "Set Ugly Theme" : "Set Nice Theme"
-                onClicked: isGlacier ? Theme.loadFromFile("ugly.json")
-                                     : Theme.loadFromFile("glacier.json")
-            }
-
-            Button {
-                anchors.margins: 20
-                enabled: false
-                text: "Disabled"
-            }
-
-            Button {
-                anchors.margins: 20
-                primary: true
-                text: "Go back"
-                onClicked: if (stackView) stackView.pop()
-            }
-        }
-    }
 }

@@ -62,6 +62,19 @@
                 }
             ]
         },
+        {
+            "name": "Page",
+            "properties": [
+                {
+                    "name": "background",
+                    "type": "QColor"
+                },
+                {
+                    "name": "dimmer",
+                    "object": "PageDimmer"
+                }
+            ]
+        },
         
         
         
@@ -128,6 +141,34 @@
                     "default": 25
                 }
             ]
+        },
+        {
+            "name": "PageDimmer",
+            "properties": [
+                {
+                    "name": "startColor",
+                    "type": "QColor"
+                },
+                {
+                    "name": "endColor",
+                    "type": "QColor"
+                },
+                {
+                    "name": "height",
+                    "type": "int",
+                    "default": 15
+                },
+                {
+                    "name": "startPosition",
+                    "type": "double",
+                    "default": 0
+                },
+                {
+                    "name": "endPosition",
+                    "type": "double",
+                    "default": 1.0
+                }
+            ]
         }
     ],
     "properties": [
@@ -154,6 +195,10 @@
         {
             "name": "window",
             "object": "Window"
+        },
+        {
+            "name": "page",
+            "object": "Page"
         }
     ],
     "font": "/usr/share/fonts/google-opensans/OpenSans-Regular.ttf"
