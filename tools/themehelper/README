@@ -7,3 +7,5 @@ How to use the components generator
 5. qmlRegisterUncreatableType the new created components in qquicknemostyleextensionplugin.cpp and 
    adds them in the style.pro file
 6. update theme files if needed
+
+You can also run ./generate.sh in the tools folder instead of doing 3 and 4.
