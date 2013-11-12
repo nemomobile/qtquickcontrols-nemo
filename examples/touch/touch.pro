@@ -18,7 +18,8 @@ OTHER_FILES += \
     content/TabBarPage.qml \
     content/TextInputPage.qml \
     content/LiveCoding.qml \
-    content/ToolBarLayoutExample.qml
+    content/ToolBarLayoutExample.qml \
+    content/SpinnerPage.qml
 
 RESOURCES += \
     resources.qrc

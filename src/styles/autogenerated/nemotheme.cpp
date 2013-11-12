@@ -45,6 +45,7 @@ NemoTheme::NemoTheme(QObject *parent)
     , m_toolBar(new NemoThemeToolBar(this))
     , m_window(new NemoThemeWindow(this))
     , m_page(new NemoThemePage(this))
+    , m_spinner(new NemoThemeSpinner(this))
 {
     loadFromFile(GLACIER_THEME);
     int id = QFontDatabase::addApplicationFont("/usr/share/fonts/google-opensans/OpenSans-Regular.ttf");
@@ -115,6 +116,11 @@ NemoThemeWindow * NemoTheme::window() const
 NemoThemePage * NemoTheme::page() const
 {
     return m_page;
+}
+
+NemoThemeSpinner * NemoTheme::spinner() const
+{
+    return m_spinner;
 }
 
 QString NemoTheme::fontFamily() const
@@ -342,5 +348,24 @@ void NemoTheme::loadFromFile(const QString &fileName)
     }
     if (stylesPageDimmer.contains("endPosition")) {
         m_page->dimmer()->setEndPosition(jsonToDouble(stylesPage.value("dimmer"), defines));
+    }
+    // Setting properties for spinner
+    QJsonObject stylesSpinner = styles.value("spinner").toObject();
+    if (stylesSpinner.contains("radius")) {
+        m_spinner->setRadius(jsonToInt(styles.value("spinner"), defines));
+    }
+    m_spinner->setPrimaryColor(jsonToColor(jsonValue(stylesSpinner, "primaryColor", "spinner"), defines));
+    m_spinner->setSecondaryColor(jsonToColor(jsonValue(stylesSpinner, "secondaryColor", "spinner"), defines));
+    if (stylesSpinner.contains("horizontalSpacing")) {
+        m_spinner->setHorizontalSpacing(jsonToInt(styles.value("spinner"), defines));
+    }
+    if (stylesSpinner.contains("verticalSpacing")) {
+        m_spinner->setVerticalSpacing(jsonToInt(styles.value("spinner"), defines));
+    }
+    if (stylesSpinner.contains("initialStateDuration")) {
+        m_spinner->setInitialStateDuration(jsonToInt(styles.value("spinner"), defines));
+    }
+    if (stylesSpinner.contains("transitionDuration")) {
+        m_spinner->setTransitionDuration(jsonToInt(styles.value("spinner"), defines));
     }
 }

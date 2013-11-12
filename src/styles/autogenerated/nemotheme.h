@@ -31,6 +31,7 @@
 #include "nemothemetoolbar.h"
 #include "nemothemewindow.h"
 #include "nemothemepage.h"
+#include "nemothemespinner.h"
 
 class NemoTheme: public QObject
 {
@@ -44,6 +45,7 @@ class NemoTheme: public QObject
     Q_PROPERTY(NemoThemeToolBar * toolBar READ toolBar CONSTANT)
     Q_PROPERTY(NemoThemeWindow * window READ window CONSTANT)
     Q_PROPERTY(NemoThemePage * page READ page CONSTANT)
+    Q_PROPERTY(NemoThemeSpinner * spinner READ spinner CONSTANT)
     Q_PROPERTY(QString fontFamily READ fontFamily CONSTANT)
 public:
     explicit NemoTheme(QObject *parent = 0);
@@ -58,6 +60,7 @@ public:
     NemoThemeToolBar * toolBar() const;
     NemoThemeWindow * window() const;
     NemoThemePage * page() const;
+    NemoThemeSpinner * spinner() const;
     QString fontFamily() const;
 public Q_SLOTS:
     void loadFromFile(const QString &fileName);
@@ -74,6 +77,7 @@ private:
     NemoThemeToolBar * m_toolBar;
     NemoThemeWindow * m_window;
     NemoThemePage * m_page;
+    NemoThemeSpinner * m_spinner;
     QString m_fontFamily;
 };
 

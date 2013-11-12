@@ -87,6 +87,10 @@ ApplicationWindow {
             title: "TextInput"
             page: "content/TextInputPage.qml"
         }
+        ListElement {
+            title: "Spinner"
+            page: "content/SpinnerPage.qml"
+        }
     }
 
 

@@ -50,6 +50,10 @@
                 "startColor": "black",
                 "endColor": "transparent"
             }
+        },
+        "spinner": {
+            "primaryColor": "#ffffff",
+            "secondaryColor": "#0091e5"
         }
     }
 }

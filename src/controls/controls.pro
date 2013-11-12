@@ -9,7 +9,8 @@ THEME_IMPORT_PATH = QtQuick/Controls/Styles/Nemo/themes
 QML_FILES += \
     Button.qml \
     ApplicationWindow.qml \
-    Page.qml
+    Page.qml \
+    Spinner.qml
 
 OTHER_FILES += qmldir \
     $$QML_FILES
