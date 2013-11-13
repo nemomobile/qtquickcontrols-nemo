@@ -75,12 +75,6 @@
                 }
             ]
         },
-        
-        
-        
-        
-        
-        
         {
             "name": "ButtonPressedGradient",
             "properties": [
@@ -169,6 +163,44 @@
                     "default": 1.0
                 }
             ]
+        },
+        {
+            "name": "Spinner",
+            "properties": [
+                {
+                    "name": "radius",
+                    "type": "int",
+                    "default": 32
+                },
+                {
+                    "name": "primaryColor",
+                    "type": "QColor"
+                }, 
+                {
+                    "name": "secondaryColor",
+                    "type": "QColor"
+                }, 
+                {
+                    "name": "horizontalSpacing",
+                    "type": "int",
+                    "default": 15
+                },
+                {
+                    "name": "verticalSpacing",
+                    "type": "int",
+                    "default": 15
+                },
+                {
+                    "name": "initialStateDuration",
+                    "type": "int",
+                    "default": 1500
+                },
+                {
+                    "name": "transitionDuration",
+                    "type": "int",
+                    "default": 500
+                }
+            ]
         }
     ],
     "properties": [
@@ -199,6 +231,10 @@
         {
             "name": "page",
             "object": "Page"
+        },
+        {
+            "name": "spinner",
+            "object": "Spinner"
         }
     ],
     "font": "/usr/share/fonts/google-opensans/OpenSans-Regular.ttf"

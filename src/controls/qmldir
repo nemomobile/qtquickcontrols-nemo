@@ -11,6 +11,7 @@ plugin nemocontrolsplugin
 Button 1.0 Button.qml
 ApplicationWindow 1.0 ApplicationWindow.qml
 Page 1.0 Page.qml
+Spinner 1.0 Spinner.qml
 
 # MIRRORED CONTROLS: 
 # These are the controls that we take directly from official QQC.
