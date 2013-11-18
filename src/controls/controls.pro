@@ -10,7 +10,8 @@ QML_FILES += \
     Button.qml \
     ApplicationWindow.qml \
     Page.qml \
-    Spinner.qml
+    Spinner.qml \
+    Label.qml
 
 OTHER_FILES += qmldir \
     $$QML_FILES

@@ -46,6 +46,7 @@ NemoTheme::NemoTheme(QObject *parent)
     , m_window(new NemoThemeWindow(this))
     , m_page(new NemoThemePage(this))
     , m_spinner(new NemoThemeSpinner(this))
+    , m_label(new NemoThemeLabel(this))
 {
     loadFromFile(GLACIER_THEME);
     int id = QFontDatabase::addApplicationFont("/usr/share/fonts/google-opensans/OpenSans-Regular.ttf");
@@ -121,6 +122,11 @@ NemoThemePage * NemoTheme::page() const
 NemoThemeSpinner * NemoTheme::spinner() const
 {
     return m_spinner;
+}
+
+NemoThemeLabel * NemoTheme::label() const
+{
+    return m_label;
 }
 
 QString NemoTheme::fontFamily() const
@@ -367,5 +373,10 @@ void NemoTheme::loadFromFile(const QString &fileName)
     }
     if (stylesSpinner.contains("transitionDuration")) {
         m_spinner->setTransitionDuration(jsonToInt(styles.value("spinner"), defines));
+    }
+    // Setting properties for label
+    QJsonObject stylesLabel = styles.value("label").toObject();
+    if (stylesLabel.contains("color")) {
+        m_label->setColor(jsonToColor(styles.value("label"), defines));
     }
 }

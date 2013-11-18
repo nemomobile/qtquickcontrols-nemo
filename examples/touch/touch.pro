@@ -19,7 +19,8 @@ OTHER_FILES += \
     content/TextInputPage.qml \
     content/LiveCoding.qml \
     content/ToolBarLayoutExample.qml \
-    content/SpinnerPage.qml
+    content/SpinnerPage.qml \
+    content/LabelPage.qml
 
 RESOURCES += \
     resources.qrc

@@ -91,6 +91,10 @@ ApplicationWindow {
             title: "Spinner"
             page: "content/SpinnerPage.qml"
         }
+        ListElement {
+            title: "Labels"
+            page: "content/LabelPage.qml"
+        }
     }
 
 
