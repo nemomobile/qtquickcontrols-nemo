@@ -38,6 +38,21 @@ TextFieldStyle {
             source: "images/disabled-overlay-inverse.png"
             fillMode: Image.Tile
         }
+        Image {
+            anchors.right: parent.right
+            source: "images/paste-icon.png"
+            visible: control.readOnly
+            width: 32
+            height: 32
+            MouseArea {
+                width: parent.width
+                height: parent.height
+                onClicked: {
+                    console.log("COPY")
+                }
+            }
+        }
+
         Rectangle {
             anchors.bottom: parent.bottom
             anchors.left: parent.left
