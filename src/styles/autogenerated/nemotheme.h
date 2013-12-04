@@ -33,6 +33,7 @@
 #include "nemothemepage.h"
 #include "nemothemespinner.h"
 #include "nemothemelabel.h"
+#include "nemothemecheckbox.h"
 
 class NemoTheme: public QObject
 {
@@ -48,6 +49,7 @@ class NemoTheme: public QObject
     Q_PROPERTY(NemoThemePage * page READ page CONSTANT)
     Q_PROPERTY(NemoThemeSpinner * spinner READ spinner CONSTANT)
     Q_PROPERTY(NemoThemeLabel * label READ label CONSTANT)
+    Q_PROPERTY(NemoThemeCheckbox * checkbox READ checkbox CONSTANT)
     Q_PROPERTY(QString fontFamily READ fontFamily CONSTANT)
 public:
     explicit NemoTheme(QObject *parent = 0);
@@ -64,6 +66,7 @@ public:
     NemoThemePage * page() const;
     NemoThemeSpinner * spinner() const;
     NemoThemeLabel * label() const;
+    NemoThemeCheckbox * checkbox() const;
     QString fontFamily() const;
 public Q_SLOTS:
     void loadFromFile(const QString &fileName);
@@ -82,6 +85,7 @@ private:
     NemoThemePage * m_page;
     NemoThemeSpinner * m_spinner;
     NemoThemeLabel * m_label;
+    NemoThemeCheckbox * m_checkbox;
     QString m_fontFamily;
 };
 

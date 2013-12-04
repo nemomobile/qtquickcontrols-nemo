@@ -20,7 +20,8 @@ OTHER_FILES += \
     content/LiveCoding.qml \
     content/ToolBarLayoutExample.qml \
     content/SpinnerPage.qml \
-    content/LabelPage.qml
+    content/LabelPage.qml \
+    content/CheckboxPage.qml
 
 RESOURCES += \
     resources.qrc

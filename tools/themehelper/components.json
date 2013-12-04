@@ -210,6 +210,19 @@
                     "type":"QColor"
                 }
             ]
+        },
+        {
+            "name": "Checkbox",
+            "properties": [
+                {
+                    "name": "back1",
+                    "type": "QColor"
+                },
+                {
+                    "name": "back2",
+                    "type": "QColor"
+                }
+            ]
         }
     ],
     "properties": [
@@ -248,6 +261,10 @@
         {
             "name": "label",
             "object": "Label"
+        },
+        {
+            "name": "checkbox",
+            "object": "Checkbox"
         }
     ],
     "font": "/usr/share/fonts/google-opensans/OpenSans-Regular.ttf"
