@@ -18,5 +18,6 @@
         <file>content/LiveCoding.qml</file>
         <file>content/ToolBarLayoutExample.qml</file>
         <file>content/SpinnerPage.qml</file>
+        <file>content/LabelPage.qml</file>
     </qresource>
 </RCC>

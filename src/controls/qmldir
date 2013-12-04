@@ -12,6 +12,7 @@ Button 1.0 Button.qml
 ApplicationWindow 1.0 ApplicationWindow.qml
 Page 1.0 Page.qml
 Spinner 1.0 Spinner.qml
+Label 1.0 Label.qml
 
 # MIRRORED CONTROLS: 
 # These are the controls that we take directly from official QQC.
@@ -25,7 +26,7 @@ Spinner 1.0 Spinner.qml
 CheckBox 1.0 ../CheckBox.qml
 ComboBox 1.0 ../ComboBox.qml
 GroupBox 1.0 ../GroupBox.qml
-Label 1.0 ../Label.qml
+
 MenuBar 1.0 ../MenuBar.qml
 Menu 1.0 ../Menu.qml
 StackView 1.0 ../StackView.qml

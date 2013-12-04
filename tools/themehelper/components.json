@@ -201,6 +201,16 @@
                     "default": 500
                 }
             ]
+        },
+        {
+            "name": "Label",
+            "properties": [
+                {
+                    "name":"color",
+                    "type":"QColor",
+                    "default": "white"
+                }
+            ]
         }
     ],
     "properties": [
@@ -235,6 +245,10 @@
         {
             "name": "spinner",
             "object": "Spinner"
+        },
+        {
+            "name": "label",
+            "object": "Label"
         }
     ],
     "font": "/usr/share/fonts/google-opensans/OpenSans-Regular.ttf"
