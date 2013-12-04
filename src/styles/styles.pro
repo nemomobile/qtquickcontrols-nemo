@@ -27,13 +27,6 @@ QML_FILES = \
     TextFieldStyle.qml \
     ToolBarStyle.qml \
     ToolButtonStyle.qml \
-    LabelStyle.qml
-
-# Images
-#QML_FILES += \
-#    images/480x854/*.png 
-#    images/480x854/theme1/*.png
-#    images/480x854/theme2/*.png
 
 # Images
 QML_FILES += \
