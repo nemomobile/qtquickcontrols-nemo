@@ -207,8 +207,20 @@
             "properties": [
                 {
                     "name":"color",
-                    "type":"QColor",
-                    "default": "white"
+                    "type":"QColor"
+                }
+            ]
+        },
+        {
+            "name": "Checkbox",
+            "properties": [
+                {
+                    "name": "back1",
+                    "type": "QColor"
+                },
+                {
+                    "name": "back2",
+                    "type": "QColor"
                 }
             ]
         }
@@ -249,6 +261,10 @@
         {
             "name": "label",
             "object": "Label"
+        },
+        {
+            "name": "checkbox",
+            "object": "Checkbox"
         }
     ],
     "font": "/usr/share/fonts/google-opensans/OpenSans-Regular.ttf"

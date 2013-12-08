@@ -19,5 +19,6 @@
         <file>content/ToolBarLayoutExample.qml</file>
         <file>content/SpinnerPage.qml</file>
         <file>content/LabelPage.qml</file>
+        <file>content/CheckboxPage.qml</file>
     </qresource>
 </RCC>

@@ -11,7 +11,8 @@ QML_FILES += \
     ApplicationWindow.qml \
     Page.qml \
     Spinner.qml \
-    Label.qml
+    Label.qml \
+    Checkbox.qml
 
 OTHER_FILES += qmldir \
     $$QML_FILES

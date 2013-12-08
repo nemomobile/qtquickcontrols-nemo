@@ -56,7 +56,11 @@
             "secondaryColor": "#0091e5"
         },
         "label": {
-            "color": "white"
+            "color": "#ffffff"
+        },
+        "checkbox": {
+            "back1": "#0091e5",
+            "back2": "#313131"
         }
     }
 }

@@ -95,6 +95,10 @@ ApplicationWindow {
             title: "Labels"
             page: "content/LabelPage.qml"
         }
+        ListElement {
+            title: "Switches"
+            page: "content/CheckboxPage.qml"
+        }
     }
 
 

@@ -13,6 +13,7 @@ ApplicationWindow 1.0 ApplicationWindow.qml
 Page 1.0 Page.qml
 Spinner 1.0 Spinner.qml
 Label 1.0 Label.qml
+CheckBox 1.0 Checkbox.qml
 
 # MIRRORED CONTROLS: 
 # These are the controls that we take directly from official QQC.
@@ -23,7 +24,6 @@ Label 1.0 Label.qml
 # case Nemo plugin doesn't provide an overridden component)
 # NOTE: "../" here is assumed to be the relative path to the official QQC!!
 
-CheckBox 1.0 ../CheckBox.qml
 ComboBox 1.0 ../ComboBox.qml
 GroupBox 1.0 ../GroupBox.qml
 

@@ -37,13 +37,13 @@ import QtQuick.Controls.Styles.Nemo 1.0
 Page {
     id: root
 
-    tools: ToolBarLayoutExample { title: "Label" }
+    tools: ToolBarLayoutExample { title: "Switch" }
 
     Column {
         spacing: 40
         anchors.centerIn: parent
-        Label {
-            text: "Test label"
+        CheckBox {
+            text: "Test 1: "
         }
     }
 }
