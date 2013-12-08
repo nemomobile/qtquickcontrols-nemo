@@ -207,8 +207,7 @@
             "properties": [
                 {
                     "name":"color",
-                    "type":"QColor",
-                    "default": "white"
+                    "type":"QColor"
                 }
             ]
         }

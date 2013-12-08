@@ -376,7 +376,5 @@ void NemoTheme::loadFromFile(const QString &fileName)
     }
     // Setting properties for label
     QJsonObject stylesLabel = styles.value("label").toObject();
-    if (stylesLabel.contains("color")) {
-        m_label->setColor(jsonToColor(styles.value("label"), defines));
-    }
+    m_label->setColor(jsonToColor(jsonValue(stylesLabel, "color", "label"), defines));
 }
