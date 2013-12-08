@@ -30,14 +30,19 @@ class NemoThemeLabel: public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QColor color READ color NOTIFY colorChanged)
+    Q_PROPERTY(int pointSize READ pointSize NOTIFY pointSizeChanged)
 public:
     explicit NemoThemeLabel(QObject *parent = 0);
     QColor color() const;
     void setColor(const QColor &color);
+    int pointSize() const;
+    void setPointSize(int pointSize);
 Q_SIGNALS:
     void colorChanged();
+    void pointSizeChanged();
 private:
     QColor m_color;
+    int m_pointSize;
 };
 
 #endif //NEMOTHEMELABEL_H

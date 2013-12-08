@@ -41,6 +41,11 @@
                 {
                     "name": "selectionColor",
                     "type": "QColor"
+                },
+                {
+                    "name": "pointSize",
+                    "type": "int",
+                    "default": 24
                 }
             ]
         },
@@ -208,6 +213,11 @@
                 {
                     "name":"color",
                     "type":"QColor"
+                },
+                {
+                    "name": "pointSize",
+                    "type": "int",
+                    "default": 24
                 }
             ]
         },

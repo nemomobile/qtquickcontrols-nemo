@@ -35,4 +35,5 @@ Text {
     renderType: Text.NativeRendering
     font.family: Theme.fontFamily
     color: Theme.label.color
+    font.pointSize: Theme.label.pointSize
 }

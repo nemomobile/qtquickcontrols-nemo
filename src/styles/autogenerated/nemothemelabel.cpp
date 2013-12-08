@@ -24,6 +24,7 @@
 
 NemoThemeLabel::NemoThemeLabel(QObject *parent)
     : QObject(parent)
+    , m_pointSize(24)
 {
 }
 
@@ -37,5 +38,18 @@ void NemoThemeLabel::setColor(const QColor &color)
     if (m_color != color) {
         m_color = color;
         emit colorChanged();
+    }
+}
+
+int NemoThemeLabel::pointSize() const
+{
+    return m_pointSize;
+}
+
+void NemoThemeLabel::setPointSize(int pointSize)
+{
+    if (m_pointSize != pointSize) {
+        m_pointSize = pointSize;
+        emit pointSizeChanged();
     }
 }
