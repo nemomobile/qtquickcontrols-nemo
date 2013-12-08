@@ -24,6 +24,7 @@
 
 NemoThemeTextField::NemoThemeTextField(QObject *parent)
     : QObject(parent)
+    , m_pointSize(24)
 {
 }
 
@@ -50,5 +51,18 @@ void NemoThemeTextField::setSelectionColor(const QColor &selectionColor)
     if (m_selectionColor != selectionColor) {
         m_selectionColor = selectionColor;
         emit selectionColorChanged();
+    }
+}
+
+int NemoThemeTextField::pointSize() const
+{
+    return m_pointSize;
+}
+
+void NemoThemeTextField::setPointSize(int pointSize)
+{
+    if (m_pointSize != pointSize) {
+        m_pointSize = pointSize;
+        emit pointSizeChanged();
     }
 }

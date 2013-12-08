@@ -339,6 +339,9 @@ void NemoTheme::loadFromFile(const QString &fileName)
     QJsonObject stylesTextField = styles.value("textField").toObject();
     m_textField->setSelectedTextColor(jsonToColor(jsonValue(stylesTextField, "selectedTextColor", "textField"), defines));
     m_textField->setSelectionColor(jsonToColor(jsonValue(stylesTextField, "selectionColor", "textField"), defines));
+    if (stylesTextField.contains("pointSize")) {
+        m_textField->setPointSize(jsonToInt(styles.value("textField"), defines));
+    }
     // Setting properties for toolBar
     QJsonObject stylesToolBar = styles.value("toolBar").toObject();
     m_toolBar->setBackground(jsonToColor(jsonValue(stylesToolBar, "background", "toolBar"), defines));
@@ -383,6 +386,9 @@ void NemoTheme::loadFromFile(const QString &fileName)
     // Setting properties for label
     QJsonObject stylesLabel = styles.value("label").toObject();
     m_label->setColor(jsonToColor(jsonValue(stylesLabel, "color", "label"), defines));
+    if (stylesLabel.contains("pointSize")) {
+        m_label->setPointSize(jsonToInt(styles.value("label"), defines));
+    }
     // Setting properties for checkbox
     QJsonObject stylesCheckbox = styles.value("checkbox").toObject();
     m_checkbox->setBack1(jsonToColor(jsonValue(stylesCheckbox, "back1", "checkbox"), defines));
