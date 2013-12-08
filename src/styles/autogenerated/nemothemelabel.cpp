@@ -24,7 +24,6 @@
 
 NemoThemeLabel::NemoThemeLabel(QObject *parent)
     : QObject(parent)
-    , m_color("white")
 {
 }
 

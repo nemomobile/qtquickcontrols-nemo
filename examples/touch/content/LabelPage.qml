@@ -44,7 +44,6 @@ Page {
         anchors.centerIn: parent
         Label {
             text: "Test label"
-            color: "white"
         }
     }
 }
