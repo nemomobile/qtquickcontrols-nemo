@@ -45,12 +45,11 @@ Item {
         }
     }
 
-    Text {
+    Label {
         font.pixelSize: 42
         Behavior on x { NumberAnimation { easing.type: Easing.OutCubic } }
         x: backButton.x + backButton.width + 20
         anchors.verticalCenter: parent.verticalCenter
-        color: "white"
         text: parent.title
     }
 }

@@ -43,6 +43,7 @@
 
 
 import QtQuick 2.1
+import QtQuick.Controls.Nemo 1.0
 
 Item {
     id: root
@@ -58,10 +59,8 @@ Item {
         visible: mouse.pressed
     }
 
-    Text {
+    Label {
         id: textitem
-        color: "white"
-        font.pixelSize: 32
         text: modelData
         anchors.verticalCenter: parent.verticalCenter
         anchors.left: parent.left
