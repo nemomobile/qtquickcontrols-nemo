@@ -27,3 +27,8 @@ RESOURCES += \
     resources.qrc
 
 INSTALLS += target
+
+desktop.path = /usr/share/applications
+desktop.files = glacier-gallery.desktop
+INSTALLS += desktop
+

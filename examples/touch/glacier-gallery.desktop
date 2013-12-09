@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Glacier UI
+Categories=Applications;
+Exec=env QT_QUICK_CONTROLS_STYLE=Nemo /usr/lib/qt5/examples/touch_nemo
+Icon=icon-app-components
+
+X-Desktop-File-Install-Version=0.20
+
