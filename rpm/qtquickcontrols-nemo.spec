@@ -28,6 +28,7 @@ This package contains the Qt Quick Controls library
 %package examples
 Summary:    Examples to showcase Nemo UI components
 Requires:   qt5-qtquickcontrols-nemo
+BuildRequires:  desktop-file-utils
 
 %description examples
 %{summary}.
@@ -48,6 +49,10 @@ make %{?_smp_flags}
 rm -rf %{buildroot}
 %qmake5_install
 
+desktop-file-install --delete-original       \
+  --dir %{buildroot}%{_datadir}/applications             \
+   %{buildroot}%{_datadir}/applications/*.desktop
+
 #### Pre/Post section
 
 %post
@@ -65,3 +70,5 @@ rm -rf %{buildroot}
 %files examples
 %defattr(-,root,root,-)
 %{_libdir}/qt5/examples/touch_nemo
+%{_datadir}/applications/*.desktop
+
