@@ -43,12 +43,16 @@ public:
     void setEdgeColor(const QColor &edgeColor);
     int width() const;
     void setWidth(int width);
+    void setWidthDefault();
     int height() const;
     void setHeight(int height);
+    void setHeightDefault();
     double center() const;
     void setCenter(double center);
+    void setCenterDefault();
     double edge() const;
     void setEdge(double edge);
+    void setEdgeDefault();
 Q_SIGNALS:
     void centerColorChanged();
     void edgeColorChanged();

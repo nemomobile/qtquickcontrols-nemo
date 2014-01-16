@@ -40,18 +40,23 @@ public:
     explicit NemoThemeSpinner(QObject *parent = 0);
     int radius() const;
     void setRadius(int radius);
+    void setRadiusDefault();
     QColor primaryColor() const;
     void setPrimaryColor(const QColor &primaryColor);
     QColor secondaryColor() const;
     void setSecondaryColor(const QColor &secondaryColor);
     int horizontalSpacing() const;
     void setHorizontalSpacing(int horizontalSpacing);
+    void setHorizontalSpacingDefault();
     int verticalSpacing() const;
     void setVerticalSpacing(int verticalSpacing);
+    void setVerticalSpacingDefault();
     int initialStateDuration() const;
     void setInitialStateDuration(int initialStateDuration);
+    void setInitialStateDurationDefault();
     int transitionDuration() const;
     void setTransitionDuration(int transitionDuration);
+    void setTransitionDurationDefault();
 Q_SIGNALS:
     void radiusChanged();
     void primaryColorChanged();

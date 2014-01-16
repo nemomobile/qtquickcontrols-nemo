@@ -66,3 +66,11 @@ void NemoThemeTextField::setPointSize(int pointSize)
         emit pointSizeChanged();
     }
 }
+
+void NemoThemeTextField::setPointSizeDefault()
+{
+    if (m_pointSize != 24) {
+        m_pointSize = 24;
+        emit pointSizeChanged();
+    }
+}

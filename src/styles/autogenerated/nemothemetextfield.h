@@ -40,6 +40,7 @@ public:
     void setSelectionColor(const QColor &selectionColor);
     int pointSize() const;
     void setPointSize(int pointSize);
+    void setPointSizeDefault();
 Q_SIGNALS:
     void selectedTextColorChanged();
     void selectionColorChanged();

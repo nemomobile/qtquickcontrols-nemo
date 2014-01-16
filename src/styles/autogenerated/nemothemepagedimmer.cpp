@@ -69,6 +69,14 @@ void NemoThemePageDimmer::setHeight(int height)
     }
 }
 
+void NemoThemePageDimmer::setHeightDefault()
+{
+    if (m_height != 15) {
+        m_height = 15;
+        emit heightChanged();
+    }
+}
+
 double NemoThemePageDimmer::startPosition() const
 {
     return m_startPosition;
@@ -82,6 +90,14 @@ void NemoThemePageDimmer::setStartPosition(double startPosition)
     }
 }
 
+void NemoThemePageDimmer::setStartPositionDefault()
+{
+    if (m_startPosition != 0) {
+        m_startPosition = 0;
+        emit startPositionChanged();
+    }
+}
+
 double NemoThemePageDimmer::endPosition() const
 {
     return m_endPosition;
@@ -91,6 +107,14 @@ void NemoThemePageDimmer::setEndPosition(double endPosition)
 {
     if (m_endPosition != endPosition) {
         m_endPosition = endPosition;
+        emit endPositionChanged();
+    }
+}
+
+void NemoThemePageDimmer::setEndPositionDefault()
+{
+    if (m_endPosition != 1.0) {
+        m_endPosition = 1.0;
         emit endPositionChanged();
     }
 }

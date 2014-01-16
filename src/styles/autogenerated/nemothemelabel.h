@@ -37,6 +37,7 @@ public:
     void setColor(const QColor &color);
     int pointSize() const;
     void setPointSize(int pointSize);
+    void setPointSizeDefault();
 Q_SIGNALS:
     void colorChanged();
     void pointSizeChanged();

@@ -70,6 +70,14 @@ void NemoThemeButtonPressedGradient::setWidth(int width)
     }
 }
 
+void NemoThemeButtonPressedGradient::setWidthDefault()
+{
+    if (m_width != 240) {
+        m_width = 240;
+        emit widthChanged();
+    }
+}
+
 int NemoThemeButtonPressedGradient::height() const
 {
     return m_height;
@@ -79,6 +87,14 @@ void NemoThemeButtonPressedGradient::setHeight(int height)
 {
     if (m_height != height) {
         m_height = height;
+        emit heightChanged();
+    }
+}
+
+void NemoThemeButtonPressedGradient::setHeightDefault()
+{
+    if (m_height != 240) {
+        m_height = 240;
         emit heightChanged();
     }
 }
@@ -96,6 +112,14 @@ void NemoThemeButtonPressedGradient::setCenter(double center)
     }
 }
 
+void NemoThemeButtonPressedGradient::setCenterDefault()
+{
+    if (m_center != 0.29) {
+        m_center = 0.29;
+        emit centerChanged();
+    }
+}
+
 double NemoThemeButtonPressedGradient::edge() const
 {
     return m_edge;
@@ -105,6 +129,14 @@ void NemoThemeButtonPressedGradient::setEdge(double edge)
 {
     if (m_edge != edge) {
         m_edge = edge;
+        emit edgeChanged();
+    }
+}
+
+void NemoThemeButtonPressedGradient::setEdgeDefault()
+{
+    if (m_edge != 0.5) {
+        m_edge = 0.5;
         emit edgeChanged();
     }
 }

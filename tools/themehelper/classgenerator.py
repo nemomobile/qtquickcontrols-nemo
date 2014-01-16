@@ -106,6 +106,10 @@ def _getGetterSetter(property):
     if "type" in property:
         header += "    void set" + _getUpper(propertyName) 
         header += "(" + _getArgumentType(property) + propertyName + ");\n"
+    
+        if "default" in property:
+            header += "    void set" + _getUpper(propertyName) + "Default"
+            header += "();\n"
     return header
 
 def _getGetterSetterImpl(name, property):
@@ -126,6 +130,21 @@ def _getGetterSetterImpl(name, property):
         source += "    }\n"
         source += "}\n"
         source += "\n"
+
+        if "default" in property:
+            default = str(property["default"])
+            if isinstance(property["default"], str) or isinstance(property["default"], unicode):
+                default = "\"" + default + "\""
+
+            source += "void " + name + "::set" + _getUpper(propertyName) + "Default"
+            source += "()\n"
+            source += "{\n"
+            source += "    if (m_" + propertyName + " != " + default + ") {\n"
+            source += "        m_" + propertyName + " = " + default + ";\n"
+            source += "        emit " + propertyName + "Changed();\n"
+            source += "    }\n"
+            source += "}\n"
+            source += "\n"
     return source
 
 def _getSignal(property):
@@ -189,7 +208,7 @@ static inline int jsonToInt(const QJsonValue &value,
             trueValue = defines.value(valueString);
         }
     }
-        
+    
     double doubleValue = trueValue.toDouble();
     return (int) doubleValue;
 }
@@ -292,7 +311,7 @@ def _getCasted(property, jsonObject, name, cppObject):
     value = "jsonValue(" + jsonObject + _getUpper(name) + ", \"" 
     value += property["name"] + "\", \"" + name + "\")"
     if "default" in property:
-        value = jsonObject + ".value(\"" + name + "\")"
+        value = jsonObject + _getUpper(name) + ".value(\"" + property["name"] + "\")"
     
     if type == "QString":
         castedValue = "jsonToString(" + value + ", defines)"
@@ -313,6 +332,8 @@ def _getCasted(property, jsonObject, name, cppObject):
         data += property["name"] + "\")) {\n"
         data += "        " + cppObject + "->set" + _getUpper(property["name"])
         data += "(" + castedValue + ");\n"
+        data += "    } else {\n"
+        data += "        " + cppObject + "->set" + _getUpper(property["name"]) + "Default();\n"
         data += "    }\n"
         return data
     else:
