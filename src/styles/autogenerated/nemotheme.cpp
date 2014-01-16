@@ -193,7 +193,7 @@ static inline int jsonToInt(const QJsonValue &value,
             trueValue = defines.value(valueString);
         }
     }
-        
+    
     double doubleValue = trueValue.toDouble();
     return (int) doubleValue;
 }
@@ -280,26 +280,38 @@ void NemoTheme::loadFromFile(const QString &fileName)
     // Setting properties for font
     QJsonObject stylesButtonTextFont = stylesButtonText.value("font").toObject();
     if (stylesButtonTextFont.contains("pointSize")) {
-        m_button->text()->font()->setPointSize(jsonToInt(stylesButtonText.value("font"), defines));
+        m_button->text()->font()->setPointSize(jsonToInt(stylesButtonTextFont.value("pointSize"), defines));
+    } else {
+        m_button->text()->font()->setPointSizeDefault();
     }
     if (stylesButtonTextFont.contains("weight")) {
-        m_button->text()->font()->setWeight(jsonToInt(stylesButtonText.value("font"), defines));
+        m_button->text()->font()->setWeight(jsonToInt(stylesButtonTextFont.value("weight"), defines));
+    } else {
+        m_button->text()->font()->setWeightDefault();
     }
     // Setting properties for pressedGradient
     QJsonObject stylesButtonPressedGradient = stylesButton.value("pressedGradient").toObject();
     m_button->pressedGradient()->setCenterColor(jsonToColor(jsonValue(stylesButtonPressedGradient, "centerColor", "pressedGradient"), defines));
     m_button->pressedGradient()->setEdgeColor(jsonToColor(jsonValue(stylesButtonPressedGradient, "edgeColor", "pressedGradient"), defines));
     if (stylesButtonPressedGradient.contains("width")) {
-        m_button->pressedGradient()->setWidth(jsonToInt(stylesButton.value("pressedGradient"), defines));
+        m_button->pressedGradient()->setWidth(jsonToInt(stylesButtonPressedGradient.value("width"), defines));
+    } else {
+        m_button->pressedGradient()->setWidthDefault();
     }
     if (stylesButtonPressedGradient.contains("height")) {
-        m_button->pressedGradient()->setHeight(jsonToInt(stylesButton.value("pressedGradient"), defines));
+        m_button->pressedGradient()->setHeight(jsonToInt(stylesButtonPressedGradient.value("height"), defines));
+    } else {
+        m_button->pressedGradient()->setHeightDefault();
     }
     if (stylesButtonPressedGradient.contains("center")) {
-        m_button->pressedGradient()->setCenter(jsonToDouble(stylesButton.value("pressedGradient"), defines));
+        m_button->pressedGradient()->setCenter(jsonToDouble(stylesButtonPressedGradient.value("center"), defines));
+    } else {
+        m_button->pressedGradient()->setCenterDefault();
     }
     if (stylesButtonPressedGradient.contains("edge")) {
-        m_button->pressedGradient()->setEdge(jsonToDouble(stylesButton.value("pressedGradient"), defines));
+        m_button->pressedGradient()->setEdge(jsonToDouble(stylesButtonPressedGradient.value("edge"), defines));
+    } else {
+        m_button->pressedGradient()->setEdgeDefault();
     }
     // Setting properties for primaryButton
     QJsonObject stylesPrimaryButton = styles.value("primaryButton").toObject();
@@ -310,26 +322,38 @@ void NemoTheme::loadFromFile(const QString &fileName)
     // Setting properties for font
     QJsonObject stylesPrimaryButtonTextFont = stylesPrimaryButtonText.value("font").toObject();
     if (stylesPrimaryButtonTextFont.contains("pointSize")) {
-        m_primaryButton->text()->font()->setPointSize(jsonToInt(stylesPrimaryButtonText.value("font"), defines));
+        m_primaryButton->text()->font()->setPointSize(jsonToInt(stylesPrimaryButtonTextFont.value("pointSize"), defines));
+    } else {
+        m_primaryButton->text()->font()->setPointSizeDefault();
     }
     if (stylesPrimaryButtonTextFont.contains("weight")) {
-        m_primaryButton->text()->font()->setWeight(jsonToInt(stylesPrimaryButtonText.value("font"), defines));
+        m_primaryButton->text()->font()->setWeight(jsonToInt(stylesPrimaryButtonTextFont.value("weight"), defines));
+    } else {
+        m_primaryButton->text()->font()->setWeightDefault();
     }
     // Setting properties for pressedGradient
     QJsonObject stylesPrimaryButtonPressedGradient = stylesPrimaryButton.value("pressedGradient").toObject();
     m_primaryButton->pressedGradient()->setCenterColor(jsonToColor(jsonValue(stylesPrimaryButtonPressedGradient, "centerColor", "pressedGradient"), defines));
     m_primaryButton->pressedGradient()->setEdgeColor(jsonToColor(jsonValue(stylesPrimaryButtonPressedGradient, "edgeColor", "pressedGradient"), defines));
     if (stylesPrimaryButtonPressedGradient.contains("width")) {
-        m_primaryButton->pressedGradient()->setWidth(jsonToInt(stylesPrimaryButton.value("pressedGradient"), defines));
+        m_primaryButton->pressedGradient()->setWidth(jsonToInt(stylesPrimaryButtonPressedGradient.value("width"), defines));
+    } else {
+        m_primaryButton->pressedGradient()->setWidthDefault();
     }
     if (stylesPrimaryButtonPressedGradient.contains("height")) {
-        m_primaryButton->pressedGradient()->setHeight(jsonToInt(stylesPrimaryButton.value("pressedGradient"), defines));
+        m_primaryButton->pressedGradient()->setHeight(jsonToInt(stylesPrimaryButtonPressedGradient.value("height"), defines));
+    } else {
+        m_primaryButton->pressedGradient()->setHeightDefault();
     }
     if (stylesPrimaryButtonPressedGradient.contains("center")) {
-        m_primaryButton->pressedGradient()->setCenter(jsonToDouble(stylesPrimaryButton.value("pressedGradient"), defines));
+        m_primaryButton->pressedGradient()->setCenter(jsonToDouble(stylesPrimaryButtonPressedGradient.value("center"), defines));
+    } else {
+        m_primaryButton->pressedGradient()->setCenterDefault();
     }
     if (stylesPrimaryButtonPressedGradient.contains("edge")) {
-        m_primaryButton->pressedGradient()->setEdge(jsonToDouble(stylesPrimaryButton.value("pressedGradient"), defines));
+        m_primaryButton->pressedGradient()->setEdge(jsonToDouble(stylesPrimaryButtonPressedGradient.value("edge"), defines));
+    } else {
+        m_primaryButton->pressedGradient()->setEdgeDefault();
     }
     // Setting properties for groove
     QJsonObject stylesGroove = styles.value("groove").toObject();
@@ -340,7 +364,9 @@ void NemoTheme::loadFromFile(const QString &fileName)
     m_textField->setSelectedTextColor(jsonToColor(jsonValue(stylesTextField, "selectedTextColor", "textField"), defines));
     m_textField->setSelectionColor(jsonToColor(jsonValue(stylesTextField, "selectionColor", "textField"), defines));
     if (stylesTextField.contains("pointSize")) {
-        m_textField->setPointSize(jsonToInt(styles.value("textField"), defines));
+        m_textField->setPointSize(jsonToInt(stylesTextField.value("pointSize"), defines));
+    } else {
+        m_textField->setPointSizeDefault();
     }
     // Setting properties for toolBar
     QJsonObject stylesToolBar = styles.value("toolBar").toObject();
@@ -356,38 +382,56 @@ void NemoTheme::loadFromFile(const QString &fileName)
     m_page->dimmer()->setStartColor(jsonToColor(jsonValue(stylesPageDimmer, "startColor", "dimmer"), defines));
     m_page->dimmer()->setEndColor(jsonToColor(jsonValue(stylesPageDimmer, "endColor", "dimmer"), defines));
     if (stylesPageDimmer.contains("height")) {
-        m_page->dimmer()->setHeight(jsonToInt(stylesPage.value("dimmer"), defines));
+        m_page->dimmer()->setHeight(jsonToInt(stylesPageDimmer.value("height"), defines));
+    } else {
+        m_page->dimmer()->setHeightDefault();
     }
     if (stylesPageDimmer.contains("startPosition")) {
-        m_page->dimmer()->setStartPosition(jsonToDouble(stylesPage.value("dimmer"), defines));
+        m_page->dimmer()->setStartPosition(jsonToDouble(stylesPageDimmer.value("startPosition"), defines));
+    } else {
+        m_page->dimmer()->setStartPositionDefault();
     }
     if (stylesPageDimmer.contains("endPosition")) {
-        m_page->dimmer()->setEndPosition(jsonToDouble(stylesPage.value("dimmer"), defines));
+        m_page->dimmer()->setEndPosition(jsonToDouble(stylesPageDimmer.value("endPosition"), defines));
+    } else {
+        m_page->dimmer()->setEndPositionDefault();
     }
     // Setting properties for spinner
     QJsonObject stylesSpinner = styles.value("spinner").toObject();
     if (stylesSpinner.contains("radius")) {
-        m_spinner->setRadius(jsonToInt(styles.value("spinner"), defines));
+        m_spinner->setRadius(jsonToInt(stylesSpinner.value("radius"), defines));
+    } else {
+        m_spinner->setRadiusDefault();
     }
     m_spinner->setPrimaryColor(jsonToColor(jsonValue(stylesSpinner, "primaryColor", "spinner"), defines));
     m_spinner->setSecondaryColor(jsonToColor(jsonValue(stylesSpinner, "secondaryColor", "spinner"), defines));
     if (stylesSpinner.contains("horizontalSpacing")) {
-        m_spinner->setHorizontalSpacing(jsonToInt(styles.value("spinner"), defines));
+        m_spinner->setHorizontalSpacing(jsonToInt(stylesSpinner.value("horizontalSpacing"), defines));
+    } else {
+        m_spinner->setHorizontalSpacingDefault();
     }
     if (stylesSpinner.contains("verticalSpacing")) {
-        m_spinner->setVerticalSpacing(jsonToInt(styles.value("spinner"), defines));
+        m_spinner->setVerticalSpacing(jsonToInt(stylesSpinner.value("verticalSpacing"), defines));
+    } else {
+        m_spinner->setVerticalSpacingDefault();
     }
     if (stylesSpinner.contains("initialStateDuration")) {
-        m_spinner->setInitialStateDuration(jsonToInt(styles.value("spinner"), defines));
+        m_spinner->setInitialStateDuration(jsonToInt(stylesSpinner.value("initialStateDuration"), defines));
+    } else {
+        m_spinner->setInitialStateDurationDefault();
     }
     if (stylesSpinner.contains("transitionDuration")) {
-        m_spinner->setTransitionDuration(jsonToInt(styles.value("spinner"), defines));
+        m_spinner->setTransitionDuration(jsonToInt(stylesSpinner.value("transitionDuration"), defines));
+    } else {
+        m_spinner->setTransitionDurationDefault();
     }
     // Setting properties for label
     QJsonObject stylesLabel = styles.value("label").toObject();
     m_label->setColor(jsonToColor(jsonValue(stylesLabel, "color", "label"), defines));
     if (stylesLabel.contains("pointSize")) {
-        m_label->setPointSize(jsonToInt(styles.value("label"), defines));
+        m_label->setPointSize(jsonToInt(stylesLabel.value("pointSize"), defines));
+    } else {
+        m_label->setPointSizeDefault();
     }
     // Setting properties for checkbox
     QJsonObject stylesCheckbox = styles.value("checkbox").toObject();

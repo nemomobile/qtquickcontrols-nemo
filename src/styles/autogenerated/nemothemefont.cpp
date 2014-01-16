@@ -42,6 +42,14 @@ void NemoThemeFont::setPointSize(int pointSize)
     }
 }
 
+void NemoThemeFont::setPointSizeDefault()
+{
+    if (m_pointSize != 24) {
+        m_pointSize = 24;
+        emit pointSizeChanged();
+    }
+}
+
 int NemoThemeFont::weight() const
 {
     return m_weight;
@@ -51,6 +59,14 @@ void NemoThemeFont::setWeight(int weight)
 {
     if (m_weight != weight) {
         m_weight = weight;
+        emit weightChanged();
+    }
+}
+
+void NemoThemeFont::setWeightDefault()
+{
+    if (m_weight != 25) {
+        m_weight = 25;
         emit weightChanged();
     }
 }

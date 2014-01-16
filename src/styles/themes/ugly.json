@@ -38,6 +38,9 @@
             "selectedTextColor": "#ffffff",
             "selectionColor": "#0091e5"
         },
+        "toolBar": {
+            "background": "#000000"
+        },
         "window": {
             "background": "#000000"
         },
@@ -47,6 +50,17 @@
                 "startColor": "black",
                 "endColor": "transparent"
             }
+        },
+        "spinner": {
+            "primaryColor": "accentColor",
+            "secondaryColor": "transparent"
+        },
+        "label": {
+            "color": "#ffffff"
+        },
+        "checkbox": {
+            "back1": "#0091e5",
+            "back2": "#313131"
         }
     }
 }

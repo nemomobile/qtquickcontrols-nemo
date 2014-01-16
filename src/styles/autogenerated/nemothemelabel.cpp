@@ -53,3 +53,11 @@ void NemoThemeLabel::setPointSize(int pointSize)
         emit pointSizeChanged();
     }
 }
+
+void NemoThemeLabel::setPointSizeDefault()
+{
+    if (m_pointSize != 24) {
+        m_pointSize = 24;
+        emit pointSizeChanged();
+    }
+}

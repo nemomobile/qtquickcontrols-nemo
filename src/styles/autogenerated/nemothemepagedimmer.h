@@ -42,10 +42,13 @@ public:
     void setEndColor(const QColor &endColor);
     int height() const;
     void setHeight(int height);
+    void setHeightDefault();
     double startPosition() const;
     void setStartPosition(double startPosition);
+    void setStartPositionDefault();
     double endPosition() const;
     void setEndPosition(double endPosition);
+    void setEndPositionDefault();
 Q_SIGNALS:
     void startColorChanged();
     void endColorChanged();

@@ -45,6 +45,14 @@ void NemoThemeSpinner::setRadius(int radius)
     }
 }
 
+void NemoThemeSpinner::setRadiusDefault()
+{
+    if (m_radius != 32) {
+        m_radius = 32;
+        emit radiusChanged();
+    }
+}
+
 QColor NemoThemeSpinner::primaryColor() const
 {
     return m_primaryColor;
@@ -84,6 +92,14 @@ void NemoThemeSpinner::setHorizontalSpacing(int horizontalSpacing)
     }
 }
 
+void NemoThemeSpinner::setHorizontalSpacingDefault()
+{
+    if (m_horizontalSpacing != 15) {
+        m_horizontalSpacing = 15;
+        emit horizontalSpacingChanged();
+    }
+}
+
 int NemoThemeSpinner::verticalSpacing() const
 {
     return m_verticalSpacing;
@@ -93,6 +109,14 @@ void NemoThemeSpinner::setVerticalSpacing(int verticalSpacing)
 {
     if (m_verticalSpacing != verticalSpacing) {
         m_verticalSpacing = verticalSpacing;
+        emit verticalSpacingChanged();
+    }
+}
+
+void NemoThemeSpinner::setVerticalSpacingDefault()
+{
+    if (m_verticalSpacing != 15) {
+        m_verticalSpacing = 15;
         emit verticalSpacingChanged();
     }
 }
@@ -110,6 +134,14 @@ void NemoThemeSpinner::setInitialStateDuration(int initialStateDuration)
     }
 }
 
+void NemoThemeSpinner::setInitialStateDurationDefault()
+{
+    if (m_initialStateDuration != 1500) {
+        m_initialStateDuration = 1500;
+        emit initialStateDurationChanged();
+    }
+}
+
 int NemoThemeSpinner::transitionDuration() const
 {
     return m_transitionDuration;
@@ -119,6 +151,14 @@ void NemoThemeSpinner::setTransitionDuration(int transitionDuration)
 {
     if (m_transitionDuration != transitionDuration) {
         m_transitionDuration = transitionDuration;
+        emit transitionDurationChanged();
+    }
+}
+
+void NemoThemeSpinner::setTransitionDurationDefault()
+{
+    if (m_transitionDuration != 500) {
+        m_transitionDuration = 500;
         emit transitionDurationChanged();
     }
 }

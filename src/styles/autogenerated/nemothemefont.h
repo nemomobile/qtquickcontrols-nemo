@@ -34,8 +34,10 @@ public:
     explicit NemoThemeFont(QObject *parent = 0);
     int pointSize() const;
     void setPointSize(int pointSize);
+    void setPointSizeDefault();
     int weight() const;
     void setWeight(int weight);
+    void setWeightDefault();
 Q_SIGNALS:
     void pointSizeChanged();
     void weightChanged();
