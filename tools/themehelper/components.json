@@ -233,6 +233,16 @@
                     "type": "QColor"
                 }
             ]
+        }, 
+        {
+            "name": "PageStack",
+            "properties": [
+                {
+                    "name": "transitionDuration",
+                    "type": "int",
+                    "default": 500
+                }
+            ]
         }
     ],
     "properties": [
@@ -263,6 +273,10 @@
         {
             "name": "page",
             "object": "Page"
+        },
+        {
+            "name": "pageStack",
+            "object": "PageStack"
         },
         {
             "name": "spinner",

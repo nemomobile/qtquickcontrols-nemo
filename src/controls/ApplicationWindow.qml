@@ -195,6 +195,50 @@ NemoWindow {
                     target: stackView._isCurrentItemNemoPage() ? stackView.currentItem : null
                     onAllowedOrientationsChanged: root.orientationConstraintsChanged()
                 }
+
+                delegate: StackViewDelegate {
+                    pushTransition: Component {
+                        StackViewTransition {
+                            PropertyAnimation {
+                                target: enterItem
+                                property: "x"
+                                from: target.width
+                                to: 0
+                                duration: Theme.pageStack.transitionDuration
+                                easing.type: Easing.OutQuad
+                            }
+                            PropertyAnimation {
+                                target: exitItem
+                                property: "x"
+                                from: 0
+                                to: -target.width
+                                duration: Theme.pageStack.transitionDuration
+                                easing.type: Easing.OutQuad
+                            }
+                        }
+                    }
+                    popTransition: Component {
+                        StackViewTransition {
+                            PropertyAnimation {
+                                target: enterItem
+                                property: "x"
+                                from: -target.width
+                                to: 0
+                                duration: Theme.pageStack.transitionDuration
+                                easing.type: Easing.OutQuad
+                            }
+                            PropertyAnimation {
+                                target: exitItem
+                                property: "x"
+                                from: 0
+                                to: target.width
+                                duration: Theme.pageStack.transitionDuration
+                                easing.type: Easing.OutQuad
+                            }
+                        }
+                    }
+
+                }
             }
 
             Item {

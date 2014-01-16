@@ -61,6 +61,9 @@
         "checkbox": {
             "back1": "#0091e5",
             "back2": "#313131"
+        },
+        "pageStack": {
+            "transitionDuration": 1500
         }
     }
 }

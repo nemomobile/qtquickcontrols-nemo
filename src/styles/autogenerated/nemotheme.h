@@ -31,6 +31,7 @@
 #include "nemothemetoolbar.h"
 #include "nemothemewindow.h"
 #include "nemothemepage.h"
+#include "nemothemepagestack.h"
 #include "nemothemespinner.h"
 #include "nemothemelabel.h"
 #include "nemothemecheckbox.h"
@@ -47,6 +48,7 @@ class NemoTheme: public QObject
     Q_PROPERTY(NemoThemeToolBar * toolBar READ toolBar CONSTANT)
     Q_PROPERTY(NemoThemeWindow * window READ window CONSTANT)
     Q_PROPERTY(NemoThemePage * page READ page CONSTANT)
+    Q_PROPERTY(NemoThemePageStack * pageStack READ pageStack CONSTANT)
     Q_PROPERTY(NemoThemeSpinner * spinner READ spinner CONSTANT)
     Q_PROPERTY(NemoThemeLabel * label READ label CONSTANT)
     Q_PROPERTY(NemoThemeCheckbox * checkbox READ checkbox CONSTANT)
@@ -64,6 +66,7 @@ public:
     NemoThemeToolBar * toolBar() const;
     NemoThemeWindow * window() const;
     NemoThemePage * page() const;
+    NemoThemePageStack * pageStack() const;
     NemoThemeSpinner * spinner() const;
     NemoThemeLabel * label() const;
     NemoThemeCheckbox * checkbox() const;
@@ -83,6 +86,7 @@ private:
     NemoThemeToolBar * m_toolBar;
     NemoThemeWindow * m_window;
     NemoThemePage * m_page;
+    NemoThemePageStack * m_pageStack;
     NemoThemeSpinner * m_spinner;
     NemoThemeLabel * m_label;
     NemoThemeCheckbox * m_checkbox;
