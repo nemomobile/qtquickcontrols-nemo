@@ -34,10 +34,8 @@ import QtQuick.Controls.Styles.Nemo 1.0
 
 Item {
     id: container
-//    anchors.centerIn: parent
     width: 2 * Theme.spinner.radius + Theme.spinner.horizontalSpacing
     height: 2 * Theme.spinner.radius + Theme.spinner.verticalSpacing
-//    visible: enabled
 
     states: [
         State { name: "enabled"; when: enabled }
@@ -140,7 +138,6 @@ Item {
         id: animations
         loops: Animation.Infinite
         ParallelAnimation {
-            onRunningChanged: console.debug(running)
             PropertyAnimation {
                 target: circle0
                 property: "color"
