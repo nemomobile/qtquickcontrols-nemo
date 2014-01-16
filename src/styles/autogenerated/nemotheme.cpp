@@ -45,6 +45,7 @@ NemoTheme::NemoTheme(QObject *parent)
     , m_toolBar(new NemoThemeToolBar(this))
     , m_window(new NemoThemeWindow(this))
     , m_page(new NemoThemePage(this))
+    , m_pageStack(new NemoThemePageStack(this))
     , m_spinner(new NemoThemeSpinner(this))
     , m_label(new NemoThemeLabel(this))
     , m_checkbox(new NemoThemeCheckbox(this))
@@ -118,6 +119,11 @@ NemoThemeWindow * NemoTheme::window() const
 NemoThemePage * NemoTheme::page() const
 {
     return m_page;
+}
+
+NemoThemePageStack * NemoTheme::pageStack() const
+{
+    return m_pageStack;
 }
 
 NemoThemeSpinner * NemoTheme::spinner() const
@@ -395,6 +401,13 @@ void NemoTheme::loadFromFile(const QString &fileName)
         m_page->dimmer()->setEndPosition(jsonToDouble(stylesPageDimmer.value("endPosition"), defines));
     } else {
         m_page->dimmer()->setEndPositionDefault();
+    }
+    // Setting properties for pageStack
+    QJsonObject stylesPageStack = styles.value("pageStack").toObject();
+    if (stylesPageStack.contains("transitionDuration")) {
+        m_pageStack->setTransitionDuration(jsonToInt(stylesPageStack.value("transitionDuration"), defines));
+    } else {
+        m_pageStack->setTransitionDurationDefault();
     }
     // Setting properties for spinner
     QJsonObject stylesSpinner = styles.value("spinner").toObject();
