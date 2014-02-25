@@ -61,6 +61,10 @@
         "checkbox": {
             "back1": "#0091e5",
             "back2": "#313131"
+        },
+        "buttonRow": {
+            "background": "#313131",
+            "buttonColor": "#0091e5"
         }
     }
 }

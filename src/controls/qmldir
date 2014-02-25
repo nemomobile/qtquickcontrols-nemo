@@ -14,7 +14,7 @@ Page 1.0 Page.qml
 Spinner 1.0 Spinner.qml
 Label 1.0 Label.qml
 CheckBox 1.0 Checkbox.qml
-
+ButtonRow 1.0 ButtonRow.qml
 # MIRRORED CONTROLS: 
 # These are the controls that we take directly from official QQC.
 # This is to avoid having to "import QtQuick.Controls" when using controls

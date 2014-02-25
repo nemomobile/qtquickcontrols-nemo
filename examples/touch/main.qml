@@ -99,6 +99,10 @@ ApplicationWindow {
             title: "Switches"
             page: "content/CheckboxPage.qml"
         }
+        ListElement {
+            title: "ButtonRow"
+            page: "content/ButtonRowPage.qml"
+        }
     }
 
 
