@@ -12,10 +12,13 @@ QML_FILES += \
     Page.qml \
     Spinner.qml \
     Label.qml \
-    Checkbox.qml
+    Checkbox.qml\
+    images/disabled-overlay.png
+    images/disabled-overlay-inverse.png
 
 OTHER_FILES += qmldir \
-    $$QML_FILES
+    $$QML_FILES \
+    ButtonRow.qml
 
 HEADERS += \
     qquicknemocontrolsextensionplugin.h \
@@ -34,5 +37,6 @@ target.path = $$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH
 qmlfiles.files = $$_PRO_FILE_PWD_/*.qml
 qmlfiles.files += $$_PRO_FILE_PWD_/qmldir
 qmlfiles.path = $$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH
-
-INSTALLS += target qmlfiles
+images.files = $$_PRO_FILE_PWD_/images
+images.path = $$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH
+INSTALLS += target qmlfiles images

@@ -21,7 +21,8 @@ OTHER_FILES += \
     content/ToolBarLayoutExample.qml \
     content/SpinnerPage.qml \
     content/LabelPage.qml \
-    content/CheckboxPage.qml
+    content/CheckboxPage.qml \
+    content/ButtonRowPage.qml
 
 RESOURCES += \
     resources.qrc

@@ -243,6 +243,19 @@
                     "default": 500
                 }
             ]
+        },
+        {
+            "name": "ButtonRow",
+            "properties": [
+                {
+                    "name": "background",
+                    "type": "QColor"
+                },
+                {
+                    "name": "buttonColor",
+                    "type": "QColor"
+                }
+            ]
         }
     ],
     "properties": [
@@ -289,6 +302,10 @@
         {
             "name": "checkbox",
             "object": "Checkbox"
+        },
+        {
+            "name": "buttonRow",
+            "object": "ButtonRow"
         }
     ],
     "font": "/usr/share/fonts/google-opensans/OpenSans-Regular.ttf"

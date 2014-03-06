@@ -49,6 +49,7 @@ NemoTheme::NemoTheme(QObject *parent)
     , m_spinner(new NemoThemeSpinner(this))
     , m_label(new NemoThemeLabel(this))
     , m_checkbox(new NemoThemeCheckbox(this))
+    , m_buttonRow(new NemoThemeButtonRow(this))
 {
     loadFromFile(GLACIER_THEME);
     int id = QFontDatabase::addApplicationFont("/usr/share/fonts/google-opensans/OpenSans-Regular.ttf");
@@ -139,6 +140,11 @@ NemoThemeLabel * NemoTheme::label() const
 NemoThemeCheckbox * NemoTheme::checkbox() const
 {
     return m_checkbox;
+}
+
+NemoThemeButtonRow * NemoTheme::buttonRow() const
+{
+    return m_buttonRow;
 }
 
 QString NemoTheme::fontFamily() const
@@ -450,4 +456,8 @@ void NemoTheme::loadFromFile(const QString &fileName)
     QJsonObject stylesCheckbox = styles.value("checkbox").toObject();
     m_checkbox->setBack1(jsonToColor(jsonValue(stylesCheckbox, "back1", "checkbox"), defines));
     m_checkbox->setBack2(jsonToColor(jsonValue(stylesCheckbox, "back2", "checkbox"), defines));
+    // Setting properties for buttonRow
+    QJsonObject stylesButtonRow = styles.value("buttonRow").toObject();
+    m_buttonRow->setBackground(jsonToColor(jsonValue(stylesButtonRow, "background", "buttonRow"), defines));
+    m_buttonRow->setButtonColor(jsonToColor(jsonValue(stylesButtonRow, "buttonColor", "buttonRow"), defines));
 }

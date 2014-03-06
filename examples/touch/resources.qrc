@@ -20,5 +20,6 @@
         <file>content/SpinnerPage.qml</file>
         <file>content/LabelPage.qml</file>
         <file>content/CheckboxPage.qml</file>
+        <file>content/ButtonRowPage.qml</file>
     </qresource>
 </RCC>
