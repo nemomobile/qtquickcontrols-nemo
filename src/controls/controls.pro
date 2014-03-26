@@ -18,7 +18,8 @@ QML_FILES += \
 
 OTHER_FILES += qmldir \
     $$QML_FILES \
-    ButtonRow.qml
+    ButtonRow.qml \
+    QueryDialog.qml
 
 HEADERS += \
     qquicknemocontrolsextensionplugin.h \

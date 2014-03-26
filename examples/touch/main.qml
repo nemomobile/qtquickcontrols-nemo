@@ -103,6 +103,10 @@ ApplicationWindow {
             title: "ButtonRow"
             page: "content/ButtonRowPage.qml"
         }
+        ListElement {
+            title: "Query Dialog"
+            page: "content/QueryDialogPage.qml"
+        }
     }
 
 

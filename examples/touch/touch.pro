@@ -22,7 +22,8 @@ OTHER_FILES += \
     content/SpinnerPage.qml \
     content/LabelPage.qml \
     content/CheckboxPage.qml \
-    content/ButtonRowPage.qml
+    content/ButtonRowPage.qml \
+    content/QueryDialogPage.qml
 
 RESOURCES += \
     resources.qrc
