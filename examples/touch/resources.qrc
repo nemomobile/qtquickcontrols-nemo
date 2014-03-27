@@ -21,5 +21,6 @@
         <file>content/LabelPage.qml</file>
         <file>content/CheckboxPage.qml</file>
         <file>content/ButtonRowPage.qml</file>
+        <file>content/QueryDialogPage.qml</file>
     </qresource>
 </RCC>
