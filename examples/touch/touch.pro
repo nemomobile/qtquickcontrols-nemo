@@ -1,6 +1,10 @@
 TEMPLATE = app
 QT += qml quick
 TARGET = touch_nemo
+packagesExist(qdeclarative5-boostable) {
+LIBS += -rdynamic -lmdeclarativecache5
+QMAKE_CXXFLAGS += -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -I/usr/include/mdeclarativecache5
+}
 target.path = /usr/lib/qt5/examples
 
 qtHaveModule(widgets) {
