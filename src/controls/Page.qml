@@ -79,6 +79,7 @@ NemoPage {
 
     ToolBar {
         id: toolBar
+        z: 201
     }
 
     Item {
