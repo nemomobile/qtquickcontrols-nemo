@@ -46,7 +46,7 @@ import QtQuick.Controls.Styles.Nemo 1.0
 Page {
     id: root
 
-    tools: ToolBarLayoutExample { title: "Tab bars" }
+    headerTools: HeaderToolsLayout { showBackButton: true; title: "Tab bars" }
 
     TabView {
         anchors.fill: parent

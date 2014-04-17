@@ -46,7 +46,8 @@ import QtQuick.Controls.Styles.Nemo 1.0
 Page {
     id: root
 
-    tools: ToolBarLayoutExample { title: "Buttons" }
+    headerTools: HeaderToolsLayout { showBackButton: false; title: "Buttons (portrait only, no back arrow)" }
+    allowedOrientations: Qt.PortraitOrientation
 
     Column {
         spacing: 40

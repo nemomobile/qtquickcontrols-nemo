@@ -37,7 +37,7 @@ import QtQuick.Controls.Styles.Nemo 1.0
 Page {
     id: root
 
-    tools: ToolBarLayoutExample { title: "Spinner" }
+    headerTools: HeaderToolsLayout { showBackButton: true; title: "Spinner" }
 
     Column {
         spacing: 40

@@ -50,6 +50,7 @@ NemoTheme::NemoTheme(QObject *parent)
     , m_label(new NemoThemeLabel(this))
     , m_checkbox(new NemoThemeCheckbox(this))
     , m_buttonRow(new NemoThemeButtonRow(this))
+    , m_header(new NemoThemeHeader(this))
 {
     loadFromFile(GLACIER_THEME);
     int id = QFontDatabase::addApplicationFont("/usr/share/fonts/google-opensans/OpenSans-Regular.ttf");
@@ -145,6 +146,11 @@ NemoThemeCheckbox * NemoTheme::checkbox() const
 NemoThemeButtonRow * NemoTheme::buttonRow() const
 {
     return m_buttonRow;
+}
+
+NemoThemeHeader * NemoTheme::header() const
+{
+    return m_header;
 }
 
 QString NemoTheme::fontFamily() const
@@ -389,25 +395,6 @@ void NemoTheme::loadFromFile(const QString &fileName)
     // Setting properties for page
     QJsonObject stylesPage = styles.value("page").toObject();
     m_page->setBackground(jsonToColor(jsonValue(stylesPage, "background", "page"), defines));
-    // Setting properties for dimmer
-    QJsonObject stylesPageDimmer = stylesPage.value("dimmer").toObject();
-    m_page->dimmer()->setStartColor(jsonToColor(jsonValue(stylesPageDimmer, "startColor", "dimmer"), defines));
-    m_page->dimmer()->setEndColor(jsonToColor(jsonValue(stylesPageDimmer, "endColor", "dimmer"), defines));
-    if (stylesPageDimmer.contains("height")) {
-        m_page->dimmer()->setHeight(jsonToInt(stylesPageDimmer.value("height"), defines));
-    } else {
-        m_page->dimmer()->setHeightDefault();
-    }
-    if (stylesPageDimmer.contains("startPosition")) {
-        m_page->dimmer()->setStartPosition(jsonToDouble(stylesPageDimmer.value("startPosition"), defines));
-    } else {
-        m_page->dimmer()->setStartPositionDefault();
-    }
-    if (stylesPageDimmer.contains("endPosition")) {
-        m_page->dimmer()->setEndPosition(jsonToDouble(stylesPageDimmer.value("endPosition"), defines));
-    } else {
-        m_page->dimmer()->setEndPositionDefault();
-    }
     // Setting properties for pageStack
     QJsonObject stylesPageStack = styles.value("pageStack").toObject();
     if (stylesPageStack.contains("transitionDuration")) {
@@ -460,4 +447,26 @@ void NemoTheme::loadFromFile(const QString &fileName)
     QJsonObject stylesButtonRow = styles.value("buttonRow").toObject();
     m_buttonRow->setBackground(jsonToColor(jsonValue(stylesButtonRow, "background", "buttonRow"), defines));
     m_buttonRow->setButtonColor(jsonToColor(jsonValue(stylesButtonRow, "buttonColor", "buttonRow"), defines));
+    // Setting properties for header
+    QJsonObject stylesHeader = styles.value("header").toObject();
+    m_header->setBackground(jsonToColor(jsonValue(stylesHeader, "background", "header"), defines));
+    // Setting properties for dimmer
+    QJsonObject stylesHeaderDimmer = stylesHeader.value("dimmer").toObject();
+    m_header->dimmer()->setStartColor(jsonToColor(jsonValue(stylesHeaderDimmer, "startColor", "dimmer"), defines));
+    m_header->dimmer()->setEndColor(jsonToColor(jsonValue(stylesHeaderDimmer, "endColor", "dimmer"), defines));
+    if (stylesHeaderDimmer.contains("height")) {
+        m_header->dimmer()->setHeight(jsonToInt(stylesHeaderDimmer.value("height"), defines));
+    } else {
+        m_header->dimmer()->setHeightDefault();
+    }
+    if (stylesHeaderDimmer.contains("startPosition")) {
+        m_header->dimmer()->setStartPosition(jsonToDouble(stylesHeaderDimmer.value("startPosition"), defines));
+    } else {
+        m_header->dimmer()->setStartPositionDefault();
+    }
+    if (stylesHeaderDimmer.contains("endPosition")) {
+        m_header->dimmer()->setEndPosition(jsonToDouble(stylesHeaderDimmer.value("endPosition"), defines));
+    } else {
+        m_header->dimmer()->setEndPositionDefault();
+    }
 }

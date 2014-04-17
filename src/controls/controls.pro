@@ -13,25 +13,27 @@ QML_FILES += \
     Spinner.qml \
     Label.qml \
     Checkbox.qml\
-    images/disabled-overlay.png
-    images/disabled-overlay-inverse.png
+    ButtonRow.qml \
+    QueryDialog.qml \
+    Header.qml \
+    HeaderToolsLayout.qml
 
 OTHER_FILES += qmldir \
-    $$QML_FILES \
-    ButtonRow.qml \
-    QueryDialog.qml
+    $$QML_FILES
 
 HEADERS += \
     qquicknemocontrolsextensionplugin.h \
     hacks.h \
     nemowindow.h \
-    nemopage.h
+    nemopage.h \
+    qquickfilteringmousearea.h
 
 SOURCES += \
     qquicknemocontrolsextensionplugin.cpp \
     hacks.cpp \
     nemowindow.cpp \
-    nemopage.cpp
+    nemopage.cpp \
+    qquickfilteringmousearea.cpp
 
 target.path = $$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH
 

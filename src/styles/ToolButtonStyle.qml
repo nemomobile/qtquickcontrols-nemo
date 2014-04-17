@@ -46,6 +46,7 @@ Style {
         Image {
             id: icon
             anchors.fill: parent
+            fillMode: Image.PreserveAspectFit
             anchors.margins: 8
             source: control.iconSource
         }

@@ -29,8 +29,9 @@ NemoWindow {
     id: root
 
     width: 320
-    height: 240
+    height: 640
 
+    property alias header: toolBar
     /*! \internal */
     default property alias data: contentArea.data
 
@@ -38,13 +39,15 @@ NemoWindow {
     property alias initialPage: stackView.initialItem
 
     property alias orientation: contentArea.uiOrientation
+    readonly property int isUiPortrait: orientation == Qt.PortraitOrientation || orientation == Qt.InvertedPortraitOrientation
+    //is this safe? can there be some situation in which it's neither portrait nor landscape?
+    readonly property int isUiLandscape: !isUiPortrait
+
     readonly property var _bgColor: Theme.window.background
     color: _bgColor
 
-    readonly property int defaultAllowedOrientations: Qt.PortraitOrientation | Qt.LandscapeOrientation
-
-    //these are application-wise allowed orientations, i.e. what is used if the current Page doesn't set any
-    allowedOrientations: defaultAllowedOrientations
+    //README: allowedOrientations' default value is set in NemoWindow's c++ implementation
+    //The app developer can overwrite it from QML
 
     onAllowedOrientationsChanged: {
         orientationConstraintsChanged()
@@ -61,8 +64,20 @@ NemoWindow {
         //if the current orientation is not allowed anymore, fallback to an allowed one
         //stackInitialized check prevents setting an orientation before the stackview
         //(but more importantly the initialItem of the stack) has been created
-        if (stackView.stackInitialized && !isOrientationAllowed(contentArea.filteredOrientation)) {
-            fallbackToAnAllowedOrientation()
+        if (stackView.stackInitialized) {
+            //- This is to give priority to the current screen orientation
+            //- This case happens when, for example, you're on a landscape only page,
+            //  the phone is in portrait, and a page allowing portrait mode is pushed on the stack.
+            //  When the page is pushed, we don't get any orientationChanged signal from the Screen element
+            //  because the phone was already held in portrait mode, se we have to enforce it here.
+            if (isOrientationAllowed(Screen.orientation)) {
+                contentArea.filteredOrientation = Screen.orientation
+            }
+            //- If neither the current screen orientation nor the one which the UI is already presented in (filteredOrientation)
+            //  are allowed, then fallback to an allowed orientation.
+            else if (!isOrientationAllowed(contentArea.filteredOrientation)) {
+                fallbackToAnAllowedOrientation()
+            }
         }
     }
 
@@ -127,6 +142,8 @@ NemoWindow {
         id: backgroundItem
 
         anchors.centerIn: parent
+        // NOTE: Using Screen.height/width will cause issues when the app is not fullscreen (e.g. when testing using Qt desktop)
+        // because in that case the app window will be smaller but the content will still be for fullscreen size
         width: __transpose ? Screen.height : Screen.width
         height: __transpose ? Screen.width : Screen.height
         rotation: rotationToTransposeToPortrait()
@@ -153,9 +170,12 @@ NemoWindow {
 
             StackView {
                 id: stackView
-                width: parent.width
-                height: parent.height
+                anchors.top: root.isUiPortrait ? toolBar.bottom : parent.top
+                anchors.right: parent.right
+                anchors.left: root.isUiPortrait ? parent.left : toolBar.right
+                anchors.bottom: parent.bottom
 
+                clip: true
                 Component.onCompleted: stackInitialized = true
                 //IMPORTANT: this property makes it so that at app startup we wait for the initial page to be pushed
                 //before determining the initial ui orientation (see the states logic below)
@@ -182,8 +202,10 @@ NemoWindow {
                 }
 
                 //update orientation constraints when a Page is pushed/popped
-                onCurrentItemChanged: if (_isCurrentItemNemoPage() && currentItem.allowedOrientations)
-                                          root.orientationConstraintsChanged()
+                onCurrentItemChanged: {
+                    if (_isCurrentItemNemoPage())
+                        root.orientationConstraintsChanged()
+                }
 
                 //This properties are accessible for free by the Page via Stack.view.<property>
                 readonly property int orientation: contentArea.uiOrientation
@@ -241,6 +263,44 @@ NemoWindow {
                 }
             }
 
+            Header {
+                id: toolBar
+                stackView: root.pageStack
+                appWindow: root
+
+                //used to animate the dimmer when pages are pushed/popped (see Header's QML code)
+                property alias __dimmer: headerDimmerContainer
+            }
+
+            Item {
+                //This item handles the rotation of the dimmer.
+                //All this because QML doesn't have a horizontal gradient (unless you import GraphicalEffects)
+                //and having a container which doesn't rotate but just resizes makes it easier to rotate its inner
+                //child
+                id: headerDimmerContainer
+
+                //README: Don't use AnchorChanges for this item!
+                //Reason: state changes disable bindings while the transition from one state to another is running.
+                //This causes the dimmer not to follow the drawer when the drawer is closed right before the orientation change
+                anchors.top: isUiPortrait ? toolBar.bottom : parent.top
+                anchors.left: isUiPortrait ? parent.left : toolBar.right
+                anchors.right: isUiPortrait ? parent.right : undefined
+                anchors.bottom: isUiPortrait ? undefined : parent.bottom
+                //we only set the size in one orientation, the anchors will take care of the other
+                width: if (!isUiPortrait) Theme.header.dimmer.height
+                height: if (isUiPortrait) Theme.header.dimmer.height
+                //MAKE SURE THAT THE HEIGHT SPECIFIED BY THE THEME IS AN EVEN NUMBER, TO AVOID ROUNDING ERRORS IN THE LAYOUT
+
+                Rectangle {
+                    id: headerDimmer
+                    anchors.centerIn: parent
+                    gradient: Gradient {
+                        GradientStop { position: Theme.header.dimmer.startPosition; color: Theme.header.dimmer.startColor }
+                        GradientStop { position: Theme.header.dimmer.endPosition; color: Theme.header.dimmer.endColor }
+                    }
+                }
+            }
+
             Item {
                 id: orientationState
 
@@ -262,6 +322,12 @@ NemoWindow {
                             rotation: 0
                             uiOrientation: Qt.PortraitOrientation
                         }
+                        PropertyChanges {
+                            target: headerDimmer
+                            height: Theme.header.dimmer.height
+                            width: parent.width
+                            rotation: 0
+                        }
                     },
                     State {
                         name: 'Landscape'
@@ -273,6 +339,12 @@ NemoWindow {
                             height: _horizontalDimension
                             rotation: 90
                             uiOrientation: Qt.LandscapeOrientation
+                        }
+                        PropertyChanges {
+                            target: headerDimmer
+                            height: Theme.header.dimmer.height
+                            width: parent.height
+                            rotation: -90
                         }
                     },
                     State {
@@ -286,6 +358,12 @@ NemoWindow {
                             rotation: 180
                             uiOrientation: Qt.InvertedPortraitOrientation
                         }
+                        PropertyChanges {
+                            target: headerDimmer
+                            height: Theme.header.dimmer.height
+                            width: parent.width
+                            rotation: 0
+                        }
                     },
                     State {
                         name: 'LandscapeInverted'
@@ -297,6 +375,12 @@ NemoWindow {
                             height: _horizontalDimension
                             rotation: 270
                             uiOrientation: Qt.InvertedLandscapeOrientation
+                        }
+                        PropertyChanges {
+                            target: headerDimmer
+                            height: Theme.header.dimmer.height
+                            width: parent.height
+                            rotation: -90
                         }
                     }
                 ]
@@ -319,6 +403,13 @@ NemoWindow {
                         PropertyAction {
                             target: contentArea
                             properties: 'width,height,rotation,uiOrientation'
+                        }
+                        AnchorAnimation {
+                            duration: 0
+                        }
+                        PropertyAction {
+                            target: headerDimmer
+                            properties: 'width,height,rotation'
                         }
                         NumberAnimation {
                             target: contentArea

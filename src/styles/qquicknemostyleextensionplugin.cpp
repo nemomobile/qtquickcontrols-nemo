@@ -48,12 +48,12 @@ void QQuickNemoStyleExtensionPlugin::registerTypes(const char *uri)
     qmlRegisterUncreatableType<NemoThemeToolBar>(uri, 1, 0, "NemoThemeToolBar", reason);
     qmlRegisterUncreatableType<NemoThemeWindow>(uri, 1, 0, "NemoThemeWindow", reason);
     qmlRegisterUncreatableType<NemoThemePage>(uri, 1, 0, "NemoThemePage", reason);
-    qmlRegisterUncreatableType<NemoThemePageDimmer>(uri, 1, 0, "NemoThemePageDimmer", reason);
     qmlRegisterUncreatableType<NemoThemeSpinner>(uri, 1, 0, "NemoThemeSpinner", reason);
     qmlRegisterUncreatableType<NemoThemeLabel>(uri, 1, 0, "NemoThemeLabel", reason);
     qmlRegisterUncreatableType<NemoThemeCheckbox>(uri, 1, 0, "NemoThemeCheckbox", reason);
     qmlRegisterUncreatableType<NemoThemePageStack>(uri, 1, 0, "NemoThemePageStack", reason);
-
+    qmlRegisterUncreatableType<NemoThemeHeader>(uri, 1, 0, "NemoThemeHeader", reason);
+    qmlRegisterUncreatableType<NemoThemeHeaderDimmer>(uri, 1, 0, "NemoThemeHeaderDimmer", reason);
 
     qmlRegisterSingletonType<QObject>(uri, 1, 0, "Theme", nemo_theme_provider);
 }

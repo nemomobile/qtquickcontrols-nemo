@@ -62,7 +62,7 @@ Page {
         }
     }
 
-    tools: ToolBarLayoutExample { title: "Progress Bars" }
+    headerTools: HeaderToolsLayout { showBackButton: true; title: "Progress Bars" }
 
     Column {
         spacing: 40

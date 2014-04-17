@@ -28,7 +28,7 @@ Page {
     property var oldItem
     property var newItem
 
-    tools: ToolBarLayoutExample { title: "Live Coding Arena" }
+    headerTools: HeaderToolsLayout { showBackButton: true; title: "Live Coding Arena" }
 
     SplitView {
         anchors.fill: parent

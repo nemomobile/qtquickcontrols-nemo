@@ -45,11 +45,7 @@
             "background": "#000000"
         },
         "page": {
-            "background": "#000000",
-            "dimmer": {
-                "startColor": "black",
-                "endColor": "transparent"
-            }
+            "background": "#000000"
         },
         "spinner": {
             "primaryColor": "#ffffff",
@@ -65,6 +61,13 @@
         "buttonRow": {
             "background": "#313131",
             "buttonColor": "#0091e5"
+        },
+        "header": {
+            "background": "#000000",
+            "dimmer": {
+                "startColor": "black",
+                "endColor": "transparent"
+            }
         }
     }
 }
