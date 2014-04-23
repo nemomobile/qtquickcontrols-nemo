@@ -37,7 +37,7 @@ import QtQuick.Controls.Styles.Nemo 1.0
 Page {
     id: root
 
-    tools: ToolBarLayoutExample { title: "Switch" }
+    headerTools: HeaderToolsLayout { showBackButton: true; title: "Switch" }
 
     Column {
         spacing: 40

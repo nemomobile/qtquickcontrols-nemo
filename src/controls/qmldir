@@ -16,6 +16,9 @@ Label 1.0 Label.qml
 CheckBox 1.0 Checkbox.qml
 ButtonRow 1.0 ButtonRow.qml
 QueryDialog 1.0 QueryDialog.qml
+Header 1.0 Header.qml
+HeaderToolsLayout 1.0 HeaderToolsLayout.qml
+
 # MIRRORED CONTROLS: 
 # These are the controls that we take directly from official QQC.
 # This is to avoid having to "import QtQuick.Controls" when using controls

@@ -46,7 +46,7 @@ import QtQuick.Controls.Styles.Nemo 1.0
 Page {
     id: root
 
-    tools: ToolBarLayoutExample { title: "Sliders" }
+    headerTools: HeaderToolsLayout { showBackButton: true; title: "Sliders" }
 
     Column {
         spacing: 12

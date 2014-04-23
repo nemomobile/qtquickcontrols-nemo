@@ -43,12 +43,8 @@ NemoPage {
 
     property alias color: background.color
     property int status: pageStack ? Stack.status : Stack.Inactive
-    property alias tools: toolBar.data
-    property alias __dimmer: dimmer
+    property variant headerTools
     readonly property StackView pageStack: Stack.view
-
-    //TODO: ADD TOOLBARLAYOUT COMPONENT SO THAT USER WILL USE tools: ToolbarLayout { .... }
-    //instead of tools: [ ... , ... ]
 
     //Children of "page" will be automatically reparented to "content"
     default  property alias __content: content.data
@@ -77,31 +73,8 @@ NemoPage {
         color: Theme.page.background
     }
 
-    ToolBar {
-        id: toolBar
-        z: 201
-    }
-
     Item {
         id: content
-        anchors.bottom: parent.bottom
-        anchors.top: toolBar.bottom
-        anchors.right: parent.right
-        anchors.left: parent.left
-    }
-
-    Rectangle {
-        id: dimmer
-
-        height: Theme.page.dimmer.height
-
-        anchors.top: toolBar.bottom
-        anchors.left: parent.left
-        anchors.right: parent.right
-
-        gradient: Gradient {
-            GradientStop { position: Theme.page.dimmer.startPosition; color: Theme.page.dimmer.startColor }
-            GradientStop { position: Theme.page.dimmer.endPosition; color: Theme.page.dimmer.endColor }
-        }
+        anchors.fill: parent
     }
 }

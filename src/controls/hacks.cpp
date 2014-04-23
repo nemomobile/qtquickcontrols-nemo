@@ -32,5 +32,5 @@ bool Hacks::isOrientationMaskValid(Qt::ScreenOrientations orientations) {
     Qt::ScreenOrientations max = (Qt::PortraitOrientation | Qt::LandscapeOrientation
             | Qt::InvertedPortraitOrientation | Qt::InvertedLandscapeOrientation);
 
-    return (orientations <= max && orientations != 0);
+    return (orientations <= max && orientations > 0);
 }

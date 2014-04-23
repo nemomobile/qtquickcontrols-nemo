@@ -64,7 +64,10 @@ Item {
         text: modelData
         anchors.verticalCenter: parent.verticalCenter
         anchors.left: parent.left
-        anchors.leftMargin: 30
+        anchors.leftMargin: 20
+        anchors.right: arrow.left
+        anchors.rightMargin: 20
+        clip: true
     }
 
     Rectangle {
@@ -76,6 +79,7 @@ Item {
     }
 
     Image {
+        id: arrow
         anchors.right: parent.right
         anchors.rightMargin: 20
         anchors.verticalCenter: parent.verticalCenter
@@ -86,6 +90,5 @@ Item {
         id: mouse
         anchors.fill: parent
         onClicked: root.clicked()
-
     }
 }

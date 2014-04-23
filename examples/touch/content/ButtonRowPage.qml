@@ -37,7 +37,8 @@ import QtQuick.Controls.Styles.Nemo 1.0
 Page {
     id: root
 
-    tools: ToolBarLayoutExample { title: "ButtonRow" }
+    headerTools: HeaderToolsLayout { showBackButton: true; title: "Button row (Landscape only)" }
+    allowedOrientations: Qt.LandscapeOrientation
 
     Column {
         spacing: 40

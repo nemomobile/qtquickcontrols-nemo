@@ -37,7 +37,8 @@ import QtQuick.Controls.Styles.Nemo 1.0
 Page {
     id: root
 
-    tools: ToolBarLayoutExample { title: "Label" }
+    headerTools: HeaderToolsLayout { showBackButton: true; title: "Label" }
+    allowedOrientations: Qt.PortraitOrientation | Qt.LandscapeOrientation | Qt.InvertedLandscapeOrientation | Qt.InvertedPortraitOrientation
 
     Column {
         spacing: 40

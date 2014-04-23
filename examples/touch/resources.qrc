@@ -16,11 +16,15 @@
         <file>images/textinput.png</file>
         <file>images/toolbar.png</file>
         <file>content/LiveCoding.qml</file>
-        <file>content/ToolBarLayoutExample.qml</file>
         <file>content/SpinnerPage.qml</file>
         <file>content/LabelPage.qml</file>
         <file>content/CheckboxPage.qml</file>
         <file>content/ButtonRowPage.qml</file>
         <file>content/QueryDialogPage.qml</file>
+        <file>images/dots-vertical.png</file>
+        <file>images/icon-triangle-left.png</file>
+        <file>images/icon_cog.png</file>
+        <file>images/icon_edit.png</file>
+        <file>images/icon_refresh.png</file>
     </qresource>
 </RCC>

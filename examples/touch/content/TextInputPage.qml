@@ -62,7 +62,7 @@ Page {
         }
     }
 
-    tools: ToolBarLayoutExample { title: "Text input" }
+    headerTools: HeaderToolsLayout { showBackButton: true; title: "Text input" }
 
     Column {
         spacing: 40

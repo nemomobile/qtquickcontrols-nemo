@@ -73,10 +73,6 @@
                 {
                     "name": "background",
                     "type": "QColor"
-                },
-                {
-                    "name": "dimmer",
-                    "object": "PageDimmer"
                 }
             ]
         },
@@ -138,34 +134,6 @@
                     "name": "weight",
                     "type": "int",
                     "default": 25
-                }
-            ]
-        },
-        {
-            "name": "PageDimmer",
-            "properties": [
-                {
-                    "name": "startColor",
-                    "type": "QColor"
-                },
-                {
-                    "name": "endColor",
-                    "type": "QColor"
-                },
-                {
-                    "name": "height",
-                    "type": "int",
-                    "default": 15
-                },
-                {
-                    "name": "startPosition",
-                    "type": "double",
-                    "default": 0
-                },
-                {
-                    "name": "endPosition",
-                    "type": "double",
-                    "default": 1.0
                 }
             ]
         },
@@ -256,6 +224,47 @@
                     "type": "QColor"
                 }
             ]
+        },
+        {
+            "name": "Header",
+            "properties": [
+                {
+                    "name": "background",
+                    "type": "QColor"
+                },
+                {
+                    "name": "dimmer",
+                    "object": "HeaderDimmer"
+                }
+            ]
+        },
+        {
+            "name": "HeaderDimmer",
+            "properties": [
+                {
+                    "name": "startColor",
+                    "type": "QColor"
+                },
+                {
+                    "name": "endColor",
+                    "type": "QColor"
+                },
+                {
+                    "name": "height",
+                    "type": "int",
+                    "default": 16
+                },
+                {
+                    "name": "startPosition",
+                    "type": "double",
+                    "default": 0
+                },
+                {
+                    "name": "endPosition",
+                    "type": "double",
+                    "default": 1.0
+                }
+            ]
         }
     ],
     "properties": [
@@ -306,6 +315,10 @@
         {
             "name": "buttonRow",
             "object": "ButtonRow"
+        },
+        {
+            "name": "header",
+            "object": "Header"
         }
     ],
     "font": "/usr/share/fonts/google-opensans/OpenSans-Regular.ttf"

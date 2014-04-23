@@ -43,6 +43,7 @@ import QtQuick.Controls 1.0
 import QtQuick.Controls.Nemo 1.0
 import QtQuick.Controls.Styles.Nemo 1.0
 import QtQuick.Window 2.1
+import QtQuick.Layouts 1.0
 import "content"
 
 ApplicationWindow {
@@ -68,7 +69,7 @@ ApplicationWindow {
             page: "content/LiveCoding.qml"
         }
         ListElement {
-            title: "Buttons"
+            title: "Buttons (locked to portrait)"
             page: "content/ButtonPage.qml"
         }
         ListElement {
@@ -92,7 +93,7 @@ ApplicationWindow {
             page: "content/SpinnerPage.qml"
         }
         ListElement {
-            title: "Labels"
+            title: "Labels (no orientation locks)"
             page: "content/LabelPage.qml"
         }
         ListElement {
@@ -100,7 +101,7 @@ ApplicationWindow {
             page: "content/CheckboxPage.qml"
         }
         ListElement {
-            title: "ButtonRow"
+            title: "ButtonRow (locked to landscape)"
             page: "content/ButtonRowPage.qml"
         }
         ListElement {
@@ -113,7 +114,98 @@ ApplicationWindow {
     initialPage: Page {
         id: pageItem
 
-        tools: ToolBarLayoutExample { title: "Touch gallery" }
+        headerTools: HeaderToolsLayout {
+            id: tools
+
+            title: "Nemo Touch Gallery"
+            tools: [ ToolButton { iconSource: "../images/icon_cog.png"},
+                ToolButton { iconSource: "../images/icon_edit.png"},
+                ToolButton { iconSource: "../images/icon_refresh.png"} ]
+
+            //The parent of these items is null when this ToolsLayout is not used
+            //(i.e. you're on a different page) so we need to check the parent,
+            //just like in MeeGo's ToolbarLayout (when you don't use the automatic layout)
+
+            //TODO: Add automatic layout logic (see ToolbarLayout in MeeGo)
+            drawerLevels: [
+                Button {
+                    anchors.horizontalCenter: (parent==undefined) ? undefined : parent.horizontalCenter;
+                    text: "Nemo"
+                },
+                Button {
+                    anchors.horizontalCenter: (parent==undefined) ? undefined : parent.horizontalCenter;
+                    text: "Mobile"
+                },
+                Button {
+                    anchors.horizontalCenter: (parent==undefined) ? undefined : parent.horizontalCenter;
+                    text: "FTW"
+                },
+                RowLayout {
+                    anchors.left: (parent==undefined) ? undefined : parent.left
+                    anchors.right: (parent==undefined) ? undefined : parent.right
+                    anchors.margins: 20
+                    Layout.preferredHeight: 100
+                    Label {
+                        anchors.left: parent.left;
+                        anchors.verticalCenter: parent.verticalCenter
+                        text: "Drawer Test"}
+                    CheckBox {
+                        anchors.right: parent.right
+                        anchors.verticalCenter: parent.verticalCenter
+                        width : 20
+                    }
+                },
+                RowLayout {
+                    anchors.left: (parent==undefined) ? undefined : parent.left
+                    anchors.right: (parent==undefined) ? undefined : parent.right
+                    anchors.margins: 20
+                    Layout.preferredHeight: 100
+                    Label {
+                        anchors.left: parent.left;
+                        anchors.verticalCenter: parent.verticalCenter
+                        text: "Drawer Test 2"}
+                    ToolButton {
+                        id: tool1
+                        anchors.right: parent.right
+                        anchors.verticalCenter: parent.verticalCenter
+                        iconSource: "../images/icon_cog.png"
+                    }
+                    ToolButton {
+                        id: tool2
+                        anchors.right: tool1.left
+                        anchors.verticalCenter: parent.verticalCenter
+                        iconSource: "../images/icon_edit.png"
+                    }
+                    ToolButton {
+                        id: tool3
+                        anchors.right: tool2.left
+                        anchors.verticalCenter: parent.verticalCenter
+                        iconSource: "../images/icon_refresh.png"
+                    }
+                },
+                ButtonRow {
+                    id: buttonRowExample
+                    model: ListModel {
+                        ListElement {
+                            name: "swim"
+                        }
+                        ListElement {
+                            name: "cruise"
+                        }
+                        ListElement {
+                            name: "row"
+                        }
+                        ListElement {
+                            name: "fish"
+                        }
+                        ListElement {
+                            name: "dive"
+                        }
+                    }
+                }
+
+            ]
+        }
 
         ListView {
             model: pageModel
@@ -126,5 +218,3 @@ ApplicationWindow {
         }
     }
 }
-
-

@@ -37,7 +37,7 @@ import QtQuick.Controls.Styles.Nemo 1.0
 Page {
     id: root
 
-    tools: ToolBarLayoutExample { title: "Query dialog example" }
+    headerTools: HeaderToolsLayout { showBackButton: true; title: "Query dialog example" }
 
     QueryDialog {
         cancelText: "Cancel"

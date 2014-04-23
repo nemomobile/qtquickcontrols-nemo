@@ -22,8 +22,10 @@
 #include "hacks.h"
 
 NemoWindow::NemoWindow(QWindow *parent) :
-    QQuickWindow(parent)
+    QQuickWindow(parent),
+    m_defaultAllowedOrientations(Qt::PortraitOrientation | Qt::LandscapeOrientation)
 {
+    m_allowedOrientations = m_defaultAllowedOrientations;
 }
 
 Qt::ScreenOrientations NemoWindow::allowedOrientations() const
@@ -31,11 +33,20 @@ Qt::ScreenOrientations NemoWindow::allowedOrientations() const
     return m_allowedOrientations;
 }
 
+const Qt::ScreenOrientations NemoWindow::defaultAllowedOrientations() const
+{
+    return m_defaultAllowedOrientations;
+}
+
 void NemoWindow::setAllowedOrientations(Qt::ScreenOrientations allowed)
 {
     //This way no invalid values can get assigned to allowedOrientations
-    if (m_allowedOrientations != allowed && Hacks::isOrientationMaskValid(allowed)) {
-        m_allowedOrientations = allowed;
-        emit allowedOrientationsChanged();
+    if (m_allowedOrientations != allowed) {
+        if (Hacks::isOrientationMaskValid(allowed)) {
+            m_allowedOrientations = allowed;
+            emit allowedOrientationsChanged();
+        } else {
+            qDebug() << "NemoWindow: invalid allowedOrientation!";
+        }
     }
 }

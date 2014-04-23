@@ -25,23 +25,19 @@
 
 #include <QtCore/QObject>
 #include <QtGui/QColor>
-#include "nemothemepagedimmer.h"
 
 class NemoThemePage: public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QColor background READ background NOTIFY backgroundChanged)
-    Q_PROPERTY(NemoThemePageDimmer * dimmer READ dimmer CONSTANT)
 public:
     explicit NemoThemePage(QObject *parent = 0);
     QColor background() const;
     void setBackground(const QColor &background);
-    NemoThemePageDimmer * dimmer() const;
 Q_SIGNALS:
     void backgroundChanged();
 private:
     QColor m_background;
-    NemoThemePageDimmer * m_dimmer;
 };
 
 #endif //NEMOTHEMEPAGE_H
