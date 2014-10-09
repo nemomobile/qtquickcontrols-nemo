@@ -11,7 +11,6 @@ BuildRequires:  qt5-qtgui-devel
 BuildRequires:  qt5-qtdeclarative-devel
 BuildRequires:  qt5-qtopengl-devel
 BuildRequires:  qt5-qtdeclarative-qtquick-devel
-BuildRequires:  qt5-qtv8-devel
 BuildRequires:  qt5-qmake
 BuildRequires:  pkgconfig(Qt5Quick)
 BuildRequires:  fdupes
