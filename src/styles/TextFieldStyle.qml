@@ -26,6 +26,7 @@ TextFieldStyle {
     selectionColor: Theme.textField.selectionColor
     textColor: Theme.textField.selectedTextColor
     font.pixelSize: Theme.textField.pointSize
+    font.family: Theme.textField.font
     background: Item {
         implicitHeight: 40
         implicitWidth: 320

@@ -36,7 +36,8 @@
         },
         "textField": {
             "selectedTextColor": "#ffffff",
-            "selectionColor": "#0091e5"
+            "selectionColor": "#0091e5",
+            "font": "Open Sans"
         },
         "toolBar": {
             "background": "#000000"

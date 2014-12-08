@@ -25,6 +25,7 @@
 NemoThemeTextField::NemoThemeTextField(QObject *parent)
     : QObject(parent)
     , m_pointSize(24)
+    , m_font("Open Sans")
 {
 }
 
@@ -72,5 +73,26 @@ void NemoThemeTextField::setPointSizeDefault()
     if (m_pointSize != 24) {
         m_pointSize = 24;
         emit pointSizeChanged();
+    }
+}
+
+QString NemoThemeTextField::font() const
+{
+    return m_font;
+}
+
+void NemoThemeTextField::setFont(const QString &font)
+{
+    if (m_font != font) {
+        m_font = font;
+        emit fontChanged();
+    }
+}
+
+void NemoThemeTextField::setFontDefault()
+{
+    if (m_font != "Open Sans") {
+        m_font = "Open Sans";
+        emit fontChanged();
     }
 }

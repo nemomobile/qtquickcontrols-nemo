@@ -46,7 +46,12 @@
                     "name": "pointSize",
                     "type": "int",
                     "default": 24
-                }
+                },
+		{
+		    "name": "font",
+		    "type": "QString",
+		    "default": "Open Sans"
+		}
             ]
         },
         {
