@@ -25,6 +25,7 @@
 
 #include <QtCore/QObject>
 #include <QtGui/QColor>
+#include <QtCore/QString>
 
 class NemoThemeTextField: public QObject
 {
@@ -32,6 +33,7 @@ class NemoThemeTextField: public QObject
     Q_PROPERTY(QColor selectedTextColor READ selectedTextColor NOTIFY selectedTextColorChanged)
     Q_PROPERTY(QColor selectionColor READ selectionColor NOTIFY selectionColorChanged)
     Q_PROPERTY(int pointSize READ pointSize NOTIFY pointSizeChanged)
+    Q_PROPERTY(QString font READ font NOTIFY fontChanged)
 public:
     explicit NemoThemeTextField(QObject *parent = 0);
     QColor selectedTextColor() const;
@@ -41,14 +43,19 @@ public:
     int pointSize() const;
     void setPointSize(int pointSize);
     void setPointSizeDefault();
+    QString font() const;
+    void setFont(const QString &font);
+    void setFontDefault();
 Q_SIGNALS:
     void selectedTextColorChanged();
     void selectionColorChanged();
     void pointSizeChanged();
+    void fontChanged();
 private:
     QColor m_selectedTextColor;
     QColor m_selectionColor;
     int m_pointSize;
+    QString m_font;
 };
 
 #endif //NEMOTHEMETEXTFIELD_H

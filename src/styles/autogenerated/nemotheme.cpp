@@ -386,6 +386,11 @@ void NemoTheme::loadFromFile(const QString &fileName)
     } else {
         m_textField->setPointSizeDefault();
     }
+    if (stylesTextField.contains("font")) {
+        m_textField->setFont(jsonToString(stylesTextField.value("font"), defines));
+    } else {
+        m_textField->setFontDefault();
+    }
     // Setting properties for toolBar
     QJsonObject stylesToolBar = styles.value("toolBar").toObject();
     m_toolBar->setBackground(jsonToColor(jsonValue(stylesToolBar, "background", "toolBar"), defines));
