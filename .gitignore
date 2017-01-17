@@ -1,2 +1,11 @@
 *.pro.user
-*.pyc 
+*.pyc
+.directory
+*.o
+*.so
+moc_*
+qrc_*
+examples/touch/touch_nemo
+Makefile
+installroot/
+RPMS/

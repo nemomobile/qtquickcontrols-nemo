@@ -34,7 +34,7 @@ import QtQuick.Controls.Styles.Nemo 1.0
 
 Rectangle {
     id: main
-    width: 440
+    width: childrenRect.width
     color: "#313131"
     height: 40
     property ListModel model: ListModel {}
@@ -55,7 +55,9 @@ Rectangle {
                 Rectangle {
                 property bool active: false
                 height: 50
-                width: 20*name.length
+                y: -5
+                width: text.width+(text.width/name.length*2)
+
                 color: "transparent"
                     MouseArea {
                         enabled: main.enabled
@@ -77,6 +79,10 @@ Rectangle {
                     Label {
                         id: text
                         text: name
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        Component.onCompleted: {
+                            width = paintedWidth
+                        }
                     }
                 }
             }
