@@ -16,7 +16,8 @@ QML_FILES += \
     ButtonRow.qml \
     QueryDialog.qml \
     Header.qml \
-    HeaderToolsLayout.qml
+    HeaderToolsLayout.qml \
+    Slider.qml
 
 OTHER_FILES += qmldir \
     $$QML_FILES
@@ -48,4 +49,5 @@ qmlfiles.files += $$_PRO_FILE_PWD_/qmldir
 qmlfiles.path = $$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH
 images.files = $$_PRO_FILE_PWD_/images
 images.path = $$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH
+
 INSTALLS += target qmlfiles images

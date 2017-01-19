@@ -54,13 +54,17 @@ Page {
 
         Slider {
             anchors.margins: 20
-            //style: touchStyle
             value: 0
         }
         Slider {
             anchors.margins: 20
-            //style: touchStyle
+            showValue: true
             value: 0.5
+        }
+        Slider {
+            anchors.margins: 20
+            enabled: false
+            value: 0.75
         }
         Slider {
             anchors.margins: 20
