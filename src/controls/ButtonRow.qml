@@ -39,52 +39,69 @@ Rectangle {
     height: 40
     property ListModel model: ListModel {}
     property bool enabled: true
+    property int currentIndex: -1
     signal selected(string sel)
+
     Image {
         anchors.fill: parent
         visible: !main.enabled
         source: "images/disabled-overlay.png"
         fillMode: Image.Tile
     }
+
+    Rectangle{
+        id: selecter
+        height: 50
+        y: -5
+        color: "#0091e5"
+        z:0
+        visible: false
+        anchors{
+            top: rowElement.top
+            topMargin: -5
+        }
+    }
+
     Row {
-        spacing: 0
+        id: rowElement
         Repeater {
             id: rectangles
             model: main.model
-            delegate:
-                Rectangle {
-                property bool active: false
+            delegate: Rectangle {
+                id: rowItem
                 height: 50
                 y: -5
                 width: text.width+(text.width/name.length*2)
 
                 color: "transparent"
-                    MouseArea {
-                        enabled: main.enabled
-                        width: parent.width
-                        height: parent.height
-                        onClicked: {
-                            if (!parent.active) {
-                                text.font.bold = true
-                                parent.color = "#0091e5"
-                                parent.active = true
-                            } else {
-                                text.font.bold = false
-                                parent.color = "transparent"
-                                parent.active = false
-                            }
-                            main.selected(name)
-                        }
+                MouseArea {
+                    enabled: main.enabled
+                    width: parent.width
+                    height: parent.height
+                    onClicked: {
+                        main.currentIndex = index
+                        selecter.visible = true
+                        moveSelecter.start()
+                        main.selected(name)
                     }
-                    Label {
-                        id: text
-                        text: name
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        Component.onCompleted: {
-                            width = paintedWidth
-                        }
+                }
+                Label {
+                    id: text
+                    text: name
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    Component.onCompleted: {
+                        width = paintedWidth
                     }
+                    z:1
+                    font.bold: main.currentIndex == index
+                }
+
+                ParallelAnimation {
+                    id: moveSelecter
+                    NumberAnimation { target: selecter; property: "x"; from: selecter.x; to: rowItem.x; duration: 100}
+                    NumberAnimation { target: selecter; property: "width"; from: selecter.width; to: rowItem.width; duration: 100}
                 }
             }
         }
+    }
 }
