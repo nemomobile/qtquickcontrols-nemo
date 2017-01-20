@@ -40,7 +40,6 @@ Rectangle {
     property ListModel model: ListModel {}
     property bool enabled: true
     property int currentIndex: -1
-    signal selected(string sel)
 
     Image {
         anchors.fill: parent
@@ -82,7 +81,6 @@ Rectangle {
                         main.currentIndex = index
                         selecter.visible = true
                         moveSelecter.start()
-                        main.selected(name)
                     }
                 }
                 Label {
