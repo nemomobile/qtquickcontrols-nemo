@@ -51,7 +51,8 @@ QML_FILES += \
     images/arrow-right@2x.png \
     images/disabled-overlay.png \
     images/switch-ball.png \
-    images/slider-ball.png
+    images/slider-ball.png \
+    images/slider-handle-left.svg
 
 OTHER_FILES += qmldir \
     themes/Theme1.js \
@@ -69,7 +70,9 @@ qmlfiles.path = $$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH
 themes.files = $$_PRO_FILE_PWD_/themes/*.json
 themes.path = $$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH/themes
 
-images.files = $$_PRO_FILE_PWD_/images
+images.files = $$_PRO_FILE_PWD_/images/*.svg\
+               $$_PRO_FILE_PWD_/images/*.png
+
 images.path = $$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH
 
 HEADERS += \
