@@ -50,14 +50,20 @@ Rectangle {
 
     Rectangle{
         id: selecter
-        height: 50
+        x: rowElement.children[main.currentIndex].x || 0
         y: -5
+
+        width: rowElement.children[main.currentIndex].width || 0
+        height: 50
         color: "#0091e5"
-        z:0
-        visible: false
-        anchors{
-            top: rowElement.top
-            topMargin: -5
+
+        visible: main.currentIndex > -1
+
+        Behavior on x {
+            NumberAnimation { duration: 200 }
+        }
+        Behavior on width {
+            NumberAnimation { duration: 200 }
         }
     }
 
@@ -69,35 +75,31 @@ Rectangle {
             delegate: Rectangle {
                 id: rowItem
                 height: 50
-                y: -5
                 width: text.width+(text.width/name.length*2)
+
+                y: -5
 
                 color: "transparent"
                 MouseArea {
-                    enabled: main.enabled
                     width: parent.width
                     height: parent.height
+
+                    enabled: main.enabled
+
                     onClicked: {
                         main.currentIndex = index
-                        selecter.visible = true
-                        moveSelecter.start()
                     }
                 }
                 Label {
                     id: text
                     text: name
+
                     anchors.horizontalCenter: parent.horizontalCenter
+
                     Component.onCompleted: {
                         width = paintedWidth
                     }
-                    z:1
                     font.bold: main.currentIndex == index
-                }
-
-                ParallelAnimation {
-                    id: moveSelecter
-                    NumberAnimation { target: selecter; property: "x"; from: selecter.x; to: rowItem.x; duration: 100}
-                    NumberAnimation { target: selecter; property: "width"; from: selecter.width; to: rowItem.width; duration: 100}
                 }
             }
         }
