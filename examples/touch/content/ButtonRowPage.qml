@@ -46,6 +46,7 @@ Page {
         ButtonRow {
             id: row
             model: ListModel {
+                id: buttonModel
                 ListElement {
                     name: "swim"
                 }
@@ -65,8 +66,8 @@ Page {
         }
         Connections {
             target: row
-            onSelected: {
-                selector.text = "Selected " + sel
+            onCurrentIndexChanged: {
+                selector.text = "Selected " + buttonModel.get(row.currentIndex).name
             }
         }
 

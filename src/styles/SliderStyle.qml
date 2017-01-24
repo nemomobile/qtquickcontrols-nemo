@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2013 Andrea Bernabei <and.bernabei@gmail.com>
+ * Copyright (C) 2017 Chupligin Sergey <mail@neochapay.ru>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -21,63 +22,61 @@ import QtQuick 2.1
 import QtQuick.Controls.Styles 1.0
 import QtQuick.Controls.Styles.Nemo 1.0
 
-SliderStyle {
-    GrooveStyle {
-        id: grooveStyle
-    }
-
-    Image {
-        id: ball
-        source: "images/slider-ball.png"
-        z: 1
+SliderStyle{
+    handle: Rectangle {
+        id: handle
+        anchors.centerIn: parent
+        color: "black"
+        border.color: "#0091e5"
+        border.width: 2
+        implicitWidth: 34
+        implicitHeight: 34
+        radius: 16
         visible: control.enabled
+
+        Text{
+            id: valueLabel
+            anchors.centerIn: parent
+            text: parseInt(control.value*100)
+            visible: control.showValue
+            color: "white"
+        }
     }
 
-    handle: Canvas {
-        Connections {
-            target: control
-            onValueChanged: {
-                if (Math.abs(((control.value*1000) - lastValue)) > 10) {
-                    requestPaint()
-                    lastValue = control.value*1000
-                }
+    groove: Rectangle{
+        id: grove
+
+        implicitHeight: 16
+        implicitWidth: 440
+        color: "#313131"
+        z: 1
+        Rectangle{
+            id: dataLine
+            height: parent.height
+            width: styleData.handlePosition
+            color: "#0091e5"
+        }
+
+        Image {
+            id: disabledImg
+            anchors.fill: parent
+            visible: !control.enabled
+            source: "images/disabled-overlay.png"
+            fillMode: Image.Tile
+        }
+
+        Image{
+            id: left
+            anchors{
+                right: dataLine.right
+                verticalCenter: dataLine.verticalCenter
             }
-        }
-        id: canvas
-        width: 125
-        height: 50
-        property color strokeStyle: Theme.groove.foreground
-        property color fillStyle: Theme.groove.foreground
-        property bool fill: true
-        property bool stroke: true
-        property real alpha: 1.0
-        property real lastValue: 0
-        antialiasing: true
-
-        onPaint: {
-            canvas.loadImage("images/slider-ball.png");
-
-            var ctx = canvas.getContext('2d');
-            ctx.save();
-            ctx.translate(0,8);
-            ctx.fillStyle = canvas.fillStyle;
-            ctx.beginPath();
-            ctx.lineWidth = 1;
-            ctx.moveTo(0,38);
-            ctx.bezierCurveTo(0, 8, 0, 8, 0, 8);
-            ctx.bezierCurveTo(55, 8, 55, 8, 55, 8);
-            ctx.bezierCurveTo(85, 0, 85, 0, 85, 0);
-            ctx.bezierCurveTo(85, 32, 85, 32, 85, 32);
-            ctx.bezierCurveTo(55, 25, 55, 25, 55, 25);
-            ctx.bezierCurveTo(0, 24, 0, 24, 0, 24);
-            ctx.closePath();
-            ctx.fill();
-            ctx.drawImage("images/slider-ball.png", 75, -3, 45,45);
-            ctx.fillStyle="white";
-            ctx.font="Bold 24px";
-            ctx.fillText(parseInt(control.value*100), 84, 27);
-            ctx.restore();
+            source: "images/slider-handle-left.svg"
+            height: 34
+            visible: control.enabled
+            width: (styleData.handlePosition > 80) ? 80 : styleData.handlePosition
+            sourceSize.width: width
+            sourceSize.height: height
         }
     }
-    groove: grooveStyle;
 }
