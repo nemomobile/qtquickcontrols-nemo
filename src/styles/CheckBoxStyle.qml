@@ -77,6 +77,12 @@ CheckBoxStyle {
                 }
             }
 
+            Component.onCompleted: {
+                back1.opacity = control.checked ? 1 : 0
+                back2.opacity = control.checked ? 0 : 1
+                ball.x = control.checked ? 32 : 0
+            }
+
             SequentialAnimation {
                 id: anim1
                 running: false
