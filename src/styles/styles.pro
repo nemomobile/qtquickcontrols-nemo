@@ -73,7 +73,7 @@ themes.path = $$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH/themes
 images.files = $$_PRO_FILE_PWD_/images/*.svg\
                $$_PRO_FILE_PWD_/images/*.png
 
-images.path = $$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH
+images.path = $$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH/images/
 
 HEADERS += \
     qquicknemostyleextensionplugin.h \
