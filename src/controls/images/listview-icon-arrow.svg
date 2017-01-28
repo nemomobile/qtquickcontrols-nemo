@@ -5,23 +5,23 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   version="1.1"
-   id="svg5140"
-   viewBox="0 0 32 32.000001"
+   width="32"
    height="32"
-   width="32">
+   viewBox="0 0 32 32.000001"
+   id="svg5140"
+   version="1.1">
   <defs
      id="defs5142">
     <linearGradient
        id="linearGradient3919-7-9">
       <stop
-         id="stop3921-4-3"
+         style="stop-color:#ffffff;stop-opacity:1;"
          offset="0"
-         style="stop-color:#ffffff;stop-opacity:1;" />
+         id="stop3921-4-3" />
       <stop
-         id="stop3923-0-19"
+         style="stop-color:#dcdcdc;stop-opacity:1;"
          offset="1"
-         style="stop-color:#dcdcdc;stop-opacity:1;" />
+         id="stop3923-0-19" />
     </linearGradient>
   </defs>
   <metadata
@@ -37,11 +37,12 @@
     </rdf:RDF>
   </metadata>
   <g
-     transform="translate(0,-1020.3622)"
-     id="layer1">
+     style="fill:#241c1c"
+     id="layer1"
+     transform="translate(0,-1020.3622)">
     <path
-       id="path5357-0-0"
-       d="m 6.5000002,1025.3622 0,22 18.9999998,-10 0,-2 z"
-       style="display:inline;fill:#ffffff;fill-opacity:1;stroke:none" />
+       style="display:inline;fill:#ffffff;fill-opacity:1;stroke:none"
+       d="m 6.5000002,1025.3622 0,22 L 25.5,1036.4034 Z"
+       id="path5357-0-0" />
   </g>
 </svg>
