@@ -6,7 +6,7 @@ import QtGraphicalEffects 1.0
 Item {
     id: root
     width: parent.width
-    height: 88
+    height: 60
 
     property string label: ""
 
@@ -61,7 +61,7 @@ Item {
                 left: parent.left
                 right: parent.right
             }
-            font.pixelSize: 35
+            font.pixelSize: 30
             clip: true
         }
 
@@ -74,7 +74,7 @@ Item {
                 right: parent.right
                 top: labelItem.bottom
             }
-            font.pixelSize: 20
+            font.pixelSize: 18
             clip: true
             visible: text != ""
         }
