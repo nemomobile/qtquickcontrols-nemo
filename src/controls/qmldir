@@ -19,8 +19,8 @@ QueryDialog 1.0 QueryDialog.qml
 Header 1.0 Header.qml
 HeaderToolsLayout 1.0 HeaderToolsLayout.qml
 Slider 1.0 Slider.qml
-ListView 1.0 ListView.qml
-ListViewItem 1.0 ListViewItem.qml
+MediumListView 1.0 MediumListView.qml
+MediumListViewItem 1.0 MediumListViewItem.qml
 
 # MIRRORED CONTROLS: 
 # These are the controls that we take directly from official QQC.

@@ -18,8 +18,9 @@ QML_FILES += \
     Header.qml \
     HeaderToolsLayout.qml \
     Slider.qml\
-    ListView.qml \
-    ListViewItem.qml
+    MediumListView.qml \
+    MediumListViewItem.qml\
+    MediumListViewElement.qml
 
 OTHER_FILES += qmldir \
     $$QML_FILES
@@ -53,3 +54,5 @@ images.files = $$_PRO_FILE_PWD_/images
 images.path = $$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH
 
 INSTALLS += target qmlfiles images
+
+DISTFILES +=
