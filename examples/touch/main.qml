@@ -93,6 +93,10 @@ ApplicationWindow {
             page: "content/SpinnerPage.qml"
         }
         ListElement {
+            title: "ListView"
+            page: "content/ListViewPage.qml"
+        }
+        ListElement {
             title: "Labels (no orientation locks)"
             page: "content/LabelPage.qml"
         }

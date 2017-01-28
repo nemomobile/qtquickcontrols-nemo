@@ -33,3 +33,6 @@ desktop.path = /usr/share/applications
 desktop.files = glacier-gallery.desktop
 INSTALLS += desktop
 
+DISTFILES += \
+    content/ListViewPage.qml
+
