@@ -28,12 +28,12 @@ Page {
         ListElement { name: "Whale"; desc: ""; size: "Huge" }
     }
 
-    MediumListView {
+    ListView {
         id: view
         anchors.fill: parent
         clip: true
         model: animalsModel
-        delegate: MediumListViewItem {
+        delegate: ListViewItemWithActions {
             label: name
             description: desc
         }

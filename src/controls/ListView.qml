@@ -5,6 +5,9 @@ import QtQuick.Controls.Styles.Nemo 1.0
 
 ListView {
     id: listView
+
+    signal hideAllActions(int hideIndex)
+
     section.criteria: ViewSection.FullString
     section.delegate: Component{
         id: sectionHeading
@@ -59,5 +62,6 @@ ListView {
 
         }
     }
+
 }
 
