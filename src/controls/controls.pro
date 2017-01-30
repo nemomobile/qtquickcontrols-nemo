@@ -17,7 +17,9 @@ QML_FILES += \
     QueryDialog.qml \
     Header.qml \
     HeaderToolsLayout.qml \
-    Slider.qml
+    Slider.qml\
+    ListView.qml \
+    ListViewItemWithActions.qml
 
 OTHER_FILES += qmldir \
     $$QML_FILES
