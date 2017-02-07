@@ -93,6 +93,10 @@ ApplicationWindow {
             page: "content/SpinnerPage.qml"
         }
         ListElement {
+            title: "SelectRoller"
+            page: "content/SelectRollerPage.qml"
+        }
+        ListElement {
             title: "ListView"
             page: "content/ListViewPage.qml"
         }

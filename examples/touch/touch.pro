@@ -34,5 +34,6 @@ desktop.files = glacier-gallery.desktop
 INSTALLS += desktop
 
 DISTFILES += \
-    content/ListViewPage.qml
+    content/ListViewPage.qml \
+    content/SelectRollerPage.qml
 
