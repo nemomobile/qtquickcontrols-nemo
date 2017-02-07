@@ -19,7 +19,8 @@ QML_FILES += \
     HeaderToolsLayout.qml \
     Slider.qml\
     ListView.qml \
-    ListViewItemWithActions.qml
+    ListViewItemWithActions.qml\
+    GlacierRoller.qml
 
 OTHER_FILES += qmldir \
     $$QML_FILES
