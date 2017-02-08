@@ -45,7 +45,7 @@ TextFieldStyle {
             anchors.right: parent.right
             height: 2
             width: parent.width
-            color: Theme.textField.selectionColor
+            color: control.readOnly ? "#313131" : Theme.textField.selectionColor
         }
     }
 }
