@@ -4,6 +4,7 @@ Item {
     id: glacierRoller
     property alias model : view.model
     property alias label: label.text
+    property alias delegate: view.delegate
 
     property int currentIndex: -1
     property int activateSize: 5
@@ -80,30 +81,11 @@ Item {
             anchors{
                 verticalCenter: view.verticalCenter
             }
-        }
-
-        delegate:Text{
-            id: listItem
-            //width: parent.width
-            height: itemHeight
-            text: name
-            color: "white"
-            font.pixelSize: 32
-            font.bold: (active && ListView.view.currentIndex === index)
 
             MouseArea{
                 anchors.fill: parent
                 onClicked: {
-                    if(!active)
-                    {
-                        active = true;
-                    }
-                    else
-                    {
-                        glacierRoller.currentIndex = index
-                        view.currentIndex = index
-                        active = false
-                    }
+                    active = true
                 }
             }
         }
@@ -124,6 +106,11 @@ Item {
             view.height = itemHeight
             arrowDown.visible = true
         }
+    }
+
+    onCurrentIndexChanged: {
+        view.currentIndex = currentIndex
+        arrowDown.x = view.currentItem.width+25
     }
 
     onActiveChanged: {
