@@ -45,26 +45,13 @@ Page {
         clip: true
         model: animalsModel
         label: qsTr("Choose your favorite animal")
-        delegate:Text{
-            height: simpleRoller.itemHeight
-            text: name
-            color: "white"
-            font.pixelSize: 32
-            font.bold: (simpleRoller.active && ListView.view.currentIndex === index)
-
-            MouseArea{
-                anchors.fill: parent
-                onClicked: {
-                    if(!simpleRoller.active)
-                    {
-                        simpleRoller.active = true;
-                    }
-                    else
-                    {
-                        simpleRoller.currentIndex = index
-                        simpleRoller.active = false
-                    }
-                }
+        delegate: GlacierRollerItem{
+            Text{
+                height: simpleRoller.itemHeight
+                text: name
+                color: "white"
+                font.pixelSize: 32
+                font.bold: (simpleRoller.activated && simpleRoller.currentIndex === index)
             }
         }
     }
@@ -80,26 +67,14 @@ Page {
         clip: true
         model: animalsModel
         label: qsTr("Choose your second favorite animal")
-        delegate:Text{
-            height: simpleRoller2.itemHeight
-            text: name
-            color: "white"
-            font.pixelSize: 32
-            font.bold: (simpleRoller2.active && ListView.view.currentIndex === index)
 
-            MouseArea{
-                anchors.fill: parent
-                onClicked: {
-                    if(!simpleRoller2.active)
-                    {
-                        simpleRoller2.active = true;
-                    }
-                    else
-                    {
-                        simpleRoller2.currentIndex = index
-                        simpleRoller2.active = false
-                    }
-                }
+        delegate: GlacierRollerItem{
+            Text{
+                height: simpleRoller2.itemHeight
+                text: name
+                color: "white"
+                font.pixelSize: 32
+                font.bold: (simpleRoller2.activated && simpleRoller2.currentIndex === index)
             }
         }
     }

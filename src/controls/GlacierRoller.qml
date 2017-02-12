@@ -5,12 +5,11 @@ Item {
     property alias model : view.model
     property alias label: label.text
     property alias delegate: view.delegate
-
     property int currentIndex: -1
     property int activateSize: 5
-    property int itemHeight: 40
+    property alias itemHeight: view.itemHeight
 
-    property bool active: false
+    property bool activated: false
 
     signal clicked();
     signal select(int currentItem);
@@ -50,11 +49,13 @@ Item {
         z: 2
     }
 
-    ListView{
+    PathView{
         id: view
+        property int itemHeight: 40
+        property bool showRow: false
 
-        interactive: active
-        width: parent.width
+        interactive: activated
+        width: parent.width-60
         height: 40
         clip: true
 
@@ -65,58 +66,45 @@ Item {
             leftMargin: 30
         }
 
-        snapMode: ListView.SnapToItem
+        pathItemCount: height/itemHeight
+        preferredHighlightBegin: 0.5
+        preferredHighlightEnd: 0.5
+        dragMargin: view.width
 
-        Image{
-            id: arrowDown
-            source: "images/glacierroller-icon-arrow-down.svg"
-            width: itemHeight/4
-            height: width
-
-            sourceSize.width: width
-            sourceSize.height: height
-
-            x: view.currentItem.width+25
-
-            anchors{
-                verticalCenter: view.verticalCenter
-            }
-
-            MouseArea{
-                anchors.fill: parent
-                onClicked: {
-                    active = true
-                }
-            }
+        path: Path {
+            startX: view.width/2; startY: 0
+            PathLine { x: view.width/2; y: view.pathItemCount*itemHeight }
         }
+
+        snapMode: PathView.SnapToItem
     }
 
+
     Component.onCompleted: {
-        if(active)
+        if(activated)
         {
+            view.showRow = false
             bottomLine.opacity = 1
             topLine.opacity = 1
             view.height = itemHeight*activateSize
-            arrowDown.visible = false
         }
         else
         {
+            view.showRow = true
             bottomLine.opacity = 0
             topLine.opacity = 0
             view.height = itemHeight
-            arrowDown.visible = true
         }
     }
 
     onCurrentIndexChanged: {
         view.currentIndex = currentIndex
-        arrowDown.x = view.currentItem.width+25
     }
 
-    onActiveChanged: {
-        if(active)
+    onActivatedChanged: {
+        if(activated)
         {
-            arrowDown.visible = false
+            view.showRow = false
             activateAnimations.start()
         }
         else
@@ -128,18 +116,18 @@ Item {
 
     ParallelAnimation {
         id: activateAnimations
-        NumberAnimation{target: bottomLine; property: "opacity"; to: 1; duration: 400}
-        NumberAnimation{target: topLine; property: "opacity"; to: 1; duration: 400}
-        NumberAnimation{target: view; property: "height"; to: itemHeight*activateSize; duration: 400}
+        NumberAnimation{target: bottomLine; property: "opacity"; to: 1; duration: 250}
+        NumberAnimation{target: topLine; property: "opacity"; to: 1; duration: 250}
+        NumberAnimation{target: view; property: "height"; to: itemHeight*activateSize; duration: 250}
     }
 
     ParallelAnimation {
         id: deActivateAnimations
-        NumberAnimation{target: bottomLine; property: "opacity"; to: 0; duration: 400}
-        NumberAnimation{target: topLine; property: "opacity"; to: 0; duration: 400}
-        NumberAnimation{target: view; property: "height"; to: itemHeight; duration: 400}
+        NumberAnimation{target: bottomLine; property: "opacity"; to: 0; duration: 250}
+        NumberAnimation{target: topLine; property: "opacity"; to: 0; duration: 250}
+        NumberAnimation{target: view; property: "height"; to: itemHeight; duration: 250}
         onStopped: {
-            arrowDown.visible = true
+            view.showRow = true
         }
     }
 }
