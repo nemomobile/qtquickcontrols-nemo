@@ -20,7 +20,8 @@ QML_FILES += \
     Slider.qml\
     ListView.qml \
     ListViewItemWithActions.qml\
-    GlacierRoller.qml
+    GlacierRoller.qml \
+    GlacierRollerItem.qml
 
 OTHER_FILES += qmldir \
     $$QML_FILES
