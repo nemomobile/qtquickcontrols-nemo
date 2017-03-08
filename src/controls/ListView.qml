@@ -8,6 +8,8 @@ ListView {
 
     signal hideAllActions(int hideIndex)
 
+    property bool showDecorator: false
+
     section.criteria: ViewSection.FullString
     section.delegate: Component{
         id: sectionHeading
@@ -61,6 +63,23 @@ ListView {
             }
 
         }
+    }
+
+    Rectangle{
+        id: scrollerDecorator
+        visible: listView.showDecorator
+        color: "#0091e5"
+
+        width: 5
+        height: listView.height*listView.height/listView.contentHeight
+
+        y: (listView.height-scrollerDecorator.height)*listView.contentY/listView.height
+
+        anchors{
+            right: listView.right
+            rightMargin: 4
+        }
+
     }
 
 }
