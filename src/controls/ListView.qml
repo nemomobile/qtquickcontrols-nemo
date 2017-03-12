@@ -67,20 +67,17 @@ ListView {
 
     Rectangle{
         id: scrollerDecorator
-        visible: listView.showDecorator
+        visible: (listView.showDecorator && listView.contentHeight > listView.height)
         color: "#0091e5"
 
         width: 5
         height: listView.height*listView.height/listView.contentHeight
-
-        y: (listView.height-scrollerDecorator.height)*listView.contentY/listView.height
+        y: (listView.height)/listView.contentHeight*listView.contentY
 
         anchors{
             right: listView.right
             rightMargin: 4
         }
-
     }
-
 }
 
