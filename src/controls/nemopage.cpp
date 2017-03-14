@@ -1,6 +1,6 @@
 #include "nemopage.h"
 #include "hacks.h"
-
+#include <QDebug>
 NemoPage::NemoPage(QQuickItem *parent) :
     QQuickItem(parent),
     m_allowedOrientations(0) //- The value 0 means Page's allowedOrientations will be ignored
