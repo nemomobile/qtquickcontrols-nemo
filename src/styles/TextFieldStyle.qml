@@ -25,11 +25,9 @@ TextFieldStyle {
     selectedTextColor: Theme.textField.selectedTextColor
     selectionColor: Theme.textField.selectionColor
     textColor: Theme.textField.selectedTextColor
-    font.pixelSize: Theme.textField.pointSize
+    font.pointSize: 14 
     font.family: Theme.textField.font
     background: Item {
-        implicitHeight: 40
-        implicitWidth: 320
         anchors.leftMargin: 16
         anchors.rightMargin: 16
         opacity: control.enabled ? 1 : 0.6

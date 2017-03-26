@@ -34,8 +34,6 @@ import QtQuick.Controls.Styles.Nemo 1.0
 
 Item {
     id: container
-    width: 2 * Theme.spinner.radius + Theme.spinner.horizontalSpacing
-    height: 2 * Theme.spinner.radius + Theme.spinner.verticalSpacing
 
     states: [
         State { name: "enabled"; when: enabled }
