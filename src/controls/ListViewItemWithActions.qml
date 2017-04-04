@@ -15,6 +15,8 @@ Item {
     property string icon: ""
     property string page: ""
 
+    property bool showNext: true
+
     property alias actions: actionsLoader.sourceComponent
 
     signal clicked
@@ -77,7 +79,7 @@ Item {
             sourceSize.height: height
 
             source: (icon != "") ? icon : "images/listview-icon-template-s.svg"
-            //visible: (icon != "")
+            fillMode: Image.PreserveAspectFit
         }
 
         Rectangle{
@@ -168,7 +170,7 @@ Item {
             sourceSize.height: height
 
             source: "images/listview-icon-arrow.svg"
-            //visible: (page != "")
+            visible: showNext
         }
 
         MouseArea {
