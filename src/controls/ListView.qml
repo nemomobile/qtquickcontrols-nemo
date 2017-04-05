@@ -51,7 +51,7 @@ ListView {
         height: 30
         anchors.bottom: parent.bottom
 
-        visible: listView.contentHeight >= listView.height
+        visible: listView.contentHeight > listView.height
 
         LinearGradient{
             anchors.fill: parent
