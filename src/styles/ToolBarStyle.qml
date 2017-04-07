@@ -28,8 +28,8 @@ Style {
     padding.bottom: 3
 
     property Component panel: Item {
-        implicitHeight: 7.5*mm
-        implicitWidth: 40*mm
+        implicitHeight: size.dp(75)
+        implicitWidth: size.dp(40)
         Rectangle {
             anchors.fill: parent
             color: Theme.toolBar.background

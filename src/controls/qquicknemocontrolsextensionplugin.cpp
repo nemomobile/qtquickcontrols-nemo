@@ -53,8 +53,7 @@ void QQuickNemoControlsExtensionPlugin::initializeEngine(QQmlEngine *engine, con
 
     QQmlExtensionPlugin::initializeEngine(engine,uri);
     QQmlContext* context = engine->rootContext();
-
-    context->setContextProperty("mm",sizing->getScaleFactor());
+    context->setContextProperty("size",sizing);
 
     engine->addImageProvider(QLatin1String("theme"), new NemoImageProvider);
 }
