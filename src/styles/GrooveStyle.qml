@@ -22,8 +22,8 @@ import QtQuick.Controls.Styles.Nemo 1.0
 
 Component {
     Rectangle {
-        implicitHeight: 16
-        implicitWidth: 440
+        implicitHeight: 1.6*mm
+        implicitWidth: 44*mm
         color: Theme.groove.background
         Rectangle {
             antialiasing: true

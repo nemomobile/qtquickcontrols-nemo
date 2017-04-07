@@ -29,9 +29,9 @@ SliderStyle{
         color: "black"
         border.color: "#0091e5"
         border.width: 2
-        implicitWidth: 34
-        implicitHeight: 34
-        radius: 16
+        implicitWidth: 3.4*mm
+        implicitHeight: 3.4*mm
+        radius: 1.6*mm
         visible: control.enabled
 
         Text{
@@ -46,8 +46,8 @@ SliderStyle{
     groove: Rectangle{
         id: grove
 
-        implicitHeight: 16
-        implicitWidth: 440
+        implicitHeight: 1.6*mm
+        implicitWidth: 44*mm
         color: "#313131"
         z: 1
         Rectangle{
@@ -72,9 +72,9 @@ SliderStyle{
                 verticalCenter: dataLine.verticalCenter
             }
             source: "images/slider-handle-left.svg"
-            height: 34
+            height: 3.4*mm
             visible: control.enabled
-            width: (styleData.handlePosition > 80) ? 80 : styleData.handlePosition
+            width: (styleData.handlePosition > 8*mm) ? 8*mm : styleData.handlePosition
             sourceSize.width: width
             sourceSize.height: height
         }

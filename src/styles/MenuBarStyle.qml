@@ -59,8 +59,8 @@ Style {
     }
 
     property Component menuItem: Rectangle {
-        width: text.width + 12
-        height: text.height + 4
+        width: text.width + 1.2*mm
+        height: text.height + 0.4*mm
         color: sunken ? "#49d" :__backgroundColor
 
         SystemPalette { id: syspal }
