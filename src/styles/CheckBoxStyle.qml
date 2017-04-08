@@ -61,6 +61,8 @@ CheckBoxStyle {
 
             Image {
                 id: ball
+                width: size.dp(32)
+                height: size.dp(32)
                 source: "images/switch-ball.png"
                 anchors.verticalCenter: parent.verticalCenter
             }
