@@ -74,10 +74,8 @@ Rectangle {
             model: main.model
             delegate: Rectangle {
                 id: rowItem
-                height: size.dp(50)
+                height: size.dp(40)
                 width: text.width+(text.width/name.length*2)
-
-                y: size.dp(-5)
 
                 color: "transparent"
                 MouseArea {
@@ -93,6 +91,7 @@ Rectangle {
                 Label {
                     id: text
                     text: name
+                    height: parent.heigh
 
                     anchors.horizontalCenter: parent.horizontalCenter
 
