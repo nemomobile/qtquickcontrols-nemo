@@ -71,27 +71,29 @@ void Sizing::setDpScaleFactor()
 {
     switch (m_densitie) {
     case ldpi:
-        m_dp_factor = 0.75;
+        m_dp_factor = 0.5;
         break;
     case mdpi:
-        m_dp_factor = 1;
+        m_dp_factor = 0.6;
         break;
     case hdpi:
-        m_dp_factor = 1.5;
-        break;
-    case xhdpi:
-        m_dp_factor = 2;
-        break;
-    case xxhdpi:
-        m_dp_factor = 3;
-        break;
-    case xxxhdpi:
-        m_dp_factor = 4;
-        break;
-    default:
         m_dp_factor = 1;
         break;
+    case xhdpi:
+        m_dp_factor = 1.3;
+        break;
+    case xxhdpi:
+        m_dp_factor = 2;
+        break;
+    case xxxhdpi:
+        m_dp_factor = 2.5;
+        break;
+    default:
+        m_dp_factor = 1.3;
+        break;
     }
+
+    qDebug() << "DP scale factor is " << m_dp_factor;
 }
 
 float Sizing::mm(float value)
