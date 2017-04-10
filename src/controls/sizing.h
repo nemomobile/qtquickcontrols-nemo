@@ -3,10 +3,11 @@
 
 #include <QObject>
 
+#if QT_VERSION < QT_VERSION_CHECK(5,6,0)
 #ifndef Q_ENUM
 #define Q_ENUM(x) Q_ENUMS(x)
 #endif
-
+#endif
 class Sizing : public QObject
 {
     Q_OBJECT
@@ -21,8 +22,11 @@ public:
         xxhdpi,
         xxxhdpi
     };
+#if QT_VERSION < QT_VERSION_CHECK(5,6,0)
     Q_ENUM(Densities)
-
+#else
+    Q_ENUMS(Densities)
+#endif
     bool isValid(){return m_valid;}
 
     float getMmScaleFactor(){return m_mm_factor;}
