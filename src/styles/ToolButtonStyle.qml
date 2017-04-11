@@ -31,8 +31,8 @@ Style {
         id: styleitem
 
         //TODO: Maybe we want to add a descriptive text at the bottom of the icon?
-        implicitWidth: 50
-        implicitHeight: 50
+        implicitWidth: size.dp(50)
+        implicitHeight: size.dp(50)
 
         opacity: control.pressed ? 0.5 : 1
 
@@ -47,7 +47,7 @@ Style {
             id: icon
             anchors.fill: parent
             fillMode: Image.PreserveAspectFit
-            anchors.margins: 8
+            anchors.margins: size.dp(8)
             source: control.iconSource
         }
     }

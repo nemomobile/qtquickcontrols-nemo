@@ -36,7 +36,7 @@ Rectangle {
     id: main
     width: childrenRect.width
     color: "#313131"
-    height: 40
+    height: size.dp(40)
     property ListModel model: ListModel {}
     property bool enabled: true
     property int currentIndex: -1
@@ -51,10 +51,10 @@ Rectangle {
     Rectangle{
         id: selecter
         x: rowElement.children[main.currentIndex].x || 0
-        y: -5
+        y: size.dp(-5)
 
         width: rowElement.children[main.currentIndex].width || 0
-        height: 50
+        height: size.dp(50)
         color: "#0091e5"
 
         visible: main.currentIndex > -1
@@ -74,10 +74,8 @@ Rectangle {
             model: main.model
             delegate: Rectangle {
                 id: rowItem
-                height: 50
+                height: size.dp(40)
                 width: text.width+(text.width/name.length*2)
-
-                y: -5
 
                 color: "transparent"
                 MouseArea {
@@ -93,6 +91,7 @@ Rectangle {
                 Label {
                     id: text
                     text: name
+                    height: parent.heigh
 
                     anchors.horizontalCenter: parent.horizontalCenter
 

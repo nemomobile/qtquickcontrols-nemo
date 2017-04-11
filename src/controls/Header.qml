@@ -62,7 +62,7 @@ Item {
             PropertyChanges {
                 target: toolBarRect
                 width: parent.width
-                height: 75
+                height: size.dp(75)
             }
         },
         State {
@@ -91,7 +91,7 @@ Item {
             }
             PropertyChanges {
                 target: toolBarRect
-                width: 75
+                width: size.dp(75)
                 height: parent.height
             }
         }

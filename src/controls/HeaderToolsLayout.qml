@@ -25,13 +25,13 @@ Item {
 
     Rectangle {
         id: backButton
-        width: opacity ? 60 : 0
-        anchors.leftMargin: 20
+        width: opacity ? size.dp(60) : 0
+        anchors.leftMargin: size.dp(20)
         //check if Stack.view has already been initialized as well
         anchors.verticalCenter: parent.verticalCenter
         antialiasing: true
         height: width
-        radius: 4
+        radius: size.dp(4)
         color: backmouse.pressed ? "#222" : "transparent"
 
         rotation: isUiPortrait ? 0 : 90
@@ -46,7 +46,7 @@ Item {
         MouseArea {
             id: backmouse
             anchors.fill: parent
-            anchors.margins: -10
+            anchors.margins: size.dp(-10)
             onClicked: header && header.stackView && header.stackView.pop()
         }
     }
@@ -56,16 +56,16 @@ Item {
         anchors.right: toolButtonsContainer.left
         anchors.left: backButton.visible ? backButton.right : parent.left
         anchors.verticalCenter: parent.verticalCenter
-        anchors.leftMargin: 20
-        anchors.rightMargin: 20
+        anchors.leftMargin: size.dp(20)
+        anchors.rightMargin: size.dp(20)
         clip: true
         font.family: Theme.fontFamily
         color: Theme.label.color
-        font.pointSize: 24
+        font.pointSize: size.dp(24)
         font.weight: Font.Bold
         LinearGradient {
             anchors.right: parent.right
-            width: 50
+            width: size.dp(50)
             height: parent.paintedHeight
             visible: titleTxt.paintedWidth >  titleTxt.width
             start: Qt.point(0,0)
@@ -79,9 +79,9 @@ Item {
     Item {
         id: toolButtonsContainer
         anchors.right: dots.visible ? dots.left : parent.right
-        anchors.rightMargin: 20
+        anchors.rightMargin: size.dp(20)
         anchors.verticalCenter: parent.verticalCenter
-        width: tools ? (50 * Math.min(maxNumberOfToolButtons, tools.length)) : 0
+        width: tools ? (size.dp(50) * Math.min(maxNumberOfToolButtons, tools.length)) : 0
 
         property int maxNumberOfToolButtons: 3
 
@@ -107,7 +107,7 @@ Item {
     Image {
         id: dots
         anchors.right: parent.right
-        anchors.rightMargin: 20
+        anchors.rightMargin: size.dp(20)
         anchors.verticalCenter: parent.verticalCenter
         visible: drawerLevels && drawerLevels.length > 1
         source: "../Styles/Nemo/images/dots-vertical.png"

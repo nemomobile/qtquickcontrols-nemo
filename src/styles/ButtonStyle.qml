@@ -30,8 +30,8 @@ ButtonStyle {
 
     // The background of the button.
     background: Rectangle {
-        implicitWidth: 240
-        implicitHeight: 50
+        implicitWidth: size.dp(240)
+        implicitHeight: size.dp(50)
         clip: true
         color: control.primary ? Theme.primaryButton.background
                                : Theme.button.background

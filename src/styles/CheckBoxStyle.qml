@@ -39,21 +39,21 @@ CheckBoxStyle {
     indicator: Rectangle {
             id: background
             color: "transparent"
-            implicitWidth: 72
-            implicitHeight: 32
+            implicitWidth: size.dp(72)
+            implicitHeight: size.dp(32)
 
             Rectangle {
                 id: back1
-                implicitWidth: 72
-                implicitHeight: 28
+                implicitWidth: size.dp(72)
+                implicitHeight: size.dp(28)
                 color: Theme.checkbox.back1
                 anchors.centerIn: parent
             }
 
             Rectangle {
                 id: back2
-                implicitWidth: 72
-                implicitHeight: 28
+                implicitWidth: size.dp(72)
+                implicitHeight: size.dp(28)
                 color: Theme.checkbox.back2
                 anchors.centerIn: parent
             }
@@ -61,6 +61,8 @@ CheckBoxStyle {
 
             Image {
                 id: ball
+                width: size.dp(40)
+                height: size.dp(32)
                 source: "images/switch-ball.png"
                 anchors.verticalCenter: parent.verticalCenter
             }
@@ -73,14 +75,13 @@ CheckBoxStyle {
                     } else {
                         anim2.restart()
                     }
-
                 }
             }
 
             Component.onCompleted: {
                 back1.opacity = control.checked ? 1 : 0
                 back2.opacity = control.checked ? 0 : 1
-                ball.x = control.checked ? 32 : 0
+                ball.x = control.checked ? size.dp(32) : 0
             }
 
             SequentialAnimation {
@@ -89,7 +90,7 @@ CheckBoxStyle {
                 NumberAnimation {
                     target: ball
                     property: "x"
-                    to: 32
+                    to: size.dp(32)
                     duration: 120
                 }
                 NumberAnimation {

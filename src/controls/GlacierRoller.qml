@@ -21,7 +21,7 @@ Item {
         id: label
         visible: label.text != ""
         font.capitalization: Font.AllUppercase
-        font.pixelSize: 14
+        font.pixelSize: size.dp(14)
         color: "white"
 
         anchors{
@@ -51,19 +51,19 @@ Item {
 
     PathView{
         id: view
-        property int itemHeight: 40
+        property int itemHeight: size.dp(40)
         property bool showRow: false
 
         interactive: activated
-        width: parent.width-60
-        height: 40
+        width: parent.width-size.dp(60)
+        height: size.dp(40)
         clip: true
 
         anchors{
             top: label.top
-            topMargin: 20
+            topMargin: size.dp(20)
             left: label.left
-            leftMargin: 30
+            leftMargin: size.dp(30)
         }
 
         pathItemCount: height/itemHeight

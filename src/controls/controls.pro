@@ -34,7 +34,8 @@ HEADERS += \
     qquickfilteringmousearea.h \
     nemoimageprovider.h \
     themedaemon/mlocalthemedaemonclient.h \
-    themedaemon/mabstractthemedaemonclient.h
+    themedaemon/mabstractthemedaemonclient.h \
+    sizing.h
 
 SOURCES += \
     qquicknemocontrolsextensionplugin.cpp \
@@ -44,7 +45,8 @@ SOURCES += \
     qquickfilteringmousearea.cpp \
     nemoimageprovider.cpp \
     themedaemon/mlocalthemedaemonclient.cpp \
-    themedaemon/mabstractthemedaemonclient.cpp
+    themedaemon/mabstractthemedaemonclient.cpp \
+    sizing.cpp
 
 target.path = $$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH
 

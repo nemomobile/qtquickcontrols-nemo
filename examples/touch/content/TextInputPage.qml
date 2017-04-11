@@ -65,36 +65,36 @@ Page {
     headerTools: HeaderToolsLayout { showBackButton: true; title: "Text input" }
 
     Column {
-        spacing: 40
+        spacing: size.dp(40)
         anchors.centerIn: parent
 
         TextField {
-            anchors.margins: 20
+            anchors.margins: size.dp(20)
             text: "Text input"
             //style: touchStyle
         }
 
         TextField {
-            anchors.margins: 20
+            anchors.margins: size.dp(20)
             text: "Readonly Text input"
             //style: touchStyle
             readOnly: true
         }
 
         TextField {
-            anchors.margins: 20
+            anchors.margins: size.dp(20)
             text: "Disabled textfield"
             enabled: false
         }
 
         TextField {
-            anchors.margins: 20
+            anchors.margins: size.dp(20)
             text: "Text input"
             style: touchStyle
         }
 
         TextField {
-            anchors.margins: 20
+            anchors.margins: size.dp(20)
             text: "Readonly Text input"
             style: touchStyle
             readOnly: true
@@ -107,14 +107,14 @@ Page {
 
         TextFieldStyle {
             textColor: "white"
-            font.pixelSize: 28
+            font.pixelSize: size.dp(28)
             background: Item {
-                implicitHeight: 50
-                implicitWidth: 320
+                implicitHeight: size.dp(50)
+                implicitWidth: size.dp(320)
                 BorderImage {
                     source: "../images/textinput.png"
-                    border.left: 8
-                    border.right: 8
+                    border.left: size.dp(8)
+                    border.right: size.dp(8)
                     anchors.bottom: parent.bottom
                     anchors.left: parent.left
                     anchors.right: parent.right

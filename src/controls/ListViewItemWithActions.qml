@@ -66,13 +66,13 @@ Item {
 
         Image{
             id: itemIcon
-            height: parent.height-10
+            height: parent.height-size.dp(10)
             width: height
             anchors{
                 left: parent.left
-                leftMargin: 20
+                leftMargin: size.dp(20)
                 top: parent.top
-                topMargin: 5
+                topMargin: size.dp(5)
             }
 
             sourceSize.width: width
@@ -84,13 +84,13 @@ Item {
 
         Rectangle{
             id: dataArea
-            width: parent.width-itemIcon.width-arrowItem.width-60
+            width: parent.width-itemIcon.width-arrowItem.width-size.dp(60)
             height: labelItem.height+(description != "" ? descriptionItem.height : 0)+(subdescription != "" ? subDescriptionItem.height : 0)
             clip: true
 
             anchors{
                 left:itemIcon.right
-                leftMargin: 20
+                leftMargin: size.dp(20)
                 verticalCenter: itemIcon.verticalCenter
             }
             color: "transparent"
@@ -103,7 +103,7 @@ Item {
                     left: parent.left
                     right: parent.right
                 }
-                font.pixelSize: 30
+                font.pixelSize: size.dp(30)
                 clip: true
             }
 
@@ -116,7 +116,7 @@ Item {
                     right: parent.right
                     top: labelItem.bottom
                 }
-                font.pixelSize: 18
+                font.pixelSize: size.dp(18)
                 clip: true
                 visible: description != ""
             }
@@ -130,13 +130,13 @@ Item {
                     right: parent.right
                     top: descriptionItem.bottom
                 }
-                font.pixelSize: 18
+                font.pixelSize: size.dp(18)
                 clip: true
                 visible: subdescription != ""
             }
 
             Item{
-                width: 15
+                width: size.dp(15)
                 height: parent.height
                 anchors{
                     top: parent.top
@@ -146,7 +146,7 @@ Item {
                 LinearGradient{
                     anchors.fill: parent
                     start: Qt.point(0, 0)
-                    end: Qt.point(15, 0)
+                    end: Qt.point(size.dp(15), 0)
                     gradient: Gradient {
                         GradientStop { position: 0.0; color: "transparent" }
                         GradientStop { position: 1.0; color: "black" }
@@ -157,12 +157,12 @@ Item {
 
         Image {
             id: arrowItem
-            height: parent.height-10
+            height: parent.height-size.dp(10)
             width: height
 
             anchors{
                 right: parent.right
-                rightMargin: 20
+                rightMargin: size.dp(20)
                 verticalCenter: parent.verticalCenter
             }
 

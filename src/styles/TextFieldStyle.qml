@@ -25,11 +25,14 @@ TextFieldStyle {
     selectedTextColor: Theme.textField.selectedTextColor
     selectionColor: Theme.textField.selectionColor
     textColor: Theme.textField.selectedTextColor
-    font.pointSize: 14 
+    font.pointSize: size.dp(14)
     font.family: Theme.textField.font
+
     background: Item {
-        anchors.leftMargin: 16
-        anchors.rightMargin: 16
+        anchors.leftMargin: size.dp(16)
+        anchors.rightMargin: size.dp(16)
+        implicitHeight: size.dp(50)
+        implicitWidth: size.dp(320)
         opacity: control.enabled ? 1 : 0.6
         Image {
             anchors.fill: parent

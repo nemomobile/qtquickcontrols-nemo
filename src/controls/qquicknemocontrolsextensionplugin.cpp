@@ -25,6 +25,7 @@
 #include "nemopage.h"
 #include "qquickfilteringmousearea.h"
 #include "nemoimageprovider.h"
+#include "sizing.h"
 
 QQuickNemoControlsExtensionPlugin::QQuickNemoControlsExtensionPlugin(QObject *parent) :
     QQmlExtensionPlugin(parent)
@@ -48,7 +49,12 @@ void QQuickNemoControlsExtensionPlugin::registerTypes(const char *uri)
 
 void QQuickNemoControlsExtensionPlugin::initializeEngine(QQmlEngine *engine, const char *uri)
 {
+    Sizing *sizing = new Sizing();
+
     QQmlExtensionPlugin::initializeEngine(engine,uri);
+    QQmlContext* context = engine->rootContext();
+    context->setContextProperty("size",sizing);
+
     engine->addImageProvider(QLatin1String("theme"), new NemoImageProvider);
 }
 

@@ -15,18 +15,18 @@ ListView {
         id: sectionHeading
         Rectangle {
             width: listView.width
-            height: 44
+            height: size.dp(44)
             color: "black"
 
             Text {
                 id: sectionText
                 text: section
                 font.capitalization: Font.AllUppercase
-                font.pixelSize: 20
+                font.pixelSize: size.dp(20)
                 color: "white"
                 anchors{
                     left: parent.left
-                    leftMargin: 10
+                    leftMargin: size.dp(10)
                     verticalCenter: parent.verticalCenter
                 }
             }
@@ -35,10 +35,10 @@ ListView {
                 id: line
                 height: 1
                 color: "white"
-                width: listView.width-sectionText.width-30
+                width: listView.width-sectionText.width-size.dp(30)
                 anchors{
                     left: sectionText.right
-                    leftMargin: 10
+                    leftMargin: size.dp(10)
                     verticalCenter: sectionText.verticalCenter
                 }
             }
@@ -48,7 +48,7 @@ ListView {
     Item{
         id: bottom
         width: parent.width
-        height: 30
+        height: size.dp(30)
         anchors.bottom: parent.bottom
 
         visible: listView.contentHeight > listView.height
@@ -56,7 +56,7 @@ ListView {
         LinearGradient{
             anchors.fill: parent
             start: Qt.point(0, 0)
-            end: Qt.point(0, 30)
+            end: Qt.point(0, size.dp(30))
             gradient: Gradient {
                 GradientStop { position: 0.0; color: "transparent" }
                 GradientStop { position: 1.0; color: "black" }
@@ -70,13 +70,13 @@ ListView {
         visible: (listView.showDecorator && listView.contentHeight > listView.height)
         color: "#0091e5"
 
-        width: 5
+        width: size.dp(5)
         height: listView.height*listView.height/listView.contentHeight
         y: (listView.height)/listView.contentHeight*listView.contentY
 
         anchors{
             right: listView.right
-            rightMargin: 4
+            rightMargin: size.dp(4)
         }
     }
 }
