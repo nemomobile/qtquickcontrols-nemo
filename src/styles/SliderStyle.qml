@@ -20,7 +20,7 @@
 
 import QtQuick 2.1
 import QtQuick.Controls.Styles 1.0
-import QtQuick.Controls.Styles.Nemo 1.0
+import QtQuick.Controls.Nemo 1.0
 
 SliderStyle{
     handle: Rectangle {

@@ -19,9 +19,7 @@ QML_FILES += \
     HeaderToolsLayout.qml \
     Slider.qml\
     ListView.qml \
-    ListViewItemWithActions.qml\
-    GlacierRoller.qml \
-    GlacierRollerItem.qml
+    ListViewItemWithActions.qml
 
 OTHER_FILES += qmldir \
     $$QML_FILES
@@ -55,6 +53,7 @@ target.path = $$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH
 qmlfiles.files = $$_PRO_FILE_PWD_/*.qml
 qmlfiles.files += $$_PRO_FILE_PWD_/qmldir
 qmlfiles.path = $$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH
+
 images.files = $$_PRO_FILE_PWD_/images
 images.path = $$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH
 

@@ -43,7 +43,7 @@ NemoWindow {
     //is this safe? can there be some situation in which it's neither portrait nor landscape?
     readonly property int isUiLandscape: !isUiPortrait
 
-    readonly property var _bgColor: Theme.window.background
+    readonly property var _bgColor: Theme.backgroundColor
     color: _bgColor
 
     //README: allowedOrientations' default value is set in NemoWindow's c++ implementation
@@ -226,7 +226,7 @@ NemoWindow {
                                 property: "x"
                                 from: target.width
                                 to: 0
-                                duration: Theme.pageStack.transitionDuration
+                                duration: 500
                                 easing.type: Easing.OutQuad
                             }
                             PropertyAnimation {
@@ -234,7 +234,7 @@ NemoWindow {
                                 property: "x"
                                 from: 0
                                 to: -target.width
-                                duration: Theme.pageStack.transitionDuration
+                                duration: 500
                                 easing.type: Easing.OutQuad
                             }
                         }
@@ -246,7 +246,7 @@ NemoWindow {
                                 property: "x"
                                 from: -target.width
                                 to: 0
-                                duration: Theme.pageStack.transitionDuration
+                                duration: 500
                                 easing.type: Easing.OutQuad
                             }
                             PropertyAnimation {
@@ -254,7 +254,7 @@ NemoWindow {
                                 property: "x"
                                 from: 0
                                 to: target.width
-                                duration: Theme.pageStack.transitionDuration
+                                duration: 500
                                 easing.type: Easing.OutQuad
                             }
                         }
@@ -287,16 +287,16 @@ NemoWindow {
                 anchors.right: isUiPortrait ? parent.right : undefined
                 anchors.bottom: isUiPortrait ? undefined : parent.bottom
                 //we only set the size in one orientation, the anchors will take care of the other
-                width: if (!isUiPortrait) Theme.header.dimmer.height
-                height: if (isUiPortrait) Theme.header.dimmer.height
+                width: if (!isUiPortrait) Theme.itemHeightExtraSmall/2
+                height: if (isUiPortrait) Theme.itemHeightExtraSmall/2
                 //MAKE SURE THAT THE HEIGHT SPECIFIED BY THE THEME IS AN EVEN NUMBER, TO AVOID ROUNDING ERRORS IN THE LAYOUT
 
                 Rectangle {
                     id: headerDimmer
                     anchors.centerIn: parent
                     gradient: Gradient {
-                        GradientStop { position: Theme.header.dimmer.startPosition; color: Theme.header.dimmer.startColor }
-                        GradientStop { position: Theme.header.dimmer.endPosition; color: Theme.header.dimmer.endColor }
+                        GradientStop { position: 0; color: Theme.backgroundColor }
+                        GradientStop { position: 1; color: "transparent" }
                     }
                 }
             }
@@ -324,7 +324,7 @@ NemoWindow {
                         }
                         PropertyChanges {
                             target: headerDimmer
-                            height: Theme.header.dimmer.height
+                            height: Theme.itemHeightExtraSmall/2
                             width: parent.width
                             rotation: 0
                         }
@@ -342,7 +342,7 @@ NemoWindow {
                         }
                         PropertyChanges {
                             target: headerDimmer
-                            height: Theme.header.dimmer.height
+                            height: Theme.itemHeightExtraSmall/2
                             width: parent.height
                             rotation: -90
                         }
@@ -360,7 +360,7 @@ NemoWindow {
                         }
                         PropertyChanges {
                             target: headerDimmer
-                            height: Theme.header.dimmer.height
+                            height: Theme.itemHeightExtraSmall/2
                             width: parent.width
                             rotation: 0
                         }
@@ -378,7 +378,7 @@ NemoWindow {
                         }
                         PropertyChanges {
                             target: headerDimmer
-                            height: Theme.header.dimmer.height
+                            height: Theme.itemHeightExtraSmall/2
                             width: parent.height
                             rotation: -90
                         }

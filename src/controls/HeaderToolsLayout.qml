@@ -60,7 +60,7 @@ Item {
         anchors.rightMargin: size.dp(20)
         clip: true
         font.family: Theme.fontFamily
-        color: Theme.label.color
+        color: Theme.textColor
         font.pointSize: size.dp(24)
         font.weight: Font.Bold
         LinearGradient {
@@ -71,7 +71,7 @@ Item {
             start: Qt.point(0,0)
             end: Qt.point(width,0)
             gradient: Gradient { GradientStop { position: 0; color: "transparent"}
-                GradientStop {position: 0.9; color: Theme.header.background } }
+                GradientStop {position: 0.9; color: Theme.backgroundColor } }
         }
     }
 

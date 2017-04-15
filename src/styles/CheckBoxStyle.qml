@@ -32,8 +32,6 @@
 import QtQuick 2.1
 import QtQuick.Controls.Styles 1.0
 import QtQuick.Controls.Nemo 1.0
-//Styles.Nemo provides Theme
-import QtQuick.Controls.Styles.Nemo 1.0
 
 CheckBoxStyle {
     indicator: Rectangle {
@@ -46,7 +44,7 @@ CheckBoxStyle {
                 id: back1
                 implicitWidth: size.dp(72)
                 implicitHeight: size.dp(28)
-                color: Theme.checkbox.back1
+                color: Theme.accentColor
                 anchors.centerIn: parent
             }
 
@@ -54,7 +52,7 @@ CheckBoxStyle {
                 id: back2
                 implicitWidth: size.dp(72)
                 implicitHeight: size.dp(28)
-                color: Theme.checkbox.back2
+                color: Theme.fillDarkColor
                 anchors.centerIn: parent
             }
 

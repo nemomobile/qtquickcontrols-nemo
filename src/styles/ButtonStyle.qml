@@ -22,19 +22,18 @@ import QtQuick.Controls 1.0
 import QtQuick.Controls.Styles 1.0
 import QtGraphicalEffects 1.0
 
-//Styles.Nemo provides Theme
-import QtQuick.Controls.Styles.Nemo 1.0
+import QtQuick.Controls.Nemo 1.0
 
 ButtonStyle {
     id: buttonstyle
 
     // The background of the button.
     background: Rectangle {
-        implicitWidth: size.dp(240)
-        implicitHeight: size.dp(50)
+        implicitWidth: Theme.itemWidthMedium
+        implicitHeight: Theme.itemHeightMedium
         clip: true
-        color: control.primary ? Theme.primaryButton.background
-                               : Theme.button.background
+        color: control.primary ? Theme.accentColor
+                               : Theme.fillColor
         Image {
             id: disabledImg
             anchors.fill: parent
@@ -47,20 +46,20 @@ ButtonStyle {
         RadialGradient {
             x: control.pressX - width/2
             y: control.pressY - height/2
-            width: Theme.button.pressedGradient.width
-            height: Theme.button.pressedGradient.height
+            width: Theme.itemWidthMedium
+            height: width
             visible: control.pressed
 
             gradient: Gradient {
                 GradientStop {
-                    position: Theme.button.pressedGradient.center;
-                    color: control.primary ? Theme.primaryButton.pressedGradient.centerColor
-                                           : Theme.button.pressedGradient.centerColor
+                    position: 0.29
+                    color: control.primary ? Theme.backgroundAccentColor
+                                           : Theme.accentColor
                 }
                 GradientStop {
-                    position: Theme.button.pressedGradient.edge;
-                    color: control.primary ? Theme.primaryButton.pressedGradient.edgeColor
-                                           : Theme.button.pressedGradient.edgeColor
+                    position: 0.5;
+                    color: control.primary ? Theme.accentColor
+                                           : "transparent"
                 }
             }
         }
@@ -72,10 +71,10 @@ ButtonStyle {
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
         text: control.text
-        color: Theme.button.text.color
+        color: Theme.textColor
         font.family: Theme.fontFamily
-        font.pointSize: Theme.button.text.font.pointSize
-        font.weight: control.primary ? Theme.primaryButton.text.font.weight : Theme.button.text.font.weight
+        font.pointSize: Theme.fontSizeLarge
+        font.weight: control.primary ? Theme.fontWeightLarge : Theme.fontWeightMedium
         opacity: control.enabled ? 1.0 : 0.3
     }
 }

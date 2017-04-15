@@ -71,13 +71,11 @@ Page {
         TextField {
             anchors.margins: size.dp(20)
             text: "Text input"
-            //style: touchStyle
         }
 
         TextField {
             anchors.margins: size.dp(20)
             text: "Readonly Text input"
-            //style: touchStyle
             readOnly: true
         }
 

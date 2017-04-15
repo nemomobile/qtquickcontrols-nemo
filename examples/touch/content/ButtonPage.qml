@@ -54,11 +54,11 @@ Page {
         anchors.centerIn: parent
 
         Button {
-            property bool isGlacier: Theme.name == "Glacier"
+            property bool isGlacier: true
             anchors.margins: 20
             text: isGlacier ? "Set Ugly Theme" : "Set Nice Theme"
-            onClicked: isGlacier ? Theme.loadFromFile("ugly.json")
-                                 : Theme.loadFromFile("glacier.json")
+            onClicked: isGlacier ? Theme.loadTheme("ugly")
+                                 : Theme.loadTheme("glacier")
         }
 
         Button {

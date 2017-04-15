@@ -32,7 +32,7 @@ Style {
         implicitWidth: size.dp(40)
         Rectangle {
             anchors.fill: parent
-            color: Theme.toolBar.background
+            color: Theme.backgroundColor
         }
     }
 }

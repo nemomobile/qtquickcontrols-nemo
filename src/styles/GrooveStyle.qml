@@ -18,17 +18,17 @@
  */
 
 import QtQuick 2.1
-import QtQuick.Controls.Styles.Nemo 1.0
+import QtQuick.Controls.Nemo 1.0
 
 Component {
     Rectangle {
         implicitHeight: size.dp(16)
         implicitWidth: size.dp(440)
-        color: Theme.groove.background
+        color: Theme.fillColorDark
         Rectangle {
             antialiasing: true
             radius: 1
-            color: Theme.groove.foreground
+            color: Theme.accentColor
             height: parent.height
             width: parent.width * control.value / control.maximumValue
         }

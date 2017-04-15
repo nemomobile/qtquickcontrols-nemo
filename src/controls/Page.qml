@@ -70,7 +70,7 @@ NemoPage {
     Rectangle {
         id: background
         anchors.fill: parent
-        color: Theme.page.background
+        color: Theme.backgroundColor
     }
 
     Item {
