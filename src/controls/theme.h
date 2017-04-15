@@ -62,7 +62,7 @@ public:
     qreal itemSpacingLarge(){return m_itemSpacingLarge;}
     qreal itemSpacingMedium(){return m_itemSpacingMedium;}
     qreal itemSpacingSmall(){return m_itemSpacingSmall;}
-    qreal itemSpacingExtraSmall(){return m_itemExtraSmall;}
+    qreal itemSpacingExtraSmall(){return m_itemSpacingExtraSmall;}
 
     int fontSizeExtraLarge(){return m_fontSizeExtraLarge;}
     int fontSizeLarge(){return m_fontSizeLarge;}
