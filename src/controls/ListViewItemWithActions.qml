@@ -6,7 +6,7 @@ import QtGraphicalEffects 1.0
 Item {
     id: root
     width: parent.width
-    height: 60
+    height: size.dp(60)
 
     property string label: ""
 
@@ -36,7 +36,7 @@ Item {
 
     Rectangle{
         id: actionsArea
-        color: "#474747"
+        color: Theme.fillColor
 
         anchors.right: listArea.left
 
@@ -70,7 +70,7 @@ Item {
             width: height
             anchors{
                 left: parent.left
-                leftMargin: size.dp(20)
+                leftMargin: Theme.itemSpacingLarge
                 top: parent.top
                 topMargin: size.dp(5)
             }
@@ -90,14 +90,14 @@ Item {
 
             anchors{
                 left:itemIcon.right
-                leftMargin: size.dp(20)
+                leftMargin: Theme.itemSpacingLarge
                 verticalCenter: itemIcon.verticalCenter
             }
             color: "transparent"
 
             Text {
                 id: labelItem
-                color: "#ffffff"
+                color: Theme.textColor
                 text: label
                 anchors{
                     left: parent.left
@@ -109,28 +109,28 @@ Item {
 
             Text{
                 id: descriptionItem
-                color: "#ffffff"
+                color: Theme.textColor
                 text: description
                 anchors{
                     left: parent.left
                     right: parent.right
                     top: labelItem.bottom
                 }
-                font.pixelSize: size.dp(18)
+                font.pixelSize: Theme.fontSizeSmall
                 clip: true
                 visible: description != ""
             }
 
             Text{
                 id: subDescriptionItem
-                color: "#ffffff"
+                color: Theme.textColor
                 text: subdescription
                 anchors{
                     left: parent.left
                     right: parent.right
                     top: descriptionItem.bottom
                 }
-                font.pixelSize: size.dp(18)
+                font.pixelSize: Theme.fontSizeSmall
                 clip: true
                 visible: subdescription != ""
             }
@@ -162,7 +162,7 @@ Item {
 
             anchors{
                 right: parent.right
-                rightMargin: size.dp(20)
+                rightMargin: Theme.itemSpacingLarge
                 verticalCenter: parent.verticalCenter
             }
 

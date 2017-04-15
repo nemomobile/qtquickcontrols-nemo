@@ -36,8 +36,8 @@ import QtQuick.Controls.Styles.Nemo 1.0
 Rectangle {
     id: main
     width: childrenRect.width
-    color: "#313131"
-    height: size.dp(40)
+    color: Theme.fillDarkColor
+    height: Theme.itemHeightSmall
     property ListModel model: ListModel {}
     property bool enabled: true
     property int currentIndex: -1
@@ -55,8 +55,8 @@ Rectangle {
         y: size.dp(-5)
 
         width: rowElement.children[main.currentIndex].width || 0
-        height: size.dp(50)
-        color: "#0091e5"
+        height: Theme.itemHeightSmall
+        color: Theme.accentColor
 
         visible: main.currentIndex > -1
 

@@ -28,7 +28,7 @@ Style {
     padding.bottom: 3
 
     property Component panel: Item {
-        implicitHeight: size.dp(75)
+        implicitHeight:Theme.itemHeightExtraLarge
         implicitWidth: size.dp(40)
         Rectangle {
             anchors.fill: parent

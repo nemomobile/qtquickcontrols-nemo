@@ -9,6 +9,7 @@ Theme::Theme(QObject *parent) : QObject(parent)
     m_itemWidthLarge = 320*m_dp;
     m_itemWidthMedium = 240*m_dp;
     m_itemWidthSmall = 120*m_dp;
+    m_itemWidthExtraSmall = 72*m_dp;
 
     m_itemHeightHuge = 80*m_dp;
     m_itemHeightExtraLarge = 75*m_dp;
@@ -21,7 +22,7 @@ Theme::Theme(QObject *parent) : QObject(parent)
     m_itemSpacingLarge = 20*m_dp;
     m_itemSpacingMedium = 15*m_dp;
     m_itemSpacingSmall = 10*m_dp;
-    m_itemExtraSmall = 8*m_dp;
+    m_itemSpacingExtraSmall = 8*m_dp;
 
     m_fontSizeExtraLarge = 30*m_dp;
     m_fontSizeLarge = 24*m_dp;

@@ -10,6 +10,7 @@ class Theme : public QObject
     Q_PROPERTY(qreal itemWidthLarge READ itemWidthLarge NOTIFY itemWidthLargeChanged)
     Q_PROPERTY(qreal itemWidthMedium READ itemWidthMedium NOTIFY itemWidthMediumChanged)
     Q_PROPERTY(qreal itemWidthSmall READ itemWidthSmall NOTIFY itemWidthSmallChanged)
+    Q_PROPERTY(qreal itemWidthExtraSmall READ itemWidthExtraSmall NOTIFY itemWidthExtraSmallChanged)
 
     Q_PROPERTY(qreal itemHeightHuge READ itemHeightHuge NOTIFY itemHeightHugeChanged)
     Q_PROPERTY(qreal itemHeightExtraLarge READ itemHeightExtraLarge NOTIFY itemHeightExtraLargeChanged)
@@ -22,7 +23,7 @@ class Theme : public QObject
     Q_PROPERTY(qreal itemSpacingLarge READ itemSpacingLarge NOTIFY itemSpacingLargeChanged)
     Q_PROPERTY(qreal itemSpacingMedium READ itemSpacingMedium NOTIFY itemSpacingMediumChanged)
     Q_PROPERTY(qreal itemSpacingSmall READ itemSpacingSmall NOTIFY itemSpacingSmallChanged)
-    Q_PROPERTY(qreal itemExtraSmall READ itemExtraSmall NOTIFY itemExtraSmallChanged)
+    Q_PROPERTY(qreal itemSpacingExtraSmall READ itemSpacingExtraSmall NOTIFY itemSpacingExtraSmallChanged)
 
     Q_PROPERTY(int fontSizeExtraLarge READ fontSizeExtraLarge NOTIFY fontSizeExtraLargeChanged)
     Q_PROPERTY(int fontSizeLarge READ fontSizeLarge NOTIFY fontSizeLargeChanged)
@@ -48,6 +49,7 @@ public:
     qreal itemWidthLarge(){return m_itemWidthLarge;}
     qreal itemWidthMedium(){return m_itemWidthMedium;}
     qreal itemWidthSmall(){return m_itemWidthSmall;}
+    qreal itemWidthExtraSmall(){return m_itemWidthExtraSmall;}
 
     qreal itemHeightHuge(){return m_itemHeightHuge;}
     qreal itemHeightExtraLarge(){return m_itemHeightExtraLarge;}
@@ -60,7 +62,7 @@ public:
     qreal itemSpacingLarge(){return m_itemSpacingLarge;}
     qreal itemSpacingMedium(){return m_itemSpacingMedium;}
     qreal itemSpacingSmall(){return m_itemSpacingSmall;}
-    qreal itemExtraSmall(){return m_itemExtraSmall;}
+    qreal itemSpacingExtraSmall(){return m_itemExtraSmall;}
 
     int fontSizeExtraLarge(){return m_fontSizeExtraLarge;}
     int fontSizeLarge(){return m_fontSizeLarge;}
@@ -85,6 +87,7 @@ signals:
     void itemWidthLargeChanged();
     void itemWidthMediumChanged();
     void itemWidthSmallChanged();
+    void itemWidthExtraSmallChanged();
 
     void itemHeightHugeChanged();
     void itemHeightExtraLargeChanged();
@@ -97,7 +100,7 @@ signals:
     void itemSpacingLargeChanged();
     void itemSpacingMediumChanged();
     void itemSpacingSmallChanged();
-    void itemExtraSmallChanged();
+    void itemSpacingExtraSmallChanged();
 
     void fontSizeExtraLargeChanged();
     void fontSizeLargeChanged();
@@ -121,6 +124,7 @@ private:
     qreal m_itemWidthLarge;        //320
     qreal m_itemWidthMedium;       //240
     qreal m_itemWidthSmall;        //120
+    qreal m_itemWidthExtraSmall;   //72
 
     qreal m_itemHeightHuge;        //80
     qreal m_itemHeightExtraLarge;  //75
@@ -133,7 +137,7 @@ private:
     qreal m_itemSpacingLarge;       //20
     qreal m_itemSpacingMedium;      //15
     qreal m_itemSpacingSmall;       //10
-    qreal m_itemExtraSmall;         //8
+    qreal m_itemSpacingExtraSmall;         //8
 
     int m_fontSizeExtraLarge;     //30
     int m_fontSizeLarge;          //24

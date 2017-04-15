@@ -35,5 +35,5 @@ Text {
     renderType: Text.NativeRendering
     font.family: Theme.fontFamily
     color: Theme.textColor
-    font.pointSize: size.dp(Theme.fontSizeLarge)
+    font.pointSize: Theme.fontSizeLarge
 }
