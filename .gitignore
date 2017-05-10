@@ -3,8 +3,12 @@
 .directory
 *.o
 *.so
+*.qmlc
 moc_*
 qrc_*
+.qmake.stash
+*.spec.*
+documentation.list
 examples/touch/touch_nemo
 Makefile
 installroot/
