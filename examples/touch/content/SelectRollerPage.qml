@@ -11,8 +11,10 @@ Page {
 
     Column {
         spacing: 40
+        width: parent.width
         anchors{
-            fill: parent;
+            top: parent.top
+            topMargin: 40
         }
 
         ListModel {
@@ -37,10 +39,6 @@ Page {
         GlacierRoller {
             id: simpleRoller
             width: parent.width
-            anchors{
-                top: parent.top
-                topMargin: 40
-            }
 
             clip: true
             model: animalsModel
@@ -59,10 +57,6 @@ Page {
         GlacierRoller {
             id: simpleRoller2
             width: parent.width
-            anchors{
-                top: simpleRoller.bottom
-                topMargin: 40
-            }
 
             clip: true
             model: animalsModel

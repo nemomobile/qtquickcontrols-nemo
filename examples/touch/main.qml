@@ -219,8 +219,8 @@ ApplicationWindow {
             model: pageModel
             anchors.fill: parent
             clip: true
-            delegate: AndroidDelegate {
-                text: title
+            delegate: ListViewItemWithActions {
+                label: title
                 onClicked: pageItem.Stack.view.push(Qt.resolvedUrl(page))
             }
         }
