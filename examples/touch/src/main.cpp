@@ -1,6 +1,7 @@
 /****************************************************************************
 **
 ** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
+** Copyright (C) 2017 Chupligin Sergey neochapay@gmail.com
 ** Contact: http://www.qt-project.org/legal
 **
 ** This file is part of the Qt Quick Controls module of the Qt Toolkit.
@@ -37,6 +38,13 @@
 ** $QT_END_LICENSE$
 **
 ****************************************************************************/
+#include <QApplication>
+#include <QQmlApplicationEngine>
 
-#include "../../shared/qt_quick_controls_examplemain.h"
-QT_QUICK_CONTROLS_EXAMPLE_MAIN(qrc:/main.qml)
+int main(int argc, char *argv[])
+{
+    QApplication app(argc, argv);
+    QQmlApplicationEngine engine;
+    engine.load(QUrl(QStringLiteral("/usr/share/glacier-components/main.qml")));
+    return app.exec();
+}

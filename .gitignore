@@ -9,7 +9,7 @@ qrc_*
 .qmake.stash
 *.spec.*
 documentation.list
-examples/touch/touch_nemo
+examples/touch/glacier-components
 Makefile
 installroot/
 RPMS/
