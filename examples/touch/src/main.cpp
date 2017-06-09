@@ -38,13 +38,22 @@
 ** $QT_END_LICENSE$
 **
 ****************************************************************************/
-#include <QApplication>
+#include <QtGui/QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QtQuick/QQuickView>
 
 int main(int argc, char *argv[])
 {
-    QApplication app(argc, argv);
-    QQmlApplicationEngine engine;
-    engine.load(QUrl(QStringLiteral("/usr/share/glacier-components/main.qml")));
+    setenv("QT_QUICK_CONTROLS_STYLE", "Nemo", 1);
+    QGuiApplication app(argc, argv);
+
+    QQmlApplicationEngine* engine = new QQmlApplicationEngine(QUrl("/usr/share/glacier-components/main.qml"));
+
+    QObject *topLevel = engine->rootObjects().value(0);
+
+    QQuickWindow *window = qobject_cast<QQuickWindow *>(topLevel);
+    window->setTitle(QObject::tr("Glacier components"));
+    window->showFullScreen();
+
     return app.exec();
 }
