@@ -13,7 +13,6 @@ Item {
     property string description: ""
     property string subdescription: ""
     property string icon: ""
-    property string page: ""
 
     property bool showNext: true
 
