@@ -18,16 +18,16 @@
  * Boston, MA 02110-1301, USA.
  */
 
-import QtQuick 2.1
+import QtQuick 2.6
 import QtQuick.Controls.Styles 1.0
-import QtQuick.Controls.Styles.Nemo 1.0
+import QtQuick.Controls.Nemo 1.0
 
 SliderStyle{
     handle: Rectangle {
         id: handle
         anchors.centerIn: parent
-        color: "black"
-        border.color: "#0091e5"
+        color: Theme.backgroundColor
+        border.color: Theme.accentColor
         border.width: 2
         implicitWidth: size.dp(34)
         implicitHeight: size.dp(34)
@@ -39,7 +39,7 @@ SliderStyle{
             anchors.centerIn: parent
             text: parseInt(control.value*100)
             visible: control.showValue
-            color: "white"
+            color: Theme.textColor
         }
     }
 
@@ -48,13 +48,13 @@ SliderStyle{
 
         implicitHeight: size.dp(16)
         implicitWidth: size.dp(440)
-        color: "#313131"
+        color: Theme.fillDarkColor
         z: 1
         Rectangle{
             id: dataLine
             height: parent.height
             width: styleData.handlePosition
-            color: "#0091e5"
+            color: Theme.accentColor
         }
 
         Image {

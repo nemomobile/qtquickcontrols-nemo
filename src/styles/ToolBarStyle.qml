@@ -17,7 +17,7 @@
  * Boston, MA 02110-1301, USA.
  */
 
-import QtQuick 2.1
+import QtQuick 2.6
 import QtQuick.Controls.Private 1.0
 import QtQuick.Controls.Styles.Nemo 1.0
 
@@ -28,11 +28,11 @@ Style {
     padding.bottom: 3
 
     property Component panel: Item {
-        implicitHeight: size.dp(75)
+        implicitHeight:Theme.itemHeightExtraLarge
         implicitWidth: size.dp(40)
         Rectangle {
             anchors.fill: parent
-            color: Theme.toolBar.background
+            color: Theme.backgroundColor
         }
     }
 }

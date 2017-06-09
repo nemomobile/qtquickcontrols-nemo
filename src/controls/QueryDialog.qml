@@ -1,10 +1,10 @@
-import QtQuick 2.0
+import QtQuick 2.6
 
 Rectangle {
     id: shell
     anchors.fill: parent
     opacity: 0.7
-    color: "black"
+    color: Theme.backgroundColor
     signal accepted()
     signal canceled()
     property alias cancelText: cancel.text

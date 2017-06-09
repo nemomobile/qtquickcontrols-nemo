@@ -1,6 +1,6 @@
 Name:       qt5-qtquickcontrols-nemo
 Summary:    Nemomobile Qt Quick Controls 
-Version:    5.2.0
+Version:    5.3.0
 Release:    nemo1
 Group:      Qt/Qt
 License:    LGPLv2.1 with exception or GPLv3
@@ -68,6 +68,7 @@ desktop-file-install --delete-original       \
 
 %files examples
 %defattr(-,root,root,-)
-%{_libdir}/qt5/examples/touch_nemo
+%{_bindir}/glacier-components
+%{_datadir}/glacier-components
 %{_datadir}/applications/*.desktop
 

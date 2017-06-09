@@ -20,7 +20,7 @@
 
 // NOTE: THIS WILL NOT BE PRIVATE ANYMORE IN QtQuick.Controls 1.1!!!!!!!!!
 
-import QtQuick 2.1
+import QtQuick 2.6
 import QtQuick.Controls.Styles.Private 1.0
 
 SpinBoxStyle {

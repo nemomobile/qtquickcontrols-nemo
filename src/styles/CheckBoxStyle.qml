@@ -29,32 +29,30 @@
 **
 ****************************************************************************************/
 
-import QtQuick 2.1
+import QtQuick 2.6
 import QtQuick.Controls.Styles 1.0
 import QtQuick.Controls.Nemo 1.0
-//Styles.Nemo provides Theme
-import QtQuick.Controls.Styles.Nemo 1.0
 
 CheckBoxStyle {
     indicator: Rectangle {
             id: background
             color: "transparent"
-            implicitWidth: size.dp(72)
-            implicitHeight: size.dp(32)
+            implicitWidth: Theme.itemWidthExtraSmall
+            implicitHeight: Theme.itemHeightExtraSmall
 
             Rectangle {
                 id: back1
-                implicitWidth: size.dp(72)
+                implicitWidth: Theme.itemWidthExtraSmall
                 implicitHeight: size.dp(28)
-                color: Theme.checkbox.back1
+                color: Theme.accentColor
                 anchors.centerIn: parent
             }
 
             Rectangle {
                 id: back2
-                implicitWidth: size.dp(72)
+                implicitWidth: Theme.itemWidthExtraSmall
                 implicitHeight: size.dp(28)
-                color: Theme.checkbox.back2
+                color: Theme.fillDarkColor
                 anchors.centerIn: parent
             }
 
@@ -62,7 +60,7 @@ CheckBoxStyle {
             Image {
                 id: ball
                 width: size.dp(40)
-                height: size.dp(32)
+                height: Theme.itemHeightExtraSmall
                 source: "images/switch-ball.png"
                 anchors.verticalCenter: parent.verticalCenter
             }
@@ -81,7 +79,7 @@ CheckBoxStyle {
             Component.onCompleted: {
                 back1.opacity = control.checked ? 1 : 0
                 back2.opacity = control.checked ? 0 : 1
-                ball.x = control.checked ? size.dp(32) : 0
+                ball.x = control.checked ? Theme.itemHeightExtraSmall : 0
             }
 
             SequentialAnimation {
@@ -90,7 +88,7 @@ CheckBoxStyle {
                 NumberAnimation {
                     target: ball
                     property: "x"
-                    to: size.dp(32)
+                    to: Theme.itemHeightExtraSmall
                     duration: 120
                 }
                 NumberAnimation {

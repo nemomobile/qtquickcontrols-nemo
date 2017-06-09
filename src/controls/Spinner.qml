@@ -29,8 +29,8 @@
 **
 ****************************************************************************************/
 
-import QtQuick 2.1
-import QtQuick.Controls.Styles.Nemo 1.0
+import QtQuick 2.6
+import QtQuick.Controls.Nemo 1.0
 
 Item {
     id: container
@@ -49,7 +49,7 @@ Item {
                     targets: [circle0, circle1, circle2, circle3]
                     property: "opacity"
                     to: 1
-                    duration: Theme.spinner.initialStateDuration
+                    duration: 1500
                 }
                 PropertyAction { target: animations; property: "running"; value: true }
             }
@@ -63,14 +63,14 @@ Item {
                 PropertyAnimation {
                     targets: [circle0, circle1, circle2, circle3]
                     property: "color";
-                    to: Theme.spinner.primaryColor
-                    duration: Theme.spinner.transitionDuration
+                    to: Theme.backgroundAccentColor
+                    duration: 500
                 }
                 NumberAnimation {
                     targets: [circle0, circle1, circle2, circle3]
                     property: "opacity"
                     to: 0
-                    duration: Theme.spinner.initialStateDuration
+                    duration: 1500
                 }
             }
         }
@@ -84,8 +84,8 @@ Item {
     Item {
         id: innerRect
         anchors.centerIn: parent
-        width: Theme.spinner.radius + Theme.spinner.horizontalSpacing
-        height: Theme.spinner.radius + Theme.spinner.verticalSpacing
+        width: Theme.itemHeightExtraSmall + Theme.itemSpacingMedium
+        height: Theme.itemHeightExtraSmall + Theme.itemSpacingMedium
     }
 
     Rectangle {
@@ -93,10 +93,10 @@ Item {
         opacity: 0
         anchors.horizontalCenter: innerRect.left
         anchors.verticalCenter: innerRect.top
-        width: Theme.spinner.radius
-        height: Theme.spinner.radius
-        radius: Theme.spinner.radius / 2
-        color: Theme.spinner.primaryColor
+        width: Theme.itemHeightExtraSmall
+        height: Theme.itemHeightExtraSmall
+        radius: Theme.itemHeightExtraSmall / 2
+        color: Theme.backgroundAccentColor
     }
 
     Rectangle {
@@ -104,10 +104,10 @@ Item {
         opacity: 0
         anchors.horizontalCenter: innerRect.right
         anchors.verticalCenter: innerRect.top
-        width: Theme.spinner.radius
-        height: Theme.spinner.radius
-        radius: Theme.spinner.radius / 2
-        color: Theme.spinner.primaryColor
+        width: Theme.itemHeightExtraSmall
+        height: Theme.itemHeightExtraSmall
+        radius: Theme.itemHeightExtraSmall / 2
+        color: Theme.backgroundAccentColor
     }
 
     Rectangle {
@@ -115,10 +115,10 @@ Item {
         opacity: 0
         anchors.horizontalCenter: innerRect.right
         anchors.verticalCenter: innerRect.bottom
-        width: Theme.spinner.radius
-        height: Theme.spinner.radius
-        radius: Theme.spinner.radius / 2
-        color: Theme.spinner.primaryColor
+        width: Theme.itemHeightExtraSmall
+        height: Theme.itemHeightExtraSmall
+        radius: Theme.itemHeightExtraSmall / 2
+        color: Theme.backgroundAccentColor
     }
 
     Rectangle {
@@ -126,10 +126,10 @@ Item {
         opacity: 0
         anchors.horizontalCenter: innerRect.left
         anchors.verticalCenter: innerRect.bottom
-        width: Theme.spinner.radius
-        height: Theme.spinner.radius
-        radius: Theme.spinner.radius / 2
-        color: Theme.spinner.primaryColor
+        width: Theme.itemHeightExtraSmall
+        height: Theme.itemHeightExtraSmall
+        radius: Theme.itemHeightExtraSmall / 2
+        color: Theme.backgroundAccentColor
     }
 
     SequentialAnimation {
@@ -139,14 +139,14 @@ Item {
             PropertyAnimation {
                 target: circle0
                 property: "color"
-                to: Theme.spinner.secondaryColor
-                duration: Theme.spinner.transitionDuration
+                to: Theme.accentColor
+                duration: 500
             }
             PropertyAnimation {
                 target: circle3
                 property: "color"
-                to: Theme.spinner.primaryColor
-                duration: Theme.spinner.transitionDuration
+                to: Theme.backgroundAccentColor
+                duration: 500
             }
         }
 
@@ -154,14 +154,14 @@ Item {
             PropertyAnimation {
                 target: circle1
                 property: "color"
-                to: Theme.spinner.secondaryColor
-                duration: Theme.spinner.transitionDuration
+                to: Theme.accentColor
+                duration: 500
             }
             PropertyAnimation {
                 target: circle0
                 property: "color"
-                to: Theme.spinner.primaryColor
-                duration: Theme.spinner.transitionDuration
+                to: Theme.backgroundAccentColor
+                duration: 500
             }
         }
 
@@ -169,14 +169,14 @@ Item {
             PropertyAnimation {
                 target: circle2
                 property: "color"
-                to: Theme.spinner.secondaryColor
-                duration: Theme.spinner.transitionDuration
+                to: Theme.accentColor
+                duration: 500
             }
             PropertyAnimation {
                 target: circle1
                 property: "color"
-                to: Theme.spinner.primaryColor
-                duration: Theme.spinner.transitionDuration
+                to: Theme.backgroundAccentColor
+                duration: 500
             }
         }
 
@@ -184,14 +184,14 @@ Item {
             PropertyAnimation {
                 target: circle3
                 property: "color"
-                to: Theme.spinner.secondaryColor
-                duration: Theme.spinner.transitionDuration
+                to: Theme.accentColor
+                duration: 500
             }
             PropertyAnimation {
                 target: circle2
                 property: "color"
-                to: Theme.spinner.primaryColor
-                duration: Theme.spinner.transitionDuration
+                to: Theme.backgroundAccentColor
+                duration: 500
             }
         }
     }

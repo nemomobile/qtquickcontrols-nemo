@@ -29,7 +29,7 @@
 **
 ****************************************************************************************/
 
-import QtQuick 2.1
+import QtQuick 2.6
 import QtQuick.Controls 1.0 // Needed for things like Stack attached properties
 import QtQuick.Controls.Nemo 1.0
 import QtQuick.Controls.Styles.Nemo 1.0
@@ -70,7 +70,7 @@ NemoPage {
     Rectangle {
         id: background
         anchors.fill: parent
-        color: Theme.page.background
+        color: Theme.backgroundColor
     }
 
     Item {

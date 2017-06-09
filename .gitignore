@@ -3,9 +3,13 @@
 .directory
 *.o
 *.so
+*.qmlc
 moc_*
 qrc_*
-examples/touch/touch_nemo
+.qmake.stash
+*.spec.*
+documentation.list
+examples/touch/glacier-components
 Makefile
 installroot/
 RPMS/

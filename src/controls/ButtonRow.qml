@@ -1,6 +1,7 @@
 /****************************************************************************************
 **
 ** Copyright (C) 2014 Aleksi Suomalainen <suomalainen.aleksi@gmail.com>
+** Copyright (C) 2017 Sergey Chupligin <neochapay@gmail.com>
 ** All rights reserved.
 **
 ** You may use this file under the terms of BSD license as follows:
@@ -29,14 +30,14 @@
 **
 ****************************************************************************************/
 
-import QtQuick 2.1
+import QtQuick 2.6
 import QtQuick.Controls.Styles.Nemo 1.0
 
 Rectangle {
     id: main
     width: childrenRect.width
-    color: "#313131"
-    height: size.dp(40)
+    color: Theme.fillDarkColor
+    height: Theme.itemHeightSmall
     property ListModel model: ListModel {}
     property bool enabled: true
     property int currentIndex: -1
@@ -54,8 +55,8 @@ Rectangle {
         y: size.dp(-5)
 
         width: rowElement.children[main.currentIndex].width || 0
-        height: size.dp(50)
-        color: "#0091e5"
+        height: Theme.itemHeightSmall
+        color: Theme.accentColor
 
         visible: main.currentIndex > -1
 

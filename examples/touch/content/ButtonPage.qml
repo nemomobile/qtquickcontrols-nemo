@@ -38,7 +38,7 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.1
+import QtQuick 2.6
 import QtQuick.Controls 1.0 //needed for the Stack attached property
 import QtQuick.Controls.Nemo 1.0
 import QtQuick.Controls.Styles.Nemo 1.0
@@ -54,11 +54,11 @@ Page {
         anchors.centerIn: parent
 
         Button {
-            property bool isGlacier: Theme.name == "Glacier"
+            property bool isGlacier: true
             anchors.margins: 20
             text: isGlacier ? "Set Ugly Theme" : "Set Nice Theme"
-            onClicked: isGlacier ? Theme.loadFromFile("ugly.json")
-                                 : Theme.loadFromFile("glacier.json")
+            onClicked: isGlacier ? Theme.loadTheme("ugly")
+                                 : Theme.loadTheme("glacier")
         }
 
         Button {

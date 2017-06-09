@@ -1,4 +1,4 @@
-import QtQuick 2.1
+import QtQuick 2.6
 import QtQuick.Window 2.0
 import QtQuick.Controls 1.0
 import QtQuick.Controls.Nemo 1.0
@@ -62,7 +62,7 @@ Item {
             PropertyChanges {
                 target: toolBarRect
                 width: parent.width
-                height: size.dp(75)
+                height: Theme.itemHeightExtraLarge
             }
         },
         State {
@@ -91,7 +91,7 @@ Item {
             }
             PropertyChanges {
                 target: toolBarRect
-                width: size.dp(75)
+                width: Theme.itemHeightExtraLarge
                 height: parent.height
             }
         }
@@ -149,14 +149,14 @@ Item {
     SequentialAnimation {
         id: changeToolsLayoutAnim
         NumberAnimation { id: fadeOut; target: root; property: "opacity"; to: 0;
-            duration: Theme.pageStack.transitionDuration/2; easing.type: Easing.OutQuad; loops: !toolBarLayout ? 0 : 1 }
+            duration: 250; easing.type: Easing.OutQuad; loops: !toolBarLayout ? 0 : 1 }
         //headerTools may change now, so we have to close the drawer
         ScriptAction { script: closeDrawer() }
         ScriptAction { script: updateHeaderTools() }
         //tell the (maybe new) layout that we're its container
         ScriptAction { script: propagateHeaderReference() }
         NumberAnimation { id: fadeIn; target: root; property: "opacity"; to: 1;
-            duration: Theme.pageStack.transitionDuration/2; easing.type: Easing.OutQuad; loops: !toolBarLayout ? 0 : 1  }
+            duration: 250; easing.type: Easing.OutQuad; loops: !toolBarLayout ? 0 : 1  }
 
     }
 
@@ -181,7 +181,7 @@ Item {
         anchors.right: parent.right
         //README: the rest of the anchors/sizes will be set by AnchorChanges!
 
-        color: Theme.header.background
+        color: Theme.backgroundColor
 
         FilteringMouseArea {
             id: mouseArea
@@ -305,7 +305,7 @@ Item {
     Rectangle {
         id: drawerContainer
 
-        color: Theme.header.background
+        color: Theme.backgroundColor
 
         Binding on width {
             value: drawer.width

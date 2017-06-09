@@ -17,22 +17,25 @@
  * Boston, MA 02110-1301, USA.
  */
 
-import QtQuick 2.1
+import QtQuick 2.6
 import QtQuick.Controls.Styles 1.0
-import QtQuick.Controls.Styles.Nemo 1.0
+import QtQuick.Controls.Nemo 1.0
 
 TextFieldStyle {
-    selectedTextColor: Theme.textField.selectedTextColor
-    selectionColor: Theme.textField.selectionColor
-    textColor: Theme.textField.selectedTextColor
-    font.pointSize: size.dp(14)
-    font.family: Theme.textField.font
+    selectedTextColor: Theme.textColor
+    selectionColor: Theme.accentColor
+    textColor: Theme.textColor
+    font.pointSize: Theme.fontSizeTiny
+    font.family: Theme.fontFamily
 
     background: Item {
-        anchors.leftMargin: size.dp(16)
-        anchors.rightMargin: size.dp(16)
-        implicitHeight: size.dp(50)
-        implicitWidth: size.dp(320)
+        anchors{
+            leftMargin: Theme.itemSpacingMedium
+            rightMargin: Theme.itemSpacingMedium
+        }
+
+        implicitHeight: Theme.itemHeightMedium
+        implicitWidth: Theme.itemWidthLarge
         opacity: control.enabled ? 1 : 0.6
         Image {
             anchors.fill: parent
@@ -46,7 +49,7 @@ TextFieldStyle {
             anchors.right: parent.right
             height: 2
             width: parent.width
-            color: control.readOnly ? "#313131" : Theme.textField.selectionColor
+            color: control.readOnly ? Theme.fillDarkColor : Theme.accentColor
         }
     }
 }

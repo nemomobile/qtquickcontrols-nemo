@@ -17,7 +17,7 @@
  * Boston, MA 02110-1301, USA.
  */
 
-import QtQuick 2.1
+import QtQuick 2.6
 import QtQuick.Controls 1.0
 import QtQuick.Controls.Private 1.0
 
@@ -31,8 +31,8 @@ Style {
         id: styleitem
 
         //TODO: Maybe we want to add a descriptive text at the bottom of the icon?
-        implicitWidth: size.dp(50)
-        implicitHeight: size.dp(50)
+        implicitWidth: Theme.itemHeightMedium
+        implicitHeight: implicitWidth
 
         opacity: control.pressed ? 0.5 : 1
 
@@ -47,7 +47,7 @@ Style {
             id: icon
             anchors.fill: parent
             fillMode: Image.PreserveAspectFit
-            anchors.margins: size.dp(8)
+            anchors.margins: Theme.itemSpacingExtraSmall
             source: control.iconSource
         }
     }

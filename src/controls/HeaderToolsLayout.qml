@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.6
 import QtQuick.Controls.Nemo 1.0
 import QtQuick.Controls.Styles.Nemo 1.0
 import QtQuick.Layouts 1.0
@@ -26,7 +26,7 @@ Item {
     Rectangle {
         id: backButton
         width: opacity ? size.dp(60) : 0
-        anchors.leftMargin: size.dp(20)
+        anchors.leftMargin: Theme.itemSpacingLarge
         //check if Stack.view has already been initialized as well
         anchors.verticalCenter: parent.verticalCenter
         antialiasing: true
@@ -40,28 +40,30 @@ Item {
 
         Image {
             anchors.centerIn: parent
-            source: "../Styles/Nemo/images/icon-triangle-left.png"
+            source: "/usr/lib/qt5/qml/QtQuick/Controls/Styles/Nemo/images/icon-triangle-left.png"
         }
 
         MouseArea {
             id: backmouse
             anchors.fill: parent
-            anchors.margins: size.dp(-10)
+            anchors.margins: -Theme.itemSpacingSmall
             onClicked: header && header.stackView && header.stackView.pop()
         }
     }
 
     Label {
         id: titleTxt
-        anchors.right: toolButtonsContainer.left
-        anchors.left: backButton.visible ? backButton.right : parent.left
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.leftMargin: size.dp(20)
-        anchors.rightMargin: size.dp(20)
+        anchors{
+            right: toolButtonsContainer.left
+            left: backButton.visible ? backButton.right : parent.left
+            verticalCenter: parent.verticalCenter
+            leftMargin: Theme.itemSpacingLarge
+            rightMargin: Theme.itemSpacingLarge
+        }
         clip: true
         font.family: Theme.fontFamily
-        color: Theme.label.color
-        font.pointSize: size.dp(24)
+        color: Theme.textColor
+        font.pointSize: Theme.fontSizeLarge
         font.weight: Font.Bold
         LinearGradient {
             anchors.right: parent.right
@@ -71,7 +73,7 @@ Item {
             start: Qt.point(0,0)
             end: Qt.point(width,0)
             gradient: Gradient { GradientStop { position: 0; color: "transparent"}
-                GradientStop {position: 0.9; color: Theme.header.background } }
+                GradientStop {position: 0.9; color: Theme.backgroundColor } }
         }
     }
 
@@ -106,11 +108,13 @@ Item {
 
     Image {
         id: dots
-        anchors.right: parent.right
-        anchors.rightMargin: size.dp(20)
-        anchors.verticalCenter: parent.verticalCenter
+        anchors{
+            right: parent.right
+            rightMargin: Theme.itemSpacingLarge
+            verticalCenter: parent.verticalCenter
+        }
         visible: drawerLevels && drawerLevels.length > 1
-        source: "../Styles/Nemo/images/dots-vertical.png"
+        source: "/usr/lib/qt5/qml/QtQuick/Controls/Styles/Nemo/images/dots-vertical.png"
         rotation: isUiPortrait ? 0 : 90
     }
 }

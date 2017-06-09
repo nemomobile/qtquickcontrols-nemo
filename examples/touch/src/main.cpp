@@ -1,6 +1,7 @@
 /****************************************************************************
 **
 ** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
+** Copyright (C) 2017 Chupligin Sergey neochapay@gmail.com
 ** Contact: http://www.qt-project.org/legal
 **
 ** This file is part of the Qt Quick Controls module of the Qt Toolkit.
@@ -37,6 +38,22 @@
 ** $QT_END_LICENSE$
 **
 ****************************************************************************/
+#include <QtGui/QGuiApplication>
+#include <QQmlApplicationEngine>
+#include <QtQuick/QQuickView>
 
-#include "../../shared/qt_quick_controls_examplemain.h"
-QT_QUICK_CONTROLS_EXAMPLE_MAIN(qrc:/main.qml)
+int main(int argc, char *argv[])
+{
+    setenv("QT_QUICK_CONTROLS_STYLE", "Nemo", 1);
+    QGuiApplication app(argc, argv);
+
+    QQmlApplicationEngine* engine = new QQmlApplicationEngine(QUrl("/usr/share/glacier-components/main.qml"));
+
+    QObject *topLevel = engine->rootObjects().value(0);
+
+    QQuickWindow *window = qobject_cast<QQuickWindow *>(topLevel);
+    window->setTitle(QObject::tr("Glacier components"));
+    window->showFullScreen();
+
+    return app.exec();
+}

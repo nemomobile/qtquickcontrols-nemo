@@ -29,13 +29,13 @@ Sizing::Sizing(QObject *parent) : QObject(parent)
     }else if(m_dpi >= 140 && m_dpi < 200){
         //~160dpi
         m_densitie = mdpi;
-    }else if(m_dpi >= 200 && m_dpi < 280){
+    }else if(m_dpi >= 200 && m_dpi < 300){
         //~240dpi
         m_densitie = hdpi;
-    }else if(m_dpi >= 280 && m_dpi < 400){
+    }else if(m_dpi >= 300 && m_dpi < 420){
         //~320dpi
         m_densitie = xhdpi;
-    }else if(m_dpi >= 400 && m_dpi < 560){
+    }else if(m_dpi >= 420 && m_dpi < 560){
         //~480dpi
         m_densitie = xxhdpi;
     }else{
@@ -45,7 +45,6 @@ Sizing::Sizing(QObject *parent) : QObject(parent)
     if(m_p_height > 0 && m_p_width >0){
         m_valid = true;
         setMmScaleFactor();
-        setDpScaleFactor();
     }else{
         if(m_p_height == 0){
             qWarning("QT_QPA_EGLFS_PHYSICAL_HEIGHT is not set!");
@@ -56,6 +55,7 @@ Sizing::Sizing(QObject *parent) : QObject(parent)
         }
         qWarning("Device mm sizing don`t work");
     }
+    setDpScaleFactor();
 }
 
 void Sizing::setMmScaleFactor()
@@ -80,7 +80,7 @@ void Sizing::setDpScaleFactor()
         m_dp_factor = 1;
         break;
     case xhdpi:
-        m_dp_factor = 1.3;
+        m_dp_factor = 1.5;
         break;
     case xxhdpi:
         m_dp_factor = 2;
@@ -89,7 +89,7 @@ void Sizing::setDpScaleFactor()
         m_dp_factor = 2.5;
         break;
     default:
-        m_dp_factor = 1.3;
+        m_dp_factor = 1.5;
         break;
     }
 

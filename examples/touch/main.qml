@@ -38,7 +38,7 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.1
+import QtQuick 2.6
 import QtQuick.Controls 1.0
 import QtQuick.Controls.Nemo 1.0
 import QtQuick.Controls.Styles.Nemo 1.0
@@ -126,9 +126,9 @@ ApplicationWindow {
             id: tools
 
             title: "Nemo Touch Gallery"
-            tools: [ ToolButton { iconSource: "../images/icon_cog.png"},
-                ToolButton { iconSource: "../images/icon_edit.png"},
-                ToolButton { iconSource: "../images/icon_refresh.png"} ]
+            tools: [ ToolButton { iconSource: "/usr/share/glacier-components/images/icon_cog.png"},
+                ToolButton { iconSource: "/usr/share/glacier-components/images/icon_edit.png"},
+                ToolButton { iconSource: "/usr/share/glacier-components/images/icon_refresh.png"} ]
 
             //The parent of these items is null when this ToolsLayout is not used
             //(i.e. you're on a different page) so we need to check the parent,
@@ -176,19 +176,19 @@ ApplicationWindow {
                         id: tool1
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
-                        iconSource: "../images/icon_cog.png"
+                        iconSource: "/usr/share/glacier-components/images/icon_cog.png"
                     }
                     ToolButton {
                         id: tool2
                         anchors.right: tool1.left
                         anchors.verticalCenter: parent.verticalCenter
-                        iconSource: "../images/icon_edit.png"
+                        iconSource: "/usr/share/glacier-components/images/icon_edit.png"
                     }
                     ToolButton {
                         id: tool3
                         anchors.right: tool2.left
                         anchors.verticalCenter: parent.verticalCenter
-                        iconSource: "../images/icon_refresh.png"
+                        iconSource: "/usr/share/glacier-components/images/icon_refresh.png"
                     }
                 },
                 ButtonRow {
@@ -219,8 +219,8 @@ ApplicationWindow {
             model: pageModel
             anchors.fill: parent
             clip: true
-            delegate: AndroidDelegate {
-                text: title
+            delegate: ListViewItemWithActions {
+                label: title
                 onClicked: pageItem.Stack.view.push(Qt.resolvedUrl(page))
             }
         }

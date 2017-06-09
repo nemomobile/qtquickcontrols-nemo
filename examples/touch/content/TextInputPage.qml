@@ -38,7 +38,7 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.1
+import QtQuick 2.6
 import QtQuick.Controls 1.0 //needed for the Stack attached property
 import QtQuick.Controls.Nemo 1.0
 import QtQuick.Controls.Styles.Nemo 1.0
@@ -71,13 +71,11 @@ Page {
         TextField {
             anchors.margins: size.dp(20)
             text: "Text input"
-            //style: touchStyle
         }
 
         TextField {
             anchors.margins: size.dp(20)
             text: "Readonly Text input"
-            //style: touchStyle
             readOnly: true
         }
 
@@ -112,7 +110,7 @@ Page {
                 implicitHeight: size.dp(50)
                 implicitWidth: size.dp(320)
                 BorderImage {
-                    source: "../images/textinput.png"
+                    source: "/usr/share/glacier-components/images/textinput.png"
                     border.left: size.dp(8)
                     border.right: size.dp(8)
                     anchors.bottom: parent.bottom

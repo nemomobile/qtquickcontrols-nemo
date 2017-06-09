@@ -1,4 +1,4 @@
-import QtQuick 2.1
+import QtQuick 2.6
 import QtQuick.Controls 1.0
 import QtGraphicalEffects 1.0
 import QtQuick.Controls.Styles.Nemo 1.0
@@ -16,17 +16,17 @@ ListView {
         Rectangle {
             width: listView.width
             height: size.dp(44)
-            color: "black"
+            color: Theme.backgroundColor
 
             Text {
                 id: sectionText
                 text: section
                 font.capitalization: Font.AllUppercase
-                font.pixelSize: size.dp(20)
-                color: "white"
+                font.pixelSize: Theme.fontSizeMedium
+                color: Theme.textColor
                 anchors{
                     left: parent.left
-                    leftMargin: size.dp(10)
+                    leftMargin: Theme.itemSpacingSmall
                     verticalCenter: parent.verticalCenter
                 }
             }
@@ -34,11 +34,11 @@ ListView {
             Rectangle{
                 id: line
                 height: 1
-                color: "white"
+                color: Theme.textColor
                 width: listView.width-sectionText.width-size.dp(30)
                 anchors{
                     left: sectionText.right
-                    leftMargin: size.dp(10)
+                    leftMargin: Theme.itemSpacingSmall
                     verticalCenter: sectionText.verticalCenter
                 }
             }
@@ -59,7 +59,7 @@ ListView {
             end: Qt.point(0, size.dp(30))
             gradient: Gradient {
                 GradientStop { position: 0.0; color: "transparent" }
-                GradientStop { position: 1.0; color: "black" }
+                GradientStop { position: 1.0; color: Theme.backgroundColor }
             }
 
         }
@@ -68,7 +68,7 @@ ListView {
     Rectangle{
         id: scrollerDecorator
         visible: (listView.showDecorator && listView.contentHeight > listView.height)
-        color: "#0091e5"
+        color: Theme.accentColor
 
         width: size.dp(5)
         height: listView.height*listView.height/listView.contentHeight
