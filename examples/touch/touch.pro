@@ -28,6 +28,9 @@ qml.files += \
 
 qml.path = /usr/share/glacier-components/content
 
+images.files = images/*.png
+images.path = /usr/share/glacier-components/images
+
 OTHER_FILES += \
     main.qml \
     content/AndroidDelegate.qml \
@@ -49,7 +52,7 @@ OTHER_FILES += \
 desktop.path = /usr/share/applications
 desktop.files = glacier-gallery.desktop
 
-INSTALLS += desktop target qml mainqml
+INSTALLS += desktop target qml mainqml images
 
 SOURCES += \
     src/main.cpp
