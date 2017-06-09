@@ -83,7 +83,7 @@ Item {
         anchors.right: parent.right
         anchors.rightMargin: 20
         anchors.verticalCenter: parent.verticalCenter
-        source: "../images/navigation_next_item.png"
+        source: "/usr/share/glacier-components/images/navigation_next_item.png"
     }
 
     MouseArea {

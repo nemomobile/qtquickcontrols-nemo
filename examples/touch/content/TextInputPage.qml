@@ -110,7 +110,7 @@ Page {
                 implicitHeight: size.dp(50)
                 implicitWidth: size.dp(320)
                 BorderImage {
-                    source: "../images/textinput.png"
+                    source: "/usr/share/glacier-components/images/textinput.png"
                     border.left: size.dp(8)
                     border.right: size.dp(8)
                     anchors.bottom: parent.bottom

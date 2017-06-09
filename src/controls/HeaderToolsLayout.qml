@@ -40,7 +40,7 @@ Item {
 
         Image {
             anchors.centerIn: parent
-            source: "../Styles/Nemo/images/icon-triangle-left.png"
+            source: "/usr/lib/qt5/qml/QtQuick/Controls/Styles/Nemo/images/icon-triangle-left.png"
         }
 
         MouseArea {
@@ -114,7 +114,7 @@ Item {
             verticalCenter: parent.verticalCenter
         }
         visible: drawerLevels && drawerLevels.length > 1
-        source: "../Styles/Nemo/images/dots-vertical.png"
+        source: "/usr/lib/qt5/qml/QtQuick/Controls/Styles/Nemo/images/dots-vertical.png"
         rotation: isUiPortrait ? 0 : 90
     }
 }

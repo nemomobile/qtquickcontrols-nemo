@@ -79,7 +79,7 @@ Page {
                     anchors.fill: parent
                     border.bottom: size.dp(8)
                     border.top: size.dp(8)
-                    source: styleData.selected ? "../images/tab_selected.png":"../images/tabs_standard.png"
+                    source: styleData.selected ? "/usr/share/glacier-components/images/tab_selected.png":"/usr/share/glacier-components/images/tabs_standard.png"
                     Text {
                         anchors.centerIn: parent
                         color: "white"
