@@ -116,6 +116,10 @@ ApplicationWindow {
             title: "Query Dialog"
             page: "content/QueryDialogPage.qml"
         }
+        ListElement {
+            title: "Icons"
+            page: "content/IconPage.qml"
+        }
     }
 
 
