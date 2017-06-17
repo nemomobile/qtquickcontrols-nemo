@@ -30,3 +30,8 @@ QImage NemoImageProvider::requestImage(const QString &id, QSize *size, const QSi
     Q_UNUSED(requestedSize);
     return m_client->readImage(id);
 }
+QPixmap NemoImageProvider::requestPixmap(const QString &id, QSize *size, const QSize &requestedSize)
+{
+    Q_UNUSED(size);
+    return m_client->requestPixmap(id,requestedSize);
+}
