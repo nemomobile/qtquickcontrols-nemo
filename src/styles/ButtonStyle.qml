@@ -46,7 +46,7 @@ ButtonStyle {
         RadialGradient {
             x: control.pressX - width/2
             y: control.pressY - height/2
-            width: Theme.itemWidthMedium
+            width: Theme.itemWidthSmall
             height: width
             visible: control.pressed
 
