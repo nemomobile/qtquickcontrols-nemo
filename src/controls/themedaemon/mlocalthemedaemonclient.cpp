@@ -152,8 +152,6 @@ QPixmap MLocalThemeDaemonClient::requestPixmap(const QString &id, const QSize &r
 
     QStringList parts = id.split('?');
 
-    qDebug() << "ID requested: " << parts.at(0);
-
     QSize size = requestedSize;
     if (size.width() < 1) {
         size.rwidth() = 0;

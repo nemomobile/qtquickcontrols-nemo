@@ -55,7 +55,6 @@ Button {
 
     onPressedChanged: {
         if (pressed) {
-            console.log(highlightSource,_showPress,source)
             pressTimer.start()
         }
     }
