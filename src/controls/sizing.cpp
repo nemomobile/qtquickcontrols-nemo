@@ -105,3 +105,26 @@ float Sizing::dp(float value)
 {
     return value*m_dp_factor;
 }
+
+
+void Sizing::setMmScaleFactor(float value)
+{
+    if(value != 0)
+    {
+        qDebug() << "Set custom mm scale factor";
+
+        m_p_width = value;
+        setMmScaleFactor();
+    }
+}
+
+
+void Sizing::setDpScaleFactor(float value)
+{
+    if(value != 0)
+    {
+        qDebug() << "Set custom dp scale factor";
+
+        m_dp_factor = value;
+    }
+}
