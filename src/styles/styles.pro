@@ -27,6 +27,7 @@ QML_FILES = \
     TextFieldStyle.qml \
     ToolBarStyle.qml \
     ToolButtonStyle.qml \
+    IconButtonStyle.qml
 
 # Images
 QML_FILES += \

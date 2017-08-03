@@ -48,9 +48,9 @@ MLocalThemeDaemonClient::MLocalThemeDaemonClient(const QString &testPath, QObjec
     MAbstractThemeDaemonClient(parent),
     m_pixmapCache(),
     m_imageDirNodes()
-#ifdef HAVE_MLITE
-    , themeItem("/meegotouch/theme/name")
-#endif
+  #ifdef HAVE_MLITE
+  , themeItem("/meegotouch/theme/name")
+  #endif
 {
     QStringList themeRoots;
     QString themeRoot = testPath;
@@ -111,6 +111,7 @@ MLocalThemeDaemonClient::MLocalThemeDaemonClient(const QString &testPath, QObjec
             inheritanceChain.insert(nextTheme);
             // the paths should be stored in reverse order than in the inheritance chain
             themeRoots.prepend(themeRoot + QDir::separator() + nextTheme + QDir::separator() + QLatin1String("meegotouch"));
+            themeRoots.prepend(themeRoot + QDir::separator() + nextTheme + QDir::separator() + QLatin1String("fontawesome"));
 
             QString parentTheme = themeIndexFile.value("X-MeeGoTouch-Metatheme/X-Inherits", "").toString();
 
@@ -148,7 +149,8 @@ MLocalThemeDaemonClient::~MLocalThemeDaemonClient()
 QPixmap MLocalThemeDaemonClient::requestPixmap(const QString &id, const QSize &requestedSize)
 {
     QPixmap pixmap;
-    qDebug() << "ID requested: " << id;
+
+    QStringList parts = id.split('?');
 
     QSize size = requestedSize;
     if (size.width() < 1) {
@@ -158,20 +160,30 @@ QPixmap MLocalThemeDaemonClient::requestPixmap(const QString &id, const QSize &r
         size.rheight() = 0;
     }
 
-    const PixmapIdentifier pixmapId(id, size);
+    const PixmapIdentifier pixmapId(parts.at(0), size);
     pixmap = m_pixmapCache.value(pixmapId);
     if (pixmap.isNull()) {
         // The pixmap is not cached yet. Decode the image and
         // store it into the cache as pixmap.
-        const QImage image = readImage(id);
+        const QImage image = readImage(parts.at(0));
         if (!image.isNull()) {
             pixmap = QPixmap::fromImage(image);
-            if (requestedSize.isValid() && (pixmap.size() != requestedSize)) {
-                pixmap = pixmap.scaled(requestedSize);
+        }
+        if (parts.length() > 1)
+            if (parts.length() > 1 && QColor::isValidColor(parts.at(1)))
+            {
+                QPainter painter(&pixmap);
+                painter.setCompositionMode(QPainter::CompositionMode_SourceIn);
+                painter.fillRect(pixmap.rect(), parts.at(1));
+                painter.end();
             }
 
-            m_pixmapCache.insert(pixmapId, pixmap);
-        }
+        if (requestedSize.width() > 0 && requestedSize.height() > 0)
+            pixmap = pixmap.scaled(requestedSize.width(), requestedSize.height(), Qt::IgnoreAspectRatio);
+        else
+            pixmap = pixmap;
+
+        m_pixmapCache.insert(pixmapId, pixmap);
     }
     return pixmap;
 }
