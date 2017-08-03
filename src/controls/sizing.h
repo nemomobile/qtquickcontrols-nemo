@@ -37,6 +37,9 @@ public:
     Q_INVOKABLE float mm(float value);
     Q_INVOKABLE float dp(float value);
 
+    Q_INVOKABLE void setMmScaleFactor(float value);
+    Q_INVOKABLE void setDpScaleFactor(float value);
+
 private:
     bool m_valid;
 
