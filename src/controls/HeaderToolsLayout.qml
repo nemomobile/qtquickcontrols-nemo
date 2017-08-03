@@ -22,7 +22,8 @@ Item {
     property bool isUiPortrait: header && header.appWindow.isUiPortrait
 
     property bool showBackButton: false
-
+    property int toolMeasure: parent.width/10
+    height: toolMeasure
     Rectangle {
         id: backButton
         width: opacity ? size.dp(60) : 0
@@ -84,13 +85,12 @@ Item {
         anchors.rightMargin: size.dp(20)
         anchors.verticalCenter: parent.verticalCenter
         width: tools ? (size.dp(50) * Math.min(maxNumberOfToolButtons, tools.length)) : 0
-
         property int maxNumberOfToolButtons: 3
 
         RowLayout {
             id: toolsRow
             anchors.centerIn: parent
-
+            height: toolMeasure
             function assignRotationBindings() {
                 for (var i=0; i<children.length; ++i) {
                     children[i].rotation = Qt.binding(function() { return isUiPortrait ? 0 : 90 })
