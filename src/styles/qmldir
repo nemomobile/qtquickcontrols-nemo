@@ -20,3 +20,4 @@ SpinBoxStyle 1.0 SpinBoxStyle.qml
 TabViewStyle 1.0 TabViewStyle.qml
 TableViewStyle 1.0 TableViewStyle.qml
 TextFieldStyle 1.0 TextFieldStyle.qml
+IconButtonStyle 1.0 IconButtonStyle.qml

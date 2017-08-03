@@ -24,29 +24,15 @@ qml.files += \
     content/ButtonRowPage.qml \
     content/QueryDialogPage.qml \
     content/ListViewPage.qml \
-    content/SelectRollerPage.qml
+    content/SelectRollerPage.qml \
+    content/IconPage.qml
 
 qml.path = /usr/share/glacier-components/content
 
 images.files = images/*.png
 images.path = /usr/share/glacier-components/images
 
-OTHER_FILES += \
-    main.qml \
-    content/AndroidDelegate.qml \
-    content/ButtonPage.qml \
-    content/ProgressBarPage.qml \
-    content/SliderPage.qml \
-    content/TabBarPage.qml \
-    content/TextInputPage.qml \
-    content/LiveCoding.qml \
-    content/SpinnerPage.qml \
-    content/LabelPage.qml \
-    content/CheckboxPage.qml \
-    content/ButtonRowPage.qml \
-    content/QueryDialogPage.qml \
-    content/ListViewPage.qml \
-    content/SelectRollerPage.qml
+OTHER_FILES += $$qml.files
 
 
 desktop.path = /usr/share/applications

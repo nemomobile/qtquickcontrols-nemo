@@ -45,6 +45,8 @@
 #include <QHash>
 #include <QPixmap>
 #include <QString>
+#include <QPainter>
+#include <QColor>
 
 #ifdef HAVE_MLITE
 #include <mgconfitem.h>

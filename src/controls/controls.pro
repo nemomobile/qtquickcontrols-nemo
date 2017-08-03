@@ -22,7 +22,8 @@ QML_FILES += \
     ListViewItemWithActions.qml\
     GlacierRoller.qml \
     GlacierRollerItem.qml \
-    InverseMouseArea.qml
+    InverseMouseArea.qml \
+    IconButton.qml
 
 OTHER_FILES += qmldir \
     $$QML_FILES
