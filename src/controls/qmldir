@@ -23,6 +23,7 @@ ListView 1.0 ListView.qml
 ListViewItemWithActions 1.0 ListViewItemWithActions.qml
 GlacierRoller 1.0 GlacierRoller.qml
 GlacierRollerItem 1.0 GlacierRollerItem.qml
+InverseMouseArea 1.0 InverseMouseArea.qml
 IconButton 1.0 IconButton.qml
 
 # MIRRORED CONTROLS: 

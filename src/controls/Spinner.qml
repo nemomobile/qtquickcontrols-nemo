@@ -35,6 +35,17 @@ import QtQuick.Controls.Nemo 1.0
 Item {
     id: container
 
+    function stop() {
+        if(state=="enabled") {
+            state=""
+        }
+    }
+    function start() {
+        if(state!="enabled") {
+            state="enabled"
+        }
+    }
+
     states: [
         State { name: "enabled"; when: enabled }
     ]
@@ -49,7 +60,7 @@ Item {
                     targets: [circle0, circle1, circle2, circle3]
                     property: "opacity"
                     to: 1
-                    duration: 1500
+                    duration: 700
                 }
                 PropertyAction { target: animations; property: "running"; value: true }
             }
@@ -64,13 +75,13 @@ Item {
                     targets: [circle0, circle1, circle2, circle3]
                     property: "color";
                     to: Theme.backgroundAccentColor
-                    duration: 500
+                    duration: 400
                 }
                 NumberAnimation {
                     targets: [circle0, circle1, circle2, circle3]
                     property: "opacity"
                     to: 0
-                    duration: 1500
+                    duration: 700
                 }
             }
         }
@@ -140,13 +151,13 @@ Item {
                 target: circle0
                 property: "color"
                 to: Theme.accentColor
-                duration: 500
+                duration: 400
             }
             PropertyAnimation {
                 target: circle3
                 property: "color"
                 to: Theme.backgroundAccentColor
-                duration: 500
+                duration: 400
             }
         }
 
@@ -155,13 +166,13 @@ Item {
                 target: circle1
                 property: "color"
                 to: Theme.accentColor
-                duration: 500
+                duration: 400
             }
             PropertyAnimation {
                 target: circle0
                 property: "color"
                 to: Theme.backgroundAccentColor
-                duration: 500
+                duration: 400
             }
         }
 
@@ -170,13 +181,13 @@ Item {
                 target: circle2
                 property: "color"
                 to: Theme.accentColor
-                duration: 500
+                duration: 400
             }
             PropertyAnimation {
                 target: circle1
                 property: "color"
                 to: Theme.backgroundAccentColor
-                duration: 500
+                duration: 400
             }
         }
 
@@ -185,13 +196,13 @@ Item {
                 target: circle3
                 property: "color"
                 to: Theme.accentColor
-                duration: 500
+                duration: 400
             }
             PropertyAnimation {
                 target: circle2
                 property: "color"
                 to: Theme.backgroundAccentColor
-                duration: 500
+                duration: 400
             }
         }
     }
