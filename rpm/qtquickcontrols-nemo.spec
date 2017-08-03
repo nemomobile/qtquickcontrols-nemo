@@ -1,6 +1,6 @@
 Name:       qt5-qtquickcontrols-nemo
 Summary:    Nemomobile Qt Quick Controls 
-Version:    5.3.0
+Version:    5.3.1
 Release:    nemo1
 Group:      Qt/Qt
 License:    LGPLv2.1 with exception or GPLv3
