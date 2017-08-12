@@ -10,6 +10,7 @@ Theme::Theme(QObject *parent) : QObject(parent)
 {
     Sizing *size = new Sizing;
     m_dp = size->getDpScaleFactor();
+    m_iconSizeLauncher = size->getLauncherIconSize();
     //Load defaults
     m_itemWidthLarge = 320*m_dp;
     m_itemWidthMedium = 240*m_dp;
@@ -66,6 +67,14 @@ bool Theme::loadTheme(QString fileName)
 
     QJsonDocument t = QJsonDocument::fromJson(themeJsonString.toUtf8());
     QJsonObject theme = t.object();
+
+    if(theme.value("iconSizeLauncher").toString().toFloat() != 0 &&
+            theme.value("iconSizeLauncher").toString().toFloat() != m_iconSizeLauncher)
+    {
+        m_iconSizeLauncher = theme.value("iconSizeLauncher").toString().toFloat();
+        emit iconSizeLauncherChanged();
+        updated = true;
+    }
 
     if(theme.value("itemWidthLarge").toString().toFloat() != 0 &&
             theme.value("itemWidthLarge").toString().toFloat() != m_itemWidthLarge)
