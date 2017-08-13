@@ -130,6 +130,7 @@ CheckBoxStyle {
     }
     label: Label {
         text: control.text
+        font.pixelSize:control.fontSize
     }
     spacing: 10
 }

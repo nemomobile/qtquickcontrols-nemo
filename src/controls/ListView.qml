@@ -9,6 +9,9 @@ ListView {
     signal hideAllActions(int hideIndex)
 
     property bool showDecorator: false
+    property color delegateColor: Theme.backgroundColor
+    property color bottomGradientColor: Theme.backgroundColor
+    property color scrollerDecoratorColor: Theme.accentColor
 
     section.criteria: ViewSection.FullString
     section.delegate: Component{
@@ -16,13 +19,13 @@ ListView {
         Rectangle {
             width: listView.width
             height: size.dp(44)
-            color: Theme.backgroundColor
+            color: delegateColor
 
             Text {
                 id: sectionText
                 text: section
                 font.capitalization: Font.AllUppercase
-                font.pixelSize: Theme.fontSizeMedium
+                font.pixelSize: Theme.fontSizeSmall
                 color: Theme.textColor
                 anchors{
                     left: parent.left
@@ -59,7 +62,7 @@ ListView {
             end: Qt.point(0, size.dp(30))
             gradient: Gradient {
                 GradientStop { position: 0.0; color: "transparent" }
-                GradientStop { position: 1.0; color: Theme.backgroundColor }
+                GradientStop { position: 1.0; color: bottomGradientColor }
             }
 
         }
@@ -68,7 +71,7 @@ ListView {
     Rectangle{
         id: scrollerDecorator
         visible: (listView.showDecorator && listView.contentHeight > listView.height)
-        color: Theme.accentColor
+        color: scrollerDecoratorColor
 
         width: size.dp(5)
         height: listView.height*listView.height/listView.contentHeight

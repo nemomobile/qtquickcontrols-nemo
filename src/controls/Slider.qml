@@ -7,6 +7,7 @@ import QtQuick.Controls.Styles.Nemo 1.0
 Slider {
     id: slider
     property bool showValue: false
+    property int valueFontSize: Theme.fontSizeTiny
 
     style: SliderStyle{}
 }

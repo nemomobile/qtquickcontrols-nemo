@@ -29,11 +29,11 @@ Theme::Theme(QObject *parent) : QObject(parent)
     m_itemSpacingSmall = 10*m_dp;
     m_itemSpacingExtraSmall = 8*m_dp;
 
-    m_fontSizeExtraLarge = 30*m_dp;
-    m_fontSizeLarge = 24*m_dp;
-    m_fontSizeMedium = 20*m_dp;
-    m_fontSizeSmall = 18*m_dp;
-    m_fontSizeTiny = 16*m_dp;
+    m_fontSizeExtraLarge = 50*m_dp;
+    m_fontSizeLarge = 40*m_dp;
+    m_fontSizeMedium = 32*m_dp;
+    m_fontSizeSmall = 26*m_dp;
+    m_fontSizeTiny = 18*m_dp;
     m_fontWeightLarge = 63*m_dp;
     m_fontWeightMedium = 25*m_dp;
     m_fontFamily = "/usr/share/fonts/google-opensans/OpenSans-Regular.ttf";
