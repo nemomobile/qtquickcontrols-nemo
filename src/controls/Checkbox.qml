@@ -3,5 +3,6 @@ import QtQuick.Controls 1.0
 import QtQuick.Controls.Styles.Nemo 1.0
 
 CheckBox {
+    property int fontSize: Theme.fontSizeSmall
     style: CheckBoxStyle{}
 }

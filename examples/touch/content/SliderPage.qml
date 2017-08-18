@@ -60,6 +60,10 @@ Page {
             anchors.margins: 20
             showValue: true
             value: 0.5
+            minimumValue: 1
+            maximumValue: 100
+            stepSize: 1
+
         }
         Slider {
             anchors.margins: 20

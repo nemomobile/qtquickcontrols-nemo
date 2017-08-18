@@ -73,7 +73,7 @@ ButtonStyle {
         text: control.text
         color: Theme.textColor
         font.family: Theme.fontFamily
-        font.pointSize: Theme.fontSizeLarge
+        font.pixelSize: Theme.fontSizeMedium
         font.weight: control.primary ? Theme.fontWeightLarge : Theme.fontWeightMedium
         opacity: control.enabled ? 1.0 : 0.3
     }

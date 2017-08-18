@@ -37,9 +37,10 @@ SliderStyle{
         Text{
             id: valueLabel
             anchors.centerIn: parent
-            text: parseInt(control.value*100)
+            text: parseInt(control.value)
             visible: control.showValue
             color: Theme.textColor
+            font.pixelSize: control.valueFontSize
         }
     }
 

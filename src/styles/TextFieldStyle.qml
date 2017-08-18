@@ -25,8 +25,9 @@ TextFieldStyle {
     selectedTextColor: Theme.textColor
     selectionColor: Theme.accentColor
     textColor: Theme.textColor
-    font.pointSize: Theme.fontSizeTiny
+    font.pixelSize: Theme.fontSizeMedium
     font.family: Theme.fontFamily
+    placeholderTextColor: Theme.textColor
 
     background: Item {
         anchors{

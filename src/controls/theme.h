@@ -147,11 +147,11 @@ private:
     qreal m_itemSpacingSmall;       //10
     qreal m_itemSpacingExtraSmall;         //8
 
-    int m_fontSizeExtraLarge;     //30
-    int m_fontSizeLarge;          //24
-    int m_fontSizeMedium;         //20
-    int m_fontSizeSmall;          //18
-    int m_fontSizeTiny;           //16
+    int m_fontSizeExtraLarge;     //50
+    int m_fontSizeLarge;           //40
+    int m_fontSizeMedium;      //32
+    int m_fontSizeSmall;          //26
+    int m_fontSizeTiny;           //18
     int m_fontWeightLarge;        //63
     int m_fontWeightMedium;       //25
     QString m_fontFamily;         //???
