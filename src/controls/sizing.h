@@ -32,6 +32,8 @@ public:
     float getMmScaleFactor(){return m_mm_factor;}
     float getDpScaleFactor(){return m_dp_factor;}
 
+    int getLauncherIconSize(){return m_launcher_icon_size;}
+
     Densitie getDensitie();
 
     Q_INVOKABLE float mm(float value);
@@ -48,6 +50,8 @@ private:
 
     int m_width;
     int m_height;
+
+    int m_launcher_icon_size;
 
     float m_mm_factor;
     float m_dp_factor;

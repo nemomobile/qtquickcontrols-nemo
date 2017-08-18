@@ -22,6 +22,30 @@ Sizing::Sizing(QObject *parent) : QObject(parent)
 
     m_dpi = screen->physicalDotsPerInch();
 
+    int largerSide;
+
+     qDebug() << "Height: " << m_height << "Width: " << m_width;
+
+     if(m_height > m_width) {
+         largerSide = m_width;
+     } else {
+         largerSide = m_height;
+     }
+      
+     if(largerSide > 2160){
+         //>2160
+         m_launcher_icon_size = 256;
+     }else if (largerSide > 1080){
+         //1081-2160
+         m_launcher_icon_size = 128;
+     }else if(largerSide > 720){
+         //721-1080
+         m_launcher_icon_size = 108;
+     }else {
+         //>720
+        m_launcher_icon_size = 86;
+     }
+
     qDebug() << "DPI is " << m_dpi;
 
     if(m_dpi < 140){
