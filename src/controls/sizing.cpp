@@ -11,40 +11,39 @@ Sizing::Sizing(QObject *parent) : QObject(parent)
     m_dp_factor = 1;
 
     m_densitie = mdpi;
+    qreal refHeight =  854.; //N9
+    qreal refWidth = 480.; //N9
+    qreal refDpi = 251; //N9
 
     m_p_height = qgetenv("QT_QPA_EGLFS_PHYSICAL_HEIGHT").toInt();
     m_p_width = qgetenv("QT_QPA_EGLFS_PHYSICAL_WIDTH").toInt();
 
     QScreen *screen = QGuiApplication::primaryScreen();
 
-    m_height = screen->size().height();
-    m_width = screen->size().width();
+
+    m_height = qMax(screen->size().width(), screen->size().height());
+    m_width = qMin(screen->size().width(), screen->size().height());
 
     m_dpi = screen->physicalDotsPerInch();
 
-    int largerSide;
+    m_scaleRatio = qMin(m_height/refHeight, m_width/refWidth);
+    m_fontRatio = floor(m_scaleRatio*10) /10; //qMin(m_height*refDpi/(m_dpi*refHeight), m_width*refDpi/(m_dpi*refWidth))*10)/10;
+    qDebug() << "Height: " << m_height << "Width: " << m_width;
+    qDebug() << "Scale ratio: " << m_scaleRatio << " Font: " << m_fontRatio;
 
-     qDebug() << "Height: " << m_height << "Width: " << m_width;
-
-     if(m_height > m_width) {
-         largerSide = m_width;
-     } else {
-         largerSide = m_height;
-     }
-      
-     if(largerSide > 2160){
-         //>2160
-         m_launcher_icon_size = 256;
-     }else if (largerSide > 1080){
-         //1081-2160
-         m_launcher_icon_size = 128;
-     }else if(largerSide > 720){
-         //721-1080
-         m_launcher_icon_size = 108;
-     }else {
-         //>720
+    if(m_width >= 2160){
+        //>2160
+        m_launcher_icon_size = 256;
+    }else if (m_width >= 1080){
+        //1080-2159
+        m_launcher_icon_size = 128;
+    }else if(m_width >= 720){
+        //720-1079
+        m_launcher_icon_size = 108;
+    }else {
+        //>720
         m_launcher_icon_size = 86;
-     }
+    }
 
     qDebug() << "DPI is " << m_dpi;
 
@@ -130,6 +129,11 @@ float Sizing::dp(float value)
     return value*m_dp_factor;
 }
 
+float Sizing::ratio(float value)
+{
+    return floor(value*m_scaleRatio);
+}
+
 
 void Sizing::setMmScaleFactor(float value)
 {
@@ -151,4 +155,16 @@ void Sizing::setDpScaleFactor(float value)
 
         m_dp_factor = value;
     }
+}
+
+void Sizing::setScaleRatio(qreal scaleRatio)
+{
+    if(scaleRatio != 0)
+        m_scaleRatio = scaleRatio;
+}
+
+void Sizing::setFontRatio(qreal fontRatio)
+{
+    if(fontRatio !=0 )
+        m_fontRatio = fontRatio;
 }

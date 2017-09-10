@@ -31,6 +31,9 @@ public:
 
     float getMmScaleFactor(){return m_mm_factor;}
     float getDpScaleFactor(){return m_dp_factor;}
+    qreal getScaleRatio(){return m_scaleRatio;}
+    qreal getFontRatio(){return m_fontRatio;}
+
 
     int getLauncherIconSize(){return m_launcher_icon_size;}
 
@@ -38,9 +41,14 @@ public:
 
     Q_INVOKABLE float mm(float value);
     Q_INVOKABLE float dp(float value);
+    Q_INVOKABLE float ratio(float value);
 
     Q_INVOKABLE void setMmScaleFactor(float value);
     Q_INVOKABLE void setDpScaleFactor(float value);
+
+    Q_INVOKABLE void setScaleRatio(qreal scaleRatio);
+
+    void setFontRatio(qreal fontRatio);
 
 private:
     bool m_valid;
@@ -50,6 +58,8 @@ private:
 
     int m_width;
     int m_height;
+    qreal m_scaleRatio;
+    qreal m_fontRatio;
 
     int m_launcher_icon_size;
 

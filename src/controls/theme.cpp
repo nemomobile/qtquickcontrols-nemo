@@ -11,30 +11,33 @@ Theme::Theme(QObject *parent) : QObject(parent)
     Sizing *size = new Sizing;
     m_dp = size->getDpScaleFactor();
     m_iconSizeLauncher = size->getLauncherIconSize();
+    m_scaleRatio = size->getScaleRatio();
+    m_fontRatio = size->getFontRatio();
     //Load defaults
-    m_itemWidthLarge = 320*m_dp;
-    m_itemWidthMedium = 240*m_dp;
-    m_itemWidthSmall = 120*m_dp;
-    m_itemWidthExtraSmall = 72*m_dp;
+    m_itemWidthLarge = floor(320*m_scaleRatio);
+    m_itemWidthMedium = floor(240*m_scaleRatio);
+    m_itemWidthSmall = floor(120*m_scaleRatio);
+    m_itemWidthExtraSmall = floor(72*m_scaleRatio);
 
-    m_itemHeightHuge = 80*m_dp;
-    m_itemHeightExtraLarge = 75*m_dp;
-    m_itemHeightLarge = 63*m_dp;
-    m_itemHeightMedium = 50*m_dp;
-    m_itemHeightSmall = 40*m_dp;
-    m_itemHeightExtraSmall = 32*m_dp;
+    m_itemHeightHuge = floor(80*m_scaleRatio);
+    m_itemHeightExtraLarge = floor(75*m_scaleRatio);
+    m_itemHeightLarge = floor(63*m_scaleRatio);
+    m_itemHeightMedium = floor(50*m_scaleRatio);
+    m_itemHeightSmall = floor(40*m_scaleRatio);
+    m_itemHeightExtraSmall = floor(32*m_scaleRatio);
 
-    m_itemSpacingHuge = 40*m_dp;
-    m_itemSpacingLarge = 20*m_dp;
-    m_itemSpacingMedium = 15*m_dp;
-    m_itemSpacingSmall = 10*m_dp;
-    m_itemSpacingExtraSmall = 8*m_dp;
+    m_itemSpacingHuge = floor(40*m_scaleRatio);
+    m_itemSpacingLarge = floor(20*m_scaleRatio);
+    m_itemSpacingMedium = floor(15*m_scaleRatio);
+    m_itemSpacingSmall = floor(10*m_scaleRatio);
+    m_itemSpacingExtraSmall = floor(8*m_scaleRatio);
 
-    m_fontSizeExtraLarge = 50*m_dp;
-    m_fontSizeLarge = 40*m_dp;
-    m_fontSizeMedium = 32*m_dp;
-    m_fontSizeSmall = 26*m_dp;
-    m_fontSizeTiny = 18*m_dp;
+
+    m_fontSizeExtraLarge = floor(44*m_fontRatio);
+    m_fontSizeLarge = floor(35*m_fontRatio);
+    m_fontSizeMedium = floor(28*m_fontRatio);
+    m_fontSizeSmall = floor(24*m_fontRatio);
+    m_fontSizeTiny = floor(16*m_fontRatio);
     m_fontWeightLarge = 63*m_dp;
     m_fontWeightMedium = 25*m_dp;
     m_fontFamily = "/usr/share/fonts/google-opensans/OpenSans-Regular.ttf";
@@ -77,146 +80,146 @@ bool Theme::loadTheme(QString fileName)
     }
 
     if(theme.value("itemWidthLarge").toString().toFloat() != 0 &&
-            theme.value("itemWidthLarge").toString().toFloat() != m_itemWidthLarge)
+           floor(theme.value("itemWidthLarge").toString().toFloat()) != m_itemWidthLarge)
     {
-        m_itemWidthLarge = theme.value("itemWidthLarge").toString().toFloat()*m_dp;
+        m_itemWidthLarge = floor(theme.value("itemWidthLarge").toString().toFloat()*m_scaleRatio);
         emit itemWidthLargeChanged();
         updated = true;
     }
     if(theme.value("itemWidthMedium").toString().toFloat() != 0 &&
-            theme.value("itemWidthMedium").toString().toFloat() != m_itemWidthMedium)
+           floor(theme.value("itemWidthMedium").toString().toFloat()) != m_itemWidthMedium)
     {
-        m_itemWidthMedium = theme.value("itemWidthMedium").toString().toFloat()*m_dp;
+        m_itemWidthMedium = floor(theme.value("itemWidthMedium").toString().toFloat()*m_scaleRatio);
         emit itemWidthMediumChanged();
         updated = true;
     }
     if(theme.value("itemWidthSmall").toString().toFloat() != 0 &&
-            theme.value("itemWidthSmall").toString().toFloat() != m_itemWidthSmall)
+           floor(theme.value("itemWidthSmall").toString().toFloat()) != m_itemWidthSmall)
     {
-        m_itemWidthSmall = theme.value("itemWidthSmall").toString().toFloat()*m_dp;
+        m_itemWidthSmall = floor(theme.value("itemWidthSmall").toString().toFloat()*m_scaleRatio);
         emit itemWidthSmallChanged();
         updated = true;
     }
     if(theme.value("itemWidthExtraSmall").toString().toFloat() != 0 &&
-            theme.value("itemWidthExtraSmall").toString().toFloat() != m_itemWidthExtraSmall)
+           floor(theme.value("itemWidthExtraSmall").toString().toFloat()) != m_itemWidthExtraSmall)
     {
-        m_itemWidthExtraSmall = theme.value("itemWidthExtraSmall").toString().toFloat()*m_dp;
+        m_itemWidthExtraSmall = floor(theme.value("itemWidthExtraSmall").toString().toFloat()*m_scaleRatio);
         emit itemWidthExtraSmallChanged();
         updated = true;
     }
 
     if(theme.value("itemHeightHuge").toString().toFloat() != 0 &&
-            theme.value("itemHeightHuge").toString().toFloat() != m_itemHeightHuge)
+           floor(theme.value("itemHeightHuge").toString().toFloat()) != m_itemHeightHuge)
     {
-        m_itemHeightHuge = theme.value("itemHeightHuge").toString().toFloat()*m_dp;
+        m_itemHeightHuge = floor(theme.value("itemHeightHuge").toString().toFloat()*m_scaleRatio);
         emit itemHeightHugeChanged();
         updated = true;
     }
     if(theme.value("itemHeightExtraLarge").toString().toFloat() != 0 &&
-            theme.value("itemHeightExtraLarge").toString().toFloat() != m_itemHeightExtraLarge)
+           floor(theme.value("itemHeightExtraLarge").toString().toFloat()) != m_itemHeightExtraLarge)
     {
-        m_itemHeightExtraLarge = theme.value("itemHeightExtraLarge").toString().toFloat()*m_dp;
+        m_itemHeightExtraLarge = floor(theme.value("itemHeightExtraLarge").toString().toFloat()*m_scaleRatio);
         emit itemHeightExtraLargeChanged();
         updated = true;
     }
     if(theme.value("itemHeightLarge").toString().toFloat() != 0 &&
-            theme.value("itemHeightLarge").toString().toFloat() != m_itemHeightLarge)
+           floor(theme.value("itemHeightLarge").toString().toFloat()) != m_itemHeightLarge)
     {
-        m_itemHeightLarge = theme.value("itemHeightLarge").toString().toFloat()*m_dp;
+        m_itemHeightLarge = floor(theme.value("itemHeightLarge").toString().toFloat()*m_scaleRatio);
         emit itemHeightLargeChanged();
         updated = true;
     }
     if(theme.value("itemHeightMedium").toString().toFloat() != 0 &&
-            theme.value("itemHeightMedium").toString().toFloat() != m_itemHeightMedium)
+           floor(theme.value("itemHeightMedium").toString().toFloat()) != m_itemHeightMedium)
     {
-        m_itemHeightMedium = theme.value("itemHeightMedium").toString().toFloat()*m_dp;
+        m_itemHeightMedium = floor(theme.value("itemHeightMedium").toString().toFloat()*m_scaleRatio);
         emit itemHeightMediumChanged();
         updated = true;
     }
     if(theme.value("itemHeightSmall").toString().toFloat() != 0 &&
-            theme.value("itemHeightSmall").toString().toFloat() != m_itemHeightSmall)
+           floor(theme.value("itemHeightSmall").toString().toFloat()) != m_itemHeightSmall)
     {
-        m_itemHeightSmall = theme.value("itemHeightSmall").toString().toFloat()*m_dp;
+        m_itemHeightSmall = floor(theme.value("itemHeightSmall").toString().toFloat()*m_scaleRatio);
         emit itemHeightSmallChanged();
         updated = true;
     }
     if(theme.value("itemHeightExtraSmall").toString().toFloat() != 0 &&
-            theme.value("itemHeightExtraSmall").toString().toFloat() != m_itemHeightExtraSmall)
+           floor(theme.value("itemHeightExtraSmall").toString().toFloat()) != m_itemHeightExtraSmall)
     {
-        m_itemHeightExtraSmall = theme.value("itemHeightExtraSmall").toString().toFloat()*m_dp;
+        m_itemHeightExtraSmall = floor(theme.value("itemHeightExtraSmall").toString().toFloat()*m_scaleRatio);
         emit itemHeightExtraSmallChanged();
         updated = true;
     }
 
 
     if(theme.value("itemSpacingHuge").toString().toFloat() != 0 &&
-            theme.value("itemSpacingHuge").toString().toFloat() != m_itemSpacingHuge)
+           floor(theme.value("itemSpacingHuge").toString().toFloat()) != m_itemSpacingHuge)
     {
-        m_itemSpacingHuge = theme.value("itemSpacingHuge").toString().toFloat()*m_dp;
+        m_itemSpacingHuge = floor(theme.value("itemSpacingHuge").toString().toFloat()*m_scaleRatio);
         emit itemSpacingHugeChanged();
         updated = true;
     }
     if(theme.value("itemSpacingLarge").toString().toFloat() != 0 &&
-            theme.value("itemSpacingLarge").toString().toFloat() != m_itemSpacingLarge)
+           floor(theme.value("itemSpacingLarge").toString().toFloat()) != m_itemSpacingLarge)
     {
-        m_itemSpacingLarge = theme.value("itemSpacingLarge").toString().toFloat()*m_dp;
+        m_itemSpacingLarge = floor(theme.value("itemSpacingLarge").toString().toFloat()*m_scaleRatio);
         emit itemSpacingLargeChanged();
         updated = true;
     }
     if(theme.value("itemSpacingMedium").toString().toFloat() != 0 &&
-            theme.value("itemSpacingMedium").toString().toFloat() != m_itemSpacingMedium)
+           floor(theme.value("itemSpacingMedium").toString().toFloat()) != m_itemSpacingMedium)
     {
-        m_itemSpacingMedium = theme.value("itemSpacingMedium").toString().toFloat()*m_dp;
+        m_itemSpacingMedium = floor(theme.value("itemSpacingMedium").toString().toFloat()*m_scaleRatio);
         emit itemSpacingMediumChanged();
         updated = true;
     }
     if(theme.value("itemSpacingSmall").toString().toFloat() != 0 &&
-            theme.value("itemSpacingSmall").toString().toFloat() != m_itemSpacingSmall)
+           floor(theme.value("itemSpacingSmall").toString().toFloat()) != m_itemSpacingSmall)
     {
-        m_itemSpacingSmall = theme.value("itemSpacingSmall").toString().toFloat()*m_dp;
+        m_itemSpacingSmall = floor(theme.value("itemSpacingSmall").toString().toFloat()*m_scaleRatio);
         emit itemSpacingSmallChanged();
         updated = true;
     }
     if(theme.value("itemSpacingExtraSmall").toString().toFloat() != 0 &&
-            theme.value("itemSpacingExtraSmall").toString().toFloat() != m_itemSpacingExtraSmall)
+           floor(theme.value("itemSpacingExtraSmall").toString().toFloat()) != m_itemSpacingExtraSmall)
     {
-        m_itemSpacingExtraSmall = theme.value("itemSpacingExtraSmall").toString().toFloat()*m_dp;
+        m_itemSpacingExtraSmall = floor(theme.value("itemSpacingExtraSmall").toString().toFloat()*m_scaleRatio);
         emit itemSpacingExtraSmallChanged();
         updated = true;
     }
 
     if(theme.value("fontSizeExtraLarge").toInt() != 0 &&
-            theme.value("fontSizeExtraLarge").toInt() != m_fontSizeExtraLarge)
+           floor(theme.value("fontSizeExtraLarge").toInt()) != m_fontSizeExtraLarge)
     {
-        m_fontSizeExtraLarge = theme.value("itemSpacingExtraSmall").toInt()*m_dp;
+        m_fontSizeExtraLarge = floor(theme.value("fontSizeExtraLarge").toInt()*m_fontRatio);
         emit fontSizeExtraLargeChanged();
         updated = true;
     }
     if(theme.value("fontSizeLarge").toInt() != 0 &&
-            theme.value("fontSizeLarge").toInt() != m_fontSizeLarge)
+            floor(theme.value("fontSizeLarge").toInt()) != m_fontSizeLarge)
     {
-        m_fontSizeLarge = theme.value("fontSizeLarge").toInt()*m_dp;
+        m_fontSizeLarge = floor(theme.value("fontSizeLarge").toInt()*m_fontRatio);
         emit fontSizeLargeChanged();
         updated = true;
     }
     if(theme.value("fontSizeMedium").toInt() != 0 &&
-            theme.value("fontSizeMedium").toInt() != m_fontSizeMedium)
+            floor(theme.value("fontSizeMedium").toInt()) != m_fontSizeMedium)
     {
-        m_fontSizeMedium = theme.value("fontSizeMedium").toInt()*m_dp;
+        m_fontSizeMedium = floor(theme.value("fontSizeMedium").toInt()*m_fontRatio);
         emit fontSizeMediumChanged();
         updated = true;
     }
     if(theme.value("fontSizeSmall").toInt() != 0 &&
-            theme.value("fontSizeSmall").toInt() != m_fontSizeSmall)
+            floor(theme.value("fontSizeSmall").toInt()) != m_fontSizeSmall)
     {
-        m_fontSizeSmall = theme.value("fontSizeSmall").toInt()*m_dp;
+        m_fontSizeSmall = floor(theme.value("fontSizeSmall").toInt()*m_fontRatio);
         emit fontSizeSmallChanged();
         updated = true;
     }
     if(theme.value("fontSizeTiny").toInt() != 0 &&
-            theme.value("fontSizeTiny").toInt() != m_fontSizeTiny)
+            floor(theme.value("fontSizeTiny").toInt()) != m_fontSizeTiny)
     {
-        m_fontSizeTiny = theme.value("fontSizeTiny").toInt()*m_dp;
+        m_fontSizeTiny = floor(theme.value("fontSizeTiny").toInt()*m_fontRatio);
         emit fontSizeTinyChanged();
         updated = true;
     }
