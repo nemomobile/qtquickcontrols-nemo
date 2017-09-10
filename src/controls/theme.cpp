@@ -1,6 +1,6 @@
 #include "theme.h"
 #include "sizing.h"
-
+#include <math.h>
 #include <QFile>
 #include <QDebug>
 #include <QJsonDocument>

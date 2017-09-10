@@ -3,6 +3,7 @@
 #include <QScreen>
 #include <QDebug>
 #include <QGuiApplication>
+#include <math.h>
 
 Sizing::Sizing(QObject *parent) : QObject(parent)
 {

@@ -36,4 +36,5 @@ Text {
     font.family: Theme.fontFamily
     color: Theme.textColor
     font.pixelSize: Theme.fontSizeMedium
+    elide: horizontalAlignment == Text.AlignLeft ? Text.ElideRight : (horizontalAlignment == Text.AlignRight ? Text.ElideLeft : Text.ElideMiddle)
 }

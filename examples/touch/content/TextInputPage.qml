@@ -65,34 +65,34 @@ Page {
     headerTools: HeaderToolsLayout { showBackButton: true; title: "Text input" }
 
     Column {
-        spacing: size.dp(40)
+        spacing:Theme.itemSpacingHuge
         anchors.centerIn: parent
 
         TextField {
-            anchors.margins: size.dp(20)
+            anchors.margins: Theme.itemSpacingLarge
             text: "Text input"
         }
 
         TextField {
-            anchors.margins: size.dp(20)
+            anchors.margins: Theme.itemSpacingLarge
             text: "Readonly Text input"
             readOnly: true
         }
 
         TextField {
-            anchors.margins: size.dp(20)
+            anchors.margins: Theme.itemSpacingLarge
             text: "Disabled textfield"
             enabled: false
         }
 
         TextField {
-            anchors.margins: size.dp(20)
+            anchors.margins: Theme.itemSpacingLarge
             text: "Text input"
             style: touchStyle
         }
 
         TextField {
-            anchors.margins: size.dp(20)
+            anchors.margins: Theme.itemSpacingLarge
             text: "Readonly Text input"
             style: touchStyle
             readOnly: true
@@ -104,15 +104,15 @@ Page {
         id: touchStyle
 
         TextFieldStyle {
-            textColor: "white"
-            font.pixelSize: size.dp(28)
+            textColor: Theme.textColor
+            font.pixelSize: Theme.fontSizeMedium
             background: Item {
-                implicitHeight: size.dp(50)
-                implicitWidth: size.dp(320)
+                implicitHeight: Theme.itemHeightMedium
+                implicitWidth: Theme.itemWidthLarge
                 BorderImage {
                     source: "/usr/share/glacier-components/images/textinput.png"
-                    border.left: size.dp(8)
-                    border.right: size.dp(8)
+                    border.left: Theme.itemSpacingExtraSmall
+                    border.right: Theme.itemSpacingExtraSmall
                     anchors.bottom: parent.bottom
                     anchors.left: parent.left
                     anchors.right: parent.right

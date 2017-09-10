@@ -6,7 +6,7 @@ import QtQuick.Controls.Styles.Nemo 1.0
 Page {
     id: listViewPage
 
-    headerTools: HeaderToolsLayout { showBackButton: false; title: "MediumListView" }
+    headerTools: HeaderToolsLayout { showBackButton: true; title: "MediumListView" }
 
 
     ListModel {
@@ -36,6 +36,7 @@ Page {
         delegate: ListViewItemWithActions {
             label: name
             description: desc
+            showNext: false
         }
         section.property: "size"
     }

@@ -41,26 +41,29 @@ CheckBoxStyle {
             implicitHeight: Theme.itemHeightExtraSmall
 
             Rectangle {
-                id: back1
-                implicitWidth: Theme.itemWidthExtraSmall
-                implicitHeight: size.dp(28)
-                color: Theme.accentColor
-                anchors.centerIn: parent
-            }
-
-            Rectangle {
                 id: back2
                 implicitWidth: Theme.itemWidthExtraSmall
-                implicitHeight: size.dp(28)
+                implicitHeight: Theme.itemHeightExtraSmall - Theme.itemSpacingExtraSmall
                 color: Theme.fillDarkColor
                 anchors.centerIn: parent
+
+                Rectangle {
+                    id: back1
+                    implicitWidth: Theme.itemWidthExtraSmall
+                    implicitHeight: Theme.itemHeightExtraSmall - Theme.itemSpacingExtraSmall
+                    color: Theme.accentColor
+                    anchors.centerIn: parent
+                }
             }
 
 
             Image {
                 id: ball
-                width: size.dp(40)
+                width: Theme.itemHeightSmall
                 height: Theme.itemHeightExtraSmall
+                fillMode: Image.PreserveAspectFit
+                sourceSize.width: width
+                sourceSize.height: height
                 source: "images/switch-ball.png"
                 anchors.verticalCenter: parent.verticalCenter
             }
@@ -78,8 +81,7 @@ CheckBoxStyle {
 
             Component.onCompleted: {
                 back1.opacity = control.checked ? 1 : 0
-                back2.opacity = control.checked ? 0 : 1
-                ball.x = control.checked ? Theme.itemHeightExtraSmall : 0
+                ball.x = control.checked ? background.width - ball.width : 0
             }
 
             SequentialAnimation {
@@ -88,20 +90,14 @@ CheckBoxStyle {
                 NumberAnimation {
                     target: ball
                     property: "x"
-                    to: Theme.itemHeightExtraSmall
+                    to: background.width - ball.width
                     duration: 120
                 }
                 NumberAnimation {
                     target: back1
                     property: "opacity"
                     to: 1
-                    duration: 60
-                }
-                NumberAnimation {
-                    target: back2
-                    property: "opacity"
-                    to: 0
-                    duration: 60
+                    duration: 120
                 }
             }
 
@@ -115,16 +111,10 @@ CheckBoxStyle {
                     duration: 120
                 }
                 NumberAnimation {
-                    target: back2
-                    property: "opacity"
-                    to: 1
-                    duration: 60
-                }
-                NumberAnimation {
                     target: back1
                     property: "opacity"
                     to: 0
-                    duration: 60
+                    duration: 120
                 }
             }
     }
@@ -132,5 +122,5 @@ CheckBoxStyle {
         text: control.text
         font.pixelSize:control.fontSize
     }
-    spacing: 10
+    spacing: Theme.itemSpacingSmall
 }

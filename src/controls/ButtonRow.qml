@@ -52,10 +52,10 @@ Rectangle {
     Rectangle{
         id: selecter
         x: rowElement.children[main.currentIndex].x || 0
-        y: size.dp(-5)
+        anchors.verticalCenter: rowElement.verticalCenter
 
         width: rowElement.children[main.currentIndex].width || 0
-        height: Theme.itemHeightSmall
+        height: Theme.itemHeightMedium
         color: Theme.accentColor
 
         visible: main.currentIndex > -1
@@ -75,7 +75,7 @@ Rectangle {
             model: main.model
             delegate: Rectangle {
                 id: rowItem
-                height: size.dp(40)
+                height: Theme.itemHeightSmall
                 width: text.width+(text.width/name.length*2)
 
                 color: "transparent"
@@ -93,13 +93,14 @@ Rectangle {
                     id: text
                     text: name
                     height: parent.heigh
-
-                    anchors.horizontalCenter: parent.horizontalCenter
+                    elide:Text.ElideNone
+                    anchors.centerIn: parent
 
                     Component.onCompleted: {
                         width = paintedWidth
                     }
-                    font.bold: main.currentIndex == index
+                    font.weight: main.currentIndex == index ? Theme.fontWeightLarge : Theme.fontWeightMedium
+
                 }
             }
         }

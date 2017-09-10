@@ -20,6 +20,32 @@
 import QtQuick 2.6
 import QtQuick.Controls.Styles 1.0
 
-TabViewStyle { 
-
+TabViewStyle {
+    tabsAlignment: Qt.AlignVCenter
+    tabOverlap: 0
+    frame: Item { }
+    tab: Item {
+        implicitWidth: control.width/control.count
+        implicitHeight: Theme.itemHeightMedium
+        BorderImage {
+            anchors.fill: parent
+            border.bottom:Theme.itemSpacingExtraSmall
+            border.top: Theme.itemSpacingExtraSmall
+            source: styleData.selected ? "/usr/share/glacier-components/images/tab_selected.png":"/usr/share/glacier-components/images/tabs_standard.png"
+            Text {
+                anchors.centerIn: parent
+                color: Theme.textColor
+                text: styleData.title.toUpperCase()
+                font.pixelSize: Theme.fontSizeTiny
+            }
+            Rectangle {
+                visible: index > 0
+                anchors.top: parent.top
+                anchors.bottom: parent.bottom
+                anchors.margins: Theme.itemSpacingExtraSmall
+                width:1
+                color: Theme.fillDarkColor
+            }
+        }
+    }
 }

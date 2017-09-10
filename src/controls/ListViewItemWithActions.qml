@@ -6,7 +6,7 @@ import QtGraphicalEffects 1.0
 Item {
     id: root
     width: parent.width
-    height: size.dp(60)
+    height: Theme.itemHeightLarge
 
     property string label: ""
 
@@ -15,6 +15,7 @@ Item {
     property string icon: ""
 
     property bool showNext: true
+    property bool iconVisible: true
 
     property alias actions: actionsLoader.sourceComponent
 
@@ -65,36 +66,35 @@ Item {
 
         Image{
             id: itemIcon
-            height: parent.height-size.dp(10)
+            height: iconVisible ? parent.height-Theme.itemSpacingSmall : 0
             width: height
             anchors{
                 left: parent.left
                 leftMargin: Theme.itemSpacingLarge
-                top: parent.top
-                topMargin: size.dp(5)
+                verticalCenter:parent.verticalCenter
             }
 
             sourceSize.width: width
             sourceSize.height: height
-
-            source: (icon != "") ? icon : "images/listview-icon-template-s.svg"
+            visible: iconVisible
+            source: (icon != "") ? icon : iconVisible ? "images/listview-icon-template-s.svg" : ""
             fillMode: Image.PreserveAspectFit
         }
 
         Rectangle{
             id: dataArea
-            width: parent.width-itemIcon.width-arrowItem.width-size.dp(60)
+            width: parent.width-itemIcon.width-Theme.itemHeightLarge - (showNext ? arrowItem.width : 0)
             height: labelItem.height+(description != "" ? descriptionItem.height : 0)+(subdescription != "" ? subDescriptionItem.height : 0)
             clip: true
 
             anchors{
-                left:itemIcon.right
+                left: iconVisible ? itemIcon.right : parent.left
                 leftMargin: Theme.itemSpacingLarge
-                verticalCenter: itemIcon.verticalCenter
+                verticalCenter: iconVisible ? itemIcon.verticalCenter : parent.verticalCenter
             }
             color: "transparent"
 
-            Text {
+            Label {
                 id: labelItem
                 color: Theme.textColor
                 text: label
@@ -102,11 +102,11 @@ Item {
                     left: parent.left
                     right: parent.right
                 }
-                font.pixelSize: size.dp(30)
+                font.pixelSize: Theme.fontSizeMedium
                 clip: true
             }
 
-            Text{
+            Label {
                 id: descriptionItem
                 color: Theme.textColor
                 text: description
@@ -115,12 +115,12 @@ Item {
                     right: parent.right
                     top: labelItem.bottom
                 }
-                font.pixelSize: Theme.fontSizeSmall
+                font.pixelSize: Theme.fontSizeTiny
                 clip: true
                 visible: description != ""
             }
 
-            Text{
+            Label {
                 id: subDescriptionItem
                 color: Theme.textColor
                 text: subdescription
@@ -129,23 +129,23 @@ Item {
                     right: parent.right
                     top: descriptionItem.bottom
                 }
-                font.pixelSize: Theme.fontSizeSmall
+                font.pixelSize: Theme.fontSizeTiny
                 clip: true
                 visible: subdescription != ""
             }
 
             Item{
-                width: size.dp(15)
+                width: Theme.itemHeightExtraSmall / 2
                 height: parent.height
                 anchors{
                     top: parent.top
                     right: parent.right
                 }
-                visible: !mouse.pressed
+                visible: showNext ? !mouse.pressed : false
                 LinearGradient{
                     anchors.fill: parent
                     start: Qt.point(0, 0)
-                    end: Qt.point(size.dp(15), 0)
+                    end: Qt.point( Theme.itemHeightExtraSmall / 2, 0)
                     gradient: Gradient {
                         GradientStop { position: 0.0; color: "transparent" }
                         GradientStop { position: 1.0; color: "black" }
@@ -156,7 +156,7 @@ Item {
 
         Image {
             id: arrowItem
-            height: parent.height-size.dp(10)
+            height: parent.height- Theme.itemSpacingSmall
             width: height
 
             anchors{
