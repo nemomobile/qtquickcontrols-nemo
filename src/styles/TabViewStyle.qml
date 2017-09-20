@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2013 Andrea Bernabei <and.bernabei@gmail.com>
+ * Copyright (C) 2017 Chupligin Sergey <neochapay@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -18,7 +19,9 @@
  */
 
 import QtQuick 2.6
+import QtQuick.Controls.Nemo 1.0
 import QtQuick.Controls.Styles 1.0
+import QtQuick.Controls.Styles.Nemo 1.0
 
 TabViewStyle {
     tabsAlignment: Qt.AlignVCenter
@@ -31,10 +34,9 @@ TabViewStyle {
             anchors.fill: parent
             border.bottom:Theme.itemSpacingExtraSmall
             border.top: Theme.itemSpacingExtraSmall
-            source: styleData.selected ? "/usr/share/glacier-components/images/tab_selected.png":"/usr/share/glacier-components/images/tabs_standard.png"
             Text {
                 anchors.centerIn: parent
-                color: Theme.textColor
+                color: (styleData.selected) ? Theme.accentColor : Theme.textColor
                 text: styleData.title.toUpperCase()
                 font.pixelSize: Theme.fontSizeTiny
             }
@@ -43,8 +45,17 @@ TabViewStyle {
                 anchors.top: parent.top
                 anchors.bottom: parent.bottom
                 anchors.margins: Theme.itemSpacingExtraSmall
-                width:1
+                width: size.ratio(1)
                 color: Theme.fillDarkColor
+            }
+            Rectangle{
+                visible: styleData.selected
+                width: parent.width
+                height: size.ratio(1)
+                color: Theme.accentColor
+                anchors{
+                    bottom: parent.bottom
+                }
             }
         }
     }
