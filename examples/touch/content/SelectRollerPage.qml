@@ -10,11 +10,11 @@ Page {
     allowedOrientations: Qt.PortraitOrientation | Qt.LandscapeOrientation | Qt.InvertedLandscapeOrientation | Qt.InvertedPortraitOrientation
 
     Column {
-        spacing: 40
+        spacing: Theme.itemSpacingHuge
         width: parent.width
         anchors{
             top: parent.top
-            topMargin: 40
+            topMargin: Theme.itemSpacingHuge
         }
 
         ListModel {
@@ -46,9 +46,10 @@ Page {
             delegate: GlacierRollerItem{
                 Text{
                     height: simpleRoller.itemHeight
+                    verticalAlignment: Text.AlignVCenter
                     text: name
-                    color: "white"
-                    font.pixelSize: 32
+                    color: Theme.textColor
+                    font.pixelSize: Theme.fontSizeMedium
                     font.bold: (simpleRoller.activated && simpleRoller.currentIndex === index)
                 }
             }
@@ -65,9 +66,10 @@ Page {
             delegate: GlacierRollerItem{
                 Text{
                     height: simpleRoller2.itemHeight
+                    verticalAlignment: Text.AlignVCenter
                     text: name
-                    color: "white"
-                    font.pixelSize: 32
+                    color: Theme.textColor
+                    font.pixelSize: Theme.fontSizeMedium
                     font.bold: (simpleRoller2.activated && simpleRoller2.currentIndex === index)
                 }
             }

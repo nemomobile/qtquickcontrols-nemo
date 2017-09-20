@@ -14,21 +14,20 @@ Rectangle{
         width: childrenRect.width
         height: parent.height
         color: "transparent"
+        anchors.verticalCenter: glacierRollerItem.verticalCenter
     }
 
     Image{
         id: arrowDown
         source: "images/glacierroller-icon-arrow-down.svg"
-        width: glacierRollerItem.height/4
-        height: width
-
+        height: parent.height / 3
         sourceSize.width: width
         sourceSize.height: height
 
         visible: glacierRollerItem.parent.showRow
-
+        fillMode: Image.PreserveAspectFit
         anchors{
-            verticalCenter: dataLine.verticalCenter
+            verticalCenter: glacierRollerItem.verticalCenter
             left: dataLine.right
             leftMargin: width
         }
@@ -42,7 +41,7 @@ Rectangle{
     }
 
     MouseArea{
-        anchors.fill: dataLine
+        anchors.fill: parent
         onClicked: {
             if(!glacierRollerItem.parent.parent.activated)
             {

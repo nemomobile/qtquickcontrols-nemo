@@ -22,17 +22,17 @@ Item {
     property bool isUiPortrait: header && header.appWindow.isUiPortrait
 
     property bool showBackButton: false
-    property int toolMeasure: parent.width/10
+    property int toolMeasure: Theme.itemHeightSmall
     height: toolMeasure
     Rectangle {
         id: backButton
-        width: opacity ? size.dp(60) : 0
+        width: opacity ? Theme.itemHeightHuge : 0
         anchors.leftMargin: Theme.itemSpacingLarge
         //check if Stack.view has already been initialized as well
         anchors.verticalCenter: parent.verticalCenter
         antialiasing: true
         height: width
-        radius: size.dp(4)
+        radius: Theme.itemSpacingExtraSmall / 2
         color: backmouse.pressed ? "#222" : "transparent"
 
         rotation: isUiPortrait ? 0 : 90
@@ -41,6 +41,11 @@ Item {
 
         Image {
             anchors.centerIn: parent
+            height: toolMeasure
+            width: height
+            fillMode: Image.PreserveAspectFit
+            sourceSize.width: width
+            sourceSize.height: height
             source: "/usr/lib/qt5/qml/QtQuick/Controls/Styles/Nemo/images/icon-triangle-left.png"
         }
 
@@ -68,7 +73,7 @@ Item {
         font.weight: Font.Bold
         LinearGradient {
             anchors.right: parent.right
-            width: size.dp(50)
+            width: Theme.itemHeightMedium
             height: parent.paintedHeight
             visible: titleTxt.paintedWidth >  titleTxt.width
             start: Qt.point(0,0)
@@ -82,9 +87,9 @@ Item {
     Item {
         id: toolButtonsContainer
         anchors.right: dots.visible ? dots.left : parent.right
-        anchors.rightMargin: size.dp(20)
+        anchors.rightMargin: Theme.itemSpacingLarge
         anchors.verticalCenter: parent.verticalCenter
-        width: tools ? (size.dp(50) * Math.min(maxNumberOfToolButtons, tools.length)) : 0
+        width: tools ? (Theme.itemHeightMedium * Math.min(maxNumberOfToolButtons, tools.length)) : 0
         property int maxNumberOfToolButtons: 3
 
         RowLayout {
@@ -113,6 +118,9 @@ Item {
             rightMargin: Theme.itemSpacingLarge
             verticalCenter: parent.verticalCenter
         }
+        fillMode: Image.PreserveAspectFit
+        height: toolMeasure
+        sourceSize.height: height
         visible: drawerLevels && drawerLevels.length > 1
         source: "/usr/lib/qt5/qml/QtQuick/Controls/Styles/Nemo/images/dots-vertical.png"
         rotation: isUiPortrait ? 0 : 90

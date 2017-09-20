@@ -17,13 +17,12 @@ Item {
     width: parent.width
     height: childrenRect.height
 
-    Text{
+    Label{
         id: label
         visible: label.text != ""
-        font.capitalization: Font.AllUppercase
-        font.pixelSize: size.dp(14)
-        color: "white"
-
+        font.pixelSize: Theme.fontSizeSmall
+        color: Theme.textColor
+        width: parent.width - anchors.leftMargin
         anchors{
             top: parent.top
             left: parent.left
@@ -33,37 +32,37 @@ Item {
 
     Rectangle{
         id: topLine
-        width: view.width
-        height: 1
-        color: "white"
+        width: parent.width
+        height: size.ratio(1)
+        color: Theme.backgroundAccentColor
         anchors.top: view.top
         z: 2
     }
 
     Rectangle{
         id: bottomLine
-        width: view.width
-        height: 3
-        color: "white"
+        width: parent.width
+        height: size.ratio(3)
+        color: Theme.backgroundAccentColor
         anchors.bottom: view.bottom
         z: 2
     }
 
     PathView{
         id: view
-        property int itemHeight: size.dp(40)
+        property int itemHeight: Theme.itemHeightLarge
         property bool showRow: false
 
         interactive: activated
-        width: parent.width-size.dp(60)
-        height: size.dp(40)
+        width: parent.width-Theme.itemWidthSmall
+        height: Theme.itemHeightMedium
         clip: true
 
         anchors{
-            top: label.top
-            topMargin: size.dp(20)
+            top: label.bottom
+            topMargin:Theme.itemSpacingLarge
             left: label.left
-            leftMargin: size.dp(30)
+            leftMargin:Theme.itemSpacingLarge + Theme.itemSpacingSmall
         }
 
         pathItemCount: height/itemHeight
@@ -116,16 +115,16 @@ Item {
 
     ParallelAnimation {
         id: activateAnimations
-        NumberAnimation{target: bottomLine; property: "opacity"; to: 1; duration: 250}
-        NumberAnimation{target: topLine; property: "opacity"; to: 1; duration: 250}
-        NumberAnimation{target: view; property: "height"; to: itemHeight*activateSize; duration: 250}
+        NumberAnimation{target: bottomLine; property: "opacity"; to: 1; duration: 150}
+        NumberAnimation{target: topLine; property: "opacity"; to: 1; duration: 150}
+        NumberAnimation{target: view; property: "height"; to: itemHeight*activateSize; duration: 150}
     }
 
     ParallelAnimation {
         id: deActivateAnimations
-        NumberAnimation{target: bottomLine; property: "opacity"; to: 0; duration: 250}
-        NumberAnimation{target: topLine; property: "opacity"; to: 0; duration: 250}
-        NumberAnimation{target: view; property: "height"; to: itemHeight; duration: 250}
+        NumberAnimation{target: bottomLine; property: "opacity"; to: 0; duration: 150}
+        NumberAnimation{target: topLine; property: "opacity"; to: 0; duration: 150}
+        NumberAnimation{target: view; property: "height"; to: itemHeight; duration: 150}
         onStopped: {
             view.showRow = true
         }

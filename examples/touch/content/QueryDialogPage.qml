@@ -43,6 +43,7 @@ Page {
         cancelText: "Cancel"
         acceptText: "Delete"
         headingText: "Are you sure you want to delete this?"
+        subLabelText: "Continue?"
         onAccepted: {
             result.text = "User accepted"
         }

@@ -62,7 +62,7 @@ Item {
             PropertyChanges {
                 target: toolBarRect
                 width: parent.width
-                height: Theme.itemHeightExtraLarge
+                height: Theme.itemHeightLarge
             }
         },
         State {
@@ -91,7 +91,7 @@ Item {
             }
             PropertyChanges {
                 target: toolBarRect
-                width: Theme.itemHeightExtraLarge
+                width: Theme.itemHeightLarge
                 height: parent.height
             }
         }

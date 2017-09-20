@@ -18,7 +18,7 @@ ListView {
         id: sectionHeading
         Rectangle {
             width: listView.width
-            height: size.dp(44)
+            height: Theme.itemHeightMedium
             color: delegateColor
 
             Text {
@@ -36,9 +36,9 @@ ListView {
 
             Rectangle{
                 id: line
-                height: 1
+                height: size.ratio(1)
                 color: Theme.textColor
-                width: listView.width-sectionText.width-size.dp(30)
+                width: listView.width-sectionText.width-Theme.itemHeightExtraSmall
                 anchors{
                     left: sectionText.right
                     leftMargin: Theme.itemSpacingSmall
@@ -51,7 +51,7 @@ ListView {
     Item{
         id: bottom
         width: parent.width
-        height: size.dp(30)
+        height: Theme.itemHeightExtraSmall
         anchors.bottom: parent.bottom
 
         visible: listView.contentHeight > listView.height
@@ -59,7 +59,7 @@ ListView {
         LinearGradient{
             anchors.fill: parent
             start: Qt.point(0, 0)
-            end: Qt.point(0, size.dp(30))
+            end: Qt.point(0, Theme.itemHeightExtraSmall)
             gradient: Gradient {
                 GradientStop { position: 0.0; color: "transparent" }
                 GradientStop { position: 1.0; color: bottomGradientColor }
@@ -73,13 +73,13 @@ ListView {
         visible: (listView.showDecorator && listView.contentHeight > listView.height)
         color: scrollerDecoratorColor
 
-        width: size.dp(5)
+        width: Theme.itemSpacingExtraSmall
         height: listView.height*listView.height/listView.contentHeight
         y: (listView.height)/listView.contentHeight*listView.contentY
 
         anchors{
             right: listView.right
-            rightMargin: size.dp(4)
+            rightMargin: Theme.itemSpacingExtraSmall / 2
         }
     }
 }

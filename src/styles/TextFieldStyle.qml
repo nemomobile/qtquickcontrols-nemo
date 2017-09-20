@@ -35,7 +35,7 @@ TextFieldStyle {
             rightMargin: Theme.itemSpacingMedium
         }
 
-        implicitHeight: Theme.itemHeightMedium
+        implicitHeight: Theme.itemHeightSmall
         implicitWidth: Theme.itemWidthLarge
         opacity: control.enabled ? 1 : 0.6
         Image {
@@ -48,7 +48,7 @@ TextFieldStyle {
             anchors.bottom: parent.bottom
             anchors.left: parent.left
             anchors.right: parent.right
-            height: 2
+            height: size.ratio(2)
             width: parent.width
             color: control.readOnly ? Theme.fillDarkColor : Theme.accentColor
         }

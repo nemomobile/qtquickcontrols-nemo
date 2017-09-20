@@ -22,9 +22,9 @@ import QtQuick.Controls.Nemo 1.0
 
 Component {
     Rectangle {
-        implicitHeight: size.dp(16)
-        implicitWidth: size.dp(440)
-        color: Theme.fillColorDark
+        implicitHeight: Theme.itemHeightSmall/2
+        implicitWidth: Theme.itemWidthLarge + Theme.itemWidthSmall
+        color: Theme.fillDarkColor
         Rectangle {
             antialiasing: true
             radius: 1

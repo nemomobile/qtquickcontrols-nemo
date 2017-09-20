@@ -32,27 +32,26 @@ TabViewStyle {
         implicitHeight: Theme.itemHeightMedium
         BorderImage {
             anchors.fill: parent
-            border.bottom: size.dp(8)
-            border.top: size.dp(8)
-
+            border.bottom:Theme.itemSpacingExtraSmall
+            border.top: Theme.itemSpacingExtraSmall
             Text {
                 anchors.centerIn: parent
                 color: (styleData.selected) ? Theme.accentColor : Theme.textColor
                 text: styleData.title.toUpperCase()
-                font.pixelSize: Theme.fontSizeSmall
+                font.pixelSize: Theme.fontSizeTiny
             }
             Rectangle {
                 visible: index > 0
                 anchors.top: parent.top
                 anchors.bottom: parent.bottom
-                anchors.margins: size.dp(10)
-                width:1
-                color: "#3a3a3a"
+                anchors.margins: Theme.itemSpacingExtraSmall
+                width: size.ratio(1)
+                color: Theme.fillDarkColor
             }
             Rectangle{
                 visible: styleData.selected
                 width: parent.width
-                height: 1
+                height: size.ratio(1)
                 color: Theme.accentColor
                 anchors{
                     bottom: parent.bottom
