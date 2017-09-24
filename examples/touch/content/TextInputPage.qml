@@ -46,6 +46,7 @@ import QtQuick.Controls.Styles.Nemo 1.0
 Page {
     id: root
 
+    allowedOrientations:Qt.PortraitOrientation | Qt.LandscapeOrientation
     property real progress: 0
     SequentialAnimation on progress {
         loops: Animation.Infinite
