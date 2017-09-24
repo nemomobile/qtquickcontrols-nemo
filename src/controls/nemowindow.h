@@ -22,6 +22,8 @@
 
 #include <QQuickWindow>
 #include <QtCore/qnamespace.h>
+#include "editfilter.h"
+
 class NemoWindow : public QQuickWindow
 {
     Q_OBJECT
@@ -48,6 +50,9 @@ private:
     Qt::ScreenOrientations m_allowedOrientations;
 
     Qt::ScreenOrientations m_defaultAllowedOrientations;
+
+    EditFilter *m_filter;
+
 };
 
 #endif // NEMOWINDOW_H

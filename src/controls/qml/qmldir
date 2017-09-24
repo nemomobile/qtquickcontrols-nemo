@@ -27,6 +27,7 @@ InverseMouseArea 1.0 InverseMouseArea.qml
 IconButton 1.0 IconButton.qml
 DatePicker 1.0 DatePicker.qml
 ScrollDecorator 1.0 ScrollDecorator.qml
+TextField 1.0 TextField.qml
 
 # MIRRORED CONTROLS: 
 # These are the controls that we take directly from official QQC.
@@ -56,6 +57,5 @@ TabView 1.0 ../TabView.qml
 TableView 1.0 ../TableView.qml
 TableViewColumn 1.0 ../TableViewColumn.qml
 TextArea 1.0 ../TextArea.qml
-TextField 1.0 ../TextField.qml
 ToolBar 1.0 ../ToolBar.qml
 ToolButton 1.0 ../ToolButton.qml

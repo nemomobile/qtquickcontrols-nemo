@@ -1,6 +1,7 @@
 /*
  * Copyright (C) 2013 Tomasz Olszak <olszak.tomasz@gmail.com>
  * Copyright (C) 2013 Andrea Bernabei <and.bernabei@gmail.com>
+ * Copyright (C) 2017 Eetu Kahelin
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -27,6 +28,7 @@
 #include "nemoimageprovider.h"
 #include "sizing.h"
 #include "theme.h"
+#include "nemofocussingleton.h"
 
 QQuickNemoControlsExtensionPlugin::QQuickNemoControlsExtensionPlugin(QObject *parent) :
     QQmlExtensionPlugin(parent)
@@ -38,10 +40,18 @@ static QObject *nemo_hacks_singletontype_provider(QQmlEngine *engine, QJSEngine 
     QObject *ret = new Hacks(engine);
     return ret;
 }
+QObject *getNemoFocus(QQmlEngine *engine, QJSEngine *scriptEngine)
+{
+    Q_UNUSED(engine)
+    Q_UNUSED(scriptEngine)
+
+    return NemoFocusSingleton::instance();
+}
 
 void QQuickNemoControlsExtensionPlugin::registerTypes(const char *uri)
 {
     Q_ASSERT(uri == QLatin1String("QtQuick.Controls.Nemo"));
+    qmlRegisterSingletonType<QObject>(uri, 1, 0, "NemoFocus", getNemoFocus);
     qmlRegisterSingletonType<QObject>(uri, 1, 0, "NemoHacks", nemo_hacks_singletontype_provider);
     qmlRegisterType<NemoWindow>(uri, 1, 0, "NemoWindow");
     qmlRegisterType<NemoPage>(uri, 1, 0, "NemoPage");
