@@ -78,6 +78,16 @@ Item {
         snapMode: PathView.SnapToItem
     }
 
+    InverseMouseArea {
+        width: parent.width
+        height: view.height
+        anchors.centerIn: view
+        enabled: activated
+        parent:glacierRoller
+        onPressed: {
+            if(activated) activated = false
+        }
+    }
 
     Component.onCompleted: {
         if(activated)
@@ -117,14 +127,14 @@ Item {
         id: activateAnimations
         NumberAnimation{target: bottomLine; property: "opacity"; to: 1; duration: 150}
         NumberAnimation{target: topLine; property: "opacity"; to: 1; duration: 150}
-        NumberAnimation{target: view; property: "height"; to: itemHeight*activateSize; duration: 150}
+        NumberAnimation{target: view; property: "height"; to: itemHeight*activateSize; duration: 150; easing.type: Easing.InCubic}
     }
 
     ParallelAnimation {
         id: deActivateAnimations
         NumberAnimation{target: bottomLine; property: "opacity"; to: 0; duration: 150}
         NumberAnimation{target: topLine; property: "opacity"; to: 0; duration: 150}
-        NumberAnimation{target: view; property: "height"; to: itemHeight; duration: 150}
+        NumberAnimation{target: view; property: "height"; to: itemHeight; duration: 150; easing.type: Easing.OutCubic}
         onStopped: {
             view.showRow = true
         }
