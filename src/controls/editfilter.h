@@ -22,6 +22,7 @@
 #include <QObject>
 #include <QEvent>
 #include <QString>
+#include <QVariant>
 #include "nemofocussingleton.h"
 
 class EditFilter : public QObject
