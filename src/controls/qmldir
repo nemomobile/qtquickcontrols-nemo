@@ -25,6 +25,7 @@ GlacierRoller 1.0 GlacierRoller.qml
 GlacierRollerItem 1.0 GlacierRollerItem.qml
 InverseMouseArea 1.0 InverseMouseArea.qml
 IconButton 1.0 IconButton.qml
+DatePicker 1.0 DatePicker.qml
 
 # MIRRORED CONTROLS: 
 # These are the controls that we take directly from official QQC.

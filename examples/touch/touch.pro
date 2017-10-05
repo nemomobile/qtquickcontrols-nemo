@@ -25,7 +25,8 @@ qml.files += \
     content/QueryDialogPage.qml \
     content/ListViewPage.qml \
     content/SelectRollerPage.qml \
-    content/IconPage.qml
+    content/IconPage.qml \
+    content/DatePickerPage.qml
 
 qml.path = /usr/share/glacier-components/content
 

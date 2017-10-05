@@ -23,7 +23,8 @@ QML_FILES += \
     GlacierRoller.qml \
     GlacierRollerItem.qml \
     InverseMouseArea.qml \
-    IconButton.qml
+    IconButton.qml \
+    DatePicker.qml
 
 OTHER_FILES += qmldir \
     $$QML_FILES

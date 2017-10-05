@@ -81,6 +81,10 @@ ApplicationWindow {
             page: "content/ProgressBarPage.qml"
         }
         ListElement {
+            title: "DatePicker"
+            page: "content/DatePickerPage.qml"
+        }
+        ListElement {
             title: "Tabs"
             page: "content/TabBarPage.qml"
         }
