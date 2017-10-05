@@ -40,7 +40,7 @@ Item {
 
     property date currentDate: new Date()
 
-    property var monthNames: ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"];
+    property var monthNames: [qsTr("January"), qsTr("February"), qsTr("March"), qsTr("April"), qsTr("May"), qsTr("June"),qsTr("July"), qsTr("August"), qsTr("September"), qsTr("October"), qsTr("November"), qsTr("December")];
 
     Item {
         id: header
