@@ -42,6 +42,9 @@ Item {
 
     property var monthNames: [qsTr("January"), qsTr("February"), qsTr("March"), qsTr("April"), qsTr("May"), qsTr("June"),qsTr("July"), qsTr("August"), qsTr("September"), qsTr("October"), qsTr("November"), qsTr("December")];
 
+    signal monthChanged()
+    signal dateSelect(var date)
+
     Item {
         id: header
         width: parent.width
@@ -64,6 +67,24 @@ Item {
                 topMargin: (Theme.itemHeightLarge-Theme.itemHeightMedium)/2
             }
             source: "image://theme/caret-left"
+
+            MouseArea{
+                anchors.fill: parent
+                onClicked: {
+                    var newDate = currentDate;
+                    if(newDate.getMonth() == 1)
+                    {
+                        newDate.setFullYear(currentDate.getFullYear()-1)
+                        newDate.setMonth(12)
+                    }
+                    else
+                    {
+                        newDate.setMonth(currentDate.getMonth()-1)
+                    }
+                    datePicker.currentDate = newDate
+                    monthChanged()
+                }
+            }
         }
 
         Label{
@@ -86,6 +107,24 @@ Item {
                 topMargin: (Theme.itemHeightLarge-Theme.itemHeightMedium)/2
             }
             source: "image://theme/caret-right"
+
+            MouseArea{
+                anchors.fill: parent
+                onClicked: {
+                    var newDate = currentDate;
+                    if(newDate.getMonth() == 12)
+                    {
+                        newDate.setFullYear(currentDate.getFullYear()+1)
+                        newDate.setMonth(1)
+                    }
+                    else
+                    {
+                        newDate.setMonth(currentDate.getMonth()+1)
+                    }
+                    datePicker.currentDate = newDate
+                    monthChanged()
+                }
+            }
         }
     }
 
@@ -215,12 +254,26 @@ Item {
                 color: setColor(model)
                 font.pixelSize: (parent.height*0.45 < Theme.fontSizeLarge) ? parent.height*0.45 : Theme.fontSizeLarge
             }
+
+
+            MouseArea{
+                anchors.fill: parent
+                onClicked: {
+                    datePicker.dateSelect(model.dateOfDay)
+                }
+            }
         }
 
         Component.onCompleted: {
             dateModel.currentDate = currentDate
             dateModel.fillModel()
         }
+    }
+
+    onMonthChanged: {
+        dateModel.selectedDate = datePicker.currentDate
+        dateModel.clear()
+        dateModel.fillModel()
     }
 
     ListModel {
