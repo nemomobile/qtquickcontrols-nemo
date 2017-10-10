@@ -23,16 +23,25 @@ import QtQuick.Controls.Styles 1.0
 import QtQuick.Controls.Nemo 1.0
 
 SliderStyle{
+    readonly property double handleValue: control.value / control.maximumValue
+    readonly property double _multiple: (handleValue  > 0.8) ? (control.maximumValue/control.value-1) / 0.25  : 1
+    readonly property double _multiple2: (handleValue  > 0.8) ? (handleValue - 0.8) / 0.2  : 1
+    property bool useSpecSlider: control.useSpecSlider
+    property bool alwaysUp: control.alwaysUp
     handle: Rectangle {
         id: handle
-        anchors.centerIn: parent
+        anchors.verticalCenter:useSpecSlider ? undefined : parent.verticalCenter
+        y: useSpecSlider ? (control.pressed ? alwaysUp ? parent.y - Theme.itemHeightLarge : ((handleValue  > 0.8) ? parent.y - (Theme.itemHeightLarge*_multiple2) : parent.y ) :  parent.y) : undefined
+        x: useSpecSlider ? (control.pressed ? alwaysUp ? Theme.itemHeightExtraSmall / 2 : (handleValue > 0.8) ? (_multiple*Theme.itemHeightHuge)  : Theme.itemHeightHuge : 0) : undefined
         color: Theme.backgroundColor
-        border.color: Theme.accentColor
-        border.width: 2
+        border.color: Theme.textColor
+        border.width: size.ratio(2)
         implicitWidth: Theme.itemHeightExtraSmall
         implicitHeight: Theme.itemHeightExtraSmall
         radius: implicitHeight / 2
         visible: control.enabled
+
+        scale: control.pressed ? 1.2 : 1
 
         Text{
             id: valueLabel
@@ -58,6 +67,16 @@ SliderStyle{
             color: Theme.accentColor
         }
 
+        Rectangle{
+            id: strecthLine
+            x: dataLine.width
+            width: left.x-x + (handleValue < 0.85 ? Theme.itemSpacingLarge : 0)
+            visible: useSpecSlider ? alwaysUp ? false : (control.pressed && handleValue > 0.80) : false
+            height: parent.height
+            color: Theme.accentColor
+            opacity:0.3
+        }
+
         Image {
             id: disabledImg
             anchors.fill: parent
@@ -68,14 +87,15 @@ SliderStyle{
 
         Image{
             id: left
+            x: (useSpecSlider && control.pressed ? alwaysUp ? dataLine.width+width : (handleValue  > 0.80) ? dataLine.width +Theme.itemHeightExtraSmall/2 +_multiple*Theme.itemHeightHuge : dataLine.width + Theme.itemHeightHuge : dataLine.width) - width
             anchors{
-                right: dataLine.right
-                verticalCenter: dataLine.verticalCenter
+                bottom: useSpecSlider ? ((control.pressed && (handleValue > 0.80 || alwaysUp)) ? dataLine.bottom : undefined) : undefined
+                verticalCenter: useSpecSlider ? ((control.pressed && (handleValue > 0.80 || alwaysUp)) ? undefined :  dataLine.verticalCenter) : dataLine.verticalCenter
             }
-            source: "images/slider-handle-left.svg"
-            height:Theme.itemHeightExtraSmall
+            source: useSpecSlider && control.pressed ? (handleValue  > 0.80)  || alwaysUp ? "images/slider-trumpet-up.png" : "images/slider-trumpet-stretch.png" : "images/slider-trumpet.png"
+            height:  control.pressed && useSpecSlider ? alwaysUp ? Theme.itemHeightLarge : (handleValue > 0.80) ? (Theme.itemHeightLarge*_multiple2) : Theme.itemHeightExtraSmall : Theme.itemHeightExtraSmall
             visible: control.enabled
-            width: (styleData.handlePosition >  Theme.itemHeightHuge) ?  Theme.itemHeightHuge : styleData.handlePosition
+            width:  control.pressed && useSpecSlider ? ((handleValue > 0.80) || alwaysUp ? Theme.itemHeightExtraSmall  : Theme.itemHeightHuge)  : (styleData.handlePosition >  Theme.itemHeightHuge) ?  Theme.itemHeightHuge : styleData.handlePosition
             sourceSize.width: width
             sourceSize.height: height
         }
