@@ -49,8 +49,8 @@ themes.files = $$_PRO_FILE_PWD_/themes/glacier_black.json \
 
 themes.path = $$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH/themes
 
-images.files = $$_PRO_FILE_PWD_/images/*.svg\
-               $$_PRO_FILE_PWD_/images/*.png
+images.files = $$files($$_PRO_FILE_PWD_/images/*.svg,false)\
+               $$files($$_PRO_FILE_PWD_/images/*.png,false)
 
 images.path = $$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH/images/
 
