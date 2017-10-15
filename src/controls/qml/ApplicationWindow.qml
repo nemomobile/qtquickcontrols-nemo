@@ -26,7 +26,7 @@ import QtQuick.Layouts 1.0
 import QtQuick.Controls.Private 1.0
 import QtQuick.Controls.Nemo 1.0
 import QtQuick.Controls.Styles.Nemo 1.0
-
+import QtQuick.VirtualKeyboard 2.1
 NemoWindow {
     id: root
 
@@ -206,6 +206,14 @@ NemoWindow {
             Item {
                 id: contentArea
                 anchors.centerIn: parent
+                InputPanel {
+                    z:99
+                    id: inputPanel
+                    visible: Qt.inputMethod.visible
+                    y: Qt.inputMethod.visible ? parent.height - inputPanel.height : parent.height
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                }
 
                 transform: Scale {
                     id: contentScale
@@ -240,20 +248,6 @@ NemoWindow {
                                                                                                          : Qt.inputMethod.keyboardRectangle.height)
                                                                                       : (root._transpose ? Qt.inputMethod.keyboardRectangle.height
                                                                                                          : Qt.inputMethod.keyboardRectangle.width))
-                    onImSizeChanged: {
-                        if (imSize <= 0 && previousImSize > 0) {
-                            imShowAnimation.stop()
-                            imHideAnimation.start()
-                        } else if (imSize > 0 && previousImSize <= 0) {
-                            imHideAnimation.stop()
-                            imShowAnimation.to = imSize
-                            imShowAnimation.start()
-                        } else {
-                            panelSize = imSize
-                        }
-
-                        previousImSize = imSize
-                    }
 
                     clip: true
                     Component.onCompleted: {
