@@ -183,7 +183,8 @@ Item {
 
         color: Theme.backgroundColor
 
-        FilteringMouseArea {
+        //TODO: Check if changing this FilteringMouseArea->MouseArea has any side effects
+        MouseArea {
             id: mouseArea
             anchors.fill: parent
             property bool swiping: false
@@ -215,18 +216,18 @@ Item {
                 }
 
                 if (appWindow.isUiPortrait) {
-                    startMouseCoord = (pos.y + root.y)
+                    startMouseCoord = (mouse.y + root.y)
                     startCoord = root.y
                 } else { //assuming that otherwise we're in landscape...is this safe?
-                    startMouseCoord = (pos.x + root.x)
+                    startMouseCoord = (mouse.x + root.x)
                     startCoord = root.x
                 }
             }
 
             onPositionChanged: {
                 if (appWindow.isUiPortrait) {
-                    deltaCoord = (pos.y + root.y) - startMouseCoord
-                    if (Math.abs(deltaCoord) > swipeThreshold && !swiping) { grabMouseEvents(); swiping = true; }
+                    deltaCoord = (mouse.y + root.y) - startMouseCoord
+                    if (Math.abs(deltaCoord) > swipeThreshold && !swiping) { swiping = true; }
 
                     if (swiping) {
                         var swipingY = startCoord + deltaCoord
@@ -238,8 +239,8 @@ Item {
                         }
                     }
                 } else {
-                    deltaCoord = (pos.x + root.x) - startMouseCoord
-                    if (Math.abs(deltaCoord) > swipeThreshold && !swiping) { grabMouseEvents(); swiping = true; }
+                    deltaCoord = (mouse.x + root.x) - startMouseCoord
+                    if (Math.abs(deltaCoord) > swipeThreshold && !swiping) { swiping = true; }
                     if (swiping) {
                         //this is the coord that the drawer would be at if it were following our finger
                         var swipingX = startCoord + deltaCoord
@@ -285,7 +286,7 @@ Item {
                         //Fully Close/Open the drawer
                         root.slideDrawerTo((root.x == root.closedX) ? 0 : root.closedX)
                     } else {
-                        deltaCoord = (pos.x + root.x) - startMouseCoord
+                        deltaCoord = (mouse.x + root.x) - startMouseCoord
                         if (deltaCoord > gestureThreshold) {
                             root.slideDrawerTo(startCoord < 0 ? 0 : closedX)
                         } else if (deltaCoord < -gestureThreshold){
