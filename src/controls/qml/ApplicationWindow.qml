@@ -191,8 +191,39 @@ NemoWindow {
 
     Item {
         id: backgroundItem
-       anchors.fill: parent
+        anchors.fill: parent
         rotation: rotationToTransposeToPortrait()
+
+        Item {
+            id: clipping2
+
+            z: 1
+
+            property bool panelVisible:  inputPanel.active
+            onPanelVisibleChanged:{
+                if(!panelVisible) {
+                    imShowAnimation.stop()
+                    imHideAnimation.start()
+                }else {
+                    imHideAnimation.stop()
+                    imShowAnimation.to = inputPanel.height
+                    imShowAnimation.start()
+                }
+            }
+
+            width:(isUiLandscape ? stackView.panelSize : parent.width)
+            height:(isUiPortrait ? stackView.panelSize : root.height)
+
+            InputPanel {
+                z:99
+                id: inputPanel
+                visible: true
+                width:isUiPortrait ? backgroundItem.width : backgroundItem.height
+                x:0
+                rotation:contentArea.rotation
+                anchors.centerIn: parent
+            }
+        }
 
         Item {
             id: clipping
@@ -206,14 +237,6 @@ NemoWindow {
             Item {
                 id: contentArea
                 anchors.centerIn: parent
-                InputPanel {
-                    z:99
-                    id: inputPanel
-                    visible: Qt.inputMethod.visible
-                    y: Qt.inputMethod.visible ? parent.height - inputPanel.height : parent.height
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-                }
 
                 transform: Scale {
                     id: contentScale
@@ -244,10 +267,22 @@ NemoWindow {
 
                     property real panelSize: 0
                     property real previousImSize: 0
-                    property real imSize: !root.applicationActive ? 0 : (isUiPortrait ? (root._transpose ? Qt.inputMethod.keyboardRectangle.width
-                                                                                                         : Qt.inputMethod.keyboardRectangle.height)
-                                                                                      : (root._transpose ? Qt.inputMethod.keyboardRectangle.height
-                                                                                                         : Qt.inputMethod.keyboardRectangle.width))
+                    property real imSize: !root.applicationActive ? 0 : Qt.inputMethod.keyboardRectangle.height
+
+                    onImSizeChanged: {
+                        if (imSize <= 0 && previousImSize > 0) {
+                            imShowAnimation.stop()
+                            imHideAnimation.start()
+                        } else if (imSize > 0 && previousImSize <= 0) {
+                            imHideAnimation.stop()
+                            imShowAnimation.to = imSize
+                            imShowAnimation.start()
+                        } else {
+                            panelSize = imSize
+                        }
+
+                        previousImSize = imSize
+                    }
 
                     clip: true
                     Component.onCompleted: {
@@ -297,6 +332,12 @@ NemoWindow {
                     delegate: StackViewDelegate {
                         pushTransition: Component {
                             StackViewTransition {
+                                ScriptAction {
+                                    script: {
+                                        imShowAnimation.stop()
+                                        imHideAnimation.start()
+                                    }
+                                }
                                 PropertyAnimation {
                                     target: enterItem
                                     property: "x"
@@ -317,6 +358,12 @@ NemoWindow {
                         }
                         popTransition: Component {
                             StackViewTransition {
+                                ScriptAction {
+                                    script: {
+                                        imShowAnimation.stop()
+                                        imHideAnimation.start()
+                                    }
+                                }
                                 PropertyAnimation {
                                     target: enterItem
                                     property: "x"
@@ -368,33 +415,34 @@ NemoWindow {
 
                     //used to animate the dimmer when pages are pushed/popped (see Header's QML code)
                     property alias __dimmer: headerDimmerContainer
-                }
 
-                Item {
-                    //This item handles the rotation of the dimmer.
-                    //All this because QML doesn't have a horizontal gradient (unless you import GraphicalEffects)
-                    //and having a container which doesn't rotate but just resizes makes it easier to rotate its inner
-                    //child
-                    id: headerDimmerContainer
 
-                    //README: Don't use AnchorChanges for this item!
-                    //Reason: state changes disable bindings while the transition from one state to another is running.
-                    //This causes the dimmer not to follow the drawer when the drawer is closed right before the orientation change
-                    anchors.top: isUiPortrait ? toolBar.bottom : parent.top
-                    anchors.left: isUiPortrait ? parent.left : toolBar.right
-                    anchors.right: isUiPortrait ? parent.right : undefined
-                    anchors.bottom: isUiPortrait ? undefined : parent.bottom
-                    //we only set the size in one orientation, the anchors will take care of the other
-                    width: if (!isUiPortrait) Theme.itemHeightExtraSmall/2
-                    height: if (isUiPortrait) Theme.itemHeightExtraSmall/2
-                    //MAKE SURE THAT THE HEIGHT SPECIFIED BY THE THEME IS AN EVEN NUMBER, TO AVOID ROUNDING ERRORS IN THE LAYOUT
+                    Item {
+                        //This item handles the rotation of the dimmer.
+                        //All this because QML doesn't have a horizontal gradient (unless you import GraphicalEffects)
+                        //and having a container which doesn't rotate but just resizes makes it easier to rotate its inner
+                        //child
+                        id: headerDimmerContainer
 
-                    Rectangle {
-                        id: headerDimmer
-                        anchors.centerIn: parent
-                        gradient: Gradient {
-                            GradientStop { position: 0; color: Theme.backgroundColor }
-                            GradientStop { position: 1; color: "transparent" }
+                        //README: Don't use AnchorChanges for this item!
+                        //Reason: state changes disable bindings while the transition from one state to another is running.
+                        //This causes the dimmer not to follow the drawer when the drawer is closed right before the orientation change
+                        anchors.top: isUiPortrait ? toolBar.bottom : parent.top
+                        anchors.left: isUiPortrait ? parent.left : toolBar.right
+                        anchors.right: isUiPortrait ? parent.right : undefined
+                        anchors.bottom: isUiPortrait ? undefined : parent.bottom
+                        //we only set the size in one orientation, the anchors will take care of the other
+                        width: if (!isUiPortrait) Theme.itemHeightExtraSmall/2
+                        height: if (isUiPortrait) Theme.itemHeightExtraSmall/2
+                        //MAKE SURE THAT THE HEIGHT SPECIFIED BY THE THEME IS AN EVEN NUMBER, TO AVOID ROUNDING ERRORS IN THE LAYOUT
+
+                        Rectangle {
+                            id: headerDimmer
+                            anchors.centerIn: parent
+                            gradient: Gradient {
+                                GradientStop { position: 0; color: Theme.backgroundColor }
+                                GradientStop { position: 1; color: "transparent" }
+                            }
                         }
                     }
                 }
@@ -433,6 +481,13 @@ NemoWindow {
                                 anchors.right: undefined
                                 anchors.bottom: undefined
                             }
+                            AnchorChanges {
+                                target: clipping2
+                                anchors.top: clipping.bottom
+                                anchors.left: parent.left
+                                anchors.right: undefined
+                                anchors.bottom: undefined
+                            }
                         },
                         State {
                             name: 'Landscape'
@@ -456,6 +511,13 @@ NemoWindow {
                                 anchors.top: undefined
                                 anchors.left: undefined
                                 anchors.right: parent.right
+                                anchors.bottom: parent.bottom
+                            }
+                            AnchorChanges {
+                                target: clipping2
+                                anchors.top: undefined
+                                anchors.left: parent.left
+                                anchors.right: undefined//clipping.left
                                 anchors.bottom: parent.bottom
                             }
                         },
@@ -483,6 +545,13 @@ NemoWindow {
                                 anchors.right: parent.right
                                 anchors.bottom: parent.bottom
                             }
+                            AnchorChanges {
+                                target: clipping2
+                                anchors.top: undefined
+                                anchors.left: undefined
+                                anchors.right: clipping.right
+                                anchors.bottom: clipping.top
+                            }
                         },
                         State {
                             name: 'LandscapeInverted'
@@ -508,6 +577,13 @@ NemoWindow {
                                 anchors.right: undefined
                                 anchors.bottom: parent.bottom
                             }
+                            AnchorChanges {
+                                target: clipping2
+                                anchors.top: undefined
+                                anchors.left: undefined//clipping.right
+                                anchors.right: parent.right
+                                anchors.bottom: parent.bottom
+                            }
                         }
                     ]
 
@@ -520,11 +596,19 @@ NemoWindow {
                                 property: 'orientationTransitionRunning'
                                 value: true
                             }
-                            NumberAnimation {
-                                target: contentArea
-                                property: 'opacity'
-                                to: 0
-                                duration: 150
+                            ParallelAnimation {
+                                NumberAnimation {
+                                    target: contentArea
+                                    property: 'opacity'
+                                    to: 0
+                                    duration: 150
+                                }
+                                NumberAnimation {
+                                    target: inputPanel
+                                    property: 'opacity'
+                                    to: 0
+                                    duration: 150
+                                }
                             }
                             PropertyAction {
                                 target: contentArea
@@ -537,11 +621,19 @@ NemoWindow {
                                 target: headerDimmer
                                 properties: 'width,height,rotation'
                             }
-                            NumberAnimation {
-                                target: contentArea
-                                property: 'opacity'
-                                to: 1
-                                duration: 150
+                            ParallelAnimation {
+                                NumberAnimation {
+                                    target: contentArea
+                                    property: 'opacity'
+                                    to: 1
+                                    duration: 150
+                                }
+                                NumberAnimation {
+                                    target: inputPanel
+                                    property: 'opacity'
+                                    to: 1
+                                    duration: 150
+                                }
                             }
                             PropertyAction {
                                 target: contentArea
