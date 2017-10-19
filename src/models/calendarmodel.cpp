@@ -86,7 +86,7 @@ QVariant CalendarModel::data(const QModelIndex &index, int role) const
     }
 }
 
-QVariant CalendarModel::get(const int idx)
+QVariant CalendarModel::get(const int idx) const
 {
     if(idx >= m_dateList.size())
     {

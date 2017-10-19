@@ -61,13 +61,13 @@ public:
     void setMonth(int month);
     void setYear(int year);
 
-    QDate currentDate(){return m_currentDate;}
+    const QDate currentDate(){return m_currentDate;}
     QDate selectedDate(){return m_selectedDate;}
 
     int month(){return m_month;}
     int year(){return m_year;}
 public slots:
-    QVariant get(const int idx);
+    QVariant get(const int idx) const;
 
 signals:
     void selectedDateChanged();
