@@ -27,7 +27,6 @@
 #include "nemoimageprovider.h"
 #include "sizing.h"
 #include "theme.h"
-#include "datelistmodel.h"
 
 QQuickNemoControlsExtensionPlugin::QQuickNemoControlsExtensionPlugin(QObject *parent) :
     QQmlExtensionPlugin(parent)
@@ -47,7 +46,6 @@ void QQuickNemoControlsExtensionPlugin::registerTypes(const char *uri)
     qmlRegisterType<NemoWindow>(uri, 1, 0, "NemoWindow");
     qmlRegisterType<NemoPage>(uri, 1, 0, "NemoPage");
     qmlRegisterType<QQuickFilteringMouseArea>(uri, 1, 0, "FilteringMouseArea");
-    qmlRegisterType<DateListModel>(uri, 1, 0, "NemoDateListModel");
 }
 
 void QQuickNemoControlsExtensionPlugin::initializeEngine(QQmlEngine *engine, const char *uri)

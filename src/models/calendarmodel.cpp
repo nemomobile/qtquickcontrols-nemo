@@ -29,9 +29,9 @@
 **
 ****************************************************************************************/
 
-#include "datelistmodel.h"
+#include "calendarmodel.h"
 
-DateListModel::DateListModel(QObject *parent) :
+CalendarModel::CalendarModel(QObject *parent) :
     QAbstractListModel(parent)
 {
 
@@ -49,13 +49,13 @@ DateListModel::DateListModel(QObject *parent) :
     fill();
 }
 
-int DateListModel::rowCount(const QModelIndex &parent) const
+int CalendarModel::rowCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent);
     return m_dateList.count();
 }
 
-QVariant DateListModel::data(const QModelIndex &index, int role) const
+QVariant CalendarModel::data(const QModelIndex &index, int role) const
 {
     Q_UNUSED(role);
     if(!index.isValid())
@@ -86,7 +86,7 @@ QVariant DateListModel::data(const QModelIndex &index, int role) const
     }
 }
 
-QVariant DateListModel::get(const int idx)
+QVariant CalendarModel::get(const int idx)
 {
     if(idx >= m_dateList.size())
     {
@@ -105,7 +105,7 @@ QVariant DateListModel::get(const int idx)
     return QVariant(itemData);
 }
 
-void DateListModel::setSelectedDate(QDate date)
+void CalendarModel::setSelectedDate(QDate date)
 {
     if(m_selectedDate != date)
     {
@@ -114,7 +114,7 @@ void DateListModel::setSelectedDate(QDate date)
     }
 }
 
-void DateListModel::setMonth(int month)
+void CalendarModel::setMonth(int month)
 {
     if(m_month != month && month > 0 && month < 13)
     {
@@ -124,7 +124,7 @@ void DateListModel::setMonth(int month)
     }
 }
 
-void DateListModel::setYear(int year)
+void CalendarModel::setYear(int year)
 {
     if(m_year != year)
     {
@@ -134,7 +134,7 @@ void DateListModel::setYear(int year)
     }
 }
 
-void DateListModel::fill()
+void CalendarModel::fill()
 {
 
 }

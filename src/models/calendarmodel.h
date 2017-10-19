@@ -35,7 +35,7 @@
 #include <QAbstractListModel>
 #include <QDate>
 
-class DateListModel : public QAbstractListModel
+class CalendarModel : public QAbstractListModel
 {
     Q_OBJECT
     struct dateItem{
@@ -52,7 +52,7 @@ class DateListModel : public QAbstractListModel
     Q_PROPERTY(QDate selectedDate READ selectedDate WRITE setSelectedDate NOTIFY selectedDateChanged)
 
 public:
-    explicit DateListModel(QObject *parent = 0);
+    explicit CalendarModel(QObject *parent = 0);
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     QVariant data(const QModelIndex &index, int role) const;
     QHash<int, QByteArray> roleNames() const {return m_hash;}

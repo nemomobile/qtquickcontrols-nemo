@@ -39,8 +39,7 @@ HEADERS += \
     themedaemon/mlocalthemedaemonclient.h \
     themedaemon/mabstractthemedaemonclient.h \
     sizing.h \
-    theme.h \
-    datelistmodel.h
+    theme.h
 
 SOURCES += \
     qquicknemocontrolsextensionplugin.cpp \
@@ -52,8 +51,7 @@ SOURCES += \
     themedaemon/mlocalthemedaemonclient.cpp \
     themedaemon/mabstractthemedaemonclient.cpp \
     sizing.cpp \
-    theme.cpp \
-    datelistmodel.cpp
+    theme.cpp
 
 target.path = $$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH
 
