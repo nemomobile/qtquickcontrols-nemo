@@ -1,2 +1,2 @@
-module org.nemomobile.models
+module Nemo.Models
 plugin nemomodels

@@ -38,7 +38,7 @@
 class CalendarModel : public QAbstractListModel
 {
     Q_OBJECT
-    struct dateItem{
+    struct DateItem{
         bool isOtherMonthDay;
         bool isCurrentDay;
         bool isSelectedDay;
@@ -76,9 +76,14 @@ signals:
 
 private:
     QHash<int,QByteArray> m_hash;
-    QList<dateItem> m_dateList;
+    QList<DateItem> m_dateList;
 
     void fill();
+    DateItem createDateItem(QDate dateOfDay,
+                            bool isOtherMonthDay = false,
+                            bool isCurrentDay = false,
+                            bool isSelectedDay = false,
+                            bool hasEventDay = false);
 
     QDate m_currentDate;
     QDate m_selectedDate;

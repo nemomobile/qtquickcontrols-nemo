@@ -68,7 +68,7 @@ QVariant CalendarModel::data(const QModelIndex &index, int role) const
         return QVariant();
     }
 
-    dateItem item = m_dateList.at(index.row());
+    DateItem item = m_dateList.at(index.row());
     switch (role)
     {
     case Qt::UserRole:
@@ -94,7 +94,7 @@ QVariant CalendarModel::get(const int idx) const
     }
 
     QMap<QString, QVariant> itemData;
-    dateItem item = m_dateList.at(idx);
+    DateItem item = m_dateList.at(idx);
 
     itemData.insert("isOtherMonthDay",item.isOtherMonthDay);
     itemData.insert("isCurrentDay",item.isCurrentDay);
@@ -136,5 +136,48 @@ void CalendarModel::setYear(int year)
 
 void CalendarModel::fill()
 {
+    m_dateList.clear();
 
+    QDate firstDayOfSelectedMonth = QDate(m_year,m_month,1);
+    int startWeekDay = firstDayOfSelectedMonth.dayOfWeek();
+
+    /*If first dayof moth not Monday add form preview month*/
+    if(startWeekDay != 1)
+    {
+        int needToAdd = 1-startWeekDay;
+        for(int n=needToAdd; n<0; n++)
+        {
+            m_dateList.append(createDateItem(firstDayOfSelectedMonth.addDays(n),true));
+        }
+    }
+
+    for(int n=0; n < firstDayOfSelectedMonth.daysInMonth();n++)
+    {
+        QDate date = firstDayOfSelectedMonth.addDays(n);
+        m_dateList.append(createDateItem(date,false,date == m_currentDate));
+    }
+    /*if last day of moth not Sunday add from next mont*/
+    QDate lastDayOfSelectedMonth = QDate(m_year,m_month,firstDayOfSelectedMonth.daysInMonth());
+    int endWeekDay = lastDayOfSelectedMonth.dayOfWeek();
+    if(endWeekDay != 7)
+    {
+        int needToAdd = 7-endWeekDay;
+        for(int n=1;n<=needToAdd;n++)
+        {
+            m_dateList.append(createDateItem(lastDayOfSelectedMonth.addDays(n),true));
+        }
+    }
+    dataChanged(createIndex(0, 0), createIndex(rowCount()-1, 0));
+}
+
+CalendarModel::DateItem CalendarModel::createDateItem(QDate dateOfDay, bool isOtherMonthDay, bool isCurrentDay, bool isSelectedDay, bool hasEventDay)
+{
+    DateItem dateItem;
+    dateItem.dateOfDay =  dateOfDay;
+    dateItem.hasEventDay = hasEventDay;
+    dateItem.isCurrentDay = isCurrentDay;
+    dateItem.isOtherMonthDay = isOtherMonthDay;
+    dateItem.isSelectedDay = isSelectedDay;
+
+    return dateItem;
 }

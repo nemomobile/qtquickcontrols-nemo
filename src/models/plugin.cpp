@@ -27,18 +27,19 @@
 class Q_DECL_EXPORT NemoSettingsPlugin : public QQmlExtensionPlugin
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "org.nemomobile.models")
+    Q_PLUGIN_METADATA(IID "Nemo.Models")
+
 public:
     virtual ~NemoSettingsPlugin() { }
 
     void initializeEngine(QQmlEngine *, const char *uri)
     {
-        Q_ASSERT(uri == QLatin1String("org.nemomobile.models"));
+        Q_ASSERT(uri == QLatin1String("Nemo.Models") || uri == QLatin1String("org.nemomobile.models"));
     }
 
     void registerTypes(const char *uri)
     {
-        Q_ASSERT(uri == QLatin1String("org.nemomobile.models"));
+        Q_ASSERT(uri == QLatin1String("Nemo.Models") || uri == QLatin1String("org.nemomobile.models"));
         qmlRegisterType<CalendarModel>(uri, 1, 0, "CalendarModel");
     }
 };
