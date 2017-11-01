@@ -34,12 +34,12 @@ public:
 
     void initializeEngine(QQmlEngine *, const char *uri)
     {
-        Q_ASSERT(uri == QLatin1String("Nemo.Models") || uri == QLatin1String("org.nemomobile.models"));
+        Q_ASSERT(uri == QLatin1String("Nemo.UX.Models") || uri == QLatin1String("org.nemomobile.uxmodels"));
     }
 
     void registerTypes(const char *uri)
     {
-        Q_ASSERT(uri == QLatin1String("Nemo.Models") || uri == QLatin1String("org.nemomobile.models"));
+        Q_ASSERT(uri == QLatin1String("Nemo.UX.Models") || uri == QLatin1String("org.nemomobile.uxmodels"));
         qmlRegisterType<CalendarModel>(uri, 1, 0, "CalendarModel");
     }
 };
