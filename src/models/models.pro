@@ -1,7 +1,7 @@
 TEMPLATE = lib
-TARGET = nemomodels
+TARGET = nemouxmodels
 
-PLUGIN_IMPORT_PATH = Nemo/Models
+PLUGIN_IMPORT_PATH = Nemo/UX/Models
 
 QT -= gui
 QT += qml
