@@ -38,6 +38,7 @@ NemoWindow {
     property alias initialPage: stackView.initialItem
     property bool applicationActive: Qt.application.active
 
+    property alias inputPanel: inputPanel
 
     property alias orientation: contentArea.uiOrientation
     readonly property int isUiPortrait: orientation == Qt.PortraitOrientation || orientation == Qt.InvertedPortraitOrientation
@@ -195,9 +196,9 @@ NemoWindow {
         rotation: rotationToTransposeToPortrait()
 
         Item {
-            id: clipping2
+            id: inputClipping
 
-            z: 1
+            z: 2
 
             property bool panelVisible:  inputPanel.active
             onPanelVisibleChanged:{
@@ -212,16 +213,27 @@ NemoWindow {
             }
 
             width:(isUiLandscape ? stackView.panelSize : parent.width)
-            height:(isUiPortrait ? stackView.panelSize : root.height)
-
-            InputPanel {
-                z:99
-                id: inputPanel
-                visible: true
-                width:isUiPortrait ? backgroundItem.width : backgroundItem.height
-                x:0
+            height:(isUiPortrait ? stackView.panelSize : parent.height)
+            Item {
+                id:inputRotatingArea
                 rotation:contentArea.rotation
                 anchors.centerIn: parent
+                width:isUiPortrait ? backgroundItem.width : backgroundItem.height
+                height:isUiPortrait ? parent.height : stackView.panelSize //parent.width
+                readonly property real kbdDesignHeight: size.ratio(480)
+                InputPanel {
+                    z:99
+                    objectName: "inputpanel"
+                    id: inputPanel
+                    visible: stackView.panelSize > 0
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+
+                    Connections {
+                        target: root
+                        onIsUiPortraitChanged: inputPanel.keyboard.style.keyboardDesignHeight = root.isUiPortrait ? inputRotatingArea.kbdDesignHeight : root.width/2
+                    }
+                }
             }
         }
 
@@ -270,20 +282,21 @@ NemoWindow {
                     property real imSize: !root.applicationActive ? 0 : Qt.inputMethod.keyboardRectangle.height
 
                     onImSizeChanged: {
-                        if (imSize <= 0 && previousImSize > 0) {
-                            imShowAnimation.stop()
-                            imHideAnimation.start()
-                        } else if (imSize > 0 && previousImSize <= 0) {
-                            imHideAnimation.stop()
-                            imShowAnimation.to = imSize
-                            imShowAnimation.start()
-                        } else {
-                            panelSize = imSize
+                        if(inputPanel.active) {
+                            if (imSize <= 0 && previousImSize > 0) {
+                                imShowAnimation.stop()
+                                imHideAnimation.start()
+                            } else if (imSize > 0 && previousImSize <= 0) {
+                                imHideAnimation.stop()
+                                imShowAnimation.to = imSize
+                                imShowAnimation.start()
+                            } else {
+                                panelSize = imSize
+                            }
+
+                            previousImSize = imSize
                         }
-
-                        previousImSize = imSize
                     }
-
                     clip: true
                     Component.onCompleted: {
                         stackInitialized = true
@@ -482,7 +495,7 @@ NemoWindow {
                                 anchors.bottom: undefined
                             }
                             AnchorChanges {
-                                target: clipping2
+                                target: inputClipping
                                 anchors.top: clipping.bottom
                                 anchors.left: parent.left
                                 anchors.right: undefined
@@ -514,7 +527,7 @@ NemoWindow {
                                 anchors.bottom: parent.bottom
                             }
                             AnchorChanges {
-                                target: clipping2
+                                target: inputClipping
                                 anchors.top: undefined
                                 anchors.left: parent.left
                                 anchors.right: undefined//clipping.left
@@ -546,7 +559,7 @@ NemoWindow {
                                 anchors.bottom: parent.bottom
                             }
                             AnchorChanges {
-                                target: clipping2
+                                target: inputClipping
                                 anchors.top: undefined
                                 anchors.left: undefined
                                 anchors.right: clipping.right
@@ -578,7 +591,7 @@ NemoWindow {
                                 anchors.bottom: parent.bottom
                             }
                             AnchorChanges {
-                                target: clipping2
+                                target: inputClipping
                                 anchors.top: undefined
                                 anchors.left: undefined//clipping.right
                                 anchors.right: parent.right
