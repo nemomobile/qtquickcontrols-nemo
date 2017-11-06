@@ -1,4 +1,5 @@
 import QtQuick 2.6
+import QtQuick.Controls.Nemo 1.0
 
 Item {
     id: shell
