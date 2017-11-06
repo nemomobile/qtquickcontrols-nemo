@@ -1,6 +1,7 @@
 /****************************************************************************************
 **
 ** Copyright (C) 2014 Aleksi Suomalainen <suomalainen.aleksi@gmail.com>
+** Copyright (C) 2017 Chupligin Sergey <neochapay@gmail.com>
 ** All rights reserved.
 **
 ** You may use this file under the terms of BSD license as follows:
@@ -39,7 +40,7 @@ import Nemo.Dialogs 1.0
 Page {
     id: root
 
-    headerTools: HeaderToolsLayout { showBackButton: true; title: "Query dialog example" }
+    headerTools: HeaderToolsLayout { showBackButton: true; title: qsTr("Query dialog example") }
 
     QueryDialog {
         cancelText: qsTr("Cancel")
@@ -51,10 +52,10 @@ Page {
         image: "/usr/share/glacier-components/images/example.jpg"
 
         onAccepted: {
-            result.text = "User accepted"
+            result.text = qsTr("User accepted")
         }
         onCanceled: {
-            result.text = "User canceled"
+            result.text = qsTr("User canceled")
         }
     }
     Label {
