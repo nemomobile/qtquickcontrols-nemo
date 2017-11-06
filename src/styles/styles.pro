@@ -8,26 +8,26 @@ QT+=qml
 
 # Styles
 QML_FILES = \
-    ButtonStyle.qml \
-    CheckBoxStyle.qml \
-    ComboBoxStyle.qml \
-    FocusFrameStyle.qml \
-    GrooveStyle.qml \
-    GroupBoxStyle.qml \
-    MenuBarStyle.qml \
-    MenuStyle.qml \
-    ProgressBarStyle.qml \
-    RadioButtonStyle.qml \
-    ScrollViewStyle.qml\
-    SliderStyle.qml \
-    SpinBoxStyle.qml \
-    StatusBarStyle.qml \
-    TableViewStyle.qml \
-    TabViewStyle.qml \
-    TextFieldStyle.qml \
-    ToolBarStyle.qml \
-    ToolButtonStyle.qml \
-    IconButtonStyle.qml
+    qml/ButtonStyle.qml \
+    qml/CheckBoxStyle.qml \
+    qml/ComboBoxStyle.qml \
+    qml/FocusFrameStyle.qml \
+    qml/GrooveStyle.qml \
+    qml/GroupBoxStyle.qml \
+    qml/MenuBarStyle.qml \
+    qml/MenuStyle.qml \
+    qml/ProgressBarStyle.qml \
+    qml/RadioButtonStyle.qml \
+    qml/ScrollViewStyle.qml\
+    qml/SliderStyle.qml \
+    qml/SpinBoxStyle.qml \
+    qml/StatusBarStyle.qml \
+    qml/TableViewStyle.qml \
+    qml/TabViewStyle.qml \
+    qml/TextFieldStyle.qml \
+    qml/ToolBarStyle.qml \
+    qml/ToolButtonStyle.qml \
+    qml/IconButtonStyle.qml
 
 # Images
 QML_FILES += \
@@ -64,8 +64,8 @@ OTHER_FILES += qmldir \
 
 target.path = $$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH
 
-qmlfiles.files = $$_PRO_FILE_PWD_/*.qml
-qmlfiles.files += $$_PRO_FILE_PWD_/qmldir
+qmlfiles.files = $$_PRO_FILE_PWD_/qml/*.qml
+qmlfiles.files += $$_PRO_FILE_PWD_/qml/qmldir
 qmlfiles.path = $$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH
 
 themes.files = $$_PRO_FILE_PWD_/themes/*.json
