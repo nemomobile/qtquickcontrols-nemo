@@ -31,6 +31,7 @@ qml.files += \
 qml.path = /usr/share/glacier-components/content
 
 images.files = images/*.png
+images.files += images/*.jpg
 images.path = /usr/share/glacier-components/images
 
 OTHER_FILES += $$qml.files

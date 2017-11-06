@@ -42,10 +42,14 @@ Page {
     headerTools: HeaderToolsLayout { showBackButton: true; title: "Query dialog example" }
 
     QueryDialog {
-        cancelText: "Cancel"
-        acceptText: "Delete"
-        headingText: "Are you sure you want to delete this?"
-        subLabelText: "Continue?"
+        cancelText: qsTr("Cancel")
+        acceptText: qsTr("Delete")
+        headingText: qsTr("Are you sure you want to delete this?")
+        subLabelText: qsTr("Do you want to continue?")
+
+        icon: "image://theme/trash"
+        image: "/usr/share/glacier-components/images/example.jpg"
+
         onAccepted: {
             result.text = "User accepted"
         }

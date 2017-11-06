@@ -1,3 +1,6 @@
+TEMPLATE = lib
+TARGET = nemouxdialogs
+
 PLUGIN_IMPORT_PATH = Nemo/Dialogs
 
 qmlfiles.files = qmldir

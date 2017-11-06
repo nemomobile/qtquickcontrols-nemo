@@ -11,30 +11,61 @@ Item {
     property alias headingText: heading.text
     property alias subLabelText: subLabel.text
 
+    property string icon: ""
+    property string image: ""
+
+    Image{
+        anchors.fill: parent
+        fillMode: Image.PreserveAspectCrop
+        source: shell.image
+        visible: shell.image != ""
+    }
 
     Rectangle {
-        anchors.fill: parent
+        id: shadow
+        width: parent.width
+        height: (shell.image != "" && shell.icon == "") ? (parent.height-cancel.height)/3 : parent.height-cancel.height
         opacity: 0.65
         color: Theme.backgroundColor
-
+        anchors.bottom: cancel.top
     }
+
+    Image{
+        id: icon
+        source: shell.icon
+        width: Theme.itemHeightMedium
+        height: width
+        anchors{
+            top: shell.top
+            topMargin: Theme.itemSpacingHuge
+            horizontalCenter: shell.horizontalCenter
+        }
+        visible: shell.icon != ""
+        fillMode: Image.PreserveAspectCrop
+    }
+
     Label {
-        width: parent.width*0.8
         id: heading
-        anchors.centerIn: parent
+        width: parent.width*0.95
+        anchors{
+            centerIn: (shell.image != "" && shell.icon == "") ? shadow : parent
+        }
         horizontalAlignment: Text.AlignHCenter
         font.weight: Theme.fontWeightLarge
+        font.pixelSize:  (shell.image != "" && shell.icon == "") ? Theme.fontSizeTiny : Theme.fontSizeSmall
         wrapMode: Text.Wrap
     }
+
     Label {
          id:subLabel
-         width: parent.width*0.8
+         width: parent.width*0.95
          wrapMode: Text.Wrap
          font.weight: Theme.fontWeightMedium
+         font.pixelSize:  (shell.image != "" && shell.icon == "") ? Theme.fontSizeTiny : Theme.fontSizeSmall
          horizontalAlignment: Text.AlignHCenter
          anchors {
              top:heading.bottom
-             topMargin: Theme.itemSpacingLarge
+             topMargin: (shell.image != "" && shell.icon == "") ? Theme.itemSpacingSmall : Theme.itemSpacingLarge
              horizontalCenter: shell.horizontalCenter
          }
     }
