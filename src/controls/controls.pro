@@ -7,24 +7,24 @@ THEME_IMPORT_PATH = QtQuick/Controls/Styles/Nemo/themes
 
 # Added/Reimplemented Controls
 QML_FILES += \
-    Button.qml \
-    ApplicationWindow.qml \
-    Page.qml \
-    Spinner.qml \
-    Label.qml \
-    Checkbox.qml\
-    ButtonRow.qml \
-    QueryDialog.qml \
-    Header.qml \
-    HeaderToolsLayout.qml \
-    Slider.qml\
-    ListView.qml \
-    ListViewItemWithActions.qml\
-    GlacierRoller.qml \
-    GlacierRollerItem.qml \
-    InverseMouseArea.qml \
-    IconButton.qml \
-    DatePicker.qml
+    qml/Button.qml \
+    qml/ApplicationWindow.qml \
+    qml/Page.qml \
+    qml/Spinner.qml \
+    qml/Label.qml \
+    qml/Checkbox.qml\
+    qml/ButtonRow.qml \
+    qml/QueryDialog.qml \
+    qml/Header.qml \
+    qml/HeaderToolsLayout.qml \
+    qml/Slider.qml\
+    qml/ListView.qml \
+    qml/ListViewItemWithActions.qml\
+    qml/GlacierRoller.qml \
+    qml/GlacierRollerItem.qml \
+    qml/InverseMouseArea.qml \
+    qml/IconButton.qml \
+    qml/DatePicker.qml
 
 OTHER_FILES += qmldir \
     $$QML_FILES
@@ -55,8 +55,8 @@ SOURCES += \
 
 target.path = $$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH
 
-qmlfiles.files = $$_PRO_FILE_PWD_/*.qml
-qmlfiles.files += $$_PRO_FILE_PWD_/qmldir
+qmlfiles.files = $$_PRO_FILE_PWD_/qml/*.qml
+qmlfiles.files += $$_PRO_FILE_PWD_/qml/qmldir
 qmlfiles.path = $$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH
 
 images.files = $$_PRO_FILE_PWD_/images
