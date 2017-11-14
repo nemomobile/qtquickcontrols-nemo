@@ -24,7 +24,8 @@ QML_FILES += \
     qml/GlacierRollerItem.qml \
     qml/InverseMouseArea.qml \
     qml/IconButton.qml \
-    qml/DatePicker.qml
+    qml/DatePicker.qml \
+    qml/dialogs/QueryDialog.qml
 
 OTHER_FILES += qmldir \
     $$QML_FILES
@@ -59,7 +60,11 @@ qmlfiles.files = $$_PRO_FILE_PWD_/qml/*.qml
 qmlfiles.files += $$_PRO_FILE_PWD_/qml/qmldir
 qmlfiles.path = $$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH
 
+dialogs.files = $$_PRO_FILE_PWD_/qml/dialogs/*.qml
+dialogs.files += $$_PRO_FILE_PWD_/qml/dialogs/qmldir
+dialogs.path = $$[QT_INSTALL_QML]/Nemo/Dialogs
+
 images.files = $$_PRO_FILE_PWD_/images
 images.path = $$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH
 
-INSTALLS += target qmlfiles images
+INSTALLS += target qmlfiles images dialogs
