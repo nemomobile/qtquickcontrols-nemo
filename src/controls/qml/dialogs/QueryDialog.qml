@@ -1,39 +1,65 @@
 import QtQuick 2.6
+import QtQuick.Controls.Nemo 1.0
 
 Item {
     id: shell
     anchors.fill: parent
     signal accepted()
     signal canceled()
+    signal selected()
     property alias cancelText: cancel.text
     property alias acceptText: accept.text
     property alias headingText: heading.text
     property alias subLabelText: subLabel.text
 
+    property string icon: ""
+    property bool inline: true
 
     Rectangle {
-        anchors.fill: parent
+        id: shadow
+        width: parent.width
+        height: inline ? (parent.height-cancel.height)/3 : parent.height-cancel.height
         opacity: 0.65
         color: Theme.backgroundColor
-
+        anchors.bottom: cancel.top
     }
+
+    Image{
+        id: icon
+        source: shell.icon
+        width: Theme.itemHeightMedium
+        height: width
+        anchors{
+            top: shell.top
+            topMargin: Theme.itemSpacingHuge
+            horizontalCenter: shell.horizontalCenter
+        }
+        visible: shell.icon != "" && !inline
+        fillMode: Image.PreserveAspectCrop
+    }
+
     Label {
-        width: parent.width*0.8
         id: heading
-        anchors.centerIn: parent
+        width: parent.width*0.95
+        anchors{
+            centerIn: inline ? shadow : parent
+        }
         horizontalAlignment: Text.AlignHCenter
         font.weight: Theme.fontWeightLarge
+        font.pixelSize:  inline ? Theme.fontSizeTiny : Theme.fontSizeSmall
         wrapMode: Text.Wrap
     }
+
     Label {
          id:subLabel
-         width: parent.width*0.8
+         width: parent.width*0.95
          wrapMode: Text.Wrap
          font.weight: Theme.fontWeightMedium
+         font.pixelSize:  inline ? Theme.fontSizeTiny : Theme.fontSizeSmall
          horizontalAlignment: Text.AlignHCenter
          anchors {
              top:heading.bottom
-             topMargin: Theme.itemSpacingLarge
+             topMargin: inline ? Theme.itemSpacingSmall : Theme.itemSpacingLarge
              horizontalCenter: shell.horizontalCenter
          }
     }
@@ -48,7 +74,7 @@ Item {
         }
         onClicked: {
             shell.canceled()
-            shell.destroy()
+            shell.selected()
         }
     }
     Button {
@@ -62,7 +88,7 @@ Item {
         }
         onClicked: {
             shell.accepted()
-            shell.destroy()
+            shell.selected()
         }
     }
 }
