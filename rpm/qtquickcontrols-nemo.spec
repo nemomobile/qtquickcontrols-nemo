@@ -63,6 +63,7 @@ desktop-file-install --delete-original       \
 
 %files
 %defattr(-,root,root,-)
+%{_libdir}/qt5/qml/Nemo/Dialogs
 %{_libdir}/qt5/qml/Nemo/UX/Models
 %{_libdir}/qt5/qml/QtQuick/Controls/Nemo
 %{_libdir}/qt5/qml/QtQuick/Controls/Styles/Nemo
