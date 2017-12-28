@@ -1,21 +1,18 @@
 Name:       qt5-qtquickcontrols-nemo
-Summary:    Nemomobile Qt Quick Controls 
+Summary:    Nemomobile Qt Quick Controls
 Version:    5.3.1
 Release:    nemo1
-Group:      Qt/Qt
+Group:      System/Library
 License:    LGPLv2.1 with exception or GPLv3
-URL:        http://qt.nokia.com
+URL:        https://github.com/nemomobile/qtquickcontrols-nemo
 Source0:    %{name}-%{version}.tar.xz
-BuildRequires:  qt5-qtcore-devel
-BuildRequires:  qt5-qtgui-devel
-BuildRequires:  qt5-qtdeclarative-devel
-BuildRequires:  qt5-qtopengl-devel
-BuildRequires:  qt5-qtdeclarative-qtquick-devel
-BuildRequires:  qt5-qmake
+BuildRequires:  pkgconfig(Qt5Core)
+BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Quick)
 BuildRequires:  fdupes
 Requires:   qt5-qtquickcontrols
 Requires:   qt5-qtgraphicaleffects
+Requires:   nemo-theme-glacier
 
 %description
 Qt is a cross-platform application and UI framework. Using Qt, you can
@@ -26,7 +23,7 @@ This package contains the Qt Quick Controls library
 
 %package examples
 Summary:    Examples to showcase Nemo UI components
-Requires:   qt5-qtquickcontrols-nemo
+Requires:   %{name}
 BuildRequires:  desktop-file-utils
 
 %description examples
