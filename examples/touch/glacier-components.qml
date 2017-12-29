@@ -228,6 +228,7 @@ ApplicationWindow {
             anchors.fill: parent
             clip: true
             delegate: ListViewItemWithActions {
+                iconVisible: false
                 label: title
                 onClicked: pageItem.Stack.view.push(Qt.resolvedUrl(page))
             }
