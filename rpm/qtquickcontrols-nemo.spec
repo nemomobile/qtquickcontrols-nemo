@@ -1,6 +1,6 @@
 Name:       qt5-qtquickcontrols-nemo
 Summary:    Nemomobile Qt Quick Controls
-Version:    5.3.1
+Version:    5.3.2
 Release:    nemo1
 Group:      System/Library
 License:    LGPLv2.1 with exception or GPLv3
@@ -10,9 +10,12 @@ BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Quick)
 BuildRequires:  fdupes
+BuildRequires:  pkgconfig(glacierapp)
+
 Requires:   qt5-qtquickcontrols
 Requires:   qt5-qtgraphicaleffects
 Requires:   nemo-theme-glacier
+Requires:   libglacierapp
 
 %description
 Qt is a cross-platform application and UI framework. Using Qt, you can
