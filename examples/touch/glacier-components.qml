@@ -124,6 +124,10 @@ ApplicationWindow {
             title: "Icons"
             page: "content/IconPage.qml"
         }
+        ListElement {
+            title: "Notifications"
+            page: "content/NotificationsPage.qml"
+        }
     }
 
 

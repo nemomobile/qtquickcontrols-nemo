@@ -10,12 +10,10 @@ BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Quick)
 BuildRequires:  fdupes
-BuildRequires:  pkgconfig(glacierapp)
 
 Requires:   qt5-qtquickcontrols
 Requires:   qt5-qtgraphicaleffects
 Requires:   nemo-theme-glacier
-Requires:   libglacierapp
 
 %description
 Qt is a cross-platform application and UI framework. Using Qt, you can
@@ -27,7 +25,10 @@ This package contains the Qt Quick Controls library
 %package examples
 Summary:    Examples to showcase Nemo UI components
 Requires:   %{name}
+Requires:   nemo-qml-plugin-notifications-qt5
+Requires:   libglacierapp
 BuildRequires:  desktop-file-utils
+BuildRequires:  pkgconfig(glacierapp)
 
 %description examples
 %{summary}.
