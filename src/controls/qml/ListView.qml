@@ -8,10 +8,8 @@ ListView {
 
     signal hideAllActions(int hideIndex)
 
-    property bool showDecorator: false
     property color delegateColor: Theme.backgroundColor
     property color bottomGradientColor: Theme.backgroundColor
-    property color scrollerDecoratorColor: Theme.accentColor
 
     section.criteria: ViewSection.FullString
     section.delegate: Component{
@@ -65,21 +63,6 @@ ListView {
                 GradientStop { position: 1.0; color: bottomGradientColor }
             }
 
-        }
-    }
-
-    Rectangle{
-        id: scrollerDecorator
-        visible: (listView.showDecorator && listView.contentHeight > listView.height)
-        color: scrollerDecoratorColor
-
-        width: Theme.itemSpacingExtraSmall
-        height: listView.height*listView.height/listView.contentHeight
-        y: (listView.height)/listView.contentHeight*listView.contentY
-
-        anchors{
-            right: listView.right
-            rightMargin: Theme.itemSpacingExtraSmall / 2
         }
     }
 }

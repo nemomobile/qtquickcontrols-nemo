@@ -42,18 +42,16 @@
 #include <QQmlApplicationEngine>
 #include <QtQuick/QQuickView>
 
+#include <glacierapp.h>
+
 int main(int argc, char *argv[])
 {
     setenv("QT_QUICK_CONTROLS_STYLE", "Nemo", 1);
-    QGuiApplication app(argc, argv);
+    QGuiApplication *app = GlacierApp::app(argc, argv);
+    app->setOrganizationName("NemoMobile");
 
-    QQmlApplicationEngine* engine = new QQmlApplicationEngine(QUrl("/usr/share/glacier-components/main.qml"));
-
-    QObject *topLevel = engine->rootObjects().value(0);
-
-    QQuickWindow *window = qobject_cast<QQuickWindow *>(topLevel);
+    QQuickWindow *window = GlacierApp::showWindow();
     window->setTitle(QObject::tr("Glacier components"));
-    window->showFullScreen();
 
-    return app.exec();
+    return app->exec();
 }

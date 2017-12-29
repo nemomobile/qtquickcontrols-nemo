@@ -25,6 +25,7 @@ QML_FILES += \
     qml/InverseMouseArea.qml \
     qml/IconButton.qml \
     qml/DatePicker.qml \
+    qml/ScrollDecorator.qml \
     qml/dialogs/QueryDialog.qml
 
 OTHER_FILES += qmldir \

@@ -3,12 +3,12 @@ QT += qml quick
 TARGET = glacier-components
 target.path = /usr/bin
 
-qtHaveModule(widgets) {
-    QT += widgets
-}
+CONFIG += link_pkgconfig
+LIBS += -lglacierapp
+PKGCONFIG += glacierapp
 
-mainqml.files = main.qml
-mainqml.path = /usr/share/glacier-components
+mainqml.files = glacier-components.qml
+mainqml.path = /usr/share/glacier-components/qml
 
 qml.files += \
     content/AndroidDelegate.qml \
@@ -26,16 +26,16 @@ qml.files += \
     content/ListViewPage.qml \
     content/SelectRollerPage.qml \
     content/IconPage.qml \
-    content/DatePickerPage.qml
+    content/DatePickerPage.qml \
+    content/NotificationsPage.qml
 
-qml.path = /usr/share/glacier-components/content
+qml.path = /usr/share/glacier-components/qml/content
 
 images.files = images/*.png
 images.files += images/*.jpg
 images.path = /usr/share/glacier-components/images
 
 OTHER_FILES += $$qml.files
-
 
 desktop.path = /usr/share/applications
 desktop.files = glacier-gallery.desktop

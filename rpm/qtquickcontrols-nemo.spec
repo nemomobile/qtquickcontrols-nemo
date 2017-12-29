@@ -1,6 +1,6 @@
 Name:       qt5-qtquickcontrols-nemo
 Summary:    Nemomobile Qt Quick Controls
-Version:    5.3.1
+Version:    5.3.2
 Release:    nemo1
 Group:      System/Library
 License:    LGPLv2.1 with exception or GPLv3
@@ -10,6 +10,7 @@ BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Quick)
 BuildRequires:  fdupes
+
 Requires:   qt5-qtquickcontrols
 Requires:   qt5-qtgraphicaleffects
 Requires:   nemo-theme-glacier
@@ -24,7 +25,10 @@ This package contains the Qt Quick Controls library
 %package examples
 Summary:    Examples to showcase Nemo UI components
 Requires:   %{name}
+Requires:   nemo-qml-plugin-notifications-qt5
+Requires:   libglacierapp
 BuildRequires:  desktop-file-utils
+BuildRequires:  pkgconfig(glacierapp)
 
 %description examples
 %{summary}.

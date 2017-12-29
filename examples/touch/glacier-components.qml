@@ -124,6 +124,10 @@ ApplicationWindow {
             title: "Icons"
             page: "content/IconPage.qml"
         }
+        ListElement {
+            title: "Notifications"
+            page: "content/NotificationsPage.qml"
+        }
     }
 
 
@@ -224,12 +228,18 @@ ApplicationWindow {
         }
 
         ListView {
+            id: mainList
             model: pageModel
             anchors.fill: parent
             clip: true
             delegate: ListViewItemWithActions {
+                iconVisible: false
                 label: title
                 onClicked: pageItem.Stack.view.push(Qt.resolvedUrl(page))
+            }
+
+            ScrollDecorator{
+                flickable: mainList
             }
         }
     }
