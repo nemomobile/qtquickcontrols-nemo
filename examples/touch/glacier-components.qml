@@ -228,6 +228,7 @@ ApplicationWindow {
         }
 
         ListView {
+            id: mainList
             model: pageModel
             anchors.fill: parent
             clip: true
@@ -235,6 +236,10 @@ ApplicationWindow {
                 iconVisible: false
                 label: title
                 onClicked: pageItem.Stack.view.push(Qt.resolvedUrl(page))
+            }
+
+            ScrollDecorator{
+                flickable: mainList
             }
         }
     }
