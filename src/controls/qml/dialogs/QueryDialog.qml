@@ -12,14 +12,24 @@ Item {
     property alias headingText: heading.text
     property alias subLabelText: subLabel.text
 
+    property real bgOpacity: 1;
+
     property string icon: ""
     property bool inline: true
+
+    function open(){
+        shell.visible = true
+    }
+
+    function close(){
+        shell.visible = false
+    }
 
     Rectangle {
         id: shadow
         width: parent.width
         height: inline ? (parent.height-cancel.height)/3 : parent.height-cancel.height
-        opacity: 0.65
+        opacity: shell.bgOpacity
         color: Theme.backgroundColor
         anchors.bottom: cancel.top
     }
@@ -75,6 +85,7 @@ Item {
         onClicked: {
             shell.canceled()
             shell.selected()
+            close()
         }
     }
     Button {
@@ -89,6 +100,7 @@ Item {
         onClicked: {
             shell.accepted()
             shell.selected()
+            close();
         }
     }
 }
