@@ -14,9 +14,6 @@ QML_FILES += \
     qml/Label.qml \
     qml/Checkbox.qml\
     qml/ButtonRow.qml \
-    qml/QueryDialog.qml \
-    qml/SelectionDialog.qml \
-    qml/Dialog.qml \
     qml/Header.qml \
     qml/HeaderToolsLayout.qml \
     qml/Slider.qml\
@@ -29,7 +26,9 @@ QML_FILES += \
     qml/DatePicker.qml \
     qml/ScrollDecorator.qml \
     qml/dialogs/QueryDialog.qml \
-    qml/TextField.qml
+    qml/TextField.qml \
+    qml/dialogs/SelectionDialog.qml \
+    qml/dialogs/Dialog.qml
 
 OTHER_FILES += qmldir \
     $$QML_FILES
