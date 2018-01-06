@@ -15,6 +15,7 @@ QML_FILES += \
     qml/Checkbox.qml\
     qml/ButtonRow.qml \
     qml/QueryDialog.qml \
+    qml/Dialog.qml \
     qml/Header.qml \
     qml/HeaderToolsLayout.qml \
     qml/Slider.qml\
