@@ -25,6 +25,7 @@ QML_FILES = \
     qml/TableViewStyle.qml \
     qml/TabViewStyle.qml \
     qml/TextFieldStyle.qml \
+    qml/TextAreaStyle.qml \
     qml/ToolBarStyle.qml \
     qml/ToolButtonStyle.qml \
     qml/IconButtonStyle.qml

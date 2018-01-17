@@ -37,7 +37,8 @@ Item{
     width: 400
     height: width
 
-    property date date: new Date();
+    property int hours: 18
+    property int minutes: 12
 
     Rectangle{
         anchors.fill: parent
@@ -57,38 +58,39 @@ Item{
             var hour_end_angle = getHourAngle()
 
             var minute_radius = canvas.width/2*0.8
-            var minute_end_angle = getMinuteAngle();
+            var minute_end_angle = getMinuteAngle()
 
+            context.clearRect(0, 0, canvas.width, canvas.height)
 /*Draw hours */
-            context.beginPath();
-            context.arc(centerX, centerY, hour_radius, -0.5*Math.PI, hour_end_angle, false);
-            context.lineWidth = Theme.itemHeightExtraSmall/2;
-            context.strokeStyle = Theme.accentColor;
-            context.globalAlpha = 1;
+            context.beginPath()
+            context.arc(centerX, centerY, hour_radius, -0.5*Math.PI, hour_end_angle, false)
+            context.lineWidth = Theme.itemHeightExtraSmall/2
+            context.strokeStyle = Theme.accentColor
+            context.globalAlpha = 1
             context.stroke();
 /*Draw subhours if time AM*/
-            if(date.getHours() > 12)
+            if(timePicker.hours > 12)
             {
-                context.beginPath();
-                context.arc(centerX, centerY, hour_radius, 0, 2 * Math.PI, false);
-                context.lineWidth = Theme.itemHeightExtraSmall/2;
-                context.strokeStyle = Theme.accentColor;
-                context.globalAlpha = 0.5;
-                context.stroke();
+                context.beginPath()
+                context.arc(centerX, centerY, hour_radius, 0, 2 * Math.PI, false)
+                context.lineWidth = Theme.itemHeightExtraSmall/2
+                context.strokeStyle = Theme.accentColor
+                context.globalAlpha = 0.5
+                context.stroke()
             }
 /*Draw minute*/
             context.beginPath();
-            context.arc(centerX, centerY, minute_radius, -0.5*Math.PI, minute_end_angle, false);
-            context.lineWidth = Theme.itemHeightExtraSmall/5;
-            context.strokeStyle = Theme.accentColor;
-            context.globalAlpha = 0.5;
-            context.stroke();
+            context.arc(centerX, centerY, minute_radius, -0.5*Math.PI, minute_end_angle, false)
+            context.lineWidth = Theme.itemHeightExtraSmall/5
+            context.strokeStyle = Theme.accentColor
+            context.globalAlpha = 0.5
+            context.stroke()
         }
     }
 
     Label{
         id: hourLabel
-        text: timePicker.date.getHours()
+        text: timePicker.hours
         font.pixelSize: Theme.itemHeightExtraSmall/2
         font.bold: true
         x: canvas.width/2-hourLabel.contentWidth-Theme.itemHeightExtraSmall/10
@@ -97,27 +99,96 @@ Item{
 
     Label{
         id: minuteLabel
-        text: timePicker.date.getMinutes()
+        text: timePicker.minutes
         font.pixelSize: Theme.itemHeightExtraSmall/5
         x: canvas.width/2-minuteLabel.contentWidth-Theme.itemHeightExtraSmall/10
         y: canvas.width/2-canvas.width/2*0.8-Theme.itemHeightExtraSmall/5/2
     }
 
-    Component.onCompleted: console.log(date)
+    MouseArea{
+        anchors.fill: parent
+        onPressed: {
+            var minute_rad_max = canvas.width/2*0.8+Theme.itemHeightExtraSmall/10;
+            var minute_rad_min = canvas.width/2*0.8-Theme.itemHeightExtraSmall/10;
+
+            var hour_rad_max = canvas.width/2*0.8 - 1.5*Theme.itemHeightExtraSmall/4 - Theme.itemHeightExtraSmall/5/2 + Theme.itemHeightExtraSmall/2
+            var hour_rad_min = canvas.width/2*0.8 - 1.5*Theme.itemHeightExtraSmall/4 - Theme.itemHeightExtraSmall/5/2 - Theme.itemHeightExtraSmall/2
+
+
+            var clickRad = Math.sqrt(Math.pow((mouseX-canvas.width/2),2)+Math.pow((mouseY-canvas.width/2),2))
+            /*If inside min circle*/
+            if(clickRad <= minute_rad_max && clickRad >= hour_rad_min)
+            {
+                var ang = getAngle(mouseX,mouseY)
+                if(clickRad>=minute_rad_min)
+                {
+                    var cur_min = Math.round(60*ang/360)
+                    timePicker.minutes = Math.round(60*ang/360)
+                }
+                else if(clickRad <= hour_rad_max && clickRad >= hour_rad_min)
+                {
+                    if(timePicker.hours >= 12)
+                    {
+                        timePicker.hours = Math.round(12*ang/360)+12
+                    }
+                    else
+                    {
+                        timePicker.hours = Math.round(12*ang/360)
+                    }
+                }
+            }
+        }
+    }
+
+    Component.onCompleted: {
+        if(hours > 23 || hours < 0)
+        {
+            console.warn("[TimePicker] Uncorrect hours value")
+            hours = 0
+        }
+
+        if(minutes > 59 || minutes < 0)
+        {
+            console.warn("[TimePicker] Uncorrect minutes value")
+            minutes = 0
+        }
+    }
+
+    onMinutesChanged: {
+        canvas.requestPaint()
+    }
+
+    onHoursChanged: {
+        if(timePicker.hours == 24)
+        {
+            timePicker.hours = 0
+        }
+        canvas.requestPaint()
+    }
 
     function getHourAngle()
     {
-        var hour = timePicker.date.getHours();
+        var hour = timePicker.hours
         if(hour > 12)
         {
             hour = hour-12
         }
-        return 2*Math.PI/12*hour-0.5*Math.PI;
+        return 2*Math.PI/12*hour-0.5*Math.PI
     }
 
     function getMinuteAngle()
     {
-        var minute = timePicker.date.getMinutes()
-        return 2*Math.PI/60*minute-0.5*Math.PI;
+        var minute = timePicker.minutes
+        return 2*Math.PI/60*minute-0.5*Math.PI
+    }
+
+    function getAngle(x,y)
+    {
+        var a = (Math.atan((y - canvas.width/2)/(x - canvas.width/2)) * 180) / Math.PI + 90
+        if (x < canvas.width/2)
+        {
+            a += 180
+        }
+        return a
     }
 }
