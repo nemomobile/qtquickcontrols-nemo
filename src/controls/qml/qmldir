@@ -26,6 +26,7 @@ GlacierRollerItem 1.0 GlacierRollerItem.qml
 InverseMouseArea 1.0 InverseMouseArea.qml
 IconButton 1.0 IconButton.qml
 DatePicker 1.0 DatePicker.qml
+TimePicker 1.0 TimePicker.qml
 ScrollDecorator 1.0 ScrollDecorator.qml
 TextField 1.0 TextField.qml
 
