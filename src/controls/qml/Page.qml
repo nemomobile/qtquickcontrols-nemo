@@ -65,6 +65,8 @@ NemoPage {
     readonly property bool isPortrait: (orientation === Qt.PortraitOrientation || orientation === Qt.InvertedPortraitOrientation)
     readonly property bool isLandscape: (orientation === Qt.LandscapeOrientation || orientation === Qt.InvertedLandscapeOrientation)
 
+    allowedOrientations: Qt.PortraitOrientation | Qt.LandscapeOrientation | Qt.InvertedPortraitOrientation | Qt.InvertedLandscapeOrientation
+
     property bool __isNemoPage
 
     Rectangle {
