@@ -37,12 +37,16 @@ Item{
     width: 400
     height: width
 
-    property int hours: 18
-    property int minutes: 12
+    property date currentTime: new Date()
+
+    property int hours: currentTime.getHours()
+    property int minutes: currentTime.getHours()
+
+    property bool readOnly: true
 
     Rectangle{
         anchors.fill: parent
-        color: "black"
+        color: Theme.backgroundColor
     }
 
     Canvas {
@@ -108,6 +112,10 @@ Item{
     MouseArea{
         anchors.fill: parent
         onPressed: {
+            if(readOnly)
+            {
+                return;
+            }
             var minute_rad_max = canvas.width/2*0.8+Theme.itemHeightExtraSmall/10;
             var minute_rad_min = canvas.width/2*0.8-Theme.itemHeightExtraSmall/10;
 

@@ -86,6 +86,10 @@ ApplicationWindow {
             page: "content/DatePickerPage.qml"
         }
         ListElement {
+            title: "TimePicker"
+            page: "content/TimePickerPage.qml"
+        }
+        ListElement {
             title: "Tabs"
             page: "content/TabBarPage.qml"
         }
