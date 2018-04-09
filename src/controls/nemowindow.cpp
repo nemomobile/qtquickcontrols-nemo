@@ -26,6 +26,8 @@ NemoWindow::NemoWindow(QWindow *parent) :
     m_defaultAllowedOrientations(Qt::PortraitOrientation | Qt::LandscapeOrientation)
 {
     m_allowedOrientations = m_defaultAllowedOrientations;
+    m_filter = new EditFilter();
+    this->installEventFilter(m_filter);
 }
 
 Qt::ScreenOrientations NemoWindow::allowedOrientations() const

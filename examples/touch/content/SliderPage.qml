@@ -55,6 +55,16 @@ Page {
         Slider {
             anchors.margins: 20
             value: 0
+            useSpecSlider: false
+        }
+        Slider {
+            anchors.margins: 20
+            value: 50
+            showValue: true
+            minimumValue: 1
+            maximumValue: 100
+            stepSize: 1
+            alwaysUp: true
         }
         Slider {
             anchors.margins: 20

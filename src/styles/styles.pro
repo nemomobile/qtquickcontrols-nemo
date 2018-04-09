@@ -53,7 +53,10 @@ QML_FILES += \
     images/disabled-overlay.png \
     images/switch-ball.png \
     images/slider-ball.png \
-    images/slider-handle-left.svg
+    images/slider-handle-left.svg \
+    images/slider-trumpet-stretch.png \
+    images/slider-trumpet-up.png \
+    images/slider-trumpet.png
 
 OTHER_FILES += qmldir \
     themes/Theme1.js \

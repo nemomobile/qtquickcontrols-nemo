@@ -35,12 +35,21 @@ import QtQuick.Controls.Styles.Nemo 1.0
 
 Rectangle {
     id: main
-    width: childrenRect.width
+    implicitWidth: fixedWidth ? fixedWidth  : childrenRectWidth()
     color: Theme.fillDarkColor
     height: Theme.itemHeightSmall
     property ListModel model: ListModel {}
     property bool enabled: true
     property int currentIndex: -1
+    property int fixedWidth
+
+    function childrenRectWidth() {
+        var childWidth = 0
+        for(var i=0; i < rectangles.count; i++) {
+            childWidth = childWidth + rectangles.itemAt(i).width
+        }
+        return childWidth
+    }
 
     Image {
         anchors.fill: parent
@@ -48,24 +57,51 @@ Rectangle {
         source: "images/disabled-overlay.png"
         fillMode: Image.Tile
     }
-
     Rectangle{
         id: selecter
-        x: rowElement.children[main.currentIndex].x || 0
+        //x: main.currentIndex > -1 ? rowElement.children[main.currentIndex].x  : 0
         anchors.verticalCenter: rowElement.verticalCenter
 
-        width: rowElement.children[main.currentIndex].width || 0
         height: Theme.itemHeightMedium
         color: Theme.accentColor
-
+        clip: true
         visible: main.currentIndex > -1
 
         Behavior on x {
-            NumberAnimation { duration: 200 }
+            NumberAnimation { duration: 200; easing.type: Easing.OutCubic}
         }
         Behavior on width {
-            NumberAnimation { duration: 200 }
+            NumberAnimation { duration: 200; easing.type: Easing.OutCubic}
         }
+    }
+    MouseArea {
+        id:dragArea
+        anchors.fill:parent
+        enabled: main.enabled
+        drag.target: main.enabled ? selecter.visible ? selecter : null : null
+        drag.axis: Drag.XAxis
+        drag.minimumX: x
+        drag.maximumX: main.width - selecter.width
+        property int inBoundsX
+        hoverEnabled: true
+        onReleased: {
+            if(inBoundsX > -1) {
+                if(mouseX < drag.minimumX)
+                    rowElement.childAt(inBoundsX,y).changeIndex()
+                else if (mouseX > drag.maximumX+selecter.width)
+                    rowElement.childAt(inBoundsX+selecter.width, y).changeIndex()
+                else rowElement.childAt(mouseX,y).changeIndex()
+                selecter.x = rowElement.children[main.currentIndex].x
+                selecter.width = main.currentIndex > -1 ? rowElement.children[main.currentIndex].width : 0
+            }
+        }
+        onClicked: {
+            inBoundsX = -1
+            rowElement.childAt(mouseX,y).changeIndex()
+            selecter.x = rowElement.children[main.currentIndex].x
+            selecter.width= main.currentIndex > -1 ? rowElement.children[main.currentIndex].width : 0
+        }
+        onPositionChanged: if(mouseX>=drag.minimumX && mouseX <= drag.maximumX) inBoundsX = mouseX
     }
 
     Row {
@@ -76,19 +112,9 @@ Rectangle {
             delegate: Rectangle {
                 id: rowItem
                 height: Theme.itemHeightSmall
-                width: text.width+(text.width/name.length*2)
-
+                width: main.fixedWidth ? (main.fixedWidth/main.model.count) : (text.width+(text.width/name.length*2))
                 color: "transparent"
-                MouseArea {
-                    width: parent.width
-                    height: parent.height
-
-                    enabled: main.enabled
-
-                    onClicked: {
-                        main.currentIndex = index
-                    }
-                }
+                function changeIndex() { main.currentIndex = index}
                 Label {
                     id: text
                     text: name

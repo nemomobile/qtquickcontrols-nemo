@@ -1,6 +1,6 @@
 /****************************************************************************************
 **
-** Copyright (C) 2013 Andrea Bernabei <and.bernabei@gmail.com>
+** Copyright (c) 2017, Eetu Kahelin
 ** All rights reserved.
 **
 ** You may use this file under the terms of BSD license as follows:
@@ -30,53 +30,14 @@
 ****************************************************************************************/
 
 import QtQuick 2.6
-import QtQuick.Controls 1.0 // Needed for things like Stack attached properties
+import QtQuick.Controls 1.0
 import QtQuick.Controls.Nemo 1.0
 import QtQuick.Controls.Styles.Nemo 1.0
-import QtQuick.Window 2.0
 
-NemoPage {
-    id: page
-
-    width: parent.width
-    height: parent.height
-
-    property alias color: background.color
-    property int status: pageStack ? Stack.status : Stack.Inactive
-    property variant headerTools
-    readonly property StackView pageStack: Stack.view
-
-    //Children of "page" will be automatically reparented to "content"
-    default  property alias __content: content.data
-
-    property int orientation
-    //This keeps orientation synced to that of Nemo's StackView
-    //If the page isn't pushed on Nemo's StackView, the orientation value will be unreliable
-    Binding on orientation {
-        when: pageStack && pageStack.hasOwnProperty("orientation")
-        value: if (pageStack) pageStack.orientation //"if (pageStack)" is just needed to silence a TypeError at page initalization
+TextField {
+    onActiveFocusChanged: {
+        if(activeFocus) NemoFocus.nemoregister(this)
+        else NemoFocus.nemoregister(null)
     }
-
-    //TODO: alias these properties with those of the applicationWindow
-    //property alias orientationTransitions
-    //property alias defaultOrientationTransition
-    readonly property bool orientationTransitionRunning: pageStack ? pageStack.orientationTransitionRunning : false
-
-    readonly property bool isPortrait: (orientation === Qt.PortraitOrientation || orientation === Qt.InvertedPortraitOrientation)
-    readonly property bool isLandscape: (orientation === Qt.LandscapeOrientation || orientation === Qt.InvertedLandscapeOrientation)
-
-    allowedOrientations: Qt.PortraitOrientation | Qt.LandscapeOrientation | Qt.InvertedPortraitOrientation | Qt.InvertedLandscapeOrientation
-
-    property bool __isNemoPage
-
-    Rectangle {
-        id: background
-        anchors.fill: parent
-        color: Theme.backgroundColor
-    }
-
-    MouseArea {
-        id: content
-        anchors.fill: parent
-    }
+    style: TextFieldStyle { }
 }

@@ -8,6 +8,8 @@ Slider {
     id: slider
     property bool showValue: false
     property int valueFontSize: Theme.fontSizeTiny
+    property bool useSpecSlider: true
+    property bool alwaysUp: false
 
     style: SliderStyle{}
 }

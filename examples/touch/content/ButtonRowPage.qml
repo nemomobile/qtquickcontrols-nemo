@@ -43,8 +43,10 @@ Page {
     Column {
         spacing: 40
         anchors.centerIn: parent
+        width: parent.width
         ButtonRow {
             id: row
+            anchors.horizontalCenter: parent.horizontalCenter
             model: ListModel {
                 id: buttonModel
                 ListElement {
@@ -73,11 +75,14 @@ Page {
 
         Label {
             id: selector
+            anchors.horizontalCenter: parent.horizontalCenter
             text: "Nothing selected"
         }
         ButtonRow {
             id: row2
             enabled: false
+            anchors.horizontalCenter: parent.horizontalCenter
+            fixedWidth: parent.width * .8
             model: ListModel {
                 ListElement {
                     name: "swim"

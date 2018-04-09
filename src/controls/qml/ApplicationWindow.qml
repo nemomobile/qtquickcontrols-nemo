@@ -19,7 +19,7 @@
  * Boston, MA 02110-1301, USA.
  */
 
-import QtQuick.Window 2.0
+import QtQuick.Window 2.2
 import QtQuick 2.6
 import QtQuick.Controls 1.0
 import QtQuick.Layouts 1.0
@@ -46,6 +46,12 @@ NemoWindow {
 
     readonly property var _bgColor: Theme.backgroundColor
     color: _bgColor
+
+    //Handles orientation of keyboard, MInputMethodQuick.appOrientation.
+    contentOrientation: orientation
+    onOrientationChanged: {
+        contentOrientation=orientation
+    }
 
     //README: allowedOrientations' default value is set in NemoWindow's c++ implementation
     //The app developer can overwrite it from QML
