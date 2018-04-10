@@ -49,6 +49,39 @@ Page {
         fillMode: Image.PreserveAspectCrop
     }
 
+    ListModel {
+        id: animalsModel
+        ListElement { name: "Ant"; }
+        ListElement { name: "Flea"; }
+        ListElement { name: "Parrot"; }
+        ListElement { name: "Guinea pig"; }
+        ListElement { name: "Rat"; }
+        ListElement { name: "Butterfly"; }
+        ListElement { name: "Dog"; }
+        ListElement { name: "Cat"; }
+        ListElement { name: "Pony"; }
+        ListElement { name: "Koala"; }
+        ListElement { name: "Horse"; }
+        ListElement { name: "Tiger"; }
+        ListElement { name: "Giraffe"; }
+        ListElement { name: "Elephant"; }
+        ListElement { name: "Whale"; }
+    }
+
+    function hideButton(){
+        standartButton.visible = false
+        inlineButton.visible = false
+        simpleButton.visible = false
+        selectionButton.visible = false
+    }
+
+    function showButton(){
+        standartButton.visible = true
+        inlineButton.visible = true
+        simpleButton.visible = true
+        selectionButton.visible = true
+    }
+
     Button {
         id: standartButton
         anchors{
@@ -56,12 +89,11 @@ Page {
             margins: 20
             horizontalCenter: parent.horizontalCenter
         }
-        text: qsTr("Standart dialog")
+        text: qsTr("Standart query dialog")
         onClicked: {
             deleteDialog.inline = false
-            deleteDialog.visible = true
-            standartButton.visible = false
-            inlineButton.visible = false
+            deleteDialog.open()
+            hideButton();
         }
     }
 
@@ -72,13 +104,70 @@ Page {
             margins: 20
             horizontalCenter: parent.horizontalCenter
         }
-        text: qsTr("Inline dialog")
+        text: qsTr("Inline query dialog")
         onClicked: {
             deleteDialog.inline = true
-            deleteDialog.visible = true
-            standartButton.visible = false
-            inlineButton.visible = false
+            deleteDialog.open()
+            hideButton();
         }
+    }
+
+    Button {
+        id: simpleButton
+        anchors{
+            top: inlineButton.bottom
+            margins: 20
+            horizontalCenter: parent.horizontalCenter
+        }
+        text: qsTr("Simple dialog")
+        onClicked: {
+            hideButton();
+            simpleDialog.open();
+        }
+    }
+
+    Button {
+        id: selectionButton
+        anchors{
+            top: inlineButton.bottom
+            margins: 20
+            horizontalCenter: parent.horizontalCenter
+        }
+        text: qsTr("Selection dialog")
+        onClicked: {
+            hideButton();
+            selectionDialog.open();
+        }
+    }
+
+    Dialog{
+        id: simpleDialog
+        acceptText: qsTr("Ok")
+        headingText: qsTr("Simple dialog")
+        subLabelText: qsTr("Simple diaolg is open")
+
+        inline: false
+
+        icon: "image://theme/exclamation-triangle"
+
+        onAccepted: {
+            showButton();
+            simpleDialog.close();
+        }
+    }
+
+    SelectionDialog{
+        id: selectionDialog
+        visible: false
+
+        cancelText: qsTr("Cancel")
+        acceptText: qsTr("Ok")
+        headingText: qsTr("Select you favorite animal?")
+        subLabelText: qsTr("")
+
+        model: animalsModel
+
+        onSelectedIndexChanged: selectionDialog.close()
     }
 
     QueryDialog {
@@ -99,11 +188,11 @@ Page {
             result.text = qsTr("User canceled")
         }
         onSelected: {
-            standartButton.visible = true
-            inlineButton.visible = true
-            visible = false
+            showButton();
+            deleteDialog.close()
         }
     }
+
     Label {
         id: result
         anchors.centerIn: parent

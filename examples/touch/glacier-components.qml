@@ -86,6 +86,10 @@ ApplicationWindow {
             page: "content/DatePickerPage.qml"
         }
         ListElement {
+            title: "TimePicker"
+            page: "content/TimePickerPage.qml"
+        }
+        ListElement {
             title: "Tabs"
             page: "content/TabBarPage.qml"
         }
@@ -118,8 +122,8 @@ ApplicationWindow {
             page: "content/ButtonRowPage.qml"
         }
         ListElement {
-            title: "Query Dialog"
-            page: "content/QueryDialogPage.qml"
+            title: "Dialogs"
+            page: "content/DialogsPage.qml"
         }
         ListElement {
             title: "Icons"

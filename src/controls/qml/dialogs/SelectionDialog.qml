@@ -6,7 +6,7 @@ Item {
     anchors.fill: parent
     signal accepted()
     signal canceled()
-    signal selected()
+
     property alias cancelText: cancel.text
     property alias acceptText: accept.text
     property alias headingText: heading.text
@@ -14,8 +14,18 @@ Item {
 
     property real bgOpacity: 1;
 
-    property string icon: ""
-    property bool inline: true
+    property alias model: selectionListView.model
+    property int selectedIndex: -1
+
+    property Component delegate: ListViewItemWithActions{
+        label: name
+        showNext: false
+        iconVisible: false
+
+        onClicked: {
+            shell.selectedIndex = index
+        }
+    }
 
     function open(){
         shell.visible = true
@@ -28,35 +38,26 @@ Item {
     Rectangle {
         id: shadow
         width: parent.width
-        height: inline ? (parent.height-cancel.height)/3 : parent.height-cancel.height
+        height: parent.height-cancel.height
         opacity: shell.bgOpacity
         color: Theme.backgroundColor
         anchors.bottom: cancel.top
     }
 
-    Image{
-        id: icon
-        source: shell.icon
-        width: Theme.itemHeightMedium
-        height: width
-        anchors{
-            top: shell.top
-            topMargin: Theme.itemSpacingHuge
-            horizontalCenter: shell.horizontalCenter
-        }
-        visible: shell.icon != "" && !inline
-        fillMode: Image.PreserveAspectCrop
-    }
-
     Label {
         id: heading
         width: parent.width*0.95
+        height: Theme.itemHeightLarge
+
         anchors{
-            centerIn: inline ? shadow : parent
+            top: parent.top
         }
+
         horizontalAlignment: Text.AlignHCenter
+        verticalAlignment: Text.AlignVCenter
+
         font.weight: Theme.fontWeightLarge
-        font.pixelSize:  inline ? Theme.fontSizeTiny : Theme.fontSizeSmall
+        font.pixelSize:  Theme.fontSizeSmall
         wrapMode: Text.Wrap
     }
 
@@ -65,13 +66,27 @@ Item {
          width: parent.width*0.95
          wrapMode: Text.Wrap
          font.weight: Theme.fontWeightMedium
-         font.pixelSize:  inline ? Theme.fontSizeTiny : Theme.fontSizeSmall
+         font.pixelSize:  Theme.fontSizeSmall
          horizontalAlignment: Text.AlignHCenter
          anchors {
              top:heading.bottom
-             topMargin: inline ? Theme.itemSpacingSmall : Theme.itemSpacingLarge
+             topMargin: Theme.itemSpacingLarge
              horizontalCenter: shell.horizontalCenter
          }
+    }
+
+    ListView{
+        id: selectionListView
+        width: parent.width
+        height: (subLabel.text != "") ? parent.height-heading.height-subLabel.height-cancel.height-Theme.itemSpacingLarge
+                                      : parent.height-heading.height-cancel.height-Theme.itemSpacingLarge
+        delegate: shell.delegate
+
+        anchors.top: subLabel.bottom
+
+        ScrollDecorator{
+            flickable: selectionListView
+        }
     }
 
     Button {
@@ -84,7 +99,6 @@ Item {
         }
         onClicked: {
             shell.canceled()
-            shell.selected()
             close()
         }
     }
@@ -99,7 +113,6 @@ Item {
         }
         onClicked: {
             shell.accepted()
-            shell.selected()
             close();
         }
     }

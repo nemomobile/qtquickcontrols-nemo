@@ -27,6 +27,7 @@ qml.files += \
     content/SelectRollerPage.qml \
     content/IconPage.qml \
     content/DatePickerPage.qml \
+    content/TimePickerPage.qml \
     content/NotificationsPage.qml
 
 qml.path = /usr/share/glacier-components/qml/content
@@ -44,3 +45,6 @@ INSTALLS += desktop target qml mainqml images
 
 SOURCES += \
     src/main.cpp
+
+DISTFILES += \
+    content/TimePickerPage.qml

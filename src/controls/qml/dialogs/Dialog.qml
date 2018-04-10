@@ -5,9 +5,7 @@ Item {
     id: shell
     anchors.fill: parent
     signal accepted()
-    signal canceled()
-    signal selected()
-    property alias cancelText: cancel.text
+
     property alias acceptText: accept.text
     property alias headingText: heading.text
     property alias subLabelText: subLabel.text
@@ -25,13 +23,15 @@ Item {
         shell.visible = false
     }
 
+    visible: false
+
     Rectangle {
         id: shadow
         width: parent.width
-        height: inline ? (parent.height-cancel.height)/3 : parent.height-cancel.height
+        height: inline ? (parent.height-accept.height)/3 : parent.height-accept.height
         opacity: shell.bgOpacity
         color: Theme.backgroundColor
-        anchors.bottom: cancel.top
+        anchors.bottom: accept.top
     }
 
     Image{
@@ -75,31 +75,16 @@ Item {
     }
 
     Button {
-        id: cancel
-        width: parent.width / 2
+        id: accept
+        width: parent.width
         height: Theme.itemHeightLarge
+        primary: true
         anchors {
             left: parent.left
             bottom: parent.bottom
         }
         onClicked: {
-            shell.canceled()
-            shell.selected()
-            close()
-        }
-    }
-    Button {
-        id: accept
-        width: parent.width / 2
-        height: Theme.itemHeightLarge
-        primary: true
-        anchors {
-            left: cancel.right
-            bottom: parent.bottom
-        }
-        onClicked: {
             shell.accepted()
-            shell.selected()
             close();
         }
     }
