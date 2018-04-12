@@ -22,7 +22,7 @@ qml.files += \
     content/LabelPage.qml \
     content/CheckboxPage.qml \
     content/ButtonRowPage.qml \
-    content/QueryDialogPage.qml \
+    content/DialogsPage.qml \
     content/ListViewPage.qml \
     content/SelectRollerPage.qml \
     content/IconPage.qml \
