@@ -12,6 +12,8 @@ Item {
 
     property real bgOpacity: 1;
 
+    z: 999
+
     property string icon: ""
     property bool inline: true
 

@@ -14,6 +14,8 @@ Item {
 
     property real bgOpacity: 1;
 
+    z: 999
+
     property alias model: selectionListView.model
     property int selectedIndex: -1
 
