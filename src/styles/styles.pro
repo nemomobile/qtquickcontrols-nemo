@@ -12,7 +12,6 @@ QML_FILES = \
     qml/CheckBoxStyle.qml \
     qml/ComboBoxStyle.qml \
     qml/FocusFrameStyle.qml \
-    qml/GrooveStyle.qml \
     qml/GroupBoxStyle.qml \
     qml/MenuBarStyle.qml \
     qml/MenuStyle.qml \

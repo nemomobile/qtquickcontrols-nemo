@@ -15,6 +15,7 @@ QML_FILES += \
     qml/Checkbox.qml\
     qml/ButtonRow.qml \
     qml/Header.qml \
+    qml/ProgressBar.qml \
     qml/HeaderToolsLayout.qml \
     qml/Slider.qml\
     qml/ListView.qml \
