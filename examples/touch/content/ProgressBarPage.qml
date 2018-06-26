@@ -82,28 +82,9 @@ Page {
 
         ProgressBar {
             anchors.margins: 20
-            style: touchStyle
-            value: 1
+            indeterminate: true
+            value: 0.85
             width: 400
-        }
-    }
-
-    Component {
-        id: touchStyle
-        ProgressBarStyle {
-            panel: Rectangle {
-                implicitHeight: 15
-                implicitWidth: 400
-                color: "#444"
-                opacity: 0.8
-                Rectangle {
-                    antialiasing: true
-                    radius: 1
-                    color: "#468bb7"
-                    height: parent.height
-                    width: parent.width * control.value / control.maximumValue
-                }
-            }
         }
     }
 }
