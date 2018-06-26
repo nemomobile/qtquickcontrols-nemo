@@ -37,13 +37,32 @@ import QtQuick.Controls.Styles.Nemo 1.0
 Page {
     id: root
 
-    headerTools: HeaderToolsLayout { showBackButton: true; title: "Switch" }
+    headerTools: HeaderToolsLayout { showBackButton: true; title:  qsTr("Switch") }
 
     Column {
         spacing: 40
         anchors.centerIn: parent
         CheckBox {
-            text: "Test 1: "
+            id: defaultCheckbox
+            text: qsTr("Default checkbox")
+        }
+
+
+        CheckBox {
+            id: indeterminateCheckbox
+            text: qsTr("Indeterminate checkbox")
+            onCheckedChanged: {
+                indeterminateCheckbox.indeterminate = true
+                indeterminateTimer.start()
+            }
+        }
+    }
+
+    Timer{
+        id: indeterminateTimer
+        interval: 4000
+        onTriggered: {
+            indeterminateCheckbox.indeterminate = false
         }
     }
 }

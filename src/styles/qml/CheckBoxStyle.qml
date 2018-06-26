@@ -30,94 +30,134 @@
 ****************************************************************************************/
 
 import QtQuick 2.6
+import QtGraphicalEffects 1.0
 import QtQuick.Controls.Styles 1.0
 import QtQuick.Controls.Nemo 1.0
 
-CheckBoxStyle {
+CheckBoxStyle {   
     indicator: Rectangle {
-            id: background
-            color: "transparent"
+        id: background
+        color: "transparent"
+        implicitWidth: Theme.itemWidthExtraSmall
+        implicitHeight: Theme.itemHeightExtraSmall
+
+        Rectangle {
+            id: bgArea
             implicitWidth: Theme.itemWidthExtraSmall
-            implicitHeight: Theme.itemHeightExtraSmall
+            implicitHeight: Theme.itemHeightExtraSmall - Theme.itemSpacingExtraSmall
+            color: control.checked ? Theme.accentColor : Theme.fillDarkColor
+            anchors.centerIn: parent
+        }
 
-            Rectangle {
-                id: back2
-                implicitWidth: Theme.itemWidthExtraSmall
-                implicitHeight: Theme.itemHeightExtraSmall - Theme.itemSpacingExtraSmall
-                color: Theme.fillDarkColor
-                anchors.centerIn: parent
 
-                Rectangle {
-                    id: back1
-                    implicitWidth: Theme.itemWidthExtraSmall
-                    implicitHeight: Theme.itemHeightExtraSmall - Theme.itemSpacingExtraSmall
-                    color: Theme.accentColor
-                    anchors.centerIn: parent
+        Rectangle {
+            id: ball
+            width: Theme.itemHeightExtraSmall
+            height: Theme.itemHeightExtraSmall
+            radius: width/2
+            anchors.verticalCenter: parent.verticalCenter
+
+            clip: true
+
+            LinearGradient {
+                anchors.fill: parent
+                start: Qt.point(0, 0)
+                end: Qt.point(0, Theme.itemHeightExtraSmall)
+                source: ball
+                gradient: Gradient {
+                    GradientStop { position: 0.0; color: "#ffffff" }
+                    GradientStop { position: 1.0; color: "#dcdcdc" }
                 }
             }
 
+            x: control.checked ? background.width - ball.width : 0
+        }
 
-            Image {
-                id: ball
-                width: Theme.itemHeightSmall
-                height: Theme.itemHeightExtraSmall
-                fillMode: Image.PreserveAspectFit
-                sourceSize.width: width
-                sourceSize.height: height
-                source: "images/switch-ball.png"
-                anchors.verticalCenter: parent.verticalCenter
-            }
-
-            Connections {
-                target: control
-                onCheckedChanged: {
+        Connections {
+            target: control
+            onCheckedChanged: {
+                if(!indeterminate) {
                     if (control.checked) {
-                        anim1.restart()
+                        checkAnimation.restart()
                     } else {
-                        anim2.restart()
+                        unCheckAnimation.restart()
                     }
                 }
             }
 
-            Component.onCompleted: {
-                back1.opacity = control.checked ? 1 : 0
-                ball.x = control.checked ? background.width - ball.width : 0
+            onIndeterminateChanged: {
+                indeterminateAnimation.stop()
+                if(indeterminate) {
+                    indeterminateAnimation.start()
+                } else {
+                    indeterminateAnimation.stop()
+                    bgArea.color = control.checked ? Theme.accentColor : Theme.fillDarkColor
+                }
+            }
+        }
+
+        Component.onCompleted: {
+            if(control.indeterminate){
+                indeterminateAnimation.start()
+            }
+        }
+
+        ParallelAnimation {
+            id: checkAnimation
+            running: false
+            NumberAnimation {
+                target: ball
+                property: "x"
+                to: background.width - ball.width
+                duration: 400
+            }
+            PropertyAnimation {
+                target: bgArea
+                property: "color"
+                to: Theme.accentColor
+                duration: 400
+            }
+        }
+
+        ParallelAnimation {
+            id: unCheckAnimation
+            running: false
+            NumberAnimation {
+                target: ball
+                property: "x"
+                to: 0
+                duration: 400
+            }
+            PropertyAnimation {
+                target: bgArea
+                property: "color"
+                to: Theme.fillDarkColor
+                duration: 400
+            }
+        }
+
+        SequentialAnimation{
+            id: indeterminateAnimation
+            running: false
+
+            loops: Animation.Infinite
+
+            PropertyAnimation {
+                target: bgArea
+                property: "color"
+                to: control.checked ? Theme.fillDarkColor : Theme.accentColor
+                duration: 500
             }
 
-            SequentialAnimation {
-                id: anim1
-                running: false
-                NumberAnimation {
-                    target: ball
-                    property: "x"
-                    to: background.width - ball.width
-                    duration: 120
-                }
-                NumberAnimation {
-                    target: back1
-                    property: "opacity"
-                    to: 1
-                    duration: 120
-                }
+            PropertyAnimation {
+                target: bgArea
+                property: "color"
+                to: control.checked ? Theme.accentColor : Theme.fillDarkColor
+                duration: 500
             }
-
-            SequentialAnimation {
-                id: anim2
-                running: false
-                NumberAnimation {
-                    target: ball
-                    property: "x"
-                    to: 0
-                    duration: 120
-                }
-                NumberAnimation {
-                    target: back1
-                    property: "opacity"
-                    to: 0
-                    duration: 120
-                }
-            }
+        }
     }
+
     label: Label {
         text: control.text
         font.pixelSize:control.fontSize
