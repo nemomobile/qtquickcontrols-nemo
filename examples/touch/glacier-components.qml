@@ -133,6 +133,10 @@ ApplicationWindow {
             title: "Notifications"
             page: "content/NotificationsPage.qml"
         }
+        ListElement {
+            title: "Broken page"
+            page: "content/BrokenPage.qml"
+        }
     }
 
 

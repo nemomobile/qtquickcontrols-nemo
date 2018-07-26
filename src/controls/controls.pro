@@ -27,8 +27,9 @@ QML_FILES += \
     qml/DatePicker.qml \
     qml/TimePicker.qml \
     qml/ScrollDecorator.qml \
-    qml/dialogs/QueryDialog.qml \
     qml/TextField.qml \
+    qml/ErrorStackPage.qml \
+    qml/dialogs/QueryDialog.qml \
     qml/dialogs/SelectionDialog.qml \
     qml/dialogs/Dialog.qml
 
