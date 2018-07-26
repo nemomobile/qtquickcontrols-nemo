@@ -75,6 +75,8 @@ void QQuickFilteringMouseArea::mouseReleaseEvent(QMouseEvent *event) {
 }
 
 bool QQuickFilteringMouseArea::sendMouseEvent(QQuickItem *item, QMouseEvent *event) {
+    Q_UNUSED(item);
+
     QPointF localPos = mapFromScene(event->windowPos());
     QQuickWindow *c = window();
     QQuickItem *grabber = c ? c->mouseGrabberItem() : 0;

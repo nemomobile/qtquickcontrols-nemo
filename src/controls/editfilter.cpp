@@ -32,7 +32,6 @@ bool EditFilter::eventFilter(QObject *obj, QEvent *event)
             nemoFocus->edit()->setProperty("focus",QVariant(false));
             return false;
         }
-    } else {
-        return QObject::eventFilter(obj, event);
     }
+    return QObject::eventFilter(obj, event);
 }

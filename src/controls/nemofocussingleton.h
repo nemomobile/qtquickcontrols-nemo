@@ -35,7 +35,7 @@ public:
 
 private:
     QObject *m_edit = nullptr;
-    NemoFocusSingleton(QObject* parent = nullptr) {}
+    NemoFocusSingleton(QObject* parent = nullptr) {Q_UNUSED(parent)}
 };
 
 #endif // NEMOFOCUSSINGLETON_H
