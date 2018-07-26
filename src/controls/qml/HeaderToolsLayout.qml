@@ -46,7 +46,7 @@ Item {
             fillMode: Image.PreserveAspectFit
             sourceSize.width: width
             sourceSize.height: height
-            source: "/usr/lib/qt5/qml/QtQuick/Controls/Styles/Nemo/images/icon-triangle-left.png"
+            source: "image://theme/chevron-left"
         }
 
         MouseArea {
@@ -122,7 +122,7 @@ Item {
         height: toolMeasure
         sourceSize.height: height
         visible: drawerLevels && drawerLevels.length > 1
-        source: "/usr/lib/qt5/qml/QtQuick/Controls/Styles/Nemo/images/dots-vertical.png"
+        source: "image://theme/ellipsis-v"
         rotation: isUiPortrait ? 0 : 90
     }
 }

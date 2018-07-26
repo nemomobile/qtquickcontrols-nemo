@@ -133,6 +133,10 @@ ApplicationWindow {
             title: "Notifications"
             page: "content/NotificationsPage.qml"
         }
+        ListElement {
+            title: "Broken page"
+            page: "content/BrokenPage.qml"
+        }
     }
 
 
@@ -143,9 +147,9 @@ ApplicationWindow {
             id: tools
 
             title: "Nemo Touch Gallery"
-            tools: [ ToolButton { iconSource: "/usr/share/glacier-components/images/icon_cog.png"},
-                ToolButton { iconSource: "/usr/share/glacier-components/images/icon_edit.png"},
-                ToolButton { iconSource: "/usr/share/glacier-components/images/icon_refresh.png"} ]
+            tools: [ ToolButton { iconSource: "image://theme/cog"},
+                ToolButton { iconSource: "image://theme/edit"},
+                ToolButton { iconSource: "image://theme/refresh"} ]
 
             //The parent of these items is null when this ToolsLayout is not used
             //(i.e. you're on a different page) so we need to check the parent,
@@ -193,19 +197,19 @@ ApplicationWindow {
                         id: tool1
                         anchors.right: parent.right
                         anchors.verticalCenter: parent.verticalCenter
-                        iconSource: "/usr/share/glacier-components/images/icon_cog.png"
+                        iconSource: "image://theme/cog"
                     }
                     ToolButton {
                         id: tool2
                         anchors.right: tool1.left
                         anchors.verticalCenter: parent.verticalCenter
-                        iconSource: "/usr/share/glacier-components/images/icon_edit.png"
+                        iconSource: "image://theme/edit"
                     }
                     ToolButton {
                         id: tool3
                         anchors.right: tool2.left
                         anchors.verticalCenter: parent.verticalCenter
-                        iconSource: "/usr/share/glacier-components/images/icon_refresh.png"
+                        iconSource: "image://theme/refresh"
                     }
                 },
                 ButtonRow {

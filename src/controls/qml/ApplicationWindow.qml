@@ -66,6 +66,50 @@ NemoWindow {
         }
     }
 
+    //Safety version of pageStack.push - if we can't load component - show error page page with
+    //error message and back button
+
+    function push(url, params) {
+        if(!params){
+            params = {}
+        }
+        console.log("##", url, params, pageStack)
+        var component = Qt.createComponent(url)
+        if (component.status === Component.Ready) {
+            pageStack.push(component.createObject(pageStack, params))
+        } else {
+            console.warn("Error loading component", url, component.errorString())
+            pageStack.push(Qt.resolvedUrl("ErrorStackPage.qml"), {error: component.errorString()})
+        }
+    }
+
+    Timer {
+        id: _errorTimer
+        property string errorString
+        interval: 50
+        repeat: false
+        onTriggered: {
+            pageStack.replace(Qt.resolvedUrl("ErrorStackPage.qml"), {error: errorString})
+            errorString = ""
+        }
+    }
+
+    Connections {
+        target: pageStack
+        onBusyChanged: {
+            if (_errorTimer.errorString && !pageStack.busy) {
+                _errorTimer.start()
+            }
+        }
+
+        onCurrentItemChanged: {
+            var qmltype = pageStack.currentItem.toString()
+            if (qmltype.slice(0, 10) === "QQuickText") {
+                _errorTimer.errorString = pageStack.currentItem.text
+            }
+        }
+    }
+
     function orientationConstraintsChanged()
     {
         //if the current orientation is not allowed anymore, fallback to an allowed one

@@ -15,6 +15,7 @@ Sizing::Sizing(QObject *parent) : QObject(parent)
     qreal refHeight =  854.; //N9
     qreal refWidth = 480.; //N9
     qreal refDpi = 251; //N9
+    Q_UNUSED(refDpi);
 
     m_p_height = qgetenv("QT_QPA_EGLFS_PHYSICAL_HEIGHT").toInt();
     m_p_width = qgetenv("QT_QPA_EGLFS_PHYSICAL_WIDTH").toInt();
