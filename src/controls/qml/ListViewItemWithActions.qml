@@ -50,7 +50,7 @@ Item {
 
     property bool showActions: true
 
-    property alias actions: actionsLoader.sourceComponent
+    property list<Item> actions
 
     signal clicked
 
@@ -74,10 +74,20 @@ Item {
         anchors.right: listArea.left
 
         height: listArea.height
-        width: childrenRect.width
+        width: height*actions.length
 
-        Loader {
-            id: actionsLoader
+        Row {
+            id: actionsRow
+            width: actionsArea.width
+            height: actionsArea.height
+
+            children: actions
+        }
+
+        Component.onCompleted: {
+            if(actions.length > 3) {
+                console.warn("Use more 3 actions is not good idea!")
+            }
         }
     }
 
@@ -96,7 +106,7 @@ Item {
             height: parent.height
             width: Theme.itemSpacingSmall/4-Theme.itemSpacingSmall/4*listArea.x/actionsArea.width
             color: Theme.accentColor
-            visible: (actionsLoader.item && showActions)
+            visible: (height*actions.length > 0 && showActions)
         }
 
         Rectangle {
@@ -233,7 +243,7 @@ Item {
             }
 
             onPressAndHold: {
-                if (actionsLoader.item && showActions) {
+                if (actions.length > 0 && showActions) {
                     listArea.x = actionsArea.width
                 }
             }

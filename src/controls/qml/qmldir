@@ -30,6 +30,7 @@ TimePicker 1.0 TimePicker.qml
 ScrollDecorator 1.0 ScrollDecorator.qml
 TextField 1.0 TextField.qml
 ProgressBar 1.0 ProgressBar.qml
+ActionButton 1.0 ActionButton.qml
 
 # MIRRORED CONTROLS: 
 # These are the controls that we take directly from official QQC.

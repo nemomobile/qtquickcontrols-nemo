@@ -43,23 +43,12 @@ Page {
             width: parent.width
             height: Theme.itemHeightLarge
 
-            actions: Rectangle{
-                id: itemActions
-                height: Theme.itemHeightLarge
-                width: height
-
-                color: "transparent"
-
-                Image{
-                    id: removeButton
-                    width: parent.width*0.6
-                    height: width
-
-                    source: "image://theme/times"
-
-                    anchors.centerIn: parent
+            actions:[
+                ActionButton {
+                    iconSource: "image://theme/times"
                 }
-            }
+
+            ]
         }
         section.property: "size"
     }
