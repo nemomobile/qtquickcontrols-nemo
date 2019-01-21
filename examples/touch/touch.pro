@@ -11,7 +11,6 @@ mainqml.files = glacier-components.qml
 mainqml.path = /usr/share/glacier-components/qml
 
 qml.files += \
-    content/AndroidDelegate.qml \
     content/ButtonPage.qml \
     content/BrokenPage.qml \
     content/ProgressBarPage.qml \
