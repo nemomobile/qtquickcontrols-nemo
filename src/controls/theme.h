@@ -47,7 +47,7 @@ class Theme : public QObject
 public:
     explicit Theme(QObject *parent = 0);
 
-    bool loadTheme(QString fileName);
+    Q_INVOKABLE bool loadTheme(QString fileName);
     qreal itemWidthLarge(){return m_itemWidthLarge;}
     qreal itemWidthMedium(){return m_itemWidthMedium;}
     qreal itemWidthSmall(){return m_itemWidthSmall;}

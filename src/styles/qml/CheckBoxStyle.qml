@@ -65,8 +65,8 @@ CheckBoxStyle {
                 end: Qt.point(0, Theme.itemHeightExtraSmall)
                 source: ball
                 gradient: Gradient {
-                    GradientStop { position: 0.0; color: "#ffffff" }
-                    GradientStop { position: 1.0; color: "#dcdcdc" }
+                    GradientStop { position: 0.0; color: Theme.textColor }
+                    GradientStop { position: 1.0; color: Theme.fillDarkColor }
                 }
             }
 

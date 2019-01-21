@@ -115,7 +115,7 @@ Item {
             visible: mouse.pressed
         }
 
-        Image{
+        NemoIcon{
             id: itemIcon
             height: iconVisible ? parent.height-Theme.itemSpacingSmall : 0
             width: height
@@ -199,13 +199,13 @@ Item {
                     end: Qt.point( Theme.itemHeightExtraSmall / 2, 0)
                     gradient: Gradient {
                         GradientStop { position: 0.0; color: "transparent" }
-                        GradientStop { position: 1.0; color: "black" }
+                        GradientStop { position: 1.0; color: Theme.backgroundColor }
                     }
                 }
             }
         }
 
-        Image {
+        NemoIcon {
             id: arrowItem
             height: parent.height- Theme.itemSpacingSmall
             width: height

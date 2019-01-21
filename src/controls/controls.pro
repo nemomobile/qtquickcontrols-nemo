@@ -30,6 +30,7 @@ QML_FILES += \
     qml/ToolButton.qml \
     qml/ScrollDecorator.qml \
     qml/TextField.qml \
+    qml/NemoIcon.qml \
     qml/ErrorStackPage.qml \
     qml/dialogs/QueryDialog.qml \
     qml/dialogs/SelectionDialog.qml \
