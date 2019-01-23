@@ -31,28 +31,8 @@ QML_FILES = \
 
 # Images
 QML_FILES += \
-    images/button.png \
-    images/button_down.png \
-    images/tab.png \
-    images/header.png \
-    images/groupbox.png \
-    images/focusframe.png \
-    images/tab_selected.png \
-    images/scrollbar-handle-horizontal.png \
-    images/scrollbar-handle-vertical.png \
-    images/progress-indeterminate.png \
     images/editbox.png \
-    images/arrow-up.png \
-    images/arrow-up@2x.png \
-    images/arrow-down.png \
-    images/arrow-down@2x.png \
-    images/arrow-left.png \
-    images/arrow-left@2x.png \
-    images/arrow-right.png \
-    images/arrow-right@2x.png \
     images/disabled-overlay.png \
-    images/switch-ball.png \
-    images/slider-ball.png \
     images/slider-handle-left.svg \
     images/slider-trumpet-stretch.png \
     images/slider-trumpet-up.png \
