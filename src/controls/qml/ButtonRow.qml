@@ -66,6 +66,8 @@ Rectangle {
         color: Theme.accentColor
         clip: true
         visible: main.currentIndex > -1
+        width: main.currentIndex > -1 ? rowElement.children[main.currentIndex].width : 0
+        x: rowElement.children[main.currentIndex].x
 
         Behavior on x {
             NumberAnimation { duration: 200; easing.type: Easing.OutCubic}
