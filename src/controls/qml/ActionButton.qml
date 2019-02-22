@@ -38,7 +38,7 @@ Item {
     signal clicked();
 
     height: parent.height
-    width: parent.width
+    width: height
 
     Image{
         id: actionButtonImage
