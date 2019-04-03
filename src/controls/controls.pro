@@ -69,8 +69,8 @@ SOURCES += \
 
 target.path = $$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH
 
-qmlfiles.files = $$files($$_PRO_FILE_PWD_/*.qml,false)
-qmlfiles.files += $$_PRO_FILE_PWD_/qmldir
+qmlfiles.files = $$files($$_PRO_FILE_PWD_/qml/*.qml,false)
+qmlfiles.files += $$_PRO_FILE_PWD_/qml/qmldir
 qmlfiles.path = $$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH
 
 dialogs.files = $$files($$_PRO_FILE_PWD_/qml/dialogs/*.qml,false)
