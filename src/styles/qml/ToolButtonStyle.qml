@@ -38,17 +38,8 @@ Style {
 
         Text {
             id: label
-            visible: icon.status != Image.Ready
             anchors.centerIn: parent
             text: control.text
-        }
-
-        Image {
-            id: icon
-            anchors.fill: parent
-            fillMode: Image.PreserveAspectFit
-            anchors.margins: Theme.itemSpacingExtraSmall
-            source: control.iconSource
         }
     }
 }

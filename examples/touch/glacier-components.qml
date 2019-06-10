@@ -147,9 +147,26 @@ ApplicationWindow {
             id: tools
 
             title: "Nemo Touch Gallery"
-            tools: [ ToolButton { iconSource: "image://theme/cog"},
-                ToolButton { iconSource: "image://theme/edit"},
-                ToolButton { iconSource: "image://theme/refresh"} ]
+            tools: [ ToolButton {
+                    iconSource: "image://theme/cog"
+                    showCounter: false
+                },
+                ToolButton {
+                    id: editIcon
+                    iconSource: "image://theme/edit"
+                    showCounter: true
+                    counterValue: 0
+
+                    onClicked: {
+                       editIcon.counterValue++
+                    }
+                },
+                ToolButton {
+                    iconSource: "image://theme/refresh"
+                    showCounter: true
+                    showZeroCounter: true
+                }
+            ]
 
             //The parent of these items is null when this ToolsLayout is not used
             //(i.e. you're on a different page) so we need to check the parent,
