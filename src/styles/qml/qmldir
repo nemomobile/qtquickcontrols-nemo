@@ -22,3 +22,4 @@ TableViewStyle 1.0 TableViewStyle.qml
 TextFieldStyle 1.0 TextFieldStyle.qml
 TextAreaStyle 1.0 TextAreaStyle.qml
 IconButtonStyle 1.0 IconButtonStyle.qml
+ToolButtonStyle 1.0 ToolButtonStyle.qml

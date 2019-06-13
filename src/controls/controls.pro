@@ -27,6 +27,7 @@ QML_FILES += \
     qml/IconButton.qml \
     qml/DatePicker.qml \
     qml/TimePicker.qml \
+    qml/ToolButton.qml \
     qml/ScrollDecorator.qml \
     qml/TextField.qml \
     qml/ErrorStackPage.qml \
