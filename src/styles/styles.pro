@@ -8,26 +8,6 @@ QT+=qml
 
 # Styles
 QML_FILES = \
-    qml/ButtonStyle.qml \
-    qml/CheckBoxStyle.qml \
-    qml/ComboBoxStyle.qml \
-    qml/FocusFrameStyle.qml \
-    qml/GroupBoxStyle.qml \
-    qml/MenuBarStyle.qml \
-    qml/MenuStyle.qml \
-    qml/ProgressBarStyle.qml \
-    qml/RadioButtonStyle.qml \
-    qml/ScrollViewStyle.qml\
-    qml/SliderStyle.qml \
-    qml/SpinBoxStyle.qml \
-    qml/StatusBarStyle.qml \
-    qml/TableViewStyle.qml \
-    qml/TabViewStyle.qml \
-    qml/TextFieldStyle.qml \
-    qml/TextAreaStyle.qml \
-    qml/ToolBarStyle.qml \
-    qml/ToolButtonStyle.qml \
-    qml/IconButtonStyle.qml
 
 # Images
 QML_FILES += \
@@ -38,20 +18,35 @@ QML_FILES += \
     images/slider-trumpet-up.png \
     images/slider-trumpet.png
 
-OTHER_FILES += qmldir \
-    themes/Theme1.js \
-    themes/Theme2.js \
-    themes/glacier.json \
-    themes/ugly.json \
-    $$QML_FILES
-
 target.path = $$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH
 
-qmlfiles.files = $$_PRO_FILE_PWD_/qml/*.qml
-qmlfiles.files += $$_PRO_FILE_PWD_/qml/qmldir
+qmlfiles.files = qml/ButtonStyle.qml \
+                qml/CheckBoxStyle.qml \
+                qml/ComboBoxStyle.qml \
+                qml/FocusFrameStyle.qml \
+                qml/GroupBoxStyle.qml \
+                qml/MenuBarStyle.qml \
+                qml/MenuStyle.qml \
+                qml/ProgressBarStyle.qml \
+                qml/RadioButtonStyle.qml \
+                qml/ScrollViewStyle.qml\
+                qml/SliderStyle.qml \
+                qml/SpinBoxStyle.qml \
+                qml/StatusBarStyle.qml \
+                qml/TableViewStyle.qml \
+                qml/TabViewStyle.qml \
+                qml/TextFieldStyle.qml \
+                qml/TextAreaStyle.qml \
+                qml/ToolBarStyle.qml \
+                qml/ToolButtonStyle.qml \
+                qml/IconButtonStyle.qml
+                qml/qmldir
+
 qmlfiles.path = $$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH
 
-themes.files = $$_PRO_FILE_PWD_/themes/*.json
+themes.files = $$_PRO_FILE_PWD_/themes/glacier_black.json \
+               $$_PRO_FILE_PWD_/themes/glacier_white.json
+
 themes.path = $$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH/themes
 
 images.files = $$_PRO_FILE_PWD_/images/*.svg\
@@ -65,7 +60,9 @@ HEADERS += \
 SOURCES += \
     qquicknemostyleextensionplugin.cpp
 
-INSTALLS += target images qmlfiles themes
+INSTALLS += target \
+            images \
+            qmlfiles \
+            themes
 
 DEFINES += 'THEME_DIR=\'\"$$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH/themes"\''
-

@@ -139,7 +139,6 @@ ApplicationWindow {
         }
     }
 
-
     initialPage: Page {
         id: pageItem
 
@@ -176,15 +175,17 @@ ApplicationWindow {
             drawerLevels: [
                 Button {
                     anchors.horizontalCenter: (parent==undefined) ? undefined : parent.horizontalCenter;
-                    text: "Nemo"
+                    text: qsTr("Black theme")
+                    onClicked: {
+                        Theme.loadTheme("/usr/lib/qt5/qml/QtQuick/Controls/Styles/Nemo/themes/glacier_black.json")
+                    }
                 },
                 Button {
                     anchors.horizontalCenter: (parent==undefined) ? undefined : parent.horizontalCenter;
-                    text: "Mobile"
-                },
-                Button {
-                    anchors.horizontalCenter: (parent==undefined) ? undefined : parent.horizontalCenter;
-                    text: "FTW"
+                    text: qsTr("White theme")
+                    onClicked: {
+                        Theme.loadTheme("/usr/lib/qt5/qml/QtQuick/Controls/Styles/Nemo/themes/glacier_white.json")
+                    }
                 },
                 RowLayout {
                     anchors.left: (parent==undefined) ? undefined : parent.left

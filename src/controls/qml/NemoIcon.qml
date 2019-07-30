@@ -29,51 +29,27 @@
 **
 ****************************************************************************************/
 
+
 import QtQuick 2.6
-import QtQuick.Controls 1.0
-import QtQuick.Controls.Nemo 1.0
-import QtQuick.Controls.Styles.Nemo 1.0
 
-Button {
-    id: toolButton
-    property alias iconSource: iconImage.source
-    property bool showCounter: false
-    property bool showZeroCounter: false
-    property int counterValue: 0
+Image {
+    id: nemoIcon
 
-    NemoIcon {
-        id: iconImage
-        anchors.fill: parent
-        fillMode: Image.PreserveAspectFit
-        anchors.margins: Theme.itemSpacingExtraSmall
+    layer.effect: ShaderEffect {
+        id: shaderItem
+        property color color: Theme.textColor
+
+        fragmentShader: "
+            varying mediump vec2 qt_TexCoord0;
+            uniform highp float qt_Opacity;
+            uniform lowp sampler2D source;
+            uniform highp vec4 color;
+            void main() {
+                highp vec4 pixelColor = texture2D(source, qt_TexCoord0);
+                gl_FragColor = vec4(mix(pixelColor.rgb/max(pixelColor.a, 0.00390625), color.rgb/max(color.a, 0.00390625), color.a) * pixelColor.a, pixelColor.a) * qt_Opacity;
+            }
+        "
     }
-
-    Rectangle{
-        id: counter
-        width: counterText.paintedWidth*1.2 > toolButton.width/3 ? counterText.paintedWidth*1.2 : toolButton.width/3
-        height: toolButton.width/3
-
-        color: Theme.accentColor
-
-        radius: counter.height/2
-
-        visible: showCounter && ((showZeroCounter && counterValue == 0) || counterValue > 0)
-
-        anchors{
-            bottom: iconImage.bottom
-            bottomMargin: -counter.height/2
-            right: iconImage.right
-            rightMargin: -counter.height/2
-        }
-
-        Text {
-            id: counterText
-            text: toolButton.counterValue >= 100 ? "99+" : toolButton.counterValue
-            color: Theme.textColor
-            anchors.centerIn: parent
-            font.pixelSize: counter.height*0.8
-        }
-    }
-
-    style: ToolButtonStyle{}
+    layer.enabled: true
+    layer.samplerName: "source"
 }

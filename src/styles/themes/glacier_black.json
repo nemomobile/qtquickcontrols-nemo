@@ -1,0 +1,36 @@
+{
+    "itemWidthLarge" : 320,
+    "itemWidthMedium" : 240,
+    "itemWidthSmal" : 120,
+    "itemWidthExtraSmal" : 72,
+
+    "itemHeightHuge" : 80,
+    "itemHeightExtraLarge" : 75,
+    "itemHeightLarge" : 63,
+    "itemHeightMedium" : 50,
+    "itemHeightSmal" : 40,
+    "itemHeightExtraSmal" : 32,
+
+    "itemSpacingHuge" : 40,
+    "itemSpacingLarge" : 20,
+    "itemSpacingMedium" : 15,
+    "itemSpacingSmal" : 10,
+    "itemSpacingExtraSmal" : 8,
+
+
+    "fontSizeExtraLarge" : 44,
+    "fontSizeLarge" : 35,
+    "fontSizeMedium" : 28,
+    "fontSizeSmal" : 24,
+    "fontSizeTiny" : 16,
+    "fontWeightLarge" : 63,
+    "fontWeightMedium" : 25,
+    "fontFamily" : "/usr/share/fonts/google-opensans/OpenSans-Regular.ttf",
+
+    "accentColor" : "#0091e5",
+    "fillColor" : "#474747",
+    "fillDarkColor" : "#313131",
+    "textColor" : "#ffffff",
+    "backgroundColor" : "#000000",
+    "backgroundAccentColor" : "#ffffff"
+}
