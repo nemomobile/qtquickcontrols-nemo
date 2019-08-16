@@ -39,7 +39,7 @@ images.path = /usr/share/glacier-components/images
 OTHER_FILES += $$qml.files
 
 desktop.path = /usr/share/applications
-desktop.files = glacier-gallery.desktop
+desktop.files = glacier-components.desktop
 
 INSTALLS += desktop target qml mainqml images
 
