@@ -39,7 +39,7 @@ qmlfiles.files = qml/ButtonStyle.qml \
                 qml/TextAreaStyle.qml \
                 qml/ToolBarStyle.qml \
                 qml/ToolButtonStyle.qml \
-                qml/IconButtonStyle.qml
+                qml/IconButtonStyle.qml \
                 qml/qmldir
 
 qmlfiles.path = $$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH
