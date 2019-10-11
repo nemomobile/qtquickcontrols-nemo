@@ -28,8 +28,8 @@
     "fontFamily" : "/usr/share/fonts/google-opensans/OpenSans-Regular.ttf",
 
     "accentColor" : "#0091e5",
-    "fillColor" : "#474747",
-    "fillDarkColor" : "#313131",
+    "fillColor" : "#b2b2b2",
+    "fillDarkColor" : "#cecece",
     "textColor" : "#000000",
     "backgroundColor" : "#ffffff",
     "backgroundAccentColor" : "#000000"
