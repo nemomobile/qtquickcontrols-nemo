@@ -1,3 +1,3 @@
 TEMPLATE=subdirs
 
-SUBDIRS+= touch
+SUBDIRS+= touch sizeview
