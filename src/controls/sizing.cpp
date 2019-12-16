@@ -45,10 +45,10 @@ Sizing::Sizing(QObject *parent) : QObject(parent)
     if(m_width >= 2160){
         //>2160
         m_launcher_icon_size = 256;
-    }else if (m_width >= 1080){
+    }else if (m_width >= 1080 && m_width < 2160){
         //1080-2159
         m_launcher_icon_size = 128;
-    }else if(m_width >= 720){
+    }else if(m_width >= 720 && m_width < 1080){
         //720-1079
         m_launcher_icon_size = 108;
     }else {
