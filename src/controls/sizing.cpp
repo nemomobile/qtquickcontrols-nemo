@@ -22,6 +22,15 @@ Sizing::Sizing(QObject *parent) : QObject(parent)
 
     QScreen *screen = QGuiApplication::primaryScreen();
 
+    /*If we dont have everoment of physical size try get it from screen*/
+    if(m_p_height == 0 || m_p_width == 0) {
+        qWarning("QT_QPA_EGLFS_PHYSICAL_WIDTH or QT_QPA_EGLFS_PHYSICAL_HEIGHT is not set! \n"
+                 "Trying to use QScreenSize");
+        QSizeF p_size = screen->physicalSize();
+        m_p_height = p_size.height();
+        m_p_width = p_size.width();
+        qInfo() << "Set size to " <<  m_p_height  <<  " x " << m_p_width;
+    }
 
     m_height = qMax(screen->size().width(), screen->size().height());
     m_width = qMin(screen->size().width(), screen->size().height());
