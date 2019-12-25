@@ -74,6 +74,8 @@ desktop-file-install --delete-original       \
 %files examples
 %defattr(-,root,root,-)
 %{_bindir}/glacier-components
+%{_bindir}/glacier-sizeview
 %{_datadir}/glacier-components
+%{_datadir}/glacier-sizeview
 %{_datadir}/applications/*.desktop
 
