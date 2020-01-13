@@ -78,4 +78,4 @@ desktop-file-install --delete-original       \
 %{_datadir}/glacier-components
 %{_datadir}/glacier-sizeview
 %{_datadir}/applications/*.desktop
-
+%{_datadir}/dbus-1/services/org.nemomobile.notify.service
