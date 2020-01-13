@@ -41,7 +41,10 @@ OTHER_FILES += $$qml.files
 desktop.path = /usr/share/applications
 desktop.files = glacier-components.desktop
 
-INSTALLS += desktop target qml mainqml images
+systemd_dbus_service.path = $${INSTALL_ROOT}/usr/share/dbus-1/services
+systemd_dbus_service.files = org.nemomobile.notify.service
+
+INSTALLS += desktop target qml mainqml images systemd_dbus_service
 
 SOURCES += \
     src/main.cpp
