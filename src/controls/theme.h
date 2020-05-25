@@ -2,6 +2,7 @@
 #define THEME_H
 
 #include <QObject>
+#include "sizing.h"
 
 class Theme : public QObject
 {
@@ -84,6 +85,8 @@ public:
     QString backgroundAccentColor(){return m_backgroundAccentColor;}
 
     qreal iconSizeLauncher() {return m_iconSizeLauncher;}
+
+    Sizing *size;
 
 signals:
     void themeUpdate();
