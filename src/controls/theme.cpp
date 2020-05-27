@@ -1,5 +1,4 @@
 #include "theme.h"
-#include "sizing.h"
 #include <math.h>
 #include <QFile>
 #include <QDebug>
@@ -8,7 +7,7 @@
 
 Theme::Theme(QObject *parent) : QObject(parent)
 {
-    Sizing *size = new Sizing;
+    size = new Sizing;
     m_dp = size->getDpScaleFactor();
     m_iconSizeLauncher = size->getLauncherIconSize();
     m_scaleRatio = size->getScaleRatio();
