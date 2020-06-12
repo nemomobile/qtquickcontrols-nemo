@@ -18,7 +18,7 @@
  */
 
 #include "editfilter.h"
-
+class QVariant;
 EditFilter::EditFilter(QObject *parent) : QObject(parent)
 {
 
