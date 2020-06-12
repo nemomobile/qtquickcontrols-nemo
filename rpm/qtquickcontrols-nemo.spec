@@ -15,6 +15,7 @@ Requires:   qt5-qtquickcontrols
 Requires:   qt5-qtgraphicaleffects
 Requires:   qt5-plugin-imageformat-jpeg
 Requires:   qt5-qtsvg-plugin-imageformat-svg
+Requires:   qt5-qtvirtualkeyboard
 Requires:   nemo-theme-glacier
 
 %description
