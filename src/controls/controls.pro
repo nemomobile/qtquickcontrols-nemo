@@ -69,11 +69,11 @@ SOURCES += \
 
 target.path = $$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH
 
-qmlfiles.files = $$_PRO_FILE_PWD_/qml/*.qml
+qmlfiles.files = $$files($$_PRO_FILE_PWD_/qml/*.qml,false)
 qmlfiles.files += $$_PRO_FILE_PWD_/qml/qmldir
 qmlfiles.path = $$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH
 
-dialogs.files = $$_PRO_FILE_PWD_/qml/dialogs/*.qml
+dialogs.files = $$files($$_PRO_FILE_PWD_/qml/dialogs/*.qml,false)
 dialogs.files += $$_PRO_FILE_PWD_/qml/dialogs/qmldir
 dialogs.path = $$[QT_INSTALL_QML]/Nemo/Dialogs
 

@@ -25,6 +25,8 @@
 #include <QVariant>
 #include "nemofocussingleton.h"
 
+#include <QVariant>
+
 class EditFilter : public QObject
 {
     Q_OBJECT
