@@ -55,7 +55,9 @@ Item {
     signal clicked
 
     function hideAllActions() {
-        root.ListView.view.hideAllActions(index)
+        if(actions) {
+            root.ListView.view.hideAllActions(index)
+        }
     }
 
     Connections {
