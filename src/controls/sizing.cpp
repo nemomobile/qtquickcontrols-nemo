@@ -19,6 +19,7 @@ Sizing::Sizing(QObject *parent) : QObject(parent)
 
     m_p_height = qgetenv("QT_QPA_EGLFS_PHYSICAL_HEIGHT").toInt();
     m_p_width = qgetenv("QT_QPA_EGLFS_PHYSICAL_WIDTH").toInt();
+    m_dpi = qgetenv("QT_WAYLAND_FORCE_DPI").toInt();
 
     QScreen *screen = QGuiApplication::primaryScreen();
 
@@ -35,7 +36,11 @@ Sizing::Sizing(QObject *parent) : QObject(parent)
     m_height = qMax(screen->size().width(), screen->size().height());
     m_width = qMin(screen->size().width(), screen->size().height());
 
-    m_dpi = screen->physicalDotsPerInch();
+    if(m_dpi == 0) {
+        m_dpi = screen->physicalDotsPerInch();
+    } else {
+        qInfo() << "Use QPI from QT_WAYLAND_FORCE_DPI enveroment = " << m_dpi;
+    }
 
     m_scaleRatio = qMin(m_height/refHeight, m_width/refWidth);
     m_fontRatio = floor(m_scaleRatio*10) /10; //qMin(m_height*refDpi/(m_dpi*refHeight), m_width*refDpi/(m_dpi*refWidth))*10)/10;
