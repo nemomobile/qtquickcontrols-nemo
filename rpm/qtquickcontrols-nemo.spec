@@ -13,12 +13,6 @@ BuildRequires:  fdupes
 
 Requires:   qt5-qtquickcontrols
 Requires:   qt5-qtgraphicaleffects
-%if 0%{?fedora}
-Requires:   libQt5Gui.so.5
-%else
-Requires:   libqjpeg.so
-%endif
-Requires:   libqsvg.so
 Requires:   qt5-qtvirtualkeyboard
 Requires:   nemo-theme-glacier
 
