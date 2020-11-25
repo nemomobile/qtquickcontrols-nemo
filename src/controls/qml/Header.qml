@@ -1,3 +1,4 @@
+import QtQml 2.14 as Qml
 import QtQuick 2.6
 import QtQuick.Window 2.0
 import QtQuick.Controls 1.0
@@ -12,13 +13,15 @@ Item {
     //TODO: Add logic/animations to handle dynamic change of tools and drawer levels in the same page
 
     //make sure the header is aligned properly
-    Binding on y {
+    Qml.Binding on y {
         when: !appWindow.isUiPortrait
         value: 0
+	restoreMode: Qml.Binding.RestoreBindingOrValue
     }
-    Binding on x {
+    Qml.Binding on x {
         when: appWindow.isUiPortrait
         value: 0
+	restoreMode: Qml.Binding.RestoreBindingOrValue
     }
 
     //Since the header drawer behaves differently in portrait/landscape modes
@@ -307,13 +310,15 @@ Item {
 
         color: Theme.backgroundColor
 
-        Binding on width {
+        Qml.Binding on width {
             value: drawer.width
             when: !appWindow.isUiPortrait
+	    restoreMode: Qml.Binding.RestoreBindingOrValue
         }
-        Binding on height {
+        Qml.Binding on height {
             value: drawer.height
             when: appWindow.isUiPortrait
+	    restoreMode: Qml.Binding.RestoreBindingOrValue
         }
 
         ColumnLayout {
