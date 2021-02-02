@@ -12,14 +12,14 @@ Item {
     //TODO: Add logic/animations to handle dynamic change of tools and drawer levels in the same page
 
     //make sure the header is aligned properly
-    Binding on y {
+    /*Binding on y {
         when: !appWindow.isUiPortrait
         value: 0
     }
     Binding on x {
         when: appWindow.isUiPortrait
         value: 0
-    }
+    }*/
 
     //Since the header drawer behaves differently in portrait/landscape modes
     //we close the drawer when the UI rotates
