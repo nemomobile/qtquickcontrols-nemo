@@ -1,6 +1,6 @@
 /****************************************************************************************
 **
-** Copyright (C) 2017-2018 Chupligin Sergey <neochapay@gmail.com>
+** Copyright (C) 2017-2021 Chupligin Sergey <neochapay@gmail.com>
 ** All rights reserved.
 **
 ** You may use this file under the terms of BSD license as follows:
@@ -47,6 +47,7 @@ Item {
 
     property bool showNext: true
     property bool iconVisible: true
+    property bool iconColorized: true
 
     property bool showActions: true
 
@@ -126,7 +127,7 @@ Item {
                 leftMargin: Theme.itemSpacingLarge
                 verticalCenter:parent.verticalCenter
             }
-
+            colorized: iconColorized
             sourceSize.width: width
             sourceSize.height: height
             visible: iconVisible

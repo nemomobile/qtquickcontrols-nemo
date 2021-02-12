@@ -1,6 +1,6 @@
 /****************************************************************************************
 **
-** Copyright (C) 2019 Chupligin Sergey <neochapay@gmail.com>
+** Copyright (C) 2019-2021 Chupligin Sergey <neochapay@gmail.com>
 ** All rights reserved.
 **
 ** You may use this file under the terms of BSD license as follows:
@@ -34,6 +34,7 @@ import QtQuick 2.6
 
 Image {
     id: nemoIcon
+    property bool colorized: true
 
     layer.effect: ShaderEffect {
         id: shaderItem
@@ -50,6 +51,6 @@ Image {
             }
         "
     }
-    layer.enabled: true
+    layer.enabled: colorized
     layer.samplerName: "source"
 }
