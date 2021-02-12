@@ -475,7 +475,7 @@ NemoWindow {
                     states: [
                         State {
                             name: 'Unanimated'
-                            when: !stackView || !stackInitialized
+                            when: !stackView || !stackView.stackInitialized
                         },
                         State {
                             name: 'Portrait'
