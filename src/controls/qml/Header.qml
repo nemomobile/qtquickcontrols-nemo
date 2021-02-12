@@ -5,6 +5,7 @@ import QtQuick.Controls.Nemo 1.0
 import QtQuick.Controls.Styles.Nemo 1.0
 import QtQuick.Layouts 1.0
 import QtGraphicalEffects 1.0
+import QtQml 2.14
 
 Item {
     id: root
@@ -12,14 +13,14 @@ Item {
     //TODO: Add logic/animations to handle dynamic change of tools and drawer levels in the same page
 
     //make sure the header is aligned properly
-    Binding on y {
+    /*Binding on y {
         when: !appWindow.isUiPortrait
         value: 0
     }
     Binding on x {
         when: appWindow.isUiPortrait
         value: 0
-    }
+    }*/
 
     //Since the header drawer behaves differently in portrait/landscape modes
     //we close the drawer when the UI rotates
@@ -309,16 +310,20 @@ Item {
         color: Theme.backgroundColor
 
         Binding on width {
+            restoreMode: Binding.RestoreBinding
             value: drawer.width
             when: !appWindow.isUiPortrait
         }
         Binding on height {
+            restoreMode: Binding.RestoreBinding
             value: drawer.height
             when: appWindow.isUiPortrait
         }
 
         ColumnLayout {
             id: drawer
+            width: parent.width
+            height: parent.height
 
             //NOTE: if you set the spacing to something != 0 then you have to rewrite the logic which handles drawer speedbumps,
             //which currently relies on "spacing" being 0

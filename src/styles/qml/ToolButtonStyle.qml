@@ -26,7 +26,7 @@ import QtQuick.Controls.Private 1.0
 // ToolButtonStyle is private in QQC 5.1.0
 
 Style {
-    readonly property ToolButton control: __control
+    readonly property Button control: __control
     property Component panel: Item {
         id: styleitem
 
