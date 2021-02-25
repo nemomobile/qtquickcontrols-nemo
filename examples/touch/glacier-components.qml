@@ -103,6 +103,10 @@ ApplicationWindow {
             page: "content/SpinnerPage.qml"
         }
         ListElement {
+            title: qsTr("Ring indicator")
+            page: "content/RingIndicatorPage.qml"
+        }
+        ListElement {
             title: qsTr("SelectRoller")
             page: "content/SelectRollerPage.qml"
         }

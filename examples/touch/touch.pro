@@ -29,7 +29,8 @@ qml.files += \
     content/DatePickerPage.qml \
     content/TimePickerPage.qml \
     content/NotificationsPage.qml \
-    content/StatusNotifyPage.qml
+    content/StatusNotifyPage.qml \
+    content/RingIndicatorPage.qml
 
 qml.path = /usr/share/glacier-components/qml/content
 
