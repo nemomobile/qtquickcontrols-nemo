@@ -62,7 +62,7 @@ Item {
 
     Connections {
         target: root.ListView.view
-        onHideAllActions: {
+        function onHideAllActions(hideIndex) {
             if (hideIndex != index) {
                 listArea.x = 0
             }
