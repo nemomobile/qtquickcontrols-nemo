@@ -42,6 +42,7 @@
 #include <QCoreApplication>
 #include <QDebug>
 #include <QDir>
+#include <QDirIterator>
 #include <QSettings>
 
 MLocalThemeDaemonClient::MLocalThemeDaemonClient(const QString &testPath, QObject *parent) :
@@ -56,24 +57,21 @@ MLocalThemeDaemonClient::MLocalThemeDaemonClient(const QString &testPath, QObjec
     QString themeRoot = testPath;
     bool testMode = false;
 
-    if (themeRoot.isEmpty())
+    if (themeRoot.isEmpty()) {
         themeRoot = qgetenv("M_THEME_DIR");
-    else
+    } else {
         testMode = true;
+    }
 
     if (themeRoot.isEmpty()) {
 #if defined(THEME_DIR)
-        themeRoot = THEME_DIR;
+    themeRoot = THEME_DIR;
 #else
-# ifdef Q_OS_WIN
-        themeRoot = "c:\\";
-# else
-        themeRoot = "/usr/share/themes";
-# endif
+    themeRoot = "/usr/share/themes";
 #endif
     }
 
-    if (testMode == false) {
+    if (!testMode) {
         QString themeName;
 # if !defined(THEME_NAME)
 #  define THEME_NAME "glacier"
@@ -148,6 +146,7 @@ MLocalThemeDaemonClient::~MLocalThemeDaemonClient()
 
 QPixmap MLocalThemeDaemonClient::requestPixmap(const QString &id, const QSize &requestedSize)
 {
+    qDebug() << Q_FUNC_INFO;
     QPixmap pixmap;
 
     QStringList parts = id.split('?');
@@ -205,10 +204,21 @@ QImage MLocalThemeDaemonClient::readImage(const QString &id) const
                 }
             }
         }
-
         qDebug() << "Unknown theme image:" << id;
-    }
+        QDir hicolorIconsDir("/usr/share/icons/hicolor/scalable/");
+        if(hicolorIconsDir.exists()) {
+            qDebug() << "trying load into hicolor scalable dir";
+            QDirIterator it("/usr/share/icons/hicolor/scalable/", QStringList() << "*.svg", QDir::Files, QDirIterator::Subdirectories);
 
+            while (it.hasNext()) {
+                QString file = it.next();
+                if(file.contains(id+".svg")) {
+                    QImage image(file);
+                    return image;
+                }
+            }
+        }
+    }    
     return QImage();
 }
 
