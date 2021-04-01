@@ -26,7 +26,9 @@ Item {
     //we close the drawer when the UI rotates
     Connections {
         target: appWindow
-        onIsUiPortraitChanged: closeDrawer()
+        function onIsUiPortraitChanged() {
+            closeDrawer()
+        }
     }
 
     //Handle portrait/landscape orientation layout changes
@@ -127,14 +129,16 @@ Item {
     //(i.e. to get header.stackView.depth value)
     Connections {
         target: stackView
-        onCurrentItemChanged: {
+        function onCurrentItemChanged() {
             if (changeToolsLayoutAnim.running) {
                 changeToolsLayoutAnim.complete()
             }
             changeToolsLayoutAnim.start()
         }
         //Close drawer if a page transition is starting
-        onBusyChanged: if (stackView.busy) closeDrawer()
+        function onBusyChanged() {
+            if (stackView.busy) closeDrawer()
+        }
     }
 
     function propagateHeaderReference() {

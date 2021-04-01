@@ -92,13 +92,13 @@ NemoWindow {
 
     Connections {
         target: pageStack
-        onBusyChanged: {
+        function onBusyChanged(busy) {
             if (_errorTimer.errorString && !pageStack.busy) {
                 _errorTimer.start()
             }
         }
 
-        onCurrentItemChanged: {
+        function onCurrentItemChanged(currentItem) {
             var qmltype = pageStack.currentItem.toString()
             if (qmltype.slice(0, 10) === "QQuickText") {
                 _errorTimer.errorString = pageStack.currentItem.text
@@ -346,7 +346,7 @@ NemoWindow {
                     Connections {
                         id: pageConn
                         target: stackView._isCurrentItemNemoPage() ? stackView.currentItem : null
-                        onAllowedOrientationsChanged: root.orientationConstraintsChanged()
+                        function onAllowedOrientationsChanged() { root.orientationConstraintsChanged() }
                     }
 
                     delegate: StackViewDelegate {
