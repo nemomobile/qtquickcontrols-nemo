@@ -237,7 +237,7 @@ NemoWindow {
 
                     Connections {
                         target: root
-                        onIsUiPortraitChanged: inputPanel.keyboard.style.keyboardDesignHeight = root.isUiPortrait ? inputRotatingArea.kbdDesignHeight : root.width/2
+                        function onIsUiPortraitChanged() { inputPanel.keyboard.style.keyboardDesignHeight = root.isUiPortrait ? inputRotatingArea.kbdDesignHeight : root.width/2 }
                     }
                 }
             }
