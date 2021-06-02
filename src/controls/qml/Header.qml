@@ -326,8 +326,6 @@ Item {
 
         ColumnLayout {
             id: drawer
-            width: parent.width
-            height: parent.height
 
             //NOTE: if you set the spacing to something != 0 then you have to rewrite the logic which handles drawer speedbumps,
             //which currently relies on "spacing" being 0
