@@ -177,14 +177,14 @@ ApplicationWindow {
                     anchors.horizontalCenter: (parent==undefined) ? undefined : parent.horizontalCenter;
                     text: qsTr("Black theme")
                     onClicked: {
-                        Theme.loadTheme("/usr/lib/qt5/qml/QtQuick/Controls/Styles/Nemo/themes/glacier_black.json")
+                        Theme.loadTheme("/usr/lib/qt/qml/QtQuick/Controls/Styles/Nemo/themes/glacier_black.json")
                     }
                 },
                 Button {
                     anchors.horizontalCenter: (parent==undefined) ? undefined : parent.horizontalCenter;
                     text: qsTr("White theme")
                     onClicked: {
-                        Theme.loadTheme("/usr/lib/qt5/qml/QtQuick/Controls/Styles/Nemo/themes/glacier_white.json")
+                        Theme.loadTheme("/usr/lib/qt/qml/QtQuick/Controls/Styles/Nemo/themes/glacier_white.json")
                     }
                 },
                 RowLayout {
