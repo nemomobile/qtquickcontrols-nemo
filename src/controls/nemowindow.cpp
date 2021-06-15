@@ -28,8 +28,8 @@ NemoWindow::NemoWindow(QWindow *parent) :
     m_defaultAllowedOrientations(Qt::PortraitOrientation | Qt::LandscapeOrientation)
 {
     m_allowedOrientations = m_defaultAllowedOrientations;
-    //m_filter = new EditFilter();
-    //this->installEventFilter(m_filter);
+    m_filter = new EditFilter();
+    this->installEventFilter(m_filter);
 
     calculateOrientation(this->screen()->orientation());
 
