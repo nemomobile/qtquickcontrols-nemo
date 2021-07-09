@@ -232,7 +232,10 @@ NemoWindow {
 
                     property real panelSize: 0
                     property real previousImSize: 0
-                    property real imSize: !root.applicationActive ? 0 : Qt.inputMethod.keyboardRectangle.height
+                    property real imSize: !root.applicationActive ? 0 : (isUiPortrait ? (root._transpose ? Qt.inputMethod.keyboardRectangle.width
+                                                                                                         : Qt.inputMethod.keyboardRectangle.height)
+                                                                                      : (root._transpose ? Qt.inputMethod.keyboardRectangle.height
+                                                                                                         : Qt.inputMethod.keyboardRectangle.width))
 
                     onImSizeChanged: {
                         if (imSize <= 0 && previousImSize > 0) {
