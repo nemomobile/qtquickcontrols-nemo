@@ -36,7 +36,7 @@ import QtGraphicalEffects 1.0
 
 Item {
     id: root
-    width: parent.width
+    width: parent ? parent.width : 0
     height: Theme.itemHeightLarge
 
     property string label: ""
