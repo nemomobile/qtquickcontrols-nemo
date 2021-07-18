@@ -44,7 +44,7 @@ import QtQuick.Controls 1.0
 import QtQuick.Controls.Nemo 1.0
 import QtQuick.Controls.Styles.Nemo 1.0
 import QtQuick.Window 2.1
-import QtQuick.Layouts 1.0
+
 import "content"
 
 ApplicationWindow {
@@ -146,8 +146,9 @@ ApplicationWindow {
         headerTools: HeaderToolsLayout {
             id: tools
 
-            title: "Nemo Touch Gallery"
-            tools: [ ToolButton {
+            title: qsTr("Nemo components gallery")
+            tools: [
+                ToolButton {
                     iconSource: "image://theme/cog"
                     showCounter: false
                 },
@@ -190,47 +191,73 @@ ApplicationWindow {
                         Theme.loadTheme("/usr/lib/qt/qml/QtQuick/Controls/Styles/Nemo/themes/glacier_white.json")
                     }
                 },
-                RowLayout {
-                    anchors.left: (parent==undefined) ? undefined : parent.left
-                    anchors.right: (parent==undefined) ? undefined : parent.right
-                    anchors.margins: 20
-                    Layout.preferredHeight: 100
+                Row {
+                    id: drawerTestRow
+                    width: appWindow.width
+                    height: Theme.itemHeightMedium
+
+                    anchors{
+                        left: (parent==undefined) ? undefined : parent.left
+                        right: (parent==undefined) ? undefined : parent.right
+                        margins: Theme.itemSpacingLarge
+                    }
+
                     Label {
-                        anchors.left: parent.left;
+                        id: drawerTestLabel
+                        text: qsTr("Drawer Test")
                         anchors.verticalCenter: parent.verticalCenter
-                        text: "Drawer Test"}
+                    }
+
+                    Rectangle{
+                        id: spacer1
+                        width: parent.width-drawerTestLabel.width-drawerTestCheckBox.width
+                        color: "transparent"
+                        height: 1
+                    }
+
                     CheckBox {
-                        anchors.right: parent.right
+                        id: drawerTestCheckBox
                         anchors.verticalCenter: parent.verticalCenter
-                        width : 20
                     }
                 },
-                RowLayout {
-                    anchors.left: (parent==undefined) ? undefined : parent.left
-                    anchors.right: (parent==undefined) ? undefined : parent.right
-                    anchors.margins: 20
-                    Layout.preferredHeight: 100
+                Row{
+                    id: drawerTest2Row
+                    width: appWindow.width
+                    height: Theme.itemHeightMedium
+
+                    anchors{
+                        left: (parent==undefined) ? undefined : parent.left
+                        right: (parent==undefined) ? undefined : parent.right
+                        margins: Theme.itemSpacingLarge
+                    }
+
                     Label {
-                        anchors.left: parent.left;
+                        id: drawerTest2Label
+                        text: qsTr("Drawer Test 2")
                         anchors.verticalCenter: parent.verticalCenter
-                        text: "Drawer Test 2"}
+                    }
+
+                    Rectangle{
+                        id: spacer2
+                        width: parent.width-drawerTest2Label.width-tool1.width-tool2.width-tool3.width
+                        color: "transparent"
+                        height: 1
+                    }
+
                     ToolButton {
                         id: tool1
-                        anchors.right: parent.right
-                        anchors.verticalCenter: parent.verticalCenter
                         iconSource: "image://theme/cog"
+                        anchors.verticalCenter: parent.verticalCenter
                     }
                     ToolButton {
                         id: tool2
-                        anchors.right: tool1.left
-                        anchors.verticalCenter: parent.verticalCenter
                         iconSource: "image://theme/edit"
+                        anchors.verticalCenter: parent.verticalCenter
                     }
                     ToolButton {
                         id: tool3
-                        anchors.right: tool2.left
-                        anchors.verticalCenter: parent.verticalCenter
                         iconSource: "image://theme/refresh"
+                        anchors.verticalCenter: parent.verticalCenter
                     }
                 },
                 ButtonRow {
