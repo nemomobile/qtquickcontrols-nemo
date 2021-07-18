@@ -44,6 +44,7 @@ public:
 signals:
     void allowedOrientationsChanged();
     void orientationChanged();
+    void desktopModeChanged();
 
 private slots:
     void calculateOrientation(Qt::ScreenOrientation orientation);

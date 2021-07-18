@@ -5,6 +5,9 @@ TARGET=nemocontrolsplugin
 PLUGIN_IMPORT_PATH = QtQuick/Controls/Nemo
 THEME_IMPORT_PATH = QtQuick/Controls/Styles/Nemo/themes
 
+CONFIG += link_pkgconfig
+PKGCONFIG += mlite5
+
 # Added/Reimplemented Controls
 QML_FILES += \
     qml/Button.qml \

@@ -1,4 +1,4 @@
-#ifndef THEME_He5
+#ifndef THEME_H
 #define THEME_H
 
 #include <QObject>
@@ -45,6 +45,8 @@ class Theme : public QObject
     Q_PROPERTY(QString backgroundColor READ backgroundColor NOTIFY backgroundColorChanged)
     Q_PROPERTY(QString backgroundAccentColor READ backgroundAccentColor NOTIFY backgroundAccentColorChanged)
 
+    Q_PROPERTY(bool desktopMode READ desktopMode NOTIFY desktopModeChanged)
+
 public:
     explicit Theme(QObject *parent = 0);
 
@@ -85,6 +87,8 @@ public:
     QString backgroundAccentColor(){return m_backgroundAccentColor;}
 
     qreal iconSizeLauncher() {return m_iconSizeLauncher;}
+
+    bool desktopMode() {return m_desktopMode;}
 
     Sizing *size;
 
@@ -127,7 +131,11 @@ signals:
 
     void iconSizeLauncherChanged();
 
-public slots:
+    void desktopModeChanged();
+
+private slots:
+    void desktopModeValueChanged();
+    void themeValueChanged();
 
 private:
     qreal m_iconSizeLauncher;   //86 or 108 or 128 or 256
@@ -169,6 +177,12 @@ private:
     qreal m_dp;
     qreal m_scaleRatio;
     qreal m_fontRatio;
+
+    bool m_desktopMode;
+    QString m_theme;
+
+    void loadDefaultValue();
+    void setThemeValues();
 };
 
 #endif // THEME_H
