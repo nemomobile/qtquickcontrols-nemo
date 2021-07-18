@@ -5,8 +5,6 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 
-#include <MGConfItem>
-
 Theme::Theme(QObject *parent) : QObject(parent)
 {
     size = new Sizing;
@@ -18,21 +16,19 @@ Theme::Theme(QObject *parent) : QObject(parent)
     loadDefaultValue();
 
     MGConfItem *desktopModeValue = new MGConfItem(QStringLiteral("/nemo/apps/libglacier/desktopmode"));
-    MGConfItem *themeValue = new MGConfItem(QStringLiteral("/nemo/apps/libglacier/themePath"));
+    m_themeValue = new MGConfItem(QStringLiteral("/nemo/apps/libglacier/themePath"));
 
     m_desktopMode = desktopModeValue->value().toBool();
-    m_theme = themeValue->value().toString();
+    m_theme = m_themeValue->value().toString();
 
     connect(desktopModeValue, &MGConfItem::valueChanged, this, &Theme::desktopModeValueChanged);
-    connect(themeValue, &MGConfItem::valueChanged, this, &Theme::themeValueChanged);
+    connect(m_themeValue, &MGConfItem::valueChanged, this, &Theme::themeValueChanged);
+
+    loadTheme(m_theme);
 }
 
 bool Theme::loadTheme(QString fileName)
 {
-    if(fileName == m_theme) {
-        return false;
-    }
-
     QFile themeFile(fileName);
 
     if(!themeFile.exists()) {
@@ -40,7 +36,11 @@ bool Theme::loadTheme(QString fileName)
         return false;
     }
 
-    MGConfItem(QStringLiteral("/nemo/apps/libglacier/themePath")).set(fileName);
+    if(fileName != m_theme) {
+        m_themeValue->set(fileName);
+    } else {
+        setThemeValues();
+    }
     return true;
 }
 
@@ -301,7 +301,7 @@ void Theme::desktopModeValueChanged()
 
 void Theme::themeValueChanged()
 {
-    m_theme = MGConfItem(QStringLiteral("/nemo/apps/libglacier/themePath")).value().toString();
+    m_theme = m_themeValue->value().toString();
     setThemeValues();
 }
 

@@ -2,6 +2,7 @@
 #define THEME_H
 
 #include <QObject>
+#include <MGConfItem>
 #include "sizing.h"
 
 class Theme : public QObject
@@ -46,6 +47,7 @@ class Theme : public QObject
     Q_PROPERTY(QString backgroundAccentColor READ backgroundAccentColor NOTIFY backgroundAccentColorChanged)
 
     Q_PROPERTY(bool desktopMode READ desktopMode NOTIFY desktopModeChanged)
+    Q_PROPERTY(QString themePath READ themePath NOTIFY themeUpdate)
 
 public:
     explicit Theme(QObject *parent = 0);
@@ -89,6 +91,7 @@ public:
     qreal iconSizeLauncher() {return m_iconSizeLauncher;}
 
     bool desktopMode() {return m_desktopMode;}
+    QString themePath() {return m_theme;}
 
     Sizing *size;
 
@@ -183,6 +186,8 @@ private:
 
     void loadDefaultValue();
     void setThemeValues();
+
+    MGConfItem *m_themeValue;
 };
 
 #endif // THEME_H
