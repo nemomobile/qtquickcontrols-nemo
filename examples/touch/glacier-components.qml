@@ -1,6 +1,7 @@
 /****************************************************************************
 **
 ** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
+** Copyright (C) 2017-2021 Chupligin Sergey <neochapay@gmail.com>
 ** Contact: http://www.qt-project.org/legal
 **
 ** This file is part of the Qt Quick Controls module of the Qt Toolkit.
@@ -176,6 +177,7 @@ ApplicationWindow {
                 Button {
                     anchors.horizontalCenter: (parent==undefined) ? undefined : parent.horizontalCenter;
                     text: qsTr("Black theme")
+                    primary: Theme.themePath == "/usr/lib/qt/qml/QtQuick/Controls/Styles/Nemo/themes/glacier_black.json"
                     onClicked: {
                         Theme.loadTheme("/usr/lib/qt/qml/QtQuick/Controls/Styles/Nemo/themes/glacier_black.json")
                     }
@@ -183,6 +185,7 @@ ApplicationWindow {
                 Button {
                     anchors.horizontalCenter: (parent==undefined) ? undefined : parent.horizontalCenter;
                     text: qsTr("White theme")
+                    primary: Theme.themePath == "/usr/lib/qt/qml/QtQuick/Controls/Styles/Nemo/themes/glacier_white.json"
                     onClicked: {
                         Theme.loadTheme("/usr/lib/qt/qml/QtQuick/Controls/Styles/Nemo/themes/glacier_white.json")
                     }
