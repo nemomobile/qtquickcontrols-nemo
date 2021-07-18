@@ -1,6 +1,7 @@
 /****************************************************************************************
 **
 ** Copyright (C) 2013 Aleksi Suomalainen <suomalainen.aleksi@gmail.com>
+** Copyright (C) 2021 Chupligin Sergey <neochapay@gmail.com>
 ** All rights reserved.
 **
 ** You may use this file under the terms of BSD license as follows:
@@ -75,7 +76,7 @@ CheckBoxStyle {
 
         Connections {
             target: control
-            onCheckedChanged: {
+            function onCheckedChanged() {
                 if(!indeterminate) {
                     if (control.checked) {
                         checkAnimation.restart()
@@ -85,7 +86,7 @@ CheckBoxStyle {
                 }
             }
 
-            onIndeterminateChanged: {
+            function onIndeterminateChanged() {
                 indeterminateAnimation.stop()
                 if(indeterminate) {
                     indeterminateAnimation.start()
