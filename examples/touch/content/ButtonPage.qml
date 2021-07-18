@@ -57,8 +57,15 @@ Page {
             property bool isGlacier: true
             anchors.margins: 20
             text: isGlacier ? "Set Ugly Theme" : "Set Nice Theme"
-            onClicked: isGlacier ? Theme.loadTheme("ugly")
-                                 : Theme.loadTheme("glacier")
+            onClicked: {
+                if (isGlacier ) {
+                    Theme.loadTheme("/usr/lib/qt/qml/QtQuick/Controls/Styles/Nemo/themes/glacier_orange.json")
+                } else {
+                    Theme.loadTheme("/usr/lib/qt/qml/QtQuick/Controls/Styles/Nemo/themes/glacier_black.json")
+                }
+                isGlacier = !isGlacier;
+            }
+
         }
 
         Button {
