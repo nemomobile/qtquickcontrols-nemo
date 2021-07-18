@@ -176,6 +176,7 @@ ApplicationWindow {
                 Button {
                     anchors.horizontalCenter: (parent==undefined) ? undefined : parent.horizontalCenter;
                     text: qsTr("Black theme")
+                    primary: Theme.themePath == "/usr/lib/qt/qml/QtQuick/Controls/Styles/Nemo/themes/glacier_black.json"
                     onClicked: {
                         Theme.loadTheme("/usr/lib/qt/qml/QtQuick/Controls/Styles/Nemo/themes/glacier_black.json")
                     }
@@ -183,6 +184,7 @@ ApplicationWindow {
                 Button {
                     anchors.horizontalCenter: (parent==undefined) ? undefined : parent.horizontalCenter;
                     text: qsTr("White theme")
+                    primary: Theme.themePath == "/usr/lib/qt/qml/QtQuick/Controls/Styles/Nemo/themes/glacier_white.json"
                     onClicked: {
                         Theme.loadTheme("/usr/lib/qt/qml/QtQuick/Controls/Styles/Nemo/themes/glacier_white.json")
                     }
