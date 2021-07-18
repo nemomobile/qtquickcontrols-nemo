@@ -35,10 +35,11 @@ import QtQuick 2.6
 Image {
     id: nemoIcon
     property bool colorized: true
+    property color color: Theme.textColor
 
     layer.effect: ShaderEffect {
         id: shaderItem
-        property color color: Theme.textColor
+        property color color: nemoIcon.color
 
         fragmentShader: "
             varying mediump vec2 qt_TexCoord0;
