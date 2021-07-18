@@ -1,6 +1,6 @@
 /****************************************************************************************
 **
-** Copyright (C) 2019 Chupligin Sergey <neochapay@gmail.com>
+** Copyright (C) 2019-2021 Chupligin Sergey <neochapay@gmail.com>
 ** All rights reserved.
 **
 ** You may use this file under the terms of BSD license as follows:
@@ -39,6 +39,7 @@ Button {
     property alias iconSource: iconImage.source
     property bool showCounter: false
     property bool showZeroCounter: false
+    property bool active: false
     property int counterValue: 0
 
     NemoIcon {
@@ -46,6 +47,7 @@ Button {
         anchors.fill: parent
         fillMode: Image.PreserveAspectFit
         anchors.margins: Theme.itemSpacingExtraSmall
+        color: active ? Theme.accentColor : Theme.textColor
     }
 
     Rectangle{

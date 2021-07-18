@@ -159,8 +159,10 @@ ApplicationWindow {
                     counterValue: 0
 
                     onClicked: {
-                       editIcon.counterValue++
+                        editIcon.counterValue++
                     }
+
+                    active: true
                 },
                 ToolButton {
                     iconSource: "image://theme/refresh"
