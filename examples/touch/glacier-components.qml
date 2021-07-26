@@ -135,6 +135,10 @@ ApplicationWindow {
             page: "content/NotificationsPage.qml"
         }
         ListElement {
+            title: "Status icon"
+            page: "content/StatusNotifyPage.qml"
+        }
+        ListElement {
             title: "Broken page"
             page: "content/BrokenPage.qml"
         }

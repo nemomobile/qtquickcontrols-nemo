@@ -28,7 +28,8 @@ qml.files += \
     content/IconPage.qml \
     content/DatePickerPage.qml \
     content/TimePickerPage.qml \
-    content/NotificationsPage.qml
+    content/NotificationsPage.qml \
+    content/StatusNotifyPage.qml
 
 qml.path = /usr/share/glacier-components/qml/content
 
@@ -50,4 +51,5 @@ SOURCES += \
     src/main.cpp
 
 DISTFILES += \
+    content/StatusNotifyPage.qml \
     content/TimePickerPage.qml
