@@ -67,79 +67,79 @@ ApplicationWindow {
     ListModel {
         id: pageModel
         ListElement {
-            title: "Live-Coding Arena"
+            title: qsTr("Live-Coding Arena")
             page: "content/LiveCoding.qml"
         }
         ListElement {
-            title: "Buttons (locked to portrait)"
+            title: qsTr("Buttons (locked to portrait)")
             page: "content/ButtonPage.qml"
         }
         ListElement {
-            title: "Sliders"
+            title: qsTr("Sliders")
             page: "content/SliderPage.qml"
         }
         ListElement {
-            title: "ProgressBar"
+            title: qsTr("ProgressBar")
             page: "content/ProgressBarPage.qml"
         }
         ListElement {
-            title: "DatePicker"
+            title: qsTr("DatePicker")
             page: "content/DatePickerPage.qml"
         }
         ListElement {
-            title: "TimePicker"
+            title: qsTr("TimePicker")
             page: "content/TimePickerPage.qml"
         }
         ListElement {
-            title: "Tabs"
+            title: qsTr("Tabs")
             page: "content/TabBarPage.qml"
         }
         ListElement {
-            title: "TextInput"
+            title: qsTr("TextInput")
             page: "content/TextInputPage.qml"
         }
         ListElement {
-            title: "Spinner"
+            title: qsTr("Spinner")
             page: "content/SpinnerPage.qml"
         }
         ListElement {
-            title: "SelectRoller"
+            title: qsTr("SelectRoller")
             page: "content/SelectRollerPage.qml"
         }
         ListElement {
-            title: "ListView"
+            title: qsTr("ListView")
             page: "content/ListViewPage.qml"
         }
         ListElement {
-            title: "Labels (no orientation locks)"
+            title: qsTr("Labels (no orientation locks)")
             page: "content/LabelPage.qml"
         }
         ListElement {
-            title: "Switches"
+            title: qsTr("Switches")
             page: "content/CheckboxPage.qml"
         }
         ListElement {
-            title: "ButtonRow (locked to landscape)"
+            title: qsTr("ButtonRow (locked to landscape)")
             page: "content/ButtonRowPage.qml"
         }
         ListElement {
-            title: "Dialogs"
+            title: qsTr("Dialogs")
             page: "content/DialogsPage.qml"
         }
         ListElement {
-            title: "Icons"
+            title: qsTr("Icons")
             page: "content/IconPage.qml"
         }
         ListElement {
-            title: "Notifications"
+            title: qsTr("Notifications")
             page: "content/NotificationsPage.qml"
         }
         ListElement {
-            title: "Status icon"
+            title: qsTr("Status icon")
             page: "content/StatusNotifyPage.qml"
         }
         ListElement {
-            title: "Broken page"
+            title: qsTr("Broken page")
             page: "content/BrokenPage.qml"
         }
     }

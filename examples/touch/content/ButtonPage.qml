@@ -2,6 +2,7 @@
 **
 ** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
 ** Contact: http://www.qt-project.org/legal
+** Copyright (C) 2021 Chupligin Sergey <neochapay@gmail.com>
 **
 ** This file is part of the Qt Quick Controls module of the Qt Toolkit.
 **
@@ -46,7 +47,10 @@ import QtQuick.Controls.Styles.Nemo 1.0
 Page {
     id: root
 
-    headerTools: HeaderToolsLayout { showBackButton: false; title: "Buttons (portrait only, no back arrow)" }
+    headerTools: HeaderToolsLayout {
+        showBackButton: false;
+        title: qsTr("Buttons (portrait only, no back arrow)")
+    }
     allowedOrientations: Qt.PortraitOrientation
 
     Column {

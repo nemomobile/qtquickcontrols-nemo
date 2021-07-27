@@ -1,6 +1,7 @@
 /****************************************************************************************
 **
 ** Copyright (C) 2013 Aleksi Suomalainen <suomalainen.aleksi@gmail.com>
+** Copyright (C) 2021 Chupligin Sergey <neochapay@gmail.com>
 ** All rights reserved.
 **
 ** You may use this file under the terms of BSD license as follows:
@@ -37,14 +38,18 @@ import QtQuick.Controls.Styles.Nemo 1.0
 Page {
     id: root
 
-    headerTools: HeaderToolsLayout { showBackButton: true; title: "Label" }
+    headerTools: HeaderToolsLayout {
+        showBackButton: true;
+        title: qsTr("Label")
+    }
+
     allowedOrientations: Qt.PortraitOrientation | Qt.LandscapeOrientation | Qt.InvertedLandscapeOrientation | Qt.InvertedPortraitOrientation
 
     Column {
         spacing: 40
         anchors.centerIn: parent
         Label {
-            text: "Test label"
+            text: qsTr("Test label")
         }
     }
 }

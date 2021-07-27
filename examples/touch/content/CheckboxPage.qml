@@ -1,6 +1,7 @@
 /****************************************************************************************
 **
 ** Copyright (C) 2013 Aleksi Suomalainen <suomalainen.aleksi@gmail.com>
+** Copyright (C) 2021 Chupligin Sergey <neochapay@gmail.com>
 ** All rights reserved.
 **
 ** You may use this file under the terms of BSD license as follows:
@@ -37,7 +38,10 @@ import QtQuick.Controls.Styles.Nemo 1.0
 Page {
     id: root
 
-    headerTools: HeaderToolsLayout { showBackButton: true; title:  qsTr("Switch") }
+    headerTools: HeaderToolsLayout {
+        showBackButton: true;
+        title:  qsTr("Switch")
+    }
 
     Column {
         spacing: 40

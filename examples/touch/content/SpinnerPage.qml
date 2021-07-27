@@ -1,6 +1,7 @@
 /****************************************************************************************
 **
 ** Copyright (C) 2013 Lucien Xu <sfietkonstantin@free.fr>
+** Copyright (C) 2021 Chupligin Sergey <neochapay@gmail.com>
 ** All rights reserved.
 **
 ** You may use this file under the terms of BSD license as follows:
@@ -37,14 +38,17 @@ import QtQuick.Controls.Styles.Nemo 1.0
 Page {
     id: root
 
-    headerTools: HeaderToolsLayout { showBackButton: true; title: "Spinner" }
+    headerTools: HeaderToolsLayout {
+        showBackButton: true;
+        title: qsTr("Spinner")
+    }
 
     Column {
         spacing: 40
         anchors.centerIn: parent
 
         Button {
-            text: "Toggle spinner"
+            text: qsTr("Toggle spinner")
             onClicked: spinner.enabled = !spinner.enabled
         }
 

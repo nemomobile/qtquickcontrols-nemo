@@ -2,6 +2,7 @@
 **
 ** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
 ** Contact: http://www.qt-project.org/legal
+** Copyright (C) 2021 Chupligin Sergey <neochapay@gmail.com>
 **
 ** This file is part of the Qt Quick Controls module of the Qt Toolkit.
 **
@@ -63,7 +64,10 @@ Page {
         }
     }
 
-    headerTools: HeaderToolsLayout { showBackButton: true; title: "Text input" }
+    headerTools: HeaderToolsLayout {
+        showBackButton: true;
+        title: qsTr("Text input")
+    }
 
     Column {
         spacing:Theme.itemSpacingHuge
@@ -71,24 +75,24 @@ Page {
 
         TextField {
             anchors.margins: Theme.itemSpacingLarge
-            text: "Text input"
+            text: qsTr("Text input")
         }
 
         TextField {
             anchors.margins: Theme.itemSpacingLarge
-            text: "Readonly Text input"
+            text: qsTr("Readonly Text input")
             readOnly: true
         }
 
         TextField {
             anchors.margins: Theme.itemSpacingLarge
-            text: "Disabled textfield"
+            text: qsTr("Disabled textfield")
             enabled: false
         }
 
         TextField {
             anchors.margins: Theme.itemSpacingLarge
-            text: "Text input"
+            text: qsTr("Text input")
             style: touchStyle
         }
 

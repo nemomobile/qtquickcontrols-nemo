@@ -29,7 +29,10 @@ Page {
     property var oldItem
     property var newItem
 
-    headerTools: HeaderToolsLayout { showBackButton: true; title: "Live Coding Arena" }
+    headerTools: HeaderToolsLayout {
+        showBackButton: true;
+        title: qsTr("Live Coding Arena")
+    }
 
     SplitView {
         anchors.fill: parent
@@ -45,7 +48,7 @@ Page {
                 anchors.top: parent.top
                 anchors.left: parent.left
                 anchors.right: parent.right
-                text: "Update LiveItem"
+                text:  qsTr("Update LiveItem")
                 onClicked: {
                     txt.qmlError = false
                     try {

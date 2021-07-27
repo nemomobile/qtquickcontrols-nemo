@@ -1,6 +1,6 @@
 /****************************************************************************************
 **
-** Copyright (C) 2017 Chupligin Sergey <neochapay@gmail.com>
+** Copyright (C) 2017-2021 Chupligin Sergey <neochapay@gmail.com>
 ** All rights reserved.
 **
 ** You may use this file under the terms of BSD license as follows:
@@ -37,7 +37,10 @@ import QtQuick.Controls.Styles.Nemo 1.0
 Page {
     id: root
 
-    headerTools: HeaderToolsLayout { showBackButton: true; title: "Date Picker" }
+    headerTools: HeaderToolsLayout {
+        showBackButton: true;
+        title: qsTrt("Date Picker")
+    }
 
     Column {
         spacing: 40
