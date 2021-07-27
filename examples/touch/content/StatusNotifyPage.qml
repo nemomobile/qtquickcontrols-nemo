@@ -45,17 +45,13 @@ Page {
         title: qsTr("Status icon")
     }
 
-    Component.onCompleted: {
-
-    }
-
     StatusNotifierItem {
         id: snItem
         status: StatusNotifierItem.PassiveStatus
         title: qsTr("Glacier UX")
         icon: "image://theme/terminal"
-        overlayIcon: "image://theme/terminal"
-        attentionIcon: "image://theme/terminal"
+        overlayIcon: "image://theme/code"
+        attentionIcon: "image://theme/window-close"
 
 
         onActivateRequested: {
@@ -71,9 +67,16 @@ Page {
         spacing: 40
         anchors.centerIn: parent
         Button {
-            text: qsTr("Test status icon")
+            text: qsTr("Make icon active")
             onClicked:{
                 snItem.status = StatusNotifierItem.ActiveStatus
+            }
+        }
+
+        Button {
+            text: qsTr("Make icon attention")
+            onClicked:{
+                snItem.status = StatusNotifierItem.NeedsAttentionStatus
             }
         }
     }
