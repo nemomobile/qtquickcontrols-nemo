@@ -73,6 +73,7 @@ Page {
             description: desc
             showNext: false
             showActions: canRemove
+            iconVisible: false;
 
             width: parent.width
             height: Theme.itemHeightLarge

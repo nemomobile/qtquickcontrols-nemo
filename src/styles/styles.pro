@@ -48,7 +48,8 @@ qmlfiles.files = qml/ButtonStyle.qml \
 qmlfiles.path = $$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH
 
 themes.files = $$_PRO_FILE_PWD_/themes/glacier_black.json \
-               $$_PRO_FILE_PWD_/themes/glacier_white.json
+               $$_PRO_FILE_PWD_/themes/glacier_white.json \
+               $$_PRO_FILE_PWD_/themes/glacier_orange.json
 
 themes.path = $$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH/themes
 
