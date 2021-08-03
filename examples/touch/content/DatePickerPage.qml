@@ -39,13 +39,18 @@ Page {
 
     headerTools: HeaderToolsLayout {
         showBackButton: true;
-        title: qsTrt("Date Picker")
+        title: qsTr("Date Picker")
     }
 
     Column {
-        spacing: 40
+        spacing: Theme.itemSpacingSmall
+
         width: parent.width
         DatePicker{
+            id: datePicker
+            onDateSelect: {
+                currentDate = date
+            }
         }
     }
 }

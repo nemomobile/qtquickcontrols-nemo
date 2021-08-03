@@ -1,6 +1,6 @@
 /****************************************************************************************
 **
-** Copyright (C) 2017 Chupligin Sergey <neochapay@gmail.com>
+** Copyright (C) 2017-2021 Chupligin Sergey <neochapay@gmail.com>
 ** All rights reserved.
 **
 ** You may use this file under the terms of BSD license as follows:
@@ -41,6 +41,10 @@ Item {
     height: childrenRect.height
 
     property date currentDate: new Date()
+    property bool showForwardButton: true
+    property bool showBackButton: true
+    property alias dayDelegate: daysGrid.delegate
+    property alias weekDaysDelegate: weekendListView.delegate
 
     property var monthNames: [qsTr("January"), qsTr("February"), qsTr("March"), qsTr("April"), qsTr("May"), qsTr("June"),qsTr("July"), qsTr("August"), qsTr("September"), qsTr("October"), qsTr("November"), qsTr("December")];
 
@@ -61,6 +65,7 @@ Item {
             id: leftArrow
             width: Theme.itemHeightMedium
             height: width
+            visible: showBackButton
 
             anchors{
                 left: parent.left
@@ -73,18 +78,8 @@ Item {
             MouseArea{
                 anchors.fill: parent
                 onClicked: {
-                    var newDate = currentDate;
-                    if(newDate.getMonth() == 1)
-                    {
-                        newDate.setFullYear(currentDate.getFullYear()-1)
-                        newDate.setMonth(12)
-                    }
-                    else
-                    {
-                        newDate.setMonth(currentDate.getMonth()-1)
-                    }
-                    datePicker.currentDate = newDate
-                    monthChanged()
+                    var d = new Date(calendarModel.selectedDate);
+                    calendarModel.selectedDate = new Date(d.setMonth(d.getMonth()-1))
                 }
             }
         }
@@ -94,13 +89,14 @@ Item {
             anchors.centerIn: parent
             font.pixelSize: Theme.fontSizeLarge
             color: Theme.textColor
-            text: monthNames[currentDate.getMonth()]
+            text: monthNames[calendarModel.selectedDate.getMonth()]
         }
 
         Image{
             id: rightArrow
             width: Theme.itemHeightMedium
             height: width
+            visible: showForwardButton
 
             anchors{
                 right: parent.right
@@ -113,18 +109,8 @@ Item {
             MouseArea{
                 anchors.fill: parent
                 onClicked: {
-                    var newDate = currentDate;
-                    if(newDate.getMonth() == 12)
-                    {
-                        newDate.setFullYear(currentDate.getFullYear()+1)
-                        newDate.setMonth(1)
-                    }
-                    else
-                    {
-                        newDate.setMonth(currentDate.getMonth()+1)
-                    }
-                    datePicker.currentDate = newDate
-                    monthChanged()
+                    var d = new Date(calendarModel.selectedDate);
+                    calendarModel.selectedDate = new Date(d.setMonth(d.getMonth()+1))
                 }
             }
         }
@@ -178,9 +164,11 @@ Item {
             height: parent.height
             model: weekendModel
             orientation: ListView.Horizontal
+            clip: true
             delegate: Item{
                 height: parent.height
                 width: height
+                clip: true
 
                 Label{
                     text: label
@@ -196,6 +184,7 @@ Item {
         id: daysGrid
         width: parent.width
         height: width
+        clip: true
 
         anchors {
             top: weekDays.bottom
@@ -226,7 +215,7 @@ Item {
                 /*If weekend*/
                 if(model.dateOfDay.getDay() === 0 || model.dateOfDay.getDay() === 6)
                 {
-                    if(model.isCurrentDay)
+                    if(model.isCurrentDay || Qt.formatDate(model.dateOfDay, "yyMMdd") == Qt.formatDate(currentDate, "yyMMdd"))
                     {
                         color = Theme.textColor
                     }
@@ -247,7 +236,7 @@ Item {
                 width: parent.width
                 height: parent.height
                 color: Theme.accentColor
-                visible: model.isCurrentDay
+                visible: Qt.formatDate(model.dateOfDay, "yyMMdd") == Qt.formatDate(currentDate, "yyMMdd")
             }
 
             Label{
@@ -265,12 +254,6 @@ Item {
                 }
             }
         }
-    }
-
-    onMonthChanged: {
-        calendarModel.selectedDate = datePicker.currentDate
-        calendarModel.month = currentDate.getMonth()+1;
-        calendarModel.year = currentDate.getFullYear();
     }
 
     CalendarModel{
