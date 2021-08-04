@@ -37,7 +37,7 @@ Item {
 
     signal clicked();
 
-    height: parent.height
+    height: visible ? parent.height : 0;
     width: height
 
     Image{

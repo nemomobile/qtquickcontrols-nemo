@@ -45,21 +45,21 @@ Page {
 
     ListModel {
         id: animalsModel
-        ListElement { name: "Ant"; desc: "Small description"; size: "Tiny"; canRemove: true}
-        ListElement { name: "Flea"; desc: ""; size: "Tiny"; canRemove: false }
-        ListElement { name: "Parrot"; desc: ""; size: "Small"; canRemove: true }
-        ListElement { name: "Guinea pig"; desc: "The guinea pig, cavy or domestic guinea pig, or cuy for livestock breeds, is a species of rodent belonging to the family Caviidae and the genus Cavia"; size: "Small"; canRemove: false }
-        ListElement { name: "Rat"; desc: ""; size: "Small"; canRemove: true }
-        ListElement { name: "Butterfly"; desc: ""; size: "Small"; canRemove: false }
-        ListElement { name: "Dog"; desc: ""; size: "Medium"; canRemove: true }
-        ListElement { name: "Cat"; desc: ""; size: "Medium"; canRemove: false }
-        ListElement { name: "Pony"; desc: ""; size: "Medium"; canRemove: true }
-        ListElement { name: "Koala"; desc: ""; size: "Medium"; canRemove: false }
-        ListElement { name: "Horse"; desc: ""; size: "Large"; canRemove: true }
-        ListElement { name: "Tiger"; desc: ""; size: "Large"; canRemove: false }
-        ListElement { name: "Giraffe"; desc: ""; size: "Large"; canRemove: true }
-        ListElement { name: "Elephant"; desc: ""; size: "Huge"; canRemove: false }
-        ListElement { name: "Whale"; desc: ""; size: "Huge"; canRemove: true }
+        ListElement { name: "Ant"; desc: "Small description"; size: "Tiny"; canRemove: true; canLove: true; }
+        ListElement { name: "Flea"; desc: ""; size: "Tiny"; canRemove: false; canLove: true;  }
+        ListElement { name: "Parrot"; desc: ""; size: "Small"; canRemove: true; canLove: true;  image: "image://theme/twitter"; }
+        ListElement { name: "Guinea pig"; desc: "The guinea pig, cavy or domestic guinea pig, or cuy for livestock breeds, is a species of rodent belonging to the family Caviidae and the genus Cavia"; size: "Small"; canRemove: false; canLove: true;  image:"image://theme/piggy-bank"}
+        ListElement { name: "Rat"; desc: ""; size: "Small"; canRemove: true; canLove: false;  /* sorry rats need to demonstrate visible false (-; */}
+        ListElement { name: "Butterfly"; desc: ""; size: "Small"; canRemove: false; canLove: true;  }
+        ListElement { name: "Dog"; desc: ""; size: "Medium"; canRemove: true; canLove: true;  image: "image://theme/dog"; }
+        ListElement { name: "Cat"; desc: ""; size: "Medium"; canRemove: false; canLove: true;  image: "image://theme/cat"; }
+        ListElement { name: "Pony"; desc: ""; size: "Medium"; canRemove: true; canLove: true;  }
+        ListElement { name: "Koala"; desc: ""; size: "Medium"; canRemove: false; canLove: true;  }
+        ListElement { name: "Horse"; desc: ""; size: "Large"; canRemove: true; canLove: true; image: "image://theme/horse"; }
+        ListElement { name: "Tiger"; desc: ""; size: "Large"; canRemove: false; canLove: true;  }
+        ListElement { name: "Giraffe"; desc: ""; size: "Large"; canRemove: true; canLove: true;  }
+        ListElement { name: "Elephant"; desc: ""; size: "Huge"; canRemove: false; canLove: true; image: "image://theme/evernote" }
+        ListElement { name: "Whale"; desc: ""; size: "Huge"; canRemove: true; canLove: true;  image: "image://theme/docker" }
     }
 
     ListView {
@@ -73,7 +73,8 @@ Page {
             description: desc
             showNext: false
             showActions: canRemove
-            iconVisible: false;
+            icon: image
+            iconVisible: (image !== undefined) && (image !== "")
 
             width: parent.width
             height: Theme.itemHeightLarge
@@ -81,6 +82,13 @@ Page {
             actions:[
                 ActionButton {
                     iconSource: "image://theme/times"
+                },
+                ActionButton {
+                    iconSource: "image://theme/heart"
+                    visible: canLove
+                    onClicked: {
+                        console.log("I love "+ name)
+                    }
                 }
 
             ]

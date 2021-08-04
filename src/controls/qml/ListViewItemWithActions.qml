@@ -77,7 +77,7 @@ Item {
         anchors.right: listArea.left
 
         height: listArea.height
-        width: height*actions.length
+        width: actionsRow.childrenRect.width
 
         Row {
             id: actionsRow
