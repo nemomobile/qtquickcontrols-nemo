@@ -46,16 +46,16 @@ Page {
     ListModel {
         id: animalsModel
         ListElement { name: "Ant"; desc: "Small description"; size: "Tiny"; canRemove: true; canLove: true; }
-        ListElement { name: "Flea"; desc: ""; size: "Tiny"; canRemove: false; canLove: true;  }
-        ListElement { name: "Parrot"; desc: ""; size: "Small"; canRemove: true; canLove: true;  image: "image://theme/twitter"; }
+        ListElement { name: "Flea"; desc: ""; size: "Tiny"; canRemove: false; canLove: false;  }
+        ListElement { name: "Parrot"; desc: ""; size: "Small"; canRemove: false; canLove: false;  image: "image://theme/twitter"; }
         ListElement { name: "Guinea pig"; desc: "The guinea pig, cavy or domestic guinea pig, or cuy for livestock breeds, is a species of rodent belonging to the family Caviidae and the genus Cavia"; size: "Small"; canRemove: false; canLove: true;  image:"image://theme/piggy-bank"}
-        ListElement { name: "Rat"; desc: ""; size: "Small"; canRemove: true; canLove: false;  /* sorry rats need to demonstrate visible false (-; */}
+        ListElement { name: "Rat"; desc: ""; size: "Small"; canRemove: true; canLove: false;  }
         ListElement { name: "Butterfly"; desc: ""; size: "Small"; canRemove: false; canLove: true;  }
         ListElement { name: "Dog"; desc: ""; size: "Medium"; canRemove: true; canLove: true;  image: "image://theme/dog"; }
-        ListElement { name: "Cat"; desc: ""; size: "Medium"; canRemove: false; canLove: true;  image: "image://theme/cat"; }
+        ListElement { name: "Cat"; desc: ""; size: "Medium"; canRemove: false; canLove: false;  image: "image://theme/cat"; }
         ListElement { name: "Pony"; desc: ""; size: "Medium"; canRemove: true; canLove: true;  }
         ListElement { name: "Koala"; desc: ""; size: "Medium"; canRemove: false; canLove: true;  }
-        ListElement { name: "Horse"; desc: ""; size: "Large"; canRemove: true; canLove: true; image: "image://theme/horse"; }
+        ListElement { name: "Horse"; desc: ""; size: "Large"; canRemove: true; canLove: false; image: "image://theme/horse"; }
         ListElement { name: "Tiger"; desc: ""; size: "Large"; canRemove: false; canLove: true;  }
         ListElement { name: "Giraffe"; desc: ""; size: "Large"; canRemove: true; canLove: true;  }
         ListElement { name: "Elephant"; desc: ""; size: "Huge"; canRemove: false; canLove: true; image: "image://theme/evernote" }
@@ -72,16 +72,17 @@ Page {
             label: name
             description: desc
             showNext: false
-            showActions: canRemove
-            icon: image
+            showActions: canRemove || canLove
+            icon: (image !== undefined) ? image : ""
             iconVisible: (image !== undefined) && (image !== "")
 
-            width: parent.width
+            width: parent.width !== null ? parent.width : 200
             height: Theme.itemHeightLarge
 
             actions:[
                 ActionButton {
                     iconSource: "image://theme/times"
+                    visible: canRemove
                 },
                 ActionButton {
                     iconSource: "image://theme/heart"
