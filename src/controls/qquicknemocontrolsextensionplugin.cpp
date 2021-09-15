@@ -31,6 +31,7 @@
 #include "sizing.h"
 #include "theme.h"
 #include "nemofocussingleton.h"
+#include "nemoblurredimage.h"
 
 QQuickNemoControlsExtensionPlugin::QQuickNemoControlsExtensionPlugin(QObject *parent) :
     QQmlExtensionPlugin(parent)
@@ -58,6 +59,7 @@ void QQuickNemoControlsExtensionPlugin::registerTypes(const char *uri)
     qmlRegisterSingletonType<QObject>(uri, 1, 0, "NemoHacks", nemo_hacks_singletontype_provider);
     qmlRegisterType<NemoWindow>(uri, 1, 0, "NemoWindow");
     qmlRegisterType<NemoPage>(uri, 1, 0, "NemoPage");
+    qmlRegisterType<NemoBlurredImage>(uri, 1, 0, "NemoBlurredImage");
     qmlRegisterType<RingIndicator>(uri, 1, 0, "RingIndicator");
     qmlRegisterType<QQuickFilteringMouseArea>(uri, 1, 0, "FilteringMouseArea");
 }

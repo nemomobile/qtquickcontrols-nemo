@@ -43,6 +43,7 @@ OTHER_FILES += qmldir \
     $$QML_FILES
 
 HEADERS += \
+    nemoblurredimage.h \
     qquicknemocontrolsextensionplugin.h \
     hacks.h \
     nemowindow.h \
@@ -58,6 +59,7 @@ HEADERS += \
     nemofocussingleton.h
 
 SOURCES += \
+    nemoblurredimage.cpp \
     qquicknemocontrolsextensionplugin.cpp \
     hacks.cpp \
     nemowindow.cpp \

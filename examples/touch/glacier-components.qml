@@ -135,6 +135,10 @@ ApplicationWindow {
             page: "content/IconPage.qml"
         }
         ListElement {
+            title: qsTr("Blurred images")
+            page: "content/BlurredImagePage.qml"
+        }
+        ListElement {
             title: qsTr("Notifications")
             page: "content/NotificationsPage.qml"
         }
