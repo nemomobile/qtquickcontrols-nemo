@@ -42,9 +42,7 @@ CalendarModel::CalendarModel(QObject *parent) :
     m_hash.insert(Qt::UserRole+4 ,QByteArray("dateOfDay"));
 
     m_currentDate = QDate::currentDate();
-
-    m_year = m_currentDate.year();
-    m_month = m_currentDate.month();
+    m_selectedDate = m_currentDate;
 
     fill();
 }
@@ -111,26 +109,8 @@ void CalendarModel::setSelectedDate(QDate date)
     {
         m_selectedDate = date;
         emit selectedDateChanged();
-    }
-}
 
-void CalendarModel::setMonth(int month)
-{
-    if(m_month != month && month > 0 && month < 13)
-    {
-        m_month = month;
         fill();
-        emit monthChanged();
-    }
-}
-
-void CalendarModel::setYear(int year)
-{
-    if(m_year != year)
-    {
-        m_year = year;
-        fill();
-        emit yearChanged();
     }
 }
 
@@ -138,7 +118,7 @@ void CalendarModel::fill()
 {
     m_dateList.clear();
 
-    QDate firstDayOfSelectedMonth = QDate(m_year,m_month,1);
+    QDate firstDayOfSelectedMonth = QDate(m_selectedDate.year(),m_selectedDate.month(),1);
     int startWeekDay = firstDayOfSelectedMonth.dayOfWeek();
 
     /*If first dayof moth not Monday add form preview month*/
@@ -157,7 +137,7 @@ void CalendarModel::fill()
         m_dateList.append(createDateItem(date,false,date == m_currentDate));
     }
     /*if last day of moth not Sunday add from next mont*/
-    QDate lastDayOfSelectedMonth = QDate(m_year,m_month,firstDayOfSelectedMonth.daysInMonth());
+    QDate lastDayOfSelectedMonth = QDate(m_selectedDate.year(),m_selectedDate.month(),firstDayOfSelectedMonth.daysInMonth());
     int endWeekDay = lastDayOfSelectedMonth.dayOfWeek();
     if(endWeekDay != 7)
     {

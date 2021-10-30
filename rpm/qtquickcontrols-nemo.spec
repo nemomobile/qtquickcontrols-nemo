@@ -13,8 +13,7 @@ BuildRequires:  fdupes
 
 Requires:   qt5-qtquickcontrols
 Requires:   qt5-qtgraphicaleffects
-Requires:   qt5-plugin-imageformat-jpeg
-Requires:   qt5-qtsvg-plugin-imageformat-svg
+Requires:   qt5-qtvirtualkeyboard
 Requires:   nemo-theme-glacier
 
 %description
@@ -68,6 +67,8 @@ desktop-file-install --delete-original       \
 %defattr(-,root,root,-)
 %{_libdir}/qt5/qml/Nemo/Dialogs
 %{_libdir}/qt5/qml/Nemo/UX/Models
+%{_libdir}/qt5/qml/Nemo/Dialogs
+%{_libdir}/qt5/qml/QtQuick/VirtualKeyboard/Styles/Nemo
 %{_libdir}/qt5/qml/QtQuick/Controls/Nemo
 %{_libdir}/qt5/qml/QtQuick/Controls/Styles/Nemo
 

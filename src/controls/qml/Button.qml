@@ -35,11 +35,11 @@ Button {
     // We need those for Glacier's Button pressed effect
     Connections {
         target: butt.__behavior
-        onPressed: {
+        function onPressed(mouse) {
             pressX = mouse.x
             pressY = mouse.y
         }
-        onPositionChanged: {
+        function onPositionChanged(mouse) {
             pressX = mouse.x
             pressY = mouse.y
         }

@@ -1,6 +1,6 @@
 /****************************************************************************************
 **
-** Copyright (C) 2017-2018 Chupligin Sergey <neochapay@gmail.com>
+** Copyright (C) 2017-2021 Chupligin Sergey <neochapay@gmail.com>
 ** All rights reserved.
 **
 ** You may use this file under the terms of BSD license as follows:
@@ -36,7 +36,7 @@ import QtGraphicalEffects 1.0
 
 Item {
     id: root
-    width: parent.width
+    width: parent ? parent.width : 0
     height: Theme.itemHeightLarge
 
     property string label: ""
@@ -47,6 +47,7 @@ Item {
 
     property bool showNext: true
     property bool iconVisible: true
+    property bool iconColorized: true
 
     property bool showActions: true
 
@@ -55,12 +56,14 @@ Item {
     signal clicked
 
     function hideAllActions() {
-        root.ListView.view.hideAllActions(index)
+        if(actions && root.ListView.view) {
+            root.ListView.view.hideAllActions(index)
+        }
     }
 
     Connections {
         target: root.ListView.view
-        onHideAllActions: {
+        function onHideAllActions(hideIndex) {
             if (hideIndex != index) {
                 listArea.x = 0
             }
@@ -74,7 +77,7 @@ Item {
         anchors.right: listArea.left
 
         height: listArea.height
-        width: height*actions.length
+        width: actionsRow.childrenRect.width
 
         Row {
             id: actionsRow
@@ -124,7 +127,7 @@ Item {
                 leftMargin: Theme.itemSpacingLarge
                 verticalCenter:parent.verticalCenter
             }
-
+            colorized: iconColorized
             sourceSize.width: width
             sourceSize.height: height
             visible: iconVisible

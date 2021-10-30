@@ -18,6 +18,9 @@ QML_FILES += \
     images/slider-trumpet-up.png \
     images/slider-trumpet.png
 
+keyboard.files = virtualkeyboard/style.qml
+keyboard.path = $$[QT_INSTALL_QML]/QtQuick/VirtualKeyboard/Styles/Nemo
+
 target.path = $$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH
 
 qmlfiles.files = qml/ButtonStyle.qml \
@@ -45,14 +48,20 @@ qmlfiles.files = qml/ButtonStyle.qml \
 qmlfiles.path = $$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH
 
 themes.files = $$_PRO_FILE_PWD_/themes/glacier_black.json \
-               $$_PRO_FILE_PWD_/themes/glacier_white.json
+               $$_PRO_FILE_PWD_/themes/glacier_white.json \
+               $$_PRO_FILE_PWD_/themes/glacier_orange.json
 
 themes.path = $$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH/themes
 
-images.files = $$_PRO_FILE_PWD_/images/*.svg\
-               $$_PRO_FILE_PWD_/images/*.png
+images.files = $$files($$_PRO_FILE_PWD_/images/*.svg,false)\
+               $$files($$_PRO_FILE_PWD_/images/*.png,false)
 
 images.path = $$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH/images/
+
+kbdimages.files = $$files($$_PRO_FILE_PWD_/images/virtualkeyboard/*.svg,false)\
+               $$files($$_PRO_FILE_PWD_/images/virtualkeyboard/*.png,false)
+
+kbdimages.path = $$[QT_INSTALL_QML]/QtQuick/VirtualKeyboard/Styles/Nemo/images
 
 HEADERS += \
     qquicknemostyleextensionplugin.h
@@ -63,6 +72,8 @@ SOURCES += \
 INSTALLS += target \
             images \
             qmlfiles \
-            themes
+            themes \
+            keyboard \
+            kbdimages
 
 DEFINES += 'THEME_DIR=\'\"$$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH/themes"\''

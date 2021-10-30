@@ -1,8 +1,6 @@
-#ifndef NEMOWINDOW_H
-#define NEMOWINDOW_H
-
 /*
  * Copyright (C) 2013 Andrea Bernabei <and.bernabei@gmail.com>
+ * Copyright (C) 2021 Chupligin Sergey <neochapay@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -20,6 +18,9 @@
  * Boston, MA 02110-1301, USA.
  */
 
+#ifndef NEMOWINDOW_H
+#define NEMOWINDOW_H
+
 #include <QQuickWindow>
 #include <QtCore/qnamespace.h>
 #include "editfilter.h"
@@ -29,19 +30,24 @@ class NemoWindow : public QQuickWindow
     Q_OBJECT
     Q_PROPERTY(Qt::ScreenOrientations allowedOrientations READ allowedOrientations WRITE setAllowedOrientations NOTIFY allowedOrientationsChanged)
     Q_PROPERTY(Qt::ScreenOrientations defaultAllowedOrientations READ allowedOrientations)
+    Q_PROPERTY(Qt::ScreenOrientations orientation READ orientation NOTIFY orientationChanged)
 
 public:
     explicit NemoWindow(QWindow *parent = 0);
     
     Qt::ScreenOrientations allowedOrientations() const;
     const Qt::ScreenOrientations defaultAllowedOrientations() const;
+    Qt::ScreenOrientations orientation() const;
 
     void setAllowedOrientations(Qt::ScreenOrientations allowed);
 
 signals:
     void allowedOrientationsChanged();
+    void orientationChanged();
+    void desktopModeChanged();
 
-public slots:
+private slots:
+    void calculateOrientation(Qt::ScreenOrientation orientation);
 
 private:
     //This is the global allowed orientations settings:
@@ -51,8 +57,9 @@ private:
 
     Qt::ScreenOrientations m_defaultAllowedOrientations;
 
-    EditFilter *m_filter;
+    Qt::ScreenOrientations m_orientation;
 
+    EditFilter *m_filter;
 };
 
 #endif // NEMOWINDOW_H

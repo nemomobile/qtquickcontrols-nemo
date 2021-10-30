@@ -2,6 +2,7 @@
 **
 ** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
 ** Contact: http://www.qt-project.org/legal
+** Copyright (C) 2021 Chupligin Sergey <neochapay@gmail.com>
 **
 ** This file is part of the Qt Quick Controls module of the Qt Toolkit.
 **
@@ -62,7 +63,10 @@ Page {
         }
     }
 
-    headerTools: HeaderToolsLayout { showBackButton: true; title: "Progress Bars" }
+    headerTools: HeaderToolsLayout {
+        showBackButton: true;
+        title: qsTr("Progress Bars")
+    }
 
     Column {
         spacing: 40

@@ -41,7 +41,7 @@ Page {
 
     headerTools: HeaderToolsLayout {
         showBackButton: true;
-        title: "Notifications"
+        title: qsTr("Notifications")
     }
     allowedOrientations: Qt.PortraitOrientation | Qt.LandscapeOrientation | Qt.InvertedLandscapeOrientation | Qt.InvertedPortraitOrientation
 

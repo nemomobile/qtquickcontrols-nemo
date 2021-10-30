@@ -1,6 +1,7 @@
 /****************************************************************************
 **
 ** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
+** Copyright (C) 2017-2021 Chupligin Sergey <neochapay@gmail.com>
 ** Contact: http://www.qt-project.org/legal
 **
 ** This file is part of the Qt Quick Controls module of the Qt Toolkit.
@@ -43,7 +44,7 @@ import QtQuick.Controls 1.0
 import QtQuick.Controls.Nemo 1.0
 import QtQuick.Controls.Styles.Nemo 1.0
 import QtQuick.Window 2.1
-import QtQuick.Layouts 1.0
+
 import "content"
 
 ApplicationWindow {
@@ -66,75 +67,87 @@ ApplicationWindow {
     ListModel {
         id: pageModel
         ListElement {
-            title: "Live-Coding Arena"
+            title: qsTr("Live-Coding Arena")
             page: "content/LiveCoding.qml"
         }
         ListElement {
-            title: "Buttons (locked to portrait)"
+            title: qsTr("Buttons (locked to portrait)")
             page: "content/ButtonPage.qml"
         }
         ListElement {
-            title: "Sliders"
+            title: qsTr("Sliders")
             page: "content/SliderPage.qml"
         }
         ListElement {
-            title: "ProgressBar"
+            title: qsTr("ProgressBar")
             page: "content/ProgressBarPage.qml"
         }
         ListElement {
-            title: "DatePicker"
+            title: qsTr("DatePicker")
             page: "content/DatePickerPage.qml"
         }
         ListElement {
-            title: "TimePicker"
+            title: qsTr("TimePicker")
             page: "content/TimePickerPage.qml"
         }
         ListElement {
-            title: "Tabs"
+            title: qsTr("Tabs")
             page: "content/TabBarPage.qml"
         }
         ListElement {
-            title: "TextInput"
+            title: qsTr("TextInput")
             page: "content/TextInputPage.qml"
         }
         ListElement {
-            title: "Spinner"
+            title: qsTr("Spinner")
             page: "content/SpinnerPage.qml"
         }
         ListElement {
-            title: "SelectRoller"
+            title: qsTr("Ring indicator")
+            page: "content/RingIndicatorPage.qml"
+        }
+        ListElement {
+            title: qsTr("SelectRoller")
             page: "content/SelectRollerPage.qml"
         }
         ListElement {
-            title: "ListView"
+            title: qsTr("ListView")
             page: "content/ListViewPage.qml"
         }
         ListElement {
-            title: "Labels (no orientation locks)"
+            title: qsTr("Labels (no orientation locks)")
             page: "content/LabelPage.qml"
         }
         ListElement {
-            title: "Switches"
+            title: qsTr("Switches")
             page: "content/CheckboxPage.qml"
         }
         ListElement {
-            title: "ButtonRow (locked to landscape)"
+            title: qsTr("ButtonRow (locked to landscape)")
             page: "content/ButtonRowPage.qml"
         }
         ListElement {
-            title: "Dialogs"
+            title: qsTr("Dialogs")
             page: "content/DialogsPage.qml"
         }
         ListElement {
-            title: "Icons"
+            title: qsTr("Icons")
             page: "content/IconPage.qml"
         }
         ListElement {
-            title: "Notifications"
+            title: qsTr("Blurred images")
+            page: "content/BlurredImagePage.qml"
+        }
+        ListElement {
+            title: qsTr("Notifications")
             page: "content/NotificationsPage.qml"
         }
         ListElement {
-            title: "Broken page"
+            title: qsTr("Status icon")
+            page: "content/StatusNotifyPage.qml"
+        }
+        ListElement {
+            title: qsTr("Broken page")
             page: "content/BrokenPage.qml"
         }
     }
@@ -145,8 +158,9 @@ ApplicationWindow {
         headerTools: HeaderToolsLayout {
             id: tools
 
-            title: "Nemo Touch Gallery"
-            tools: [ ToolButton {
+            title: qsTr("Nemo components gallery")
+            tools: [
+                ToolButton {
                     iconSource: "image://theme/cog"
                     showCounter: false
                 },
@@ -157,8 +171,10 @@ ApplicationWindow {
                     counterValue: 0
 
                     onClicked: {
-                       editIcon.counterValue++
+                        editIcon.counterValue++
                     }
+
+                    active: true
                 },
                 ToolButton {
                     iconSource: "image://theme/refresh"
@@ -176,58 +192,86 @@ ApplicationWindow {
                 Button {
                     anchors.horizontalCenter: (parent==undefined) ? undefined : parent.horizontalCenter;
                     text: qsTr("Black theme")
+                    primary: Theme.themePath == "/usr/lib/qt/qml/QtQuick/Controls/Styles/Nemo/themes/glacier_black.json"
                     onClicked: {
-                        Theme.loadTheme("/usr/lib/qt5/qml/QtQuick/Controls/Styles/Nemo/themes/glacier_black.json")
+                        Theme.loadTheme("/usr/lib/qt/qml/QtQuick/Controls/Styles/Nemo/themes/glacier_black.json")
                     }
                 },
                 Button {
                     anchors.horizontalCenter: (parent==undefined) ? undefined : parent.horizontalCenter;
                     text: qsTr("White theme")
+                    primary: Theme.themePath == "/usr/lib/qt/qml/QtQuick/Controls/Styles/Nemo/themes/glacier_white.json"
                     onClicked: {
-                        Theme.loadTheme("/usr/lib/qt5/qml/QtQuick/Controls/Styles/Nemo/themes/glacier_white.json")
+                        Theme.loadTheme("/usr/lib/qt/qml/QtQuick/Controls/Styles/Nemo/themes/glacier_white.json")
                     }
                 },
-                RowLayout {
-                    anchors.left: (parent==undefined) ? undefined : parent.left
-                    anchors.right: (parent==undefined) ? undefined : parent.right
-                    anchors.margins: 20
-                    Layout.preferredHeight: 100
+                Row {
+                    id: drawerTestRow
+                    width: appWindow.width
+                    height: Theme.itemHeightMedium
+
+                    anchors{
+                        left: (parent==undefined) ? undefined : parent.left
+                        right: (parent==undefined) ? undefined : parent.right
+                        margins: Theme.itemSpacingLarge
+                    }
+
                     Label {
-                        anchors.left: parent.left;
+                        id: drawerTestLabel
+                        text: qsTr("Drawer Test")
                         anchors.verticalCenter: parent.verticalCenter
-                        text: "Drawer Test"}
+                    }
+
+                    Rectangle{
+                        id: spacer1
+                        width: parent.width-drawerTestLabel.width-drawerTestCheckBox.width
+                        color: "transparent"
+                        height: 1
+                    }
+
                     CheckBox {
-                        anchors.right: parent.right
+                        id: drawerTestCheckBox
                         anchors.verticalCenter: parent.verticalCenter
-                        width : 20
                     }
                 },
-                RowLayout {
-                    anchors.left: (parent==undefined) ? undefined : parent.left
-                    anchors.right: (parent==undefined) ? undefined : parent.right
-                    anchors.margins: 20
-                    Layout.preferredHeight: 100
+                Row{
+                    id: drawerTest2Row
+                    width: appWindow.width
+                    height: Theme.itemHeightMedium
+
+                    anchors{
+                        left: (parent==undefined) ? undefined : parent.left
+                        right: (parent==undefined) ? undefined : parent.right
+                        margins: Theme.itemSpacingLarge
+                    }
+
                     Label {
-                        anchors.left: parent.left;
+                        id: drawerTest2Label
+                        text: qsTr("Drawer Test 2")
                         anchors.verticalCenter: parent.verticalCenter
-                        text: "Drawer Test 2"}
+                    }
+
+                    Rectangle{
+                        id: spacer2
+                        width: parent.width-drawerTest2Label.width-tool1.width-tool2.width-tool3.width
+                        color: "transparent"
+                        height: 1
+                    }
+
                     ToolButton {
                         id: tool1
-                        anchors.right: parent.right
-                        anchors.verticalCenter: parent.verticalCenter
                         iconSource: "image://theme/cog"
+                        anchors.verticalCenter: parent.verticalCenter
                     }
                     ToolButton {
                         id: tool2
-                        anchors.right: tool1.left
-                        anchors.verticalCenter: parent.verticalCenter
                         iconSource: "image://theme/edit"
+                        anchors.verticalCenter: parent.verticalCenter
                     }
                     ToolButton {
                         id: tool3
-                        anchors.right: tool2.left
-                        anchors.verticalCenter: parent.verticalCenter
                         iconSource: "image://theme/refresh"
+                        anchors.verticalCenter: parent.verticalCenter
                     }
                 },
                 ButtonRow {

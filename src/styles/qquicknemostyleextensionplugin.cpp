@@ -1,6 +1,7 @@
 /*
  * Copyright (C) 2013 Tomasz Olszak <olszak.tomasz@gmail.com>
  * Copyright (C) 2013 Andrea Bernabei <and.bernabei@gmail.com>
+ * Copyright (C) 2021 Chupligin Sergey <neochapay@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -29,6 +30,7 @@ QQuickNemoStyleExtensionPlugin::QQuickNemoStyleExtensionPlugin(QObject *parent) 
 void QQuickNemoStyleExtensionPlugin::registerTypes(const char *uri)
 {
     Q_ASSERT(uri == QLatin1String("QtQuick.Controls.Styles.Nemo"));
+    qmlRegisterModule(uri, 1, 0);
 }
 
 void QQuickNemoStyleExtensionPlugin::initializeEngine(QQmlEngine *engine, const char *uri)

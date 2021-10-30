@@ -1,6 +1,6 @@
 /****************************************************************************************
 **
-** Copyright (C) 2018 Chupligin Sergey <neochapay@gmail.com>
+** Copyright (C) 2018-2021 Chupligin Sergey <neochapay@gmail.com>
 ** All rights reserved.
 **
 ** You may use this file under the terms of BSD license as follows:
@@ -46,6 +46,14 @@ Page {
     Column {
         spacing: Theme.itemSpacingLarge*2
         width: parent.width
+
+        anchors{
+            top: parent.top
+            topMargin: Theme.itemSpacingLarge
+            left: parent.left
+            leftMargin: Theme.itemSpacingLarge
+        }
+
         TimePicker{
             width: parent.width-Theme.itemSpacingLarge*2
             readOnly: false

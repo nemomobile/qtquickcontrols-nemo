@@ -5,6 +5,9 @@ TARGET=nemocontrolsplugin
 PLUGIN_IMPORT_PATH = QtQuick/Controls/Nemo
 THEME_IMPORT_PATH = QtQuick/Controls/Styles/Nemo/themes
 
+CONFIG += link_pkgconfig
+PKGCONFIG += mlite5
+
 # Added/Reimplemented Controls
 QML_FILES += \
     qml/Button.qml \
@@ -40,12 +43,14 @@ OTHER_FILES += qmldir \
     $$QML_FILES
 
 HEADERS += \
+    nemoblurredimage.h \
     qquicknemocontrolsextensionplugin.h \
     hacks.h \
     nemowindow.h \
     nemopage.h \
     qquickfilteringmousearea.h \
     nemoimageprovider.h \
+    ringindicator.h \
     themedaemon/mlocalthemedaemonclient.h \
     themedaemon/mabstractthemedaemonclient.h \
     sizing.h \
@@ -54,12 +59,14 @@ HEADERS += \
     nemofocussingleton.h
 
 SOURCES += \
+    nemoblurredimage.cpp \
     qquicknemocontrolsextensionplugin.cpp \
     hacks.cpp \
     nemowindow.cpp \
     nemopage.cpp \
     qquickfilteringmousearea.cpp \
     nemoimageprovider.cpp \
+    ringindicator.cpp \
     themedaemon/mlocalthemedaemonclient.cpp \
     themedaemon/mabstractthemedaemonclient.cpp \
     sizing.cpp \
@@ -69,11 +76,11 @@ SOURCES += \
 
 target.path = $$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH
 
-qmlfiles.files = $$_PRO_FILE_PWD_/qml/*.qml
+qmlfiles.files = $$files($$_PRO_FILE_PWD_/qml/*.qml,false)
 qmlfiles.files += $$_PRO_FILE_PWD_/qml/qmldir
 qmlfiles.path = $$[QT_INSTALL_QML]/$$PLUGIN_IMPORT_PATH
 
-dialogs.files = $$_PRO_FILE_PWD_/qml/dialogs/*.qml
+dialogs.files = $$files($$_PRO_FILE_PWD_/qml/dialogs/*.qml,false)
 dialogs.files += $$_PRO_FILE_PWD_/qml/dialogs/qmldir
 dialogs.path = $$[QT_INSTALL_QML]/Nemo/Dialogs
 

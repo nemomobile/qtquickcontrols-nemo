@@ -1,6 +1,6 @@
 /****************************************************************************************
 **
-** Copyright (C) 2017 Chupligin Sergey <neochapay@gmail.com>
+** Copyright (C) 2017-2021 Chupligin Sergey <neochapay@gmail.com>
 ** All rights reserved.
 **
 ** You may use this file under the terms of BSD license as follows:
@@ -47,8 +47,6 @@ class CalendarModel : public QAbstractListModel
     };
 
     Q_PROPERTY(QDate currentDate READ currentDate)
-    Q_PROPERTY(int month READ month WRITE setMonth NOTIFY monthChanged)
-    Q_PROPERTY(int year READ year WRITE setYear NOTIFY yearChanged)
     Q_PROPERTY(QDate selectedDate READ selectedDate WRITE setSelectedDate NOTIFY selectedDateChanged)
 
 public:
@@ -58,21 +56,15 @@ public:
     QHash<int, QByteArray> roleNames() const {return m_hash;}
 
     void setSelectedDate(QDate date);
-    void setMonth(int month);
-    void setYear(int year);
 
     const QDate currentDate(){return m_currentDate;}
     QDate selectedDate(){return m_selectedDate;}
 
-    int month(){return m_month;}
-    int year(){return m_year;}
 public slots:
     QVariant get(const int idx) const;
 
 signals:
     void selectedDateChanged();
-    void monthChanged();
-    void yearChanged();
 
 private:
     QHash<int,QByteArray> m_hash;
@@ -87,9 +79,6 @@ private:
 
     QDate m_currentDate;
     QDate m_selectedDate;
-
-    int m_month;
-    int m_year;
 };
 
 #endif // DATELISTMODEL_H

@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2013 Andrea Bernabei <and.bernabei@gmail.com>
- * Copyright (C) 2017 Chupligin Sergey <mail@neochapay.ru>
+ * Copyright (C) 2017-2021 Chupligin Sergey <neochapay@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -31,8 +31,8 @@ SliderStyle{
     handle: Rectangle {
         id: handle
         anchors.verticalCenter:useSpecSlider ? undefined : parent.verticalCenter
-        y: useSpecSlider ? (control.pressed ? alwaysUp ? parent.y - Theme.itemHeightLarge : ((handleValue  > 0.8) ? parent.y - (Theme.itemHeightLarge*_multiple2) : parent.y ) :  parent.y) : undefined
-        x: useSpecSlider ? (control.pressed ? alwaysUp ? Theme.itemHeightExtraSmall / 2 : (handleValue > 0.8) ? (_multiple*Theme.itemHeightHuge)  : Theme.itemHeightHuge : 0) : undefined
+        y: useSpecSlider ? (control.pressed ? alwaysUp ? parent.y - Theme.itemHeightLarge : ((handleValue  > 0.8) ? parent.y - (Theme.itemHeightLarge*_multiple2) : parent.y ) :  parent.y) : 0
+        x: useSpecSlider ? (control.pressed ? alwaysUp ? Theme.itemHeightExtraSmall / 2 : (handleValue > 0.8) ? (_multiple*Theme.itemHeightHuge)  : Theme.itemHeightHuge : 0) : 0
         color: Theme.backgroundColor
         border.color: Theme.textColor
         border.width: size.ratio(2)

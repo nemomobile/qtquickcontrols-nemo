@@ -1,3 +1,23 @@
+/*
+ * Copyright (C) 2018-2021 Chupligin Sergey <neochapay@gmail.com>
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public License
+ * along with this library; see the file COPYING.LIB.  If not, write to
+ * the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+ * Boston, MA 02110-1301, USA.
+ */
+
+
 #include "theme.h"
 #include <math.h>
 #include <QFile>
@@ -12,56 +32,45 @@ Theme::Theme(QObject *parent) : QObject(parent)
     m_iconSizeLauncher = size->getLauncherIconSize();
     m_scaleRatio = size->getScaleRatio();
     m_fontRatio = size->getFontRatio();
-    //Load defaults
-    m_itemWidthLarge = floor(320*m_scaleRatio);
-    m_itemWidthMedium = floor(240*m_scaleRatio);
-    m_itemWidthSmall = floor(120*m_scaleRatio);
-    m_itemWidthExtraSmall = floor(72*m_scaleRatio);
 
-    m_itemHeightHuge = floor(80*m_scaleRatio);
-    m_itemHeightExtraLarge = floor(75*m_scaleRatio);
-    m_itemHeightLarge = floor(63*m_scaleRatio);
-    m_itemHeightMedium = floor(50*m_scaleRatio);
-    m_itemHeightSmall = floor(40*m_scaleRatio);
-    m_itemHeightExtraSmall = floor(32*m_scaleRatio);
+    loadDefaultValue();
 
-    m_itemSpacingHuge = floor(40*m_scaleRatio);
-    m_itemSpacingLarge = floor(20*m_scaleRatio);
-    m_itemSpacingMedium = floor(15*m_scaleRatio);
-    m_itemSpacingSmall = floor(10*m_scaleRatio);
-    m_itemSpacingExtraSmall = floor(8*m_scaleRatio);
+    MGConfItem *desktopModeValue = new MGConfItem(QStringLiteral("/nemo/apps/libglacier/desktopmode"));
+    m_themeValue = new MGConfItem(QStringLiteral("/nemo/apps/libglacier/themePath"));
 
+    m_desktopMode = desktopModeValue->value().toBool();
+    m_theme = m_themeValue->value().toString();
 
-    m_fontSizeExtraLarge = floor(44*m_fontRatio);
-    m_fontSizeLarge = floor(35*m_fontRatio);
-    m_fontSizeMedium = floor(28*m_fontRatio);
-    m_fontSizeSmall = floor(24*m_fontRatio);
-    m_fontSizeTiny = floor(16*m_fontRatio);
-    m_fontWeightLarge = 63*m_dp;
-    m_fontWeightMedium = 25*m_dp;
-    m_fontFamily = "/usr/share/fonts/google-opensans/OpenSans-Regular.ttf";
+    connect(desktopModeValue, &MGConfItem::valueChanged, this, &Theme::desktopModeValueChanged);
+    connect(m_themeValue, &MGConfItem::valueChanged, this, &Theme::themeValueChanged);
 
-    m_accentColor = "#0091e5";
-    m_fillColor = "#474747";
-    m_fillDarkColor = "#313131";
-    m_textColor = "#ffffff";
-    m_backgroundColor = "#000000";
-    m_backgroundAccentColor = "#ffffff";
+    loadTheme(m_theme);
 }
 
 bool Theme::loadTheme(QString fileName)
+{
+    QFile themeFile(fileName);
+
+    if(!themeFile.exists()) {
+        qDebug() << "Theme file " << fileName << " not found";
+        return false;
+    }
+
+    if(fileName != m_theme) {
+        m_themeValue->set(fileName);
+    } else {
+        setThemeValues();
+    }
+    return true;
+}
+
+void Theme::setThemeValues()
 {
     QString themeJsonString;
 
     bool updated = false;
 
-    QFile themeFile;
-    themeFile.setFileName(fileName);
-    if(!themeFile.exists())
-    {
-        qDebug() << "Theme file " << fileName << " not found";
-        return false;
-    }
+    QFile themeFile(m_theme);
 
     themeFile.open(QIODevice::ReadOnly | QIODevice::Text);
     themeJsonString = themeFile.readAll();
@@ -244,7 +253,7 @@ bool Theme::loadTheme(QString fileName)
         fontFile.setFileName(theme.value("fontFamily").toString());
         if(!themeFile.exists())
         {
-            qDebug() << "Font file " << fileName << " not found";
+            qDebug() << "Font file " << fontFile.fileName() << " not found";
         }
         else
         {
@@ -300,7 +309,57 @@ bool Theme::loadTheme(QString fileName)
     if(updated)
     {
         emit themeUpdate();
-        return true;
     }
-    return false;
+}
+
+void Theme::desktopModeValueChanged()
+{
+    m_desktopMode = MGConfItem(QStringLiteral("/nemo/apps/libglacier/desktopmode")).value().toBool();
+    emit desktopModeChanged();
+
+}
+
+void Theme::themeValueChanged()
+{
+    m_theme = m_themeValue->value().toString();
+    setThemeValues();
+}
+
+void Theme::loadDefaultValue()
+{
+    //Load defaults
+    m_itemWidthLarge = floor(320*m_scaleRatio);
+    m_itemWidthMedium = floor(240*m_scaleRatio);
+    m_itemWidthSmall = floor(120*m_scaleRatio);
+    m_itemWidthExtraSmall = floor(72*m_scaleRatio);
+
+    m_itemHeightHuge = floor(80*m_scaleRatio);
+    m_itemHeightExtraLarge = floor(75*m_scaleRatio);
+    m_itemHeightLarge = floor(63*m_scaleRatio);
+    m_itemHeightMedium = floor(50*m_scaleRatio);
+    m_itemHeightSmall = floor(40*m_scaleRatio);
+    m_itemHeightExtraSmall = floor(32*m_scaleRatio);
+
+    m_itemSpacingHuge = floor(40*m_scaleRatio);
+    m_itemSpacingLarge = floor(20*m_scaleRatio);
+    m_itemSpacingMedium = floor(15*m_scaleRatio);
+    m_itemSpacingSmall = floor(10*m_scaleRatio);
+    m_itemSpacingExtraSmall = floor(8*m_scaleRatio);
+
+
+    m_fontSizeExtraLarge = floor(44*m_fontRatio);
+    m_fontSizeLarge = floor(35*m_fontRatio);
+    m_fontSizeMedium = floor(28*m_fontRatio);
+    m_fontSizeSmall = floor(24*m_fontRatio);
+    m_fontSizeTiny = floor(16*m_fontRatio);
+    m_fontWeightLarge = 63*m_dp;
+    m_fontWeightMedium = 25*m_dp;
+    m_fontFamily = "/usr/share/fonts/google-opensans/OpenSans-Regular.ttf";
+
+    m_accentColor = "#0091e5";
+    m_fillColor = "#474747";
+    m_fillDarkColor = "#313131";
+    m_textColor = "#ffffff";
+    m_backgroundColor = "#000000";
+    m_backgroundAccentColor = "#ffffff";
 }

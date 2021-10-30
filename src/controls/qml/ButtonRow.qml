@@ -2,6 +2,7 @@
 **
 ** Copyright (C) 2014 Aleksi Suomalainen <suomalainen.aleksi@gmail.com>
 ** Copyright (C) 2017 Sergey Chupligin <neochapay@gmail.com>
+** Copyright (C) 2017 Eetu Kahelin
 ** All rights reserved.
 **
 ** You may use this file under the terms of BSD license as follows:

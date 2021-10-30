@@ -1,6 +1,7 @@
 /****************************************************************************************
 **
 ** Copyright (c) 2017, Eetu Kahelin
+** Copyright (C) 2021 Chupligin Sergey <neochapay@gmail.com>
 ** All rights reserved.
 **
 ** You may use this file under the terms of BSD license as follows:
@@ -39,5 +40,6 @@ TextField {
         if(activeFocus) NemoFocus.nemoregister(this)
         else NemoFocus.nemoregister(null)
     }
+
     style: TextFieldStyle { }
 }

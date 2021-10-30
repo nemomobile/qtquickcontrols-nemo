@@ -1,10 +1,30 @@
+/*
+ * Copyright (C) 2018-2021 Chupligin Sergey <neochapay@gmail.com>
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public License
+ * along with this library; see the file COPYING.LIB.  If not, write to
+ * the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+ * Boston, MA 02110-1301, USA.
+ */
+
 import QtQuick 2.6
 import QtQuick.Window 2.0
 import QtQuick.Controls 1.0
 import QtQuick.Controls.Nemo 1.0
 import QtQuick.Controls.Styles.Nemo 1.0
-import QtQuick.Layouts 1.0
+
 import QtGraphicalEffects 1.0
+import QtQml 2.14
 
 Item {
     id: root
@@ -12,20 +32,22 @@ Item {
     //TODO: Add logic/animations to handle dynamic change of tools and drawer levels in the same page
 
     //make sure the header is aligned properly
-    Binding on y {
+    /*Binding on y {
         when: !appWindow.isUiPortrait
         value: 0
     }
     Binding on x {
         when: appWindow.isUiPortrait
         value: 0
-    }
+    }*/
 
     //Since the header drawer behaves differently in portrait/landscape modes
     //we close the drawer when the UI rotates
     Connections {
         target: appWindow
-        onIsUiPortraitChanged: closeDrawer()
+        function onIsUiPortraitChanged() {
+            closeDrawer()
+        }
     }
 
     //Handle portrait/landscape orientation layout changes
@@ -126,14 +148,16 @@ Item {
     //(i.e. to get header.stackView.depth value)
     Connections {
         target: stackView
-        onCurrentItemChanged: {
+        function onCurrentItemChanged() {
             if (changeToolsLayoutAnim.running) {
                 changeToolsLayoutAnim.complete()
             }
             changeToolsLayoutAnim.start()
         }
         //Close drawer if a page transition is starting
-        onBusyChanged: if (stackView.busy) closeDrawer()
+        function onBusyChanged() {
+            if (stackView.busy) closeDrawer()
+        }
     }
 
     function propagateHeaderReference() {
@@ -183,7 +207,8 @@ Item {
 
         color: Theme.backgroundColor
 
-        FilteringMouseArea {
+        //TODO: Check if changing this FilteringMouseArea->MouseArea has any side effects
+        MouseArea {
             id: mouseArea
             anchors.fill: parent
             property bool swiping: false
@@ -215,18 +240,18 @@ Item {
                 }
 
                 if (appWindow.isUiPortrait) {
-                    startMouseCoord = (pos.y + root.y)
+                    startMouseCoord = (mouse.y + root.y)
                     startCoord = root.y
                 } else { //assuming that otherwise we're in landscape...is this safe?
-                    startMouseCoord = (pos.x + root.x)
+                    startMouseCoord = (mouse.x + root.x)
                     startCoord = root.x
                 }
             }
 
             onPositionChanged: {
                 if (appWindow.isUiPortrait) {
-                    deltaCoord = (pos.y + root.y) - startMouseCoord
-                    if (Math.abs(deltaCoord) > swipeThreshold && !swiping) { grabMouseEvents(); swiping = true; }
+                    deltaCoord = (mouse.y + root.y) - startMouseCoord
+                    if (Math.abs(deltaCoord) > swipeThreshold && !swiping) { swiping = true; }
 
                     if (swiping) {
                         var swipingY = startCoord + deltaCoord
@@ -238,8 +263,8 @@ Item {
                         }
                     }
                 } else {
-                    deltaCoord = (pos.x + root.x) - startMouseCoord
-                    if (Math.abs(deltaCoord) > swipeThreshold && !swiping) { grabMouseEvents(); swiping = true; }
+                    deltaCoord = (mouse.x + root.x) - startMouseCoord
+                    if (Math.abs(deltaCoord) > swipeThreshold && !swiping) { swiping = true; }
                     if (swiping) {
                         //this is the coord that the drawer would be at if it were following our finger
                         var swipingX = startCoord + deltaCoord
@@ -285,7 +310,7 @@ Item {
                         //Fully Close/Open the drawer
                         root.slideDrawerTo((root.x == root.closedX) ? 0 : root.closedX)
                     } else {
-                        deltaCoord = (pos.x + root.x) - startMouseCoord
+                        deltaCoord = (mouse.x + root.x) - startMouseCoord
                         if (deltaCoord > gestureThreshold) {
                             root.slideDrawerTo(startCoord < 0 ? 0 : closedX)
                         } else if (deltaCoord < -gestureThreshold){
@@ -308,15 +333,17 @@ Item {
         color: Theme.backgroundColor
 
         Binding on width {
+            restoreMode: Binding.RestoreBinding
             value: drawer.width
             when: !appWindow.isUiPortrait
         }
         Binding on height {
+            restoreMode: Binding.RestoreBinding
             value: drawer.height
             when: appWindow.isUiPortrait
         }
 
-        ColumnLayout {
+        Column {
             id: drawer
 
             //NOTE: if you set the spacing to something != 0 then you have to rewrite the logic which handles drawer speedbumps,

@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2013 Andrea Bernabei <and.bernabei@gmail.com>
+ * Copyright (C) 2021 Chupligin Sergey <neochapay@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -21,7 +22,6 @@ import QtQuick 2.6
 import QtQuick.Controls 1.0 //needed for the Stack attached property
 import QtQuick.Controls.Nemo 1.0
 import QtQuick.Controls.Styles.Nemo 1.0
-import QtQuick.Layouts 1.0
 
 Page {
     id: root
@@ -29,7 +29,10 @@ Page {
     property var oldItem
     property var newItem
 
-    headerTools: HeaderToolsLayout { showBackButton: true; title: "Live Coding Arena" }
+    headerTools: HeaderToolsLayout {
+        showBackButton: true;
+        title: qsTr("Live Coding Arena")
+    }
 
     SplitView {
         anchors.fill: parent
@@ -45,7 +48,7 @@ Page {
                 anchors.top: parent.top
                 anchors.left: parent.left
                 anchors.right: parent.right
-                text: "Update LiveItem"
+                text:  qsTr("Update LiveItem")
                 onClicked: {
                     txt.qmlError = false
                     try {

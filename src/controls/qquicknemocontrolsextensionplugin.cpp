@@ -2,6 +2,7 @@
  * Copyright (C) 2013 Tomasz Olszak <olszak.tomasz@gmail.com>
  * Copyright (C) 2013 Andrea Bernabei <and.bernabei@gmail.com>
  * Copyright (C) 2017 Eetu Kahelin
+ * Copyright (C) 2021 Chupligin Sergey <neochapay@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -26,9 +27,11 @@
 #include "nemopage.h"
 #include "qquickfilteringmousearea.h"
 #include "nemoimageprovider.h"
+#include "ringindicator.h"
 #include "sizing.h"
 #include "theme.h"
 #include "nemofocussingleton.h"
+#include "nemoblurredimage.h"
 
 QQuickNemoControlsExtensionPlugin::QQuickNemoControlsExtensionPlugin(QObject *parent) :
     QQmlExtensionPlugin(parent)
@@ -51,10 +54,13 @@ QObject *getNemoFocus(QQmlEngine *engine, QJSEngine *scriptEngine)
 void QQuickNemoControlsExtensionPlugin::registerTypes(const char *uri)
 {
     Q_ASSERT(uri == QLatin1String("QtQuick.Controls.Nemo"));
+    qmlRegisterModule(uri, 1, 0);
     qmlRegisterSingletonType<QObject>(uri, 1, 0, "NemoFocus", getNemoFocus);
     qmlRegisterSingletonType<QObject>(uri, 1, 0, "NemoHacks", nemo_hacks_singletontype_provider);
     qmlRegisterType<NemoWindow>(uri, 1, 0, "NemoWindow");
     qmlRegisterType<NemoPage>(uri, 1, 0, "NemoPage");
+    qmlRegisterType<NemoBlurredImage>(uri, 1, 0, "NemoBlurredImage");
+    qmlRegisterType<RingIndicator>(uri, 1, 0, "RingIndicator");
     qmlRegisterType<QQuickFilteringMouseArea>(uri, 1, 0, "FilteringMouseArea");
 }
 

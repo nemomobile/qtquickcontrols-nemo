@@ -1,6 +1,7 @@
 /****************************************************************************************
 **
 ** Copyright (C) 2014 Aleksi Suomalainen <suomalainen.aleksi@gmail.com>
+** Copyright (C) 2021 Chupligin Sergey <neochapay@gmail.com>
 ** All rights reserved.
 **
 ** You may use this file under the terms of BSD license as follows:
@@ -37,7 +38,10 @@ import QtQuick.Controls.Styles.Nemo 1.0
 Page {
     id: root
 
-    headerTools: HeaderToolsLayout { showBackButton: true; title: "Button row (Landscape only)" }
+    headerTools: HeaderToolsLayout {
+        showBackButton: true;
+        title: qsTr("Button row (Landscape only)")
+    }
     allowedOrientations: Qt.LandscapeOrientation
 
     Column {
@@ -69,14 +73,14 @@ Page {
         Connections {
             target: row
             onCurrentIndexChanged: {
-                selector.text = "Selected " + buttonModel.get(row.currentIndex).name
+                selector.text = qsTr("Selected") + " " + buttonModel.get(row.currentIndex).name
             }
         }
 
         Label {
             id: selector
             anchors.horizontalCenter: parent.horizontalCenter
-            text: "Nothing selected"
+            text: qsTr("Nothing selected")
         }
         ButtonRow {
             id: row2

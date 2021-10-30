@@ -2,6 +2,7 @@
 **
 ** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
 ** Contact: http://www.qt-project.org/legal
+** Copyright (C) 2021 Chupligin Sergey <neochapay@gmail.com>
 **
 ** This file is part of the Qt Quick Controls module of the Qt Toolkit.
 **
@@ -46,22 +47,25 @@ import QtQuick.Controls.Styles.Nemo 1.0
 Page {
     id: root
 
-    headerTools: HeaderToolsLayout { showBackButton: true; title: "Tab bars" }
+    headerTools: HeaderToolsLayout {
+        showBackButton: true;
+        title: qsTr("Tab bars")
+    }
 
     TabView {
         anchors.fill: parent
 
         style: TabViewStyle { }
         Tab {
-            title: "Buttons"
+            title: qsTr("Buttons")
             ButtonPage{ visible: true }
         }
         Tab {
-            title: "Sliders"
+            title: qsTr("Sliders")
             SliderPage{ visible: true }
         }
         Tab {
-            title: "Progress"
+            title: qsTr("Progress")
             ProgressBarPage{ visible: true }
         }
     }

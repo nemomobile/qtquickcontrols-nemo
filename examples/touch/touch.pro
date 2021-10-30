@@ -28,12 +28,15 @@ qml.files += \
     content/IconPage.qml \
     content/DatePickerPage.qml \
     content/TimePickerPage.qml \
-    content/NotificationsPage.qml
+    content/NotificationsPage.qml \
+    content/StatusNotifyPage.qml \
+    content/RingIndicatorPage.qml \
+    content/BlurredImagePage.qml
 
 qml.path = /usr/share/glacier-components/qml/content
 
-images.files = images/*.png
-images.files += images/*.jpg
+images.files = $$files(images/*.png,false)
+images.files += $$files(images/*.jpg,false)
 images.path = /usr/share/glacier-components/images
 
 OTHER_FILES += $$qml.files
@@ -50,4 +53,5 @@ SOURCES += \
     src/main.cpp
 
 DISTFILES += \
+    content/StatusNotifyPage.qml \
     content/TimePickerPage.qml
